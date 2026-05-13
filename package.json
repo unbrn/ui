@@ -22,9 +22,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build --mode lib",
+    "build:docs": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --outDir dist-docs"
   },
   "dependencies": {
     "@types/react-syntax-highlighter": "^15.5.13",
