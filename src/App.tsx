@@ -1,23 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { Header } from './components/layout/Header';
 import { Sidebar } from './components/layout/Sidebar';
-import { HomePage } from './pages/HomePage';
-import { ButtonsPage } from './pages/ButtonsPage';
-import { AvatarsPage } from './pages/AvatarsPage';
-import { AlertsPage } from './pages/AlertsPage';
-import { AccordionsPage } from './pages/AccordionsPage';
-import { BadgesPage } from './pages/BadgesPage';
-import { DockPage } from './pages/DockPage';
-import { ComponentsPage } from './pages/ComponentsPage';
 import { Dock } from './components/layout/Dock';
+
+// Lazy load pages for better performance
+const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
+const ButtonsPage = lazy(() => import('./pages/ButtonsPage').then(m => ({ default: m.ButtonsPage })));
+const AvatarsPage = lazy(() => import('./pages/AvatarsPage').then(m => ({ default: m.AvatarsPage })));
+const AlertsPage = lazy(() => import('./pages/AlertsPage').then(m => ({ default: m.AlertsPage })));
+const AccordionsPage = lazy(() => import('./pages/AccordionsPage').then(m => ({ default: m.AccordionsPage })));
+const BadgesPage = lazy(() => import('./pages/BadgesPage').then(m => ({ default: m.BadgesPage })));
+const DockPage = lazy(() => import('./pages/DockPage').then(m => ({ default: m.DockPage })));
+const ComponentsPage = lazy(() => import('./pages/ComponentsPage').then(m => ({ default: m.ComponentsPage })));
+const InstallationPage = lazy(() => import('./pages/InstallationPage').then(m => ({ default: m.InstallationPage })));
 
 type Theme = 'light' | 'dark';
 
 function App() {
-  const [theme, setTheme] = useState<Theme>('dark');
-  const [accent, setAccent] = useState('green');
+  const [theme, setTheme] = useState<Theme>(() => {
+    const saved = localStorage.getItem('unburn-theme');
+    return (saved as Theme) || 'dark';
+  });
+  
+  const [accent, setAccent] = useState(() => {
+    return localStorage.getItem('unburn-accent') || 'green';
+  });
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleTheme = () => {
@@ -26,7 +36,13 @@ function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('unburn-theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-accent', accent);
+    localStorage.setItem('unburn-accent', accent);
+  }, [accent]);
 
   // Dynamic Favicon
   useEffect(() => {
@@ -41,9 +57,6 @@ function App() {
     }
   }, [accent, theme]);
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-accent', accent);
-  }, [accent]);
 
   return (
     <Router>
@@ -59,16 +72,19 @@ function App() {
           />
 
           <main className="unburn-main">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/components" element={<ComponentsPage />} />
-              <Route path="/components/buttons" element={<ButtonsPage />} />
-              <Route path="/components/avatars" element={<AvatarsPage />} />
-              <Route path="/components/alerts" element={<AlertsPage />} />
-              <Route path="/components/accordions" element={<AccordionsPage />} />
-              <Route path="/components/badges" element={<BadgesPage />} />
-              <Route path="/components/dock" element={<DockPage />} />
-            </Routes>
+            <Suspense fallback={<div className="loading-state">LOADING...</div>}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/installation" element={<InstallationPage />} />
+                <Route path="/components" element={<ComponentsPage />} />
+                <Route path="/components/buttons" element={<ButtonsPage />} />
+                <Route path="/components/avatars" element={<AvatarsPage />} />
+                <Route path="/components/alerts" element={<AlertsPage />} />
+                <Route path="/components/accordions" element={<AccordionsPage />} />
+                <Route path="/components/badges" element={<BadgesPage />} />
+                <Route path="/components/dock" element={<DockPage />} />
+              </Routes>
+            </Suspense>
           </main>
         </div>
 

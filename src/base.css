@@ -1,3 +1,7 @@
+/* @unburn/ui — Design Tokens & Base Styles */
+/* These CSS variables power all @unburn/ui components. */
+/* They are automatically included when you import '@unburn/ui/styles.css' */
+
 @import url('https://fonts.googleapis.com/css2?family=Gloock&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 :root,
@@ -24,14 +28,11 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
-  /* Design Tokens - Golden Ratio & Premium Feel */
+  /* Design Tokens */
   --phi: 1.618;
   --spacing-unit: 1rem;
-
   --radius: 20px;
   --shadow: none;
-  --viewport-glow: none;
-
   --transition-speed: 0.4s;
   --transition-curve: cubic-bezier(0.2, 0.8, 0.2, 1);
   --transition: var(--transition-speed) var(--transition-curve);
@@ -55,7 +56,7 @@
   -webkit-backdrop-filter: blur(12px);
   background-color: var(--bg-glass, rgba(255, 255, 255, 0.45));
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transform: translateZ(0); /* Force hardware acceleration */
+  transform: translateZ(0);
   will-change: backdrop-filter;
 }
 
@@ -93,102 +94,4 @@
 :root[data-accent="black"] {
   --accent-color: var(--color-black);
   --accent-text: #ffffff;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: var(--font-sans);
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Typography Utility Classes */
-.font-sans {
-  font-family: var(--font-sans);
-}
-
-.font-serif {
-  font-family: var(--font-serif);
-}
-
-.font-mono {
-  font-family: var(--font-mono);
-}
-
-/* Layout & Spacing */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-/* Brutalist reset for components */
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-  border-radius: var(--radius);
-  /* Controlled by style variable */
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-main);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
-}
-
-/* Accessibility & UX Enhancements */
-:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-  border-radius: var(--radius);
-}
-
-::selection {
-  background-color: var(--accent-color);
-  color: var(--accent-text);
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-.viewport-glow {
-  position: fixed;
-  top: -250px;
-  left: -250px;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
-  filter: blur(120px);
-  opacity: 0.45;
-  pointer-events: none;
-  z-index: 2000;
-  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-[data-theme="light"] .viewport-glow {
-  opacity: 0.2;
 }

@@ -29,6 +29,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   const navLinks = [
     { to: '/', label: 'Introduction' },
+    { to: '/installation', label: 'Installation' },
     { to: '/components', label: 'Components' },
   ];
 
@@ -39,6 +40,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="sidebar-group">
           <h3 className="sidebar-group-title">Getting Started</h3>
           <NavLink to="/" className="sidebar-nav-item">Introduction</NavLink>
+          <NavLink to="/installation" className="sidebar-nav-item">Installation</NavLink>
           <NavLink to="/components" className="sidebar-nav-item">Components</NavLink>
         </div>
       </aside>

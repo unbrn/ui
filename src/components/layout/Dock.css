@@ -83,7 +83,7 @@
   font-weight: 700;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.4s var(--transition);
+  transition: all 0.4s var(--transition-curve);
   display: flex;
   align-items: center;
   scroll-snap-align: center;
@@ -159,7 +159,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s var(--transition);
+  transition: all 0.3s var(--transition-curve);
   scroll-snap-align: center;
   flex-shrink: 0;
 }
@@ -217,7 +217,7 @@
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.5s var(--transition);
+  transition: all 0.5s var(--transition-curve);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
 

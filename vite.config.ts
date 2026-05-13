@@ -47,17 +47,20 @@ export default defineConfig(({ mode }) => {
       },
       sourcemap: true,
       minify: true,
+      copyPublicDir: false,
     } : {
       // Standard App build for the documentation site
       outDir: 'dist-docs',
       target: 'esnext',
-      cssMinify: false,
+      cssMinify: true,
+      chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
               if (id.includes('react-syntax-highlighter')) return 'vendor-highlighter';
               if (id.includes('lucide-react')) return 'vendor-icons';
+              if (id.includes('react-dom') || id.includes('react-router-dom')) return 'vendor-react-core';
               return 'vendor';
             }
           },

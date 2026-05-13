@@ -1,4 +1,5 @@
 // @unburn/ui Public API
+import './base.css';
 export * from './components/ui/Button';
 export * from './components/ui/Avatar';
 export * from './components/ui/Alert';
