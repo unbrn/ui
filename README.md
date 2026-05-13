@@ -4,7 +4,7 @@
 
 @unburn/ui is a premium React component library built with a focus on "Soft Geometry" and high-performance design. It provides a collection of beautifully designed, softly-rounded components that help you build stunning web applications instantly.
 
-![banner](public/banner.jpg)
+![banner](https://raw.githubusercontent.com/unburn/ui/main/public/banner.jpg)
 
 ## 🎨 Design Guidelines
 

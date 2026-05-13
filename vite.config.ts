@@ -27,6 +27,19 @@ export default defineConfig(({ mode }) => {
     } : {
       // Standard App build for the documentation site
       outDir: 'dist-docs',
+      target: 'esnext',
+      cssMinify: false,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('react-syntax-highlighter')) return 'vendor-highlighter';
+              if (id.includes('lucide-react')) return 'vendor-icons';
+              return 'vendor';
+            }
+          },
+        },
+      },
     },
   };
 });

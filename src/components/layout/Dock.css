@@ -30,8 +30,10 @@
   border-radius: var(--radius);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  background-color: rgba(10, 10, 10, 0.75);
+  background-color: rgba(10, 10, 10, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateZ(0);
+  will-change: backdrop-filter;
   
   /* Horizontal Orientation (Top/Bottom) */
   .pos-top &, .pos-bottom & {
@@ -65,7 +67,7 @@
 }
 
 [data-theme='light'] .unburn-dock {
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 

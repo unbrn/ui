@@ -45,14 +45,16 @@
   --accent-color: #ffffff;
   --accent-text: #000000;
   --shadow: none;
-  --bg-glass: rgba(10, 10, 10, 0.8);
+  --bg-glass: rgba(10, 10, 10, 0.5);
 }
 
 .glass {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background-color: var(--bg-glass, rgba(255, 255, 255, 0.7));
+  background-color: var(--bg-glass, rgba(255, 255, 255, 0.45));
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateZ(0); /* Force hardware acceleration */
+  will-change: backdrop-filter;
 }
 
 /* Theme accent color overrides */
