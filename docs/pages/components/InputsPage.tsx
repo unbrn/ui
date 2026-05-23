@@ -4,12 +4,12 @@ import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
 import { Mail, Lock, User } from 'lucide-react';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 const InteractiveProgressiveInput = () => {
   const [password, setPassword] = useState('');
 
-  const getProgress = (val: string) => {
+  const getProgress = (val: string): 0 | 1 | 2 | 3 => {
     if (!val) return 0;
     if (val.length < 5) return 1;
     if (val.length < 8) return 2;
@@ -23,7 +23,7 @@ const InteractiveProgressiveInput = () => {
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        progressLevel={getProgress(password) as any}
+        progressLevel={getProgress(password)}
         placeholder="Type to see progress..."
       />
     </div>
@@ -33,13 +33,7 @@ const InteractiveProgressiveInput = () => {
 export const InputsPage: React.FC = () => {
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Inputs</h2>
-        <p className="section-description">
-          Text input fields with icons, labels, and error states.
-        </p>
-        <AddedAt componentName="Inputs" />
-      </div>
+      <ComponentHeader title="Inputs" />
 
       <Showcase
         title="PREVIEW"
@@ -235,7 +229,6 @@ export default function Example() {
           { name: 'rightIcon', type: 'ReactNode', description: 'An icon shown on the right side.' },
           { name: 'fullWidth', type: 'boolean', defaultValue: 'false', description: 'Make the input fill the full width of its box.' },
           { name: 'progressLevel', type: '0 | 1 | 2 | 3', description: 'Strength bar level (from 0 to 3).' },
-          { name: 'focusHighlight', type: 'boolean', defaultValue: 'true', description: 'Show a highlight color when the field is selected.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the input.' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
         ]}

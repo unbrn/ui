@@ -3,18 +3,12 @@ import { Avatar } from '../../../package/components/Avatar/Avatar';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export const AvatarsPage: React.FC = () => {
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Avatars</h2>
-        <p className="section-description">
-          User profile pictures with online/offline status indicators.
-        </p>
-        <AddedAt componentName="Avatars" />
-      </div>
+      <ComponentHeader title="Avatars" />
 
       <Showcase
         title="PREVIEW"

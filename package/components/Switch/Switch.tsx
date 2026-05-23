@@ -126,6 +126,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
                 "unburn-switch-track",
                 `unburn-switch-track-${variant}`,
                 `unburn-switch-track-${size}`,
+                (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
                 isChecked && "unburn-switch-track-checked",
                 className,
                 classNames?.track

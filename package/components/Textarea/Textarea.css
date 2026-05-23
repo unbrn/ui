@@ -25,27 +25,18 @@
   border-radius: var(--radius);
   transition: border-color 0.2s var(--transition-curve), box-shadow 0.2s var(--transition-curve);
   border: 1px solid var(--border-color);
-  background-color: transparent;
+  background-color: var(--bg-glass);
   min-height: 120px;
-}
-
-.unburn-textarea-container-focus-highlight:focus-within {
-  border-color: var(--accent-color);
 }
 
 .unburn-textarea-container-filled {
   background-color: var(--bg-secondary);
-  border-color: transparent;
+  border-color: var(--border-color);
 }
 
 .unburn-textarea-container-duo {
   background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
   border-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
-}
-
-.unburn-textarea-container-duo:focus-within {
-  background-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
-  border-color: var(--accent-color);
 }
 
 .unburn-textarea {
@@ -127,9 +118,6 @@
   border-color: var(--color-red);
 }
 
-.unburn-textarea-container-focus-highlight.unburn-textarea-container-error:focus-within {
-  box-shadow: 0 0 0 1px var(--color-red);
-}
 
 .unburn-textarea-error-message {
   font-size: 0.75rem;

@@ -4,18 +4,12 @@ import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
 import { Zap, Shield, Settings } from 'lucide-react';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export const AccordionsPage: React.FC = () => {
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Accordions</h2>
-        <p className="section-description">
-          A collapsible box to hide and show details smoothly.
-        </p>
-        <AddedAt componentName="Accordions" />
-      </div>
+      <ComponentHeader title="Accordions" />
 
       <Showcase
         title="PREVIEW"
@@ -76,15 +70,15 @@ export default function Example() {
 
         <Showcase
           title="VARIANTS"
-          description="Choose from three styles: bordered, duo, and filled."
+          description="Choose from three styles: outlined, duo, and filled."
           code={`import { Accordion } from '@unburn/ui/Accordion';
 
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '600px' }}>
       <Accordion
-        variant="bordered"
-        items={[{ id: 'v2', title: 'Bordered Variant', content: 'Each item has a distinct border and bezel.' }]}
+        variant="outlined"
+        items={[{ id: 'v2', title: 'Outlined Variant', content: 'Each item has a distinct border and bezel.' }]}
       />
       <Accordion
         variant="duo"
@@ -100,8 +94,8 @@ export default function Example() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '600px' }}>
             <Accordion
-              variant="bordered"
-              items={[{ id: 'v2', title: 'Bordered Variant', content: 'Each item has a distinct border and bezel.' }]}
+              variant="outlined"
+              items={[{ id: 'v2', title: 'Outlined Variant', content: 'Each item has a distinct border and bezel.' }]}
             />
             <Accordion
               variant="duo"
@@ -201,7 +195,7 @@ export default function Example() {
         props={[
           { name: 'items', type: 'AccordionItem[]', required: true, description: 'List of accordion items with text, subtitle, and icons.' },
           { name: 'allowMultiple', type: 'boolean', defaultValue: 'false', description: 'Allow opening more than one item at once.' },
-          { name: 'variant', type: "'bordered' | 'duo' | 'filled'", defaultValue: "'bordered'", description: 'The style of the accordion.' },
+          { name: 'variant', type: "'outlined' | 'duo' | 'filled'", defaultValue: "'outlined'", description: 'The style of the accordion.' },
           { name: 'color', type: 'string', description: 'Custom color for borders and highlights.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the accordion.' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },

@@ -21,9 +21,24 @@
   --color-yellow: #facc15;
   --color-green: #10b981;
 
-  --radius: 20px;
+  /* Premium Curved Design System */
+  --radius-xxl: 32px;
+  /* Large panels, modals, outer screens */
+  --radius-xl: 24px;
+  /* Dialog cards, popovers, dropdown containers, alerts, docks, accordions */
+  --radius-lg: 18px;
+  /* Large buttons, inputs, select triggers, dropzones */
+  --radius-md: 14px;
+  /* Standard buttons, inputs, select triggers, textareas (Curvy, non-pill) */
+  --radius-sm: 10px;
+  /* Small buttons, inputs, checkboxes, inner hover states */
+  --radius-xs: 6px;
+  /* Micro tags, tiny indicators */
+  --radius-full: 9999px;
+  /* Toggle switch tracks, avatars, perfect circles */
+
+  --radius: var(--radius-md);
   --shadow: none;
-  --bezel: inset 0 1px 0 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
 
   --height-sm: 32px;
   --height-default: 42px;
@@ -32,6 +47,11 @@
   --transition-speed: 0.4s;
   --transition-curve: cubic-bezier(0.2, 0.8, 0.2, 1);
   --transition: var(--transition-speed) var(--transition-curve);
+
+  --filled-gradient: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.15) 100%);
 }
 
 :root[data-theme="dark"] {
@@ -40,23 +60,23 @@
   --border-color: #222222;
   --text-main: #ffffff;
   --text-muted: #888888;
-  --bezel: inset 0 1px 0 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
 
   --accent-color: #ffffff;
   --accent-text: #000000;
   --shadow: none;
   --bg-glass: rgba(10, 10, 10, 0.5);
+
+  --filled-gradient: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.30) 100%);
 }
 
-.glass {
+.unburn-glass {
+  background-color: color-mix(in srgb, var(--bg-secondary) 40%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background-color: var(--bg-glass, rgba(255, 255, 255, 0.45));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transform: translateZ(0);
-  will-change: backdrop-filter;
 }
-
 
 * {
   box-sizing: border-box;
@@ -114,15 +134,6 @@ textarea {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
-}
-
-.unburn-btn:focus-visible,
-.unburn-action-btn:focus-visible,
-.unburn-select-trigger:focus-visible,
-.unburn-dock-item:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-  border-radius: var(--radius);
 }
 
 

@@ -4,8 +4,8 @@ import { Layers, Palette, Zap, ArrowRight, ArrowUpRight, GitBranch } from 'lucid
 import { CodeBlock } from '../../package/components/CodeBlock/CodeBlock';
 import { Badge } from '../../package/components/Badge/Badge';
 import { Button } from '../../package/components/Button/Button';
-import { TiltedShowcase } from '../components/TiltedShowcase';
-import componentsMeta from '../data/components-meta.json';
+
+import componentsMeta from '../data/components.json';
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -80,9 +80,7 @@ export const HomePage: React.FC = () => {
               </Button>
             </div>
           </div>
-          <div className="hero-right">
-            <TiltedShowcase />
-          </div>
+
         </div>
       </section>
 

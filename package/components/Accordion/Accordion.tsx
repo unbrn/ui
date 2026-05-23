@@ -18,7 +18,7 @@ export interface AccordionProps {
   items: AccordionItemProps[];
   allowMultiple?: boolean;
   className?: string;
-  variant?: 'bordered' | 'duo' | 'filled';
+  variant?: 'outlined' | 'duo' | 'filled';
   color?: string;
   classNames?: {
     root?: string;
@@ -47,7 +47,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   items,
   allowMultiple = false,
   className,
-  variant = 'bordered',
+  variant = 'outlined',
   color,
   classNames,
   styles,
@@ -71,7 +71,7 @@ export const Accordion: React.FC<AccordionProps> = ({
     <div
       className={cn(
         'unburn-accordion',
-        variant === 'bordered' && 'unburn-accordion-bordered',
+        variant === 'outlined' && 'unburn-accordion-outlined',
         variant === 'duo' && 'unburn-accordion-duo',
         variant === 'filled' && 'unburn-accordion-filled',
         className,
@@ -84,7 +84,11 @@ export const Accordion: React.FC<AccordionProps> = ({
         return (
           <div
             key={item.id}
-            className={cn("unburn-accordion-item", classNames?.item)}
+            className={cn(
+              "unburn-accordion-item",
+              (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
+              classNames?.item
+            )}
             style={styles?.item}
             data-state={isOpen ? 'open' : 'closed'}
           >

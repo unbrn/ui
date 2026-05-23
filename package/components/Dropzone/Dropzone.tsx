@@ -34,6 +34,14 @@ export interface DropzoneProps {
   };
 }
 
+const formatFileSize = (bytes: number): string => {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+};
+
 export const Dropzone: React.FC<DropzoneProps> = ({
   onFilesDrop,
   accept,
@@ -64,7 +72,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({
     setIsDragging(false);
   }, []);
 
-  const processFiles = (newFiles: FileList | null) => {
+  const processFiles = useCallback((newFiles: FileList | null) => {
     if (!newFiles || disabled) return;
 
     const validFiles: File[] = [];
@@ -79,14 +87,14 @@ export const Dropzone: React.FC<DropzoneProps> = ({
     const updatedFiles = multiple ? [...files, ...validFiles] : validFiles;
     setFiles(updatedFiles);
     onFilesDrop?.(updatedFiles);
-  };
+  }, [disabled, maxSize, multiple, files, onFilesDrop]);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
     processFiles(e.dataTransfer.files);
-  }, [disabled, multiple, files, onFilesDrop, maxSize]);
+  }, [processFiles]);
 
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     processFiles(e.target.files);
@@ -149,7 +157,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({
                 const cleanType = type.trim().replace('.', '').replace('*', '').toUpperCase();
                 if (!cleanType) return null;
                 return (
-                  <Badge key={type} variant="glass" size="sm" className="unburn-dropzone-badge">
+                  <Badge key={type} variant="outlined" size="sm" className="unburn-dropzone-badge">
                     {cleanType}
                   </Badge>
                 );
@@ -187,7 +195,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({
                       {file.name}
                     </span>
                     <span className="unburn-dropzone-file-size">
-                      {(file.size / 1024).toFixed(1)} KB
+                      {formatFileSize(file.size)}
                     </span>
                   </div>
                 </div>

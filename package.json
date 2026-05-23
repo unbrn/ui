@@ -21,11 +21,6 @@
       "import": "./dist/components/Accordion/Accordion.mjs",
       "require": "./dist/components/Accordion/Accordion.cjs"
     },
-    "./ActionButton": {
-      "types": "./dist/components/ActionButton/ActionButton.d.ts",
-      "import": "./dist/components/ActionButton/ActionButton.mjs",
-      "require": "./dist/components/ActionButton/ActionButton.cjs"
-    },
     "./Alert": {
       "types": "./dist/components/Alert/Alert.d.ts",
       "import": "./dist/components/Alert/Alert.mjs",
@@ -85,6 +80,11 @@
       "types": "./dist/components/Textarea/Textarea.d.ts",
       "import": "./dist/components/Textarea/Textarea.mjs",
       "require": "./dist/components/Textarea/Textarea.cjs"
+    },
+    "./VideoEmbed": {
+      "types": "./dist/components/VideoEmbed/VideoEmbed.d.ts",
+      "import": "./dist/components/VideoEmbed/VideoEmbed.mjs",
+      "require": "./dist/components/VideoEmbed/VideoEmbed.cjs"
     },
     "./utils": {
       "types": "./dist/lib/utils.d.ts",
@@ -155,6 +155,7 @@
     "@types/react-dom": "^19.2.3",
     "@types/react-syntax-highlighter": "^15.5.13",
     "@vitejs/plugin-react": "^6.0.1",
+    "esbuild": "^0.28.0",
     "eslint": "^10.3.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",

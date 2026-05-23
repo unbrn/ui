@@ -3,7 +3,7 @@ import { Select } from '../../../package/components/Select/Select';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 const fruitOptions = [
   { value: 'apple', label: 'Apple' },
@@ -32,13 +32,7 @@ const ControlledSelectExample = () => {
 export const SelectPage: React.FC = () => {
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Select</h2>
-        <p className="section-description">
-          Dropdown menus with glassmorphism effects.
-        </p>
-        <AddedAt componentName="Select" />
-      </div>
+      <ComponentHeader title="Select" />
 
       <Showcase
         title="PREVIEW"
@@ -236,7 +230,6 @@ export default function Example() {
           { name: 'placeholder', type: 'string', defaultValue: "'Select an option'", description: 'Text shown when no option is selected.' },
           { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the dropdown.' },
           { name: 'size', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the select box.' },
-          { name: 'focusHighlight', type: 'boolean', defaultValue: 'true', description: 'Show highlight outline when dropdown is selected.' },
           { name: 'label', type: 'string', description: 'Label text shown above the dropdown.' },
           { name: 'description', type: 'string', description: 'Helpful detail text shown below the dropdown.' },
           { name: 'error', type: 'string', description: 'Error message to show under the dropdown.' },

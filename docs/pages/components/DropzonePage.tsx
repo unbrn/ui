@@ -4,18 +4,12 @@ import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
 import { Image, FileText, Lock } from 'lucide-react';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export const DropzonePage: React.FC = () => {
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Dropzone</h2>
-        <p className="section-description">
-          Drag and drop file uploaders with file lists.
-        </p>
-        <AddedAt componentName="Dropzone" />
-      </div>
+      <ComponentHeader title="Dropzone" />
 
       <Showcase
         title="PREVIEW"

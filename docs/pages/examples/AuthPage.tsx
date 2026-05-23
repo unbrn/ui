@@ -23,7 +23,7 @@ export const AuthPage: React.FC = () => {
 
   return (
     <div className="auth-example-page">
-      <div className="auth-card feature-card glass">
+      <div className="auth-card feature-card unburn-glass">
         <div className="auth-header">
           <div className="auth-icon-wrapper">
             <Lock size={28} color="var(--accent-text)" strokeWidth={1.5} />

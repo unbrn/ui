@@ -76,5 +76,11 @@
     "description": "Multi-line text areas with support for text limits.",
     "path": "/components/textarea",
     "addedAt": "2026-05-16"
+  },
+  {
+    "name": "Video Embed",
+    "description": "Premium HTML5 custom video player with glassmorphic controls.",
+    "path": "/components/video-embed",
+    "addedAt": "2026-05-19"
   }
 ]

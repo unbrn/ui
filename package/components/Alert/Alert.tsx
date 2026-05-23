@@ -51,6 +51,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         style={{ ...style, ...accentStyle, ...styles?.root }}
         className={cn(
           'unburn-alert',
+          variant !== 'filled' && 'unburn-glass',
           variant === 'duo' && 'unburn-alert-duo',
           variant === 'filled' && 'unburn-alert-filled',
           className,

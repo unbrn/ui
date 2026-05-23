@@ -23,7 +23,6 @@ export interface SelectProps {
   disabled?: boolean;
   variant?: 'filled' | 'outlined' | 'duo';
   size?: 'sm' | 'default' | 'lg';
-  focusHighlight?: boolean;
   className?: string;
   classNames?: {
     root?: string;
@@ -59,7 +58,6 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       disabled,
       variant = 'filled',
       size = 'default',
-      focusHighlight = false,
       className,
       classNames,
       styles,
@@ -111,7 +109,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
               "unburn-select-trigger",
               `unburn-select-trigger-${variant}`,
               `unburn-select-trigger-${size}`,
-              focusHighlight && "unburn-select-trigger-focus-highlight",
+              (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
               isOpen && "unburn-select-trigger-open",
               disabled && "unburn-select-trigger-disabled",
               error && "unburn-select-trigger-error",

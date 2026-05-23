@@ -6,7 +6,6 @@ import { Input } from '../../package/components/Input/Input';
 import { Badge } from '../../package/components/Badge/Badge';
 import { Alert } from '../../package/components/Alert/Alert';
 import { Avatar } from '../../package/components/Avatar/Avatar';
-import { ActionButton } from '../../package/components/ActionButton/ActionButton';
 import { Dropzone } from '../../package/components/Dropzone/Dropzone';
 import './TiltedShowcase.css';
 
@@ -88,9 +87,12 @@ export const TiltedShowcase: React.FC = () => {
             onChange={(e) => setSearchValue(e.target.value)}
             fullWidth={true}
           />
-          <ActionButton onClick={() => setSearchValue('')}>
-            <Settings size={14} />
-          </ActionButton>
+          <Button
+            variant="outlined"
+            size="sm"
+            icon={<Settings size={14} />}
+            onClick={() => setSearchValue('')}
+          />
         </div>
         <div className="search-status">
           {searchValue ? (

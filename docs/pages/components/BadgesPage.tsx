@@ -4,18 +4,12 @@ import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
 import { Shield, Zap, Star, Check } from 'lucide-react';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export const BadgesPage: React.FC = () => {
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Badges</h2>
-        <p className="section-description">
-          Small status labels to highlight information with icons.
-        </p>
-        <AddedAt componentName="Badges" />
-      </div>
+      <ComponentHeader title="Badges" />
 
       <Showcase
         title="PREVIEW"
@@ -45,7 +39,7 @@ export default function Example() {
 
         <Showcase
           title="VARIANTS"
-          description="Choose from four styles: filled, outlined, duo, and glass."
+          description="Choose from four styles: filled, outlined, duo."
           code={`import { Badge } from '@unburn/ui/Badge';
 
 export default function Example() {
@@ -54,7 +48,6 @@ export default function Example() {
       <Badge variant="filled">FILLED</Badge>
       <Badge variant="outlined">OUTLINED</Badge>
       <Badge variant="duo">DUO</Badge>
-      <Badge variant="glass">GLASS</Badge>
     </div>
   );
 }`}
@@ -63,7 +56,6 @@ export default function Example() {
             <Badge variant="filled">FILLED</Badge>
             <Badge variant="outlined">OUTLINED</Badge>
             <Badge variant="duo">DUO</Badge>
-            <Badge variant="glass">GLASS</Badge>
           </div>
         </Showcase>
 
@@ -138,7 +130,7 @@ export default function Example() {
 
       <Props
         props={[
-          { name: 'variant', type: "'filled' | 'outlined' | 'duo' | 'glass'", defaultValue: "'filled'", description: 'The style of the badge.' },
+          { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style of the badge.' },
           { name: 'size', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the badge label.' },
           { name: 'icon', type: 'ReactNode', description: 'An icon shown next to the label text.' },
           { name: 'iconPosition', type: "'left' | 'right'", defaultValue: "'left'", description: 'Show the icon on the left or right side.' },

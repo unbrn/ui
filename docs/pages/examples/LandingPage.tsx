@@ -93,7 +93,7 @@ export const LandingPage: React.FC = () => {
               desc: 'First-class TypeScript support with detailed documentation and auto-complete.'
             },
           ].map((feature, i) => (
-            <div key={i} className="lp-feature-card feature-card glass">
+            <div key={i} className="lp-feature-card feature-card unburn-glass">
               <div className="lp-feature-icon">{feature.icon}</div>
               <h3 className="lp-feature-title">{feature.title}</h3>
               <p className="lp-feature-desc">{feature.desc}</p>
@@ -111,7 +111,7 @@ export const LandingPage: React.FC = () => {
         </div>
 
         <div className="lp-pricing-grid">
-          <div className="lp-price-card feature-card glass">
+          <div className="lp-price-card feature-card unburn-glass">
             <h3 className="lp-feature-title">Starter</h3>
             <div className="lp-price-amount">$0</div>
             <div className="lp-price-period">Free forever for personal use</div>
@@ -123,7 +123,7 @@ export const LandingPage: React.FC = () => {
             <Button variant="outlined" fullWidth>Get Started</Button>
           </div>
 
-          <div className="lp-price-card feature-card glass featured">
+          <div className="lp-price-card feature-card unburn-glass featured">
             <div className="lp-price-tag">
               <Badge color="blue" size="sm">Most Popular</Badge>
             </div>
@@ -139,7 +139,7 @@ export const LandingPage: React.FC = () => {
             <Button fullWidth>Upgrade to Pro</Button>
           </div>
 
-          <div className="lp-price-card feature-card glass">
+          <div className="lp-price-card feature-card unburn-glass">
             <h3 className="lp-feature-title">Enterprise</h3>
             <div className="lp-price-amount">Custom</div>
             <div className="lp-price-period">Contact us for tailored pricing</div>

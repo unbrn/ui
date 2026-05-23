@@ -22,7 +22,6 @@ export default defineConfig(({ mode }) => {
         entry: {
           index: resolve(__dirname, 'package/index.ts'),
           'components/Accordion/Accordion': resolve(__dirname, 'package/components/Accordion/Accordion.tsx'),
-          'components/ActionButton/ActionButton': resolve(__dirname, 'package/components/ActionButton/ActionButton.tsx'),
           'components/Alert/Alert': resolve(__dirname, 'package/components/Alert/Alert.tsx'),
           'components/Avatar/Avatar': resolve(__dirname, 'package/components/Avatar/Avatar.tsx'),
           'components/Badge/Badge': resolve(__dirname, 'package/components/Badge/Badge.tsx'),
@@ -35,6 +34,7 @@ export default defineConfig(({ mode }) => {
           'components/Select/Select': resolve(__dirname, 'package/components/Select/Select.tsx'),
           'components/Switch/Switch': resolve(__dirname, 'package/components/Switch/Switch.tsx'),
           'components/Textarea/Textarea': resolve(__dirname, 'package/components/Textarea/Textarea.tsx'),
+          'components/VideoEmbed/VideoEmbed': resolve(__dirname, 'package/components/VideoEmbed/VideoEmbed.tsx'),
           'lib/utils': resolve(__dirname, 'package/lib/utils.ts'),
           'lib/colors': resolve(__dirname, 'package/lib/colors.ts'),
         },

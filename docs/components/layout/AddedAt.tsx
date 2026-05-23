@@ -1,5 +1,5 @@
 import React from 'react';
-import componentsMeta from '../../data/components-meta.json';
+import componentsMeta from '../../data/components.json';
 
 interface AddedAtProps {
   componentName: string;
@@ -19,13 +19,13 @@ export const AddedAt: React.FC<AddedAtProps> = ({ componentName }) => {
   });
 
   return (
-    <span style={{ 
-      fontSize: '0.75rem', 
-      color: 'var(--text-muted)', 
-      fontFamily: 'var(--font-mono)', 
-      opacity: 0.5, 
-      display: 'block', 
-      marginTop: '0.75rem' 
+    <span style={{
+      fontSize: '0.75rem',
+      color: 'var(--text-muted)',
+      fontFamily: 'var(--font-mono)',
+      opacity: 0.5,
+      display: 'block',
+      marginTop: '0.75rem'
     }}>
       Added on {formattedDate}
     </span>

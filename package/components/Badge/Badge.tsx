@@ -4,7 +4,7 @@ import './Badge.css';
 import { getAccentVariables } from '../../lib/colors';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'filled' | 'outlined' | 'duo' | 'glass';
+  variant?: 'filled' | 'outlined' | 'duo';
   size?: 'sm' | 'md' | 'lg';
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
@@ -42,6 +42,7 @@ export const Badge: React.FC<BadgeProps> = ({
         'unburn-badge',
         `unburn-badge-${variant}`,
         `unburn-badge-${size}`,
+        (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
         className,
         classNames?.root
       )}

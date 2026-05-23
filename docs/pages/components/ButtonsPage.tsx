@@ -4,18 +4,12 @@ import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
 import { ArrowLeft, ArrowRight, Mail } from 'lucide-react';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export const ButtonsPage: React.FC = () => {
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Buttons</h2>
-        <p className="section-description">
-          Buttons for actions, clicks, and navigation.
-        </p>
-        <AddedAt componentName="Buttons" />
-      </div>
+      <ComponentHeader title="Buttons" />
 
       <Showcase
         title="PREVIEW"

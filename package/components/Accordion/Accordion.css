@@ -2,26 +2,26 @@
   width: 100%;
 }
 
-.unburn-accordion-item {
-}
+.unburn-accordion-item {}
 
-.unburn-accordion-bordered {
+.unburn-accordion-outlined {
   border-top: none;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.unburn-accordion-bordered .unburn-accordion-item {
-  border: 1px solid var(--accent-color);
-  border-radius: var(--radius);
+.unburn-accordion-outlined .unburn-accordion-item {
+  border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
+  border-radius: var(--radius-xl);
   padding: 0 1.25rem;
-  background-color: var(--bg-main);
-  box-shadow: var(--bezel);
+  background-color: color-mix(in srgb, var(--bg-secondary) 40%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.unburn-accordion-bordered .unburn-accordion-item:last-child {
-  border-bottom: 1px solid var(--accent-color);
+.unburn-accordion-outlined .unburn-accordion-item:last-child {
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
 }
 
 .unburn-accordion-header {
@@ -116,9 +116,10 @@
 .unburn-accordion-duo .unburn-accordion-item {
   background-color: color-mix(in srgb, var(--accent-color) 8%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent-color) 15%, transparent);
-  border-radius: var(--radius);
+  border-radius: var(--radius-xl);
   padding: 0 1.25rem;
-  box-shadow: var(--bezel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .unburn-accordion-duo .unburn-accordion-item[data-state="open"] {
@@ -139,11 +140,11 @@
 
 .unburn-accordion-filled .unburn-accordion-item {
   background-color: var(--accent-color);
+  background-image: var(--filled-gradient);
   border: 1px solid var(--accent-color);
-  border-radius: var(--radius);
+  border-radius: var(--radius-xl);
   padding: 0 1.25rem;
   color: var(--accent-text);
-  box-shadow: var(--bezel);
 }
 
 .unburn-accordion-filled .unburn-accordion-header {
@@ -164,19 +165,5 @@
 
 .unburn-accordion-filled .unburn-accordion-item[data-state="open"] {
   background-color: color-mix(in srgb, var(--accent-color) 90%, black);
-}
-
-/* Premium Focus Glows on the Card Level */
-.unburn-accordion-bordered .unburn-accordion-item:focus-within {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 20%, transparent);
-}
-
-.unburn-accordion-duo .unburn-accordion-item:focus-within {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 25%, transparent);
-}
-
-.unburn-accordion-filled .unburn-accordion-item:focus-within {
-  box-shadow: 0 0 0 2px var(--bg-main), 0 0 0 4px var(--accent-color);
+  background-image: var(--filled-gradient);
 }

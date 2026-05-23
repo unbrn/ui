@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Dock } from '../../../package/components/Dock/Dock';
-import { ActionButton } from '../../../package/components/ActionButton/ActionButton';
+import { Button } from '../../../package/components/Button/Button';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
 import { Plus, Search, Home, Sun, Moon } from 'lucide-react';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export interface DockPageProps {
   globalTheme?: 'light' | 'dark';
@@ -27,18 +27,12 @@ export const DockPage: React.FC<DockPageProps> = ({ globalTheme, setGlobalTheme,
 
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Dock</h2>
-        <p className="section-description">
-          Floating menu bar with smooth pop-out animations.
-        </p>
-        <AddedAt componentName="Dock" />
-      </div>
+      <ComponentHeader title="Dock" />
 
       <Showcase
         title="PREVIEW"
         code={`import { Dock } from '@unburn/ui/Dock';
-import { ActionButton } from '@unburn/ui/ActionButton';
+import { Button } from '@unburn/ui/Button';
 import { Sun, Moon } from 'lucide-react';
 
 export default function Example() {
@@ -50,9 +44,9 @@ export default function Example() {
       isMenuOpen={isOpen}
       onMenuToggle={() => setIsOpen(!isOpen)}
     >
-      <ActionButton onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}>
+      <Button onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}>
         {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-      </ActionButton>
+      </Button>
     </Dock>
   );
 }`}
@@ -63,15 +57,15 @@ export default function Example() {
             onMenuToggle={() => setDemoOpen1(!demoOpen1)}
             className="showcase-dock"
           >
-            <ActionButton onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}>
+            <Button onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}>
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </ActionButton>
-            <ActionButton onClick={() => setAccent(accent === 'red' ? 'blue' : 'red')}>
+            </Button>
+            <Button onClick={() => setAccent(accent === 'red' ? 'blue' : 'red')}>
               <div
                 className="unburn-accent-preview"
                 style={{ backgroundColor: 'var(--accent-color)' }}
               />
-            </ActionButton>
+            </Button>
           </Dock>
         </div>
       </Showcase>
@@ -81,7 +75,7 @@ export default function Example() {
         <CodeBlock
           language="tsx"
           code={`import { Dock } from '@unburn/ui/Dock';
-import { ActionButton } from '@unburn/ui/ActionButton';
+import { Button } from '@unburn/ui/Button';
 import { Sun, Moon } from 'lucide-react';
 
 export default function Layout({ children }) {
@@ -94,9 +88,9 @@ export default function Layout({ children }) {
         isMenuOpen={isOpen}
         onMenuToggle={() => setIsOpen(!isOpen)}
       >
-        <ActionButton onClick={toggleTheme}>
+        <Button onClick={toggleTheme}>
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-        </ActionButton>
+        </Button>
       </Dock>
     </>
   );
@@ -139,7 +133,7 @@ export default function Example() {
           title="CUSTOM ACTIONS"
           description="Add custom action buttons inside the dock."
           code={`import { Dock } from '@unburn/ui/Dock';
-import { ActionButton } from '@unburn/ui/ActionButton';
+import { Button } from '@unburn/ui/Button';
 import { Home, Search, Plus } from 'lucide-react';
 
 export default function Example() {
@@ -150,9 +144,9 @@ export default function Example() {
       isMenuOpen={isOpen}
       onMenuToggle={() => setIsOpen(!isOpen)}
     >
-      <ActionButton><Home size={20} /></ActionButton>
-      <ActionButton><Search size={20} /></ActionButton>
-      <ActionButton><Plus size={20} /></ActionButton>
+      <Button><Home size={20} /></Button>
+      <Button><Search size={20} /></Button>
+      <Button><Plus size={20} /></Button>
     </Dock>
   );
 }`}
@@ -163,9 +157,9 @@ export default function Example() {
               onMenuToggle={() => setDemoOpen2(!demoOpen2)}
               className="showcase-dock"
             >
-              <ActionButton><Home size={20} /></ActionButton>
-              <ActionButton><Search size={20} /></ActionButton>
-              <ActionButton><Plus size={20} /></ActionButton>
+              <Button><Home size={20} /></Button>
+              <Button><Search size={20} /></Button>
+              <Button><Plus size={20} /></Button>
             </Dock>
           </div>
         </Showcase>

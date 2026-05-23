@@ -61,6 +61,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           `unburn-btn-${variant}`,
           `unburn-btn-${size}`,
           `unburn-btn-opacity-${opacityLevel}`,
+          (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
           isIconOnly && 'unburn-btn-icon-only',
           fullWidth && 'unburn-btn-full-width',
           className,

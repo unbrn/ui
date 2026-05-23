@@ -11,7 +11,6 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   variant?: 'filled' | 'outlined' | 'duo';
   fullWidth?: boolean;
   showCount?: boolean;
-  focusHighlight?: boolean;
   classNames?: {
     root?: string;
     container?: string;
@@ -46,7 +45,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       variant = 'filled',
       fullWidth = false,
       showCount = false,
-      focusHighlight = false,
       disabled,
       id,
       maxLength,
@@ -95,16 +93,16 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       };
 
       const handleEnd = () => {
-        window.removeEventListener('mousemove', handleMove as any);
+        window.removeEventListener('mousemove', handleMove as EventListener);
         window.removeEventListener('mouseup', handleEnd);
-        window.removeEventListener('touchmove', handleMove as any);
+        window.removeEventListener('touchmove', handleMove as EventListener);
         window.removeEventListener('touchend', handleEnd);
         document.body.style.cursor = 'default';
       };
 
-      window.addEventListener('mousemove', handleMove as any);
+      window.addEventListener('mousemove', handleMove as EventListener);
       window.addEventListener('mouseup', handleEnd);
-      window.addEventListener('touchmove', handleMove as any, { passive: false });
+      window.addEventListener('touchmove', handleMove as EventListener, { passive: false });
       window.addEventListener('touchend', handleEnd);
       document.body.style.cursor = 'ns-resize';
     };
@@ -133,7 +131,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={cn(
             "unburn-textarea-container",
             `unburn-textarea-container-${variant}`,
-            focusHighlight && "unburn-textarea-container-focus-highlight",
             error && "unburn-textarea-container-error",
             disabled && "unburn-textarea-container-disabled",
             classNames?.container

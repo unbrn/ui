@@ -2,7 +2,7 @@ import React from 'react';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export const CodeBlockPage: React.FC = () => {
   const code = `import React from 'react';
@@ -15,13 +15,7 @@ export default HelloWorld;`;
 
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Code Block</h2>
-        <p className="section-description">
-          Code syntax highlighting blocks with built-in copy buttons.
-        </p>
-        <AddedAt componentName="Code Block" />
-      </div>
+      <ComponentHeader title="Code Block" />
 
       <Showcase
         title="PREVIEW"

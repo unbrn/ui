@@ -6,7 +6,7 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-.unburn-header.glass {
+.unburn-header.unburn-glass {
   background-color: var(--bg-glass, rgba(255, 255, 255, 0.45));
   border-left: none;
   border-right: none;
@@ -36,12 +36,10 @@
 
 .unburn-logo svg {
   display: block;
-  border-radius: var(--radius);
   transition: all var(--transition);
 }
 
 .unburn-logo svg rect {
-  rx: var(--radius);
   transition: all var(--transition);
 }
 
@@ -137,4 +135,3 @@
     padding: 1.5rem;
   }
 }
-

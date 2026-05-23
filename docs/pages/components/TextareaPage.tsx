@@ -3,18 +3,12 @@ import { Textarea } from '../../../package/components/Textarea/Textarea';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export const TextareaPage: React.FC = () => {
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Textarea</h2>
-        <p className="section-description">
-          Multi-line text fields for longer notes or bio input.
-        </p>
-        <AddedAt componentName="Textarea" />
-      </div>
+      <ComponentHeader title="Textarea" />
 
       <Showcase
         title="PREVIEW"
@@ -143,7 +137,6 @@ export default function Example() {
           { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the textarea.' },
           { name: 'fullWidth', type: 'boolean', defaultValue: 'false', description: 'Make the textarea fill the full width of its box.' },
           { name: 'showCount', type: 'boolean', defaultValue: 'false', description: 'Show the character counter below the field.' },
-          { name: 'focusHighlight', type: 'boolean', defaultValue: 'true', description: 'Show a highlight color when the field is selected.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the textarea.' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
         ]}

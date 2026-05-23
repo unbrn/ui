@@ -4,7 +4,7 @@ import { Button } from '../../package/components/Button/Button';
 import { Avatar } from '../../package/components/Avatar/Avatar';
 import { Badge } from '../../package/components/Badge/Badge';
 import { CheckCircle2, ChevronDown } from 'lucide-react';
-import componentsMeta from '../data/components-meta.json';
+import componentsMeta from '../data/components.json';
 
 const ComponentCard = ({
   title,
@@ -276,6 +276,42 @@ const PREVIEWS: Record<string, React.ReactNode> = {
         borderBottom: '2px solid var(--accent-color)',
         opacity: 0.3
       }}></div>
+    </div>
+  ),
+  "Video Embed": (
+    <div style={{
+      width: '140px',
+      aspectRatio: '16/9',
+      background: 'var(--bg-glass)',
+      border: '1px solid var(--border-color)',
+      borderRadius: '8px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      <div style={{
+        width: '32px',
+        height: '32px',
+        borderRadius: '50%',
+        background: 'var(--bg-glass)',
+        border: '1px solid var(--accent-color)',
+        backdropFilter: 'blur(8px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <div style={{
+          width: '0',
+          height: '0',
+          borderTop: '6px solid transparent',
+          borderBottom: '6px solid transparent',
+          borderLeft: '8px solid var(--accent-color)',
+          transform: 'translateX(1.5px)',
+          borderRadius: '10px'
+        }}></div>
+      </div>
     </div>
   )
 };

@@ -14,7 +14,6 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   rightIcon?: React.ReactNode;
   fullWidth?: boolean;
   progressLevel?: 0 | 1 | 2 | 3;
-  focusHighlight?: boolean;
   classNames?: {
     root?: string;
     container?: string;
@@ -52,7 +51,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       rightIcon,
       fullWidth = false,
       progressLevel,
-      focusHighlight = false,
       disabled,
       id,
       classNames,
@@ -88,7 +86,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             "unburn-input-container",
             `unburn-input-container-${variant}`,
             `unburn-input-container-${size}`,
-            focusHighlight && "unburn-input-container-focus-highlight",
+            (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
             error && "unburn-input-container-error",
             disabled && "unburn-input-container-disabled",
             classNames?.container

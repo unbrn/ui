@@ -5,18 +5,12 @@ import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
 import { CheckCircle2, Info } from 'lucide-react';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export const AlertsPage: React.FC = () => {
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Alerts</h2>
-        <p className="section-description">
-          Banners for quick notices, warnings, and error messages.
-        </p>
-        <AddedAt componentName="Alerts" />
-      </div>
+      <ComponentHeader title="Alerts" />
 
       <Showcase
         title="PREVIEW"

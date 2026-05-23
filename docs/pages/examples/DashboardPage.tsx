@@ -99,7 +99,7 @@ export const DashboardPage: React.FC = () => {
 
       <div className="stats-grid">
         {stats.map((stat, i) => (
-          <div key={i} className="feature-card stat-card glass">
+          <div key={i} className="feature-card stat-card unburn-glass">
             <div className="stat-label">
               <span style={{ color: stat.color }}>{stat.title}</span>
               <div style={{ color: 'var(--text-muted)', opacity: 0.5 }}>{stat.icon}</div>
@@ -122,7 +122,7 @@ export const DashboardPage: React.FC = () => {
 
       <div className="main-content-grid">
         <div className="dashboard-section">
-          <div className="feature-card glass">
+          <div className="feature-card unburn-glass">
             <div className="section-card-title">
               Project Configuration
               <Button variant="outlined" size="sm" icon={<MoreVertical size={16} />} />
@@ -187,7 +187,7 @@ export const DashboardPage: React.FC = () => {
         </div>
 
         <div className="dashboard-section">
-          <div className="feature-card glass">
+          <div className="feature-card unburn-glass">
             <div className="section-card-title">
               Recent Activity
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 400 }}>Live Feed</span>
@@ -222,7 +222,7 @@ export const DashboardPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="feature-card integration-card glass">
+          <div className="feature-card integration-card unburn-glass">
             <div style={{ color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
               <CheckCircle2 size={40} strokeWidth={1} style={{ margin: '0 auto', color: 'var(--accent-color)' }} />
             </div>

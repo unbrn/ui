@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Menu, X, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import './Dock.css';
 import { cn } from '../../lib/utils';
+import { Button } from '../Button/Button';
 
 export interface DockProps {
   isMenuOpen: boolean;
@@ -55,26 +56,25 @@ export const Dock: React.FC<DockProps> = ({
         className={cn("unburn-dock", classNames?.container)}
         style={styles?.container}
       >
-        <button
+        <Button
           className={cn('unburn-dock-trigger', isMenuOpen && 'unburn-open', classNames?.trigger)}
           style={styles?.trigger}
           onClick={onMenuToggle}
           aria-label="Toggle Navigation"
         >
           <div className="unburn-trigger-inner">
-            <span className="unburn-trigger-text">{isMenuOpen ? 'CLOSE' : 'MENU'}</span>
+            <span className="unburn-trigger-text">{isMenuOpen ? 'Close' : 'Menu'}</span>
             <div className="unburn-trigger-icon">
               {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
             </div>
           </div>
-        </button>
-
+        </Button>
 
         {children}
 
         {showHideToggle && (
-          <button
-            className={cn("unburn-dock-collapse-btn", classNames?.collapseBtn)}
+          <Button
+            className={cn(classNames?.collapseBtn)}
             style={styles?.collapseBtn}
             onClick={() => setIsCollapsed(true)}
             aria-label="Hide Dock"
@@ -83,12 +83,12 @@ export const Dock: React.FC<DockProps> = ({
             {position === 'top' && <ChevronUp size={20} />}
             {position === 'left' && <ChevronLeft size={20} />}
             {position === 'right' && <ChevronRight size={20} />}
-          </button>
+          </Button>
         )}
       </div>
 
       {showHideToggle && (
-        <button
+        <Button
           className={cn("unburn-dock-expand-btn", classNames?.expandBtn)}
           style={styles?.expandBtn}
           onClick={() => setIsCollapsed(false)}
@@ -98,8 +98,9 @@ export const Dock: React.FC<DockProps> = ({
           {position === 'top' && <ChevronDown size={20} />}
           {position === 'left' && <ChevronRight size={20} />}
           {position === 'right' && <ChevronLeft size={20} />}
-        </button>
+        </Button>
       )}
     </div>
   );
 };
+

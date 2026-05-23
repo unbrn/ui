@@ -24,41 +24,39 @@
   position: relative;
   border-radius: var(--radius);
   transition: all 0.2s var(--transition-curve);
-  border: 1px solid var(--border-color);
-  background-color: transparent;
+  border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
+  background-color: color-mix(in srgb, var(--bg-secondary) 30%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   overflow: hidden;
-  box-shadow: var(--bezel);
-}
-
-.unburn-input-container-focus-highlight:focus-within {
-  border-color: var(--accent-color);
 }
 
 .unburn-input-container-filled {
   background-color: var(--bg-secondary);
+  background-image: linear-gradient(135deg, var(--bg-secondary) 0%, color-mix(in srgb, var(--bg-secondary) 60%, var(--bg-main)) 100%);
   border-color: transparent;
 }
 
 .unburn-input-container-duo {
-  background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
-  border-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
-}
-
-.unburn-input-container-duo:focus-within {
-  background-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
-  border-color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color) 8%, transparent);
+  border-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .unburn-input-container-sm {
   min-height: var(--height-sm);
+  border-radius: var(--radius-sm);
 }
 
 .unburn-input-container-default {
   min-height: var(--height-default);
+  border-radius: var(--radius-md);
 }
 
 .unburn-input-container-lg {
   min-height: var(--height-lg);
+  border-radius: var(--radius-lg);
 }
 
 .unburn-input-icon {
@@ -173,10 +171,6 @@
   border-color: var(--color-red);
 }
 
-.unburn-input-container-focus-highlight.unburn-input-container-error:focus-within {
-  box-shadow: 0 0 0 1px var(--color-red);
-}
-
 .unburn-input-error-message {
   font-size: 0.75rem;
   color: var(--color-red);
@@ -222,15 +216,12 @@
 
 .unburn-input-progress-bar-1.active {
   background-color: var(--color-red);
-  box-shadow: var(--bezel);
 }
 
 .unburn-input-progress-bar-2.active {
   background-color: var(--color-yellow);
-  box-shadow: var(--bezel);
 }
 
 .unburn-input-progress-bar-3.active {
   background-color: var(--color-green);
-  box-shadow: var(--bezel);
 }

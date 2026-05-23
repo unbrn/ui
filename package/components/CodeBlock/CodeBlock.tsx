@@ -87,7 +87,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   title
 }) => {
   const [mounted, setMounted] = useState(false);
-  const [Highlighter, setHighlighter] = useState<any>(null);
+  const [Highlighter, setHighlighter] = useState<React.ElementType | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [activeTab, setActiveTab] = useState(
     defaultTab && tabs?.[defaultTab]
@@ -97,8 +97,6 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 600);
     };
@@ -108,6 +106,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
     // Dynamically import to ensure no SSR issues with Prism/document
     import('react-syntax-highlighter').then((mod) => {
       setHighlighter(() => mod.Prism);
+      setMounted(true);
     });
 
     return () => {
@@ -193,11 +192,10 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
         <button
           className={cn("unburn-code-copy-btn", classNames?.copyButton)}
           onClick={handleCopy}
-          title="Copy Code"
+          title={copied ? "Copied!" : "Copy Code"}
           style={styles?.copyButton}
         >
           {copied ? <Check size={14} /> : <Copy size={14} />}
-          <span>{copied ? 'COPIED' : 'COPY'}</span>
         </button>
       </div>
       <div

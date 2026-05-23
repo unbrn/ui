@@ -3,7 +3,7 @@ import { Checkbox } from '../../../package/components/Checkbox/Checkbox';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
-import { AddedAt } from '../../components/layout/AddedAt';
+import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 
 export const CheckboxPage: React.FC = () => {
@@ -11,13 +11,7 @@ export const CheckboxPage: React.FC = () => {
 
   return (
     <>
-      <div className="section-header">
-        <h2 className="section-title">Checkbox</h2>
-        <p className="section-description">
-          Checkboxes with labels and descriptions.
-        </p>
-        <AddedAt componentName="Checkbox" />
-      </div>
+      <ComponentHeader title="Checkbox" />
 
       <Showcase
         title="PREVIEW"

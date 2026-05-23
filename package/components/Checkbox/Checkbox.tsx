@@ -114,6 +114,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 "unburn-checkbox",
                 `unburn-checkbox-${variant}`,
                 `unburn-checkbox-${size}`,
+                (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
                 error && "unburn-checkbox-error",
                 className,
                 classNames?.checkbox
