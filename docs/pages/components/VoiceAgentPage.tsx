@@ -287,13 +287,13 @@ export default function Example() {
           left: 0,
           width: '100vw',
           height: '100vh',
-          background: '#000000',
+          background: 'var(--bg-main)',
           zIndex: 9999,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#ffffff'
+          color: 'var(--text-main)'
         }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem', width: '100%', maxWidth: '400px', padding: '2rem' }}>
             <VoiceAgent
@@ -315,7 +315,7 @@ export default function Example() {
               }}>
                 {sessionStatus === 'speaking' ? 'Agent Speaking' : sessionStatus === 'listening' ? 'Listening to You' : 'Connecting...'}
               </span>
-              <p style={{ fontSize: '0.75rem', color: '#a1a1aa', maxWidth: '320px', lineHeight: '1.4' }}>
+              <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', maxWidth: '320px', lineHeight: '1.4' }}>
                 {subtitles}
               </p>
             </div>
