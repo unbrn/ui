@@ -42,57 +42,57 @@ const unburnTheme: { [key: string]: React.CSSProperties } = {
 };
 
 export interface CodeBlockProps {
-  code?: string;
-  tabs?: Record<string, string>;
-  defaultTab?: string;
-  language?: string;
+  codeBlockCode?: string;
+  codeBlockTabs?: Record<string, string>;
+  codeBlockDefaultTab?: string;
+  codeBlockLanguage?: string;
   classNames?: {
-    root?: string;
-    header?: string;
-    content?: string;
-    copyButton?: string;
-    title?: string;
-    lang?: string;
-    tabs?: string;
-    tab?: string;
+    codeBlockRoot?: string;
+    codeBlockHeader?: string;
+    codeBlockContent?: string;
+    codeBlockCopyButton?: string;
+    codeBlockTitle?: string;
+    codeBlockLang?: string;
+    codeBlockTabs?: string;
+    codeBlockTab?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    header?: React.CSSProperties;
-    content?: React.CSSProperties;
-    copyButton?: React.CSSProperties;
-    title?: React.CSSProperties;
-    lang?: React.CSSProperties;
-    tabs?: React.CSSProperties;
-    tab?: React.CSSProperties;
+    codeBlockRoot?: React.CSSProperties;
+    codeBlockHeader?: React.CSSProperties;
+    codeBlockContent?: React.CSSProperties;
+    codeBlockCopyButton?: React.CSSProperties;
+    codeBlockTitle?: React.CSSProperties;
+    codeBlockLang?: React.CSSProperties;
+    codeBlockTabs?: React.CSSProperties;
+    codeBlockTab?: React.CSSProperties;
   };
-  showLineNumbers?: boolean;
-  className?: string;
-  style?: React.CSSProperties;
-  variant?: 'filled' | 'outlined';
-  title?: string;
+  codeBlockShowLineNumbers?: boolean;
+  codeBlockClassName?: string;
+  codeBlockStyle?: React.CSSProperties;
+  codeBlockVariant?: 'filled' | 'outlined';
+  codeBlockTitle?: string;
 }
 
 export const CodeBlock: React.FC<CodeBlockProps> = ({
-  code: singleCode,
-  tabs,
-  defaultTab,
-  language = 'tsx',
-  showLineNumbers = true,
-  className,
-  style,
+  codeBlockCode,
+  codeBlockTabs,
+  codeBlockDefaultTab,
+  codeBlockLanguage = 'tsx',
+  codeBlockShowLineNumbers = true,
+  codeBlockClassName,
+  codeBlockStyle,
   classNames,
   styles,
-  variant = 'filled',
-  title
+  codeBlockVariant = 'filled',
+  codeBlockTitle
 }) => {
   const [mounted, setMounted] = useState(false);
   const [Highlighter, setHighlighter] = useState<React.ElementType | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [activeTab, setActiveTab] = useState(
-    defaultTab && tabs?.[defaultTab]
-      ? defaultTab
-      : (tabs ? Object.keys(tabs)[0] : null)
+    codeBlockDefaultTab && codeBlockTabs?.[codeBlockDefaultTab]
+      ? codeBlockDefaultTab
+      : (codeBlockTabs ? Object.keys(codeBlockTabs)[0] : null)
   );
   const [copied, setCopied] = useState(false);
 
@@ -113,7 +113,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
     };
   }, []);
 
-  const displayCode = (tabs && activeTab ? tabs[activeTab] : (singleCode || ''))
+  const displayCode = (codeBlockTabs && activeTab ? codeBlockTabs[activeTab] : (codeBlockCode || ''))
     .replace(/\\n/g, '\n');
 
   const handleCopy = async () => {
@@ -123,43 +123,43 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   };
 
   const getLanguage = () => {
-    if (!tabs || !activeTab) return language;
+    if (!codeBlockTabs || !activeTab) return codeBlockLanguage;
     const tabLower = activeTab.toLowerCase();
     if (tabLower.includes('typescript') || tabLower === 'ts') return 'tsx';
     if (tabLower.includes('javascript') || tabLower === 'js') return 'javascript';
     if (tabLower === 'bash' || tabLower === 'sh' || ['pnpm', 'npm', 'yarn', 'bun'].includes(tabLower)) return 'bash';
-    return language;
+    return codeBlockLanguage;
   };
 
   return (
     <div
       className={cn(
         "unburn-code-block",
-        `unburn-code-block-${variant}`,
-        tabs && "has-tabs",
-        className,
-        classNames?.root
+        `unburn-code-block-${codeBlockVariant}`,
+        codeBlockTabs && "has-tabs",
+        codeBlockClassName,
+        classNames?.codeBlockRoot
       )}
-      style={{ ...style, ...styles?.root }}
+      style={{ ...codeBlockStyle, ...styles?.codeBlockRoot }}
     >
       <div
-        className={cn("unburn-code-header", classNames?.header)}
-        style={styles?.header}
+        className={cn("unburn-code-header", classNames?.codeBlockHeader)}
+        style={styles?.codeBlockHeader}
       >
         <div className="unburn-code-info">
-          {tabs ? (
+          {codeBlockTabs ? (
             <div className="unburn-code-tabs-container">
-              <div className={cn("unburn-code-tabs", classNames?.tabs)} style={styles?.tabs}>
-                {Object.keys(tabs).map((tab) => (
+              <div className={cn("unburn-code-tabs", classNames?.codeBlockTabs)} style={styles?.codeBlockTabs}>
+                {Object.keys(codeBlockTabs).map((tab) => (
                   <button
                     key={tab}
                     className={cn(
                       "unburn-code-tab",
                       activeTab === tab && "active",
-                      classNames?.tab
+                      classNames?.codeBlockTab
                     )}
                     onClick={() => setActiveTab(tab)}
-                    style={styles?.tab}
+                    style={styles?.codeBlockTab}
                   >
                     {tab}
                   </button>
@@ -168,35 +168,35 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
             </div>
           ) : (
             <>
-              {title && (
+              {codeBlockTitle && (
                 <span
-                  className={cn("unburn-code-title", classNames?.title)}
-                  style={styles?.title}
+                  className={cn("unburn-code-title", classNames?.codeBlockTitle)}
+                  style={styles?.codeBlockTitle}
                 >
-                  {title}
+                  {codeBlockTitle}
                 </span>
               )}
               <span
-                className={cn("unburn-code-lang", classNames?.lang)}
-                style={styles?.lang}
+                className={cn("unburn-code-lang", classNames?.codeBlockLang)}
+                style={styles?.codeBlockLang}
               >
-                {language}
+                {codeBlockLanguage}
               </span>
             </>
           )}
         </div>
         <button
-          className={cn("unburn-code-copy-btn", classNames?.copyButton)}
+          className={cn("unburn-code-copy-btn", classNames?.codeBlockCopyButton)}
           onClick={handleCopy}
           title={copied ? "Copied!" : "Copy Code"}
-          style={styles?.copyButton}
+          style={styles?.codeBlockCopyButton}
         >
           {copied ? <Check size={14} /> : <Copy size={14} />}
         </button>
       </div>
       <div
-        className={cn("unburn-code-content", classNames?.content)}
-        style={styles?.content}
+        className={cn("unburn-code-content", classNames?.codeBlockContent)}
+        style={styles?.codeBlockContent}
       >
         {!mounted || !Highlighter ? (
           <pre className="unburn-code-ssr-fallback">
@@ -206,7 +206,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           <Highlighter
             language={getLanguage()}
             style={unburnTheme}
-            showLineNumbers={!tabs && showLineNumbers}
+            showLineNumbers={!codeBlockTabs && codeBlockShowLineNumbers}
             lineNumberStyle={{
               minWidth: isMobile ? '1.5rem' : '2.5rem',
               paddingRight: isMobile ? '0.5rem' : '1rem',
@@ -226,7 +226,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
             }}
             customStyle={{
               margin: 0,
-              padding: tabs
+              padding: codeBlockTabs
                 ? (isMobile ? '1.25rem 1rem' : '1.5rem 1.25rem')
                 : (isMobile ? '1rem' : '1.25rem'),
               backgroundColor: 'transparent',

@@ -4,176 +4,197 @@ import React, { forwardRef, useId } from 'react';
 import { cn } from '../../lib/utils';
 import './Input.css';
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  label?: React.ReactNode;
-  description?: React.ReactNode;
-  error?: string;
-  variant?: 'filled' | 'outlined' | 'duo';
-  size?: 'sm' | 'default' | 'lg';
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-  kbd?: string;
-  fullWidth?: boolean;
-  progressLevel?: 0 | 1 | 2 | 3;
+export interface InputProps {
+  inputLabel?: React.ReactNode;
+  inputDescription?: React.ReactNode;
+  inputError?: string;
+  inputVariant?: 'filled' | 'outlined' | 'duo';
+  inputSize?: 'sm' | 'default' | 'lg';
+  inputLeftIcon?: React.ReactNode;
+  inputRightIcon?: React.ReactNode;
+  inputKbd?: string;
+  inputFullWidth?: boolean;
+  inputProgressLevel?: 0 | 1 | 2 | 3;
+  inputClassName?: string;
+  inputStyle?: React.CSSProperties;
+  inputDisabled?: boolean;
+  inputId?: string;
+  inputValue?: string;
+  inputDefaultValue?: string;
+  inputOnChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  inputPlaceholder?: string;
+  inputType?: string;
+  inputReadOnly?: boolean;
   classNames?: {
-    root?: string;
-    container?: string;
-    input?: string;
-    label?: string;
-    description?: string;
-    error?: string;
-    icon?: string;
-    progressContainer?: string;
-    progressBar?: string;
+    inputRoot?: string;
+    inputContainer?: string;
+    inputElement?: string;
+    inputLabel?: string;
+    inputDescription?: string;
+    inputError?: string;
+    inputIcon?: string;
+    inputProgressContainer?: string;
+    inputProgressBar?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    container?: React.CSSProperties;
-    input?: React.CSSProperties;
-    label?: React.CSSProperties;
-    description?: React.CSSProperties;
-    error?: React.CSSProperties;
-    icon?: React.CSSProperties;
-    progressContainer?: React.CSSProperties;
-    progressBar?: React.CSSProperties;
+    inputRoot?: React.CSSProperties;
+    inputContainer?: React.CSSProperties;
+    inputElement?: React.CSSProperties;
+    inputLabel?: React.CSSProperties;
+    inputDescription?: React.CSSProperties;
+    inputError?: React.CSSProperties;
+    inputIcon?: React.CSSProperties;
+    inputProgressContainer?: React.CSSProperties;
+    inputProgressBar?: React.CSSProperties;
   };
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      className,
-      label,
-      description,
-      error,
-      variant = 'filled',
-      size = 'default',
-      leftIcon,
-      rightIcon,
-      kbd,
-      fullWidth = false,
-      progressLevel,
-      disabled,
-      id,
+      inputClassName,
+      inputLabel,
+      inputDescription,
+      inputError,
+      inputVariant = 'filled',
+      inputSize = 'default',
+      inputLeftIcon,
+      inputRightIcon,
+      inputKbd,
+      inputFullWidth = false,
+      inputProgressLevel,
+      inputDisabled,
+      inputId,
+      inputValue,
+      inputDefaultValue,
+      inputOnChange,
+      inputPlaceholder,
+      inputType = 'text',
+      inputReadOnly,
       classNames,
       styles,
-      ...props
+      inputStyle
     },
     ref
   ) => {
     const generatedId = useId();
-    const inputId = id || generatedId;
+    const resolvedId = inputId || generatedId;
 
     return (
       <div
         className={cn(
           "unburn-input-root",
-          fullWidth && "unburn-input-full-width",
-          classNames?.root
+          inputFullWidth && "unburn-input-full-width",
+          classNames?.inputRoot
         )}
-        style={styles?.root}
+        style={{ ...inputStyle, ...styles?.inputRoot }}
       >
-        {label && (
+        {inputLabel && (
           <label
-            htmlFor={inputId}
-            className={cn("unburn-input-label", classNames?.label)}
-            style={styles?.label}
+            htmlFor={resolvedId}
+            className={cn("unburn-input-label", classNames?.inputLabel)}
+            style={styles?.inputLabel}
           >
-            {label}
+            {inputLabel}
           </label>
         )}
 
         <div
           className={cn(
             "unburn-input-container",
-            `unburn-input-container-${variant}`,
-            `unburn-input-container-${size}`,
-            (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
-            error && "unburn-input-container-error",
-            disabled && "unburn-input-container-disabled",
-            classNames?.container
+            `unburn-input-container-${inputVariant}`,
+            `unburn-input-container-${inputSize}`,
+            (inputVariant === 'outlined' || inputVariant === 'duo') && 'unburn-glass',
+            inputError && "unburn-input-container-error",
+            inputDisabled && "unburn-input-container-disabled",
+            classNames?.inputContainer
           )}
-          style={styles?.container}
+          style={styles?.inputContainer}
         >
-          {leftIcon && (
-            <div className={cn("unburn-input-icon unburn-input-icon-left", classNames?.icon)} style={styles?.icon}>
-              {leftIcon}
+          {inputLeftIcon && (
+            <div className={cn("unburn-input-icon unburn-input-icon-left", classNames?.inputIcon)} style={styles?.inputIcon}>
+              {inputLeftIcon}
             </div>
           )}
 
           <input
             ref={ref}
-            id={inputId}
-            disabled={disabled}
+            id={resolvedId}
+            disabled={inputDisabled}
+            readOnly={inputReadOnly}
+            type={inputType}
+            value={inputValue}
+            defaultValue={inputDefaultValue}
+            onChange={inputOnChange}
+            placeholder={inputPlaceholder}
             className={cn(
               "unburn-input",
-              className,
-              classNames?.input
+              inputClassName,
+              classNames?.inputElement
             )}
-            style={styles?.input}
-            {...props}
+            style={styles?.inputElement}
           />
 
-          {(kbd || rightIcon) && (
+          {(inputKbd || inputRightIcon) && (
             <div className="unburn-input-right-section">
-              {kbd && (
+              {inputKbd && (
                 <kbd className="unburn-input-kbd">
-                  {kbd}
+                  {inputKbd}
                 </kbd>
               )}
-              {rightIcon && (
-                <div className={cn("unburn-input-icon unburn-input-icon-right", classNames?.icon)} style={styles?.icon}>
-                  {rightIcon}
+              {inputRightIcon && (
+                <div className={cn("unburn-input-icon unburn-input-icon-right", classNames?.inputIcon)} style={styles?.inputIcon}>
+                  {inputRightIcon}
                 </div>
               )}
             </div>
           )}
         </div>
 
-        {progressLevel !== undefined && (
-          <div className={cn("unburn-input-progress-container", classNames?.progressContainer)} style={styles?.progressContainer}>
+        {inputProgressLevel !== undefined && (
+          <div className={cn("unburn-input-progress-container", classNames?.inputProgressContainer)} style={styles?.inputProgressContainer}>
             <div
               className={cn(
                 "unburn-input-progress-bar unburn-input-progress-bar-1",
-                progressLevel >= 1 && "active",
-                classNames?.progressBar
+                inputProgressLevel >= 1 && "active",
+                classNames?.inputProgressBar
               )}
-              style={styles?.progressBar}
+              style={styles?.inputProgressBar}
             />
             <div
               className={cn(
                 "unburn-input-progress-bar unburn-input-progress-bar-2",
-                progressLevel >= 2 && "active",
-                classNames?.progressBar
+                inputProgressLevel >= 2 && "active",
+                classNames?.inputProgressBar
               )}
-              style={styles?.progressBar}
+              style={styles?.inputProgressBar}
             />
             <div
               className={cn(
                 "unburn-input-progress-bar unburn-input-progress-bar-3",
-                progressLevel >= 3 && "active",
-                classNames?.progressBar
+                inputProgressLevel >= 3 && "active",
+                classNames?.inputProgressBar
               )}
-              style={styles?.progressBar}
+              style={styles?.inputProgressBar}
             />
           </div>
         )}
 
-        {description && !error && (
+        {inputDescription && !inputError && (
           <p
-            className={cn("unburn-input-description", classNames?.description)}
-            style={styles?.description}
+            className={cn("unburn-input-description", classNames?.inputDescription)}
+            style={styles?.inputDescription}
           >
-            {description}
+            {inputDescription}
           </p>
         )}
 
-        {error && (
+        {inputError && (
           <span
-            className={cn("unburn-input-error-message", classNames?.error)}
-            style={styles?.error}
+            className={cn("unburn-input-error-message", classNames?.inputError)}
+            style={styles?.inputError}
           >
-            {error}
+            {inputError}
           </span>
         )}
       </div>

@@ -7,56 +7,56 @@ import './Accordion.css';
 import { getAccentVariables } from '../../lib/colors';
 
 export interface AccordionItemProps {
-  id: string;
-  title: string;
-  subtitle?: string;
-  icon?: React.ReactNode;
-  content: React.ReactNode;
+  accordionItemId: string;
+  accordionItemTitle: string;
+  accordionItemSubtitle?: string;
+  accordionItemIcon?: React.ReactNode;
+  accordionItemContent: React.ReactNode;
 }
 
 export interface AccordionProps {
-  items: AccordionItemProps[];
-  allowMultiple?: boolean;
-  className?: string;
-  variant?: 'outlined' | 'duo' | 'filled';
-  color?: string;
+  accordionItems: AccordionItemProps[];
+  accordionAllowMultiple?: boolean;
+  accordionClassName?: string;
+  accordionVariant?: 'outlined' | 'duo' | 'filled';
+  accordionAccentColor?: string;
   classNames?: {
-    root?: string;
-    item?: string;
-    header?: string;
-    leadingIcon?: string;
-    content?: string;
-    icon?: string;
-    title?: string;
-    subtitle?: string;
+    accordionRoot?: string;
+    accordionItem?: string;
+    accordionHeader?: string;
+    accordionLeadingIcon?: string;
+    accordionContent?: string;
+    accordionIcon?: string;
+    accordionTitle?: string;
+    accordionSubtitle?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    item?: React.CSSProperties;
-    header?: React.CSSProperties;
-    leadingIcon?: React.CSSProperties;
-    content?: React.CSSProperties;
-    icon?: React.CSSProperties;
-    title?: React.CSSProperties;
-    subtitle?: React.CSSProperties;
+    accordionRoot?: React.CSSProperties;
+    accordionItem?: React.CSSProperties;
+    accordionHeader?: React.CSSProperties;
+    accordionLeadingIcon?: React.CSSProperties;
+    accordionContent?: React.CSSProperties;
+    accordionIcon?: React.CSSProperties;
+    accordionTitle?: React.CSSProperties;
+    accordionSubtitle?: React.CSSProperties;
   };
-  style?: React.CSSProperties;
+  accordionStyle?: React.CSSProperties;
 }
 
 export const Accordion: React.FC<AccordionProps> = ({
-  items,
-  allowMultiple = false,
-  className,
-  variant = 'outlined',
-  color,
+  accordionItems,
+  accordionAllowMultiple = false,
+  accordionClassName,
+  accordionVariant = 'outlined',
+  accordionAccentColor,
   classNames,
   styles,
-  style
+  accordionStyle
 }) => {
   const [openItems, setOpenItems] = useState<string[]>([]);
 
   const toggleItem = (id: string) => {
-    if (allowMultiple) {
+    if (accordionAllowMultiple) {
       setOpenItems((prev) =>
         prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
       );
@@ -65,78 +65,78 @@ export const Accordion: React.FC<AccordionProps> = ({
     }
   };
 
-  const accentStyle = getAccentVariables(color);
+  const accentStyle = getAccentVariables(accordionAccentColor);
 
   return (
     <div
       className={cn(
         'unburn-accordion',
-        variant === 'outlined' && 'unburn-accordion-outlined',
-        variant === 'duo' && 'unburn-accordion-duo',
-        variant === 'filled' && 'unburn-accordion-filled',
-        className,
-        classNames?.root
+        accordionVariant === 'outlined' && 'unburn-accordion-outlined',
+        accordionVariant === 'duo' && 'unburn-accordion-duo',
+        accordionVariant === 'filled' && 'unburn-accordion-filled',
+        accordionClassName,
+        classNames?.accordionRoot
       )}
-      style={{ ...style, ...accentStyle, ...styles?.root }}
+      style={{ ...accordionStyle, ...accentStyle, ...styles?.accordionRoot }}
     >
-      {items.map((item) => {
-        const isOpen = openItems.includes(item.id);
+      {accordionItems.map((item) => {
+        const isOpen = openItems.includes(item.accordionItemId);
         return (
           <div
-            key={item.id}
+            key={item.accordionItemId}
             className={cn(
               "unburn-accordion-item",
-              item.icon && "unburn-accordion-item-has-icon",
-              (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
-              classNames?.item
+              item.accordionItemIcon && "unburn-accordion-item-has-icon",
+              (accordionVariant === 'outlined' || accordionVariant === 'duo') && 'unburn-glass',
+              classNames?.accordionItem
             )}
-            style={styles?.item}
+            style={styles?.accordionItem}
             data-state={isOpen ? 'open' : 'closed'}
           >
-            {item.icon && (
+            {item.accordionItemIcon && (
               <span
-                className={cn("unburn-accordion-leading-icon", classNames?.leadingIcon)}
-                style={styles?.leadingIcon}
+                className={cn("unburn-accordion-leading-icon", classNames?.accordionLeadingIcon)}
+                style={styles?.accordionLeadingIcon}
               >
-                {item.icon}
+                {item.accordionItemIcon}
               </span>
             )}
             <button
-              className={cn("unburn-accordion-header", classNames?.header)}
-              style={styles?.header}
-              onClick={() => toggleItem(item.id)}
+              className={cn("unburn-accordion-header", classNames?.accordionHeader)}
+              style={styles?.accordionHeader}
+              onClick={() => toggleItem(item.accordionItemId)}
               aria-expanded={isOpen}
             >
               <div className="unburn-accordion-header-content">
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                  <span className={cn(classNames?.title)} style={styles?.title}>
-                    {item.title}
+                  <span className={cn(classNames?.accordionTitle)} style={styles?.accordionTitle}>
+                    {item.accordionItemTitle}
                   </span>
-                  {item.subtitle && (
+                  {item.accordionItemSubtitle && (
                     <span
-                      className={cn("unburn-accordion-subtitle", classNames?.subtitle)}
-                      style={styles?.subtitle}
+                      className={cn("unburn-accordion-subtitle", classNames?.accordionSubtitle)}
+                      style={styles?.accordionSubtitle}
                     >
-                      {item.subtitle}
+                      {item.accordionItemSubtitle}
                     </span>
                   )}
                 </div>
               </div>
               <ChevronDown
-                className={cn("unburn-accordion-icon", classNames?.icon)}
+                className={cn("unburn-accordion-icon", classNames?.accordionIcon)}
                 size={16}
-                style={styles?.icon}
+                style={styles?.accordionIcon}
               />
             </button>
             <div
-              className={cn("unburn-accordion-content-wrapper", classNames?.content)}
-              style={styles?.content}
+              className={cn("unburn-accordion-content-wrapper", classNames?.accordionContent)}
+              style={styles?.accordionContent}
             >
               <div
                 className="unburn-accordion-content"
               >
                 <div className="unburn-accordion-content-inner">
-                  {item.content}
+                  {item.accordionItemContent}
                 </div>
               </div>
             </div>

@@ -18,20 +18,20 @@ export const CheckboxPage: React.FC = () => {
         code={`import { Checkbox } from '@unburn/ui/Checkbox';
 
 export default function Example() {
-  return <Checkbox label="Accept terms and conditions" defaultChecked />;
+  return <Checkbox checkboxLabel="Accept terms and conditions" checkboxDefaultChecked />;
 }`}
       >
-        <Checkbox label="Accept terms and conditions" defaultChecked />
+        <Checkbox checkboxLabel="Accept terms and conditions" checkboxDefaultChecked />
       </Showcase>
 
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          language="tsx"
-          code={`import { Checkbox } from '@unburn/ui/Checkbox';
+          codeBlockLanguage="tsx"
+          codeBlockCode={`import { Checkbox } from '@unburn/ui/Checkbox';
 
 export default function Example() {
-  return <Checkbox label="Remember me" />;
+  return <Checkbox checkboxLabel="Remember me" />;
 }`}
         />
       </div>
@@ -47,17 +47,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Checkbox variant="filled" label="Filled (Default)" defaultChecked />
-      <Checkbox variant="outlined" label="Outlined Variant" defaultChecked />
-      <Checkbox variant="duo" label="Duo Variant" defaultChecked />
+      <Checkbox checkboxVariant="filled" checkboxLabel="Filled (Default)" checkboxDefaultChecked />
+      <Checkbox checkboxVariant="outlined" checkboxLabel="Outlined Variant" checkboxDefaultChecked />
+      <Checkbox checkboxVariant="duo" checkboxLabel="Duo Variant" checkboxDefaultChecked />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <Checkbox variant="filled" label="Filled (Default)" defaultChecked />
-            <Checkbox variant="outlined" label="Outlined Variant" defaultChecked />
-            <Checkbox variant="duo" label="Duo Variant" defaultChecked />
+            <Checkbox checkboxVariant="filled" checkboxLabel="Filled (Default)" checkboxDefaultChecked />
+            <Checkbox checkboxVariant="outlined" checkboxLabel="Outlined Variant" checkboxDefaultChecked />
+            <Checkbox checkboxVariant="duo" checkboxLabel="Duo Variant" checkboxDefaultChecked />
           </div>
         </Showcase>
 
@@ -69,17 +69,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Checkbox size="sm" label="Small Checkbox" defaultChecked />
-      <Checkbox size="default" label="Default Checkbox" defaultChecked />
-      <Checkbox size="lg" label="Large Checkbox" defaultChecked />
+      <Checkbox checkboxSize="sm" checkboxLabel="Small Checkbox" checkboxDefaultChecked />
+      <Checkbox checkboxSize="default" checkboxLabel="Default Checkbox" checkboxDefaultChecked />
+      <Checkbox checkboxSize="lg" checkboxLabel="Large Checkbox" checkboxDefaultChecked />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <Checkbox size="sm" label="Small Checkbox" defaultChecked />
-            <Checkbox size="default" label="Default Checkbox" defaultChecked />
-            <Checkbox size="lg" label="Large Checkbox" defaultChecked />
+            <Checkbox checkboxSize="sm" checkboxLabel="Small Checkbox" checkboxDefaultChecked />
+            <Checkbox checkboxSize="default" checkboxLabel="Default Checkbox" checkboxDefaultChecked />
+            <Checkbox checkboxSize="lg" checkboxLabel="Large Checkbox" checkboxDefaultChecked />
           </div>
         </Showcase>
 
@@ -91,15 +91,15 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Checkbox disabled label="Disabled Checkbox" />
-      <Checkbox disabled defaultChecked label="Disabled Checked" />
+      <Checkbox checkboxDisabled checkboxLabel="Disabled Checkbox" />
+      <Checkbox checkboxDisabled checkboxDefaultChecked checkboxLabel="Disabled Checked" />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <Checkbox disabled label="Disabled Checkbox" />
-            <Checkbox disabled defaultChecked label="Disabled Checked" />
+            <Checkbox checkboxDisabled checkboxLabel="Disabled Checkbox" />
+            <Checkbox checkboxDisabled checkboxDefaultChecked checkboxLabel="Disabled Checked" />
           </div>
         </Showcase>
 
@@ -111,17 +111,17 @@ export default function Example() {
 export default function Example() {
   return (
     <Checkbox
-      label="Notifications"
-      description="Receive email updates about your account activity and security."
-      defaultChecked
+      checkboxLabel="Notifications"
+      checkboxDescription="Receive email updates about your account activity and security."
+      checkboxDefaultChecked
     />
   );
 }`}
         >
           <Checkbox
-            label="Notifications"
-            description="Receive email updates about your account activity and security."
-            defaultChecked
+            checkboxLabel="Notifications"
+            checkboxDescription="Receive email updates about your account activity and security."
+            checkboxDefaultChecked
           />
         </Showcase>
 
@@ -136,38 +136,56 @@ export default function Example() {
 
   return (
     <Checkbox
-      label="Privacy Policy"
-      onClick={() => setChecked(!checked)}
-      checked={checked}
-      error={checked ? undefined : "You must agree to the privacy policy."}
+      checkboxLabel="Privacy Policy"
+      checkboxOnChange={(e) => setChecked(e.target.checked)}
+      checkboxChecked={checked}
+      checkboxError={checked ? undefined : "You must agree to the privacy policy."}
     />
   );
 }`}
         >
           <Checkbox
-            label="Privacy Policy"
-            onClick={() => setChecked(!checked)}
-            checked={checked}
-            error={checked ? undefined : "You must agree to the privacy policy."}
+            checkboxLabel="Privacy Policy"
+            checkboxOnChange={(e) => setChecked(e.target.checked)}
+            checkboxChecked={checked}
+            checkboxError={checked ? undefined : "You must agree to the privacy policy."}
           />
         </Showcase>
       </div>
 
       <Props
         props={[
-          { name: 'label', type: 'ReactNode', description: 'Text shown next to the checkbox.' },
-          { name: 'description', type: 'ReactNode', description: 'Helpful description text shown below the label.' },
-          { name: 'error', type: 'string', description: 'Error message to show under the checkbox.' },
-          { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the checkbox.' },
-          { name: 'size', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the checkbox.' },
-          { name: 'color', type: 'string', description: 'Custom accent color for borders and checked background.' },
-          { name: 'checked', type: 'boolean', description: 'Set if the checkbox is checked.' },
-          { name: 'defaultChecked', type: 'boolean', description: 'Set if the checkbox starts as checked.' },
-          { name: 'onChange', type: '(e: ChangeEvent) => void', description: 'Function called when the checkbox state changes.' },
-          { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks on the checkbox.' },
-          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the checkbox.' },
-          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
+          { name: 'checkboxLabel', type: 'ReactNode', description: 'Text shown next to the checkbox.' },
+          { name: 'checkboxDescription', type: 'ReactNode', description: 'Helpful description text shown below the label.' },
+          { name: 'checkboxError', type: 'string', description: 'Error message to show under the checkbox.' },
+          { name: 'checkboxVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the checkbox.' },
+          { name: 'checkboxSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the checkbox.' },
+          { name: 'checkboxAccentColor', type: 'string', description: 'Custom accent color for borders and checked background.' },
+          { name: 'checkboxChecked', type: 'boolean', description: 'Set if the checkbox is checked.' },
+          { name: 'checkboxDefaultChecked', type: 'boolean', description: 'Set if the checkbox starts as checked.' },
+          { name: 'checkboxOnChange', type: '(e: ChangeEvent) => void', description: 'Function called when the checkbox state changes.' },
+          { name: 'checkboxDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks on the checkbox.' },
+          { name: 'checkboxClassName', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'checkboxStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the checkbox (prefixed with checkbox).' },
+          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with checkbox).' },
         ]}
+        stylingTargets={[
+          { name: 'checkboxRoot', description: 'Styles the outer label wrapper container.' },
+          { name: 'checkboxContainer', description: 'Styles the wrapper containing the checkbox square.' },
+          { name: 'checkboxCheckbox', description: 'Styles the checkbox square itself.' },
+          { name: 'checkboxIndicator', description: 'Styles the checkmark SVG indicator inside.' },
+          { name: 'checkboxLabel', description: 'Styles the label text element.' },
+          { name: 'checkboxDescription', description: 'Styles the subtitle description text.' },
+          { name: 'checkboxError', description: 'Styles the error text element.' },
+        ]}
+        stylingStructure={`checkboxRoot
+ ├── checkboxContainer
+ │    └── checkboxCheckbox
+ │         └── checkboxIndicator
+ ├── checkboxLabel
+ ├── checkboxDescription
+ └── checkboxError`}
       />
     </>
   );

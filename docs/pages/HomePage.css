@@ -21,9 +21,6 @@
 .home-grid-background {
   position: absolute;
   inset: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  grid-auto-rows: 60px;
   z-index: 1;
   pointer-events: auto;
   mask-image: radial-gradient(circle at center, black 40%, transparent 95%);
@@ -36,37 +33,10 @@
   opacity: 0.55;
 }
 
-.grid-cell {
-  position: relative;
-  border-right: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-  box-sizing: border-box;
-  opacity: 0.35;
-  background-color: transparent;
-}
-
-[data-theme='dark'] .grid-cell {
-  opacity: 0.28;
-}
-
-@keyframes grid-ripple {
-  0% {
-    background-color: transparent;
-    box-shadow: none;
-  }
-  15% {
-    background-color: color-mix(in srgb, var(--accent-color) 45%, transparent);
-    box-shadow: 0 0 25px color-mix(in srgb, var(--accent-color) 75%, transparent),
-                inset 0 0 10px color-mix(in srgb, var(--accent-color) 50%, transparent);
-  }
-  100% {
-    background-color: transparent;
-    box-shadow: none;
-  }
-}
-
-.grid-cell.ripple {
-  animation: grid-ripple 1.4s cubic-bezier(0.1, 0.8, 0.25, 1) both;
+.home-grid-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .hero-section {

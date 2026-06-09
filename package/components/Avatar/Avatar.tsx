@@ -1,74 +1,90 @@
-import React, { type HTMLAttributes, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { User } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { getAccentVariables, resolveColor } from '../../lib/colors';
 import './Avatar.css';
 
-export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
-  src?: string;
-  alt?: string;
-  fallback?: React.ReactNode;
-  showStatus?: boolean;
-  statusColor?: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  color?: string;
+export interface AvatarProps {
+  avatarSrc?: string;
+  avatarAlt?: string;
+  avatarFallback?: React.ReactNode;
+  avatarShowStatus?: boolean;
+  avatarStatusColor?: string;
+  avatarSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  avatarAccentColor?: string;
+  avatarClassName?: string;
+  avatarStyle?: React.CSSProperties;
   classNames?: {
-    root?: string;
-    image?: string;
-    status?: string;
-    fallback?: string;
+    avatarRoot?: string;
+    avatarImage?: string;
+    avatarStatus?: string;
+    avatarFallback?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    image?: React.CSSProperties;
-    status?: React.CSSProperties;
-    fallback?: React.CSSProperties;
+    avatarRoot?: React.CSSProperties;
+    avatarImage?: React.CSSProperties;
+    avatarStatus?: React.CSSProperties;
+    avatarFallback?: React.CSSProperties;
   };
 }
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
-  ({ className, src, alt, fallback, showStatus = false, statusColor, size = 'md', color, style, classNames, styles, ...props }, ref) => {
+  (
+    {
+      avatarClassName,
+      avatarSrc,
+      avatarAlt,
+      avatarFallback,
+      avatarShowStatus = false,
+      avatarStatusColor,
+      avatarSize = 'md',
+      avatarAccentColor,
+      avatarStyle,
+      classNames,
+      styles
+    },
+    ref
+  ) => {
     const [hasError, setHasError] = React.useState(false);
 
-    const accentStyle = getAccentVariables(color);
-    const statusVars = statusColor ? { 
-      '--status-color': resolveColor(statusColor) 
+    const accentStyle = getAccentVariables(avatarAccentColor);
+    const statusVars = avatarStatusColor ? { 
+      '--status-color': resolveColor(avatarStatusColor) 
     } as React.CSSProperties : {};
 
     return (
       <div
         ref={ref}
-        style={{ ...style, ...accentStyle, ...styles?.root }}
+        style={{ ...avatarStyle, ...accentStyle, ...styles?.avatarRoot }}
         className={cn(
           'unburn-avatar',
-          `size-${size}`,
-          className,
-          classNames?.root
+          `size-${avatarSize}`,
+          avatarClassName,
+          classNames?.avatarRoot
         )}
-        {...props}
       >
         <div className="unburn-avatar-inner">
-          {src && !hasError ? (
+          {avatarSrc && !hasError ? (
             <img
-              src={src}
-              alt={alt || 'Avatar'}
-              className={cn("unburn-avatar-img", classNames?.image)}
-              style={styles?.image}
+              src={avatarSrc}
+              alt={avatarAlt || 'Avatar'}
+              className={cn("unburn-avatar-img", classNames?.avatarImage)}
+              style={styles?.avatarImage}
               onError={() => setHasError(true)}
             />
           ) : (
             <div
-              className={cn("unburn-avatar-fallback", classNames?.fallback)}
-              style={styles?.fallback}
+              className={cn("unburn-avatar-fallback", classNames?.avatarFallback)}
+              style={styles?.avatarFallback}
             >
-              {fallback || <User size={20} />}
+              {avatarFallback || <User size={20} />}
             </div>
           )}
         </div>
-        {showStatus && (
+        {avatarShowStatus && (
           <span
-            className={cn('unburn-avatar-status', classNames?.status)}
-            style={{ ...statusVars, ...styles?.status }}
+            className={cn('unburn-avatar-status', classNames?.avatarStatus)}
+            style={{ ...statusVars, ...styles?.avatarStatus }}
           />
         )}
       </div>

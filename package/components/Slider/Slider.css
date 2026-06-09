@@ -94,7 +94,7 @@
 .unburn-slider-input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: var(--thumb-size);
+  width: calc(var(--thumb-size) * 1.5);
   height: var(--thumb-size);
   border-radius: var(--radius-full);
   background-color: var(--thumb-bg);
@@ -116,7 +116,7 @@
 }
 
 .unburn-slider-input::-moz-range-thumb {
-  width: var(--thumb-size);
+  width: calc(var(--thumb-size) * 1.5);
   height: var(--thumb-size);
   border-radius: var(--radius-full);
   background-color: var(--thumb-bg);

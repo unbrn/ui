@@ -42,33 +42,30 @@ export const TiltedShowcase: React.FC = () => {
       <div className="showcase-card profile-card">
         <div className="card-header">
           <Avatar
-            src="https://avatars.githubusercontent.com/u/197804266"
-            alt="Kunal"
-            size="md"
-            showStatus={true}
-            statusColor="#10b981"
-            color="var(--accent-color)"
+            avatarSrc="https://avatars.githubusercontent.com/u/197804266"
+            avatarAlt="Kunal"
+            avatarSize="md"
+            avatarShowStatus={true}
+            avatarStatusColor="#10b981"
+            avatarAccentColor="var(--accent-color)"
           />
           <div className="card-info">
             <h4 className="card-title">Kunal</h4>
             <p className="card-subtitle">Lead Developer</p>
           </div>
-          <Badge variant="outlined" size="sm" style={{ borderColor: 'var(--accent-color)', color: 'var(--accent-color)' }}>
-            PRO
-          </Badge>
+          <Badge badgeVariant="outlined" badgeSize="sm" badgeStyle={{ borderColor: 'var(--accent-color)', color: 'var(--accent-color)' }} badgeChildren="PRO" />
         </div>
         <div className="card-body">
           <p className="card-text">Building the future of lightweight, performant React layouts with vanilla CSS.</p>
         </div>
         <div className="card-actions">
           <Button
-            variant={isFollowed ? "outlined" : "filled"}
-            size="sm"
-            fullWidth={true}
-            onClick={() => setIsFollowed(!isFollowed)}
-          >
-            {isFollowed ? "Following" : "Follow User"}
-          </Button>
+            buttonVariant={isFollowed ? "outlined" : "filled"}
+            buttonSize="sm"
+            buttonFullWidth={true}
+            buttonOnClick={() => setIsFollowed(!isFollowed)}
+            buttonChildren={isFollowed ? "Following" : "Follow User"}
+          />
         </div>
       </div>
 
@@ -79,19 +76,19 @@ export const TiltedShowcase: React.FC = () => {
         </div>
         <div className="search-row">
           <Input
-            variant="duo"
-            size="sm"
-            placeholder="Search docs..."
-            leftIcon={<Search size={14} />}
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            fullWidth={true}
+            inputVariant="duo"
+            inputSize="sm"
+            inputPlaceholder="Search docs..."
+            inputLeftIcon={<Search size={14} />}
+            inputValue={searchValue}
+            inputOnChange={(e) => setSearchValue(e.target.value)}
+            inputFullWidth={true}
           />
           <Button
-            variant="outlined"
-            size="sm"
-            icon={<Settings size={14} />}
-            onClick={() => setSearchValue('')}
+            buttonVariant="outlined"
+            buttonSize="sm"
+            buttonIcon={<Settings size={14} />}
+            buttonOnClick={() => setSearchValue('')}
           />
         </div>
         <div className="search-status">
@@ -105,12 +102,11 @@ export const TiltedShowcase: React.FC = () => {
 
       <div className="showcase-card alert-card">
         <Alert
-          variant='duo'
-          title="Deployment Complete"
-          classNames={{ root: 'mini-alert-root' }}
-        >
-          All pages compiled under 24ms.
-        </Alert>
+          alertVariant='duo'
+          alertTitle="Deployment Complete"
+          classNames={{ alertRoot: 'mini-alert-root' }}
+          alertChildren="All pages compiled under 24ms."
+        />
       </div>
     </>
   );
@@ -125,10 +121,10 @@ export const TiltedShowcase: React.FC = () => {
             <span className="control-desc">Use deep space palette</span>
           </div>
           <Switch
-            variant="duo"
-            checked={darkMode}
-            onChange={(checked) => setDarkMode(checked)}
-            size="sm"
+            switchVariant="duo"
+            switchChecked={darkMode}
+            switchOnChange={(checked) => setDarkMode(checked)}
+            switchSize="sm"
           />
         </div>
         <div className="control-divider"></div>
@@ -138,10 +134,10 @@ export const TiltedShowcase: React.FC = () => {
             <span className="control-desc">Enable auto sync</span>
           </div>
           <Switch
-            variant="filled"
-            checked={notifications}
-            onChange={(checked) => setNotifications(checked)}
-            size="sm"
+            switchVariant="filled"
+            switchChecked={notifications}
+            switchOnChange={(checked) => setNotifications(checked)}
+            switchSize="sm"
           />
         </div>
       </div>
@@ -152,10 +148,10 @@ export const TiltedShowcase: React.FC = () => {
           <Sparkles size={12} className="tag-icon" />
         </div>
         <Dropzone
-          label="Drop file here"
-          description="PNG, JPG, PDF up to 5MB"
-          accept=".png,.jpg,.pdf"
-          classNames={{ root: 'mini-dropzone-root' }}
+          dropzoneLabel="Drop file here"
+          dropzoneDescription="PNG, JPG, PDF up to 5MB"
+          dropzoneAccept=".png,.jpg,.pdf"
+          classNames={{ dropzoneRoot: 'mini-dropzone-root' }}
         />
       </div>
 
@@ -164,14 +160,12 @@ export const TiltedShowcase: React.FC = () => {
           <span className="card-tag">Atomic Badges</span>
         </div>
         <div className="badge-grid">
-          <Badge variant="filled">Active</Badge>
-          <Badge variant="outlined">Beta</Badge>
-          <Badge variant="duo">Duo</Badge>
+          <Badge badgeVariant="filled" badgeChildren="Active" />
+          <Badge badgeVariant="outlined" badgeChildren="Beta" />
+          <Badge badgeVariant="duo" badgeChildren="Duo" />
         </div>
         <div className="button-row">
-          <Button variant="duo" size="sm" fullWidth={true}>
-            Interactive Action
-          </Button>
+          <Button buttonVariant="duo" buttonSize="sm" buttonFullWidth={true} buttonChildren="Interactive Action" />
         </div>
       </div>
     </>

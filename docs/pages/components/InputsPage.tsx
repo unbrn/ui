@@ -19,12 +19,12 @@ const InteractiveProgressiveInput = () => {
   return (
     <div style={{ width: '100%', maxWidth: '400px' }}>
       <Input
-        label="Interactive Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        progressLevel={getProgress(password)}
-        placeholder="Type to see progress..."
+        inputLabel="Interactive Password"
+        inputType="password"
+        inputValue={password}
+        inputOnChange={(e) => setPassword(e.target.value)}
+        inputProgressLevel={getProgress(password)}
+        inputPlaceholder="Type to see progress..."
       />
     </div>
   );
@@ -42,24 +42,24 @@ export const InputsPage: React.FC = () => {
 export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '400px' }}>
-      <Input label="Email" placeholder="you@example.com" />
+      <Input inputLabel="Email" inputPlaceholder="you@example.com" />
     </div>
   );
 }`}
       >
         <div style={{ width: '100%', maxWidth: '400px' }}>
-          <Input label="Email" placeholder="you@example.com" />
+          <Input inputLabel="Email" inputPlaceholder="you@example.com" />
         </div>
       </Showcase>
 
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          language="tsx"
-          code={`import { Input } from '@unburn/ui/Input';
+          codeBlockLanguage="tsx"
+          codeBlockCode={`import { Input } from '@unburn/ui/Input';
 
 export default function Example() {
-  return <Input label="Username" placeholder="Enter your name" />;
+  return <Input inputLabel="Username" inputPlaceholder="Enter your name" />;
 }`}
         />
       </div>
@@ -75,17 +75,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
-      <Input variant="filled" placeholder="Filled (Default)" />
-      <Input variant="outlined" placeholder="Outlined variant" />
-      <Input variant="duo" placeholder="Duo variant" />
+      <Input inputVariant="filled" inputPlaceholder="Filled (Default)" />
+      <Input inputVariant="outlined" inputPlaceholder="Outlined variant" />
+      <Input inputVariant="duo" inputPlaceholder="Duo variant" />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
-            <Input variant="filled" placeholder="Filled (Default)" />
-            <Input variant="outlined" placeholder="Outlined variant" />
-            <Input variant="duo" placeholder="Duo variant" />
+            <Input inputVariant="filled" inputPlaceholder="Filled (Default)" />
+            <Input inputVariant="outlined" inputPlaceholder="Outlined variant" />
+            <Input inputVariant="duo" inputPlaceholder="Duo variant" />
           </div>
         </Showcase>
 
@@ -97,17 +97,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '400px' }}>
-      <Input size="sm" placeholder="Small input" />
-      <Input size="default" placeholder="Default input" />
-      <Input size="lg" placeholder="Large input" />
+      <Input inputSize="sm" inputPlaceholder="Small input" />
+      <Input inputSize="default" inputPlaceholder="Default input" />
+      <Input inputSize="lg" inputPlaceholder="Large input" />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '400px' }}>
-            <Input size="sm" placeholder="Small input" />
-            <Input size="default" placeholder="Default input" />
-            <Input size="lg" placeholder="Large input" />
+            <Input inputSize="sm" inputPlaceholder="Small input" />
+            <Input inputSize="default" inputPlaceholder="Default input" />
+            <Input inputSize="lg" inputPlaceholder="Large input" />
           </div>
         </Showcase>
 
@@ -121,13 +121,13 @@ export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
       <Input
-        leftIcon={<User size={16} />}
-        placeholder="Username"
+        inputLeftIcon={<User size={16} />}
+        inputPlaceholder="Username"
       />
       <Input
-        leftIcon={<Mail size={16} />}
-        rightIcon={<Lock size={16} />}
-        placeholder="Email with dual icons"
+        inputLeftIcon={<Mail size={16} />}
+        inputRightIcon={<Lock size={16} />}
+        inputPlaceholder="Email with dual icons"
       />
     </div>
   );
@@ -135,13 +135,13 @@ export default function Example() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
             <Input
-              leftIcon={<User size={16} />}
-              placeholder="Username"
+              inputLeftIcon={<User size={16} />}
+              inputPlaceholder="Username"
             />
             <Input
-              leftIcon={<Mail size={16} />}
-              rightIcon={<Lock size={16} />}
-              placeholder="Email with dual icons"
+              inputLeftIcon={<Mail size={16} />}
+              inputRightIcon={<Lock size={16} />}
+              inputPlaceholder="Email with dual icons"
             />
           </div>
         </Showcase>
@@ -156,13 +156,13 @@ export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
       <Input
-        leftIcon={<Search size={16} />}
-        kbd="⌘K"
-        placeholder="Search documentation..."
+        inputLeftIcon={<Search size={16} />}
+        inputKbd="⌘K"
+        inputPlaceholder="Search documentation..."
       />
       <Input
-        kbd="Ctrl+/"
-        placeholder="Open command menu"
+        inputKbd="Ctrl+/"
+        inputPlaceholder="Open command menu"
       />
     </div>
   );
@@ -170,13 +170,13 @@ export default function Example() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
             <Input
-              leftIcon={<Search size={16} />}
-              kbd="⌘K"
-              placeholder="Search documentation..."
+              inputLeftIcon={<Search size={16} />}
+              inputKbd="⌘K"
+              inputPlaceholder="Search documentation..."
             />
             <Input
-              kbd="Ctrl+/"
-              placeholder="Open command menu"
+              inputKbd="Ctrl+/"
+              inputPlaceholder="Open command menu"
             />
           </div>
         </Showcase>
@@ -200,12 +200,12 @@ export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '400px' }}>
       <Input 
-        label="Interactive Password" 
-        type="password" 
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        progressLevel={getProgress(password)}
-        placeholder="Type to see progress..."
+        inputLabel="Interactive Password" 
+        inputType="password" 
+        inputValue={password}
+        inputOnChange={(e) => setPassword(e.target.value)}
+        inputProgressLevel={getProgress(password)}
+        inputPlaceholder="Type to see progress..."
       />
     </div>
   );
@@ -223,15 +223,15 @@ export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
       <Input
-        label="Error State"
-        error="Password must be at least 8 characters."
-        placeholder="Enter your password"
-        type="password"
+        inputLabel="Error State"
+        inputError="Password must be at least 8 characters."
+        inputPlaceholder="Enter your password"
+        inputType="password"
       />
       <Input
-        label="Disabled"
-        disabled
-        placeholder="Disabled input"
+        inputLabel="Disabled"
+        inputDisabled
+        inputPlaceholder="Disabled input"
       />
     </div>
   );
@@ -239,15 +239,15 @@ export default function Example() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
             <Input
-              label="Error State"
-              error="Password must be at least 8 characters."
-              placeholder="Enter your password"
-              type="password"
+              inputLabel="Error State"
+              inputError="Password must be at least 8 characters."
+              inputPlaceholder="Enter your password"
+              inputType="password"
             />
             <Input
-              label="Disabled"
-              disabled
-              placeholder="Disabled input"
+              inputLabel="Disabled"
+              inputDisabled
+              inputPlaceholder="Disabled input"
             />
           </div>
         </Showcase>
@@ -255,20 +255,50 @@ export default function Example() {
 
       <Props
         props={[
-          { name: 'label', type: 'ReactNode', description: 'Text label shown above the input box.' },
-          { name: 'description', type: 'ReactNode', description: 'Helpful detail text shown below the input.' },
-          { name: 'error', type: 'string', description: 'Error message to show under the input field.' },
-          { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the input.' },
-          { name: 'size', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the input field.' },
-          { name: 'leftIcon', type: 'ReactNode', description: 'An icon shown on the left side.' },
-          { name: 'rightIcon', type: 'ReactNode', description: 'An icon shown on the right side.' },
-          { name: 'kbd', type: 'string', description: 'Keyboard shortcut indicator shown inside the right edge of the input.' },
-          { name: 'fullWidth', type: 'boolean', defaultValue: 'false', description: 'Make the input fill the full width of its box.' },
-          { name: 'progressLevel', type: '0 | 1 | 2 | 3', description: 'Strength bar level (from 0 to 3).' },
-          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the input.' },
-          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
+          { name: 'inputLabel', type: 'ReactNode', description: 'Text label shown above the input box.' },
+          { name: 'inputDescription', type: 'ReactNode', description: 'Helpful detail text shown below the input.' },
+          { name: 'inputError', type: 'string', description: 'Error message to show under the input field.' },
+          { name: 'inputVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the input.' },
+          { name: 'inputSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the input field.' },
+          { name: 'inputLeftIcon', type: 'ReactNode', description: 'An icon shown on the left side.' },
+          { name: 'inputRightIcon', type: 'ReactNode', description: 'An icon shown on the right side.' },
+          { name: 'inputKbd', type: 'string', description: 'Keyboard shortcut indicator shown inside the right edge of the input.' },
+          { name: 'inputFullWidth', type: 'boolean', defaultValue: 'false', description: 'Make the input fill the full width of its box.' },
+          { name: 'inputProgressLevel', type: '0 | 1 | 2 | 3', description: 'Strength bar level (from 0 to 3).' },
+          { name: 'inputClassName', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'inputStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'inputDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks and inputs.' },
+          { name: 'inputId', type: 'string', description: 'Custom id attribute.' },
+          { name: 'inputValue', type: 'string', description: 'Controlled value.' },
+          { name: 'inputDefaultValue', type: 'string', description: 'Uncontrolled default value.' },
+          { name: 'inputOnChange', type: 'function', description: 'Change event handler.' },
+          { name: 'inputPlaceholder', type: 'string', description: 'Placeholder text.' },
+          { name: 'inputType', type: 'string', defaultValue: "'text'", description: 'HTML input type attribute.' },
+          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the input (prefixed with input).' },
+          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with input).' },
         ]}
+        stylingTargets={[
+          { name: 'inputRoot', description: 'Styles the outer input wrapper container.' },
+          { name: 'inputContainer', description: 'Styles the input field outer container box.' },
+          { name: 'inputElement', description: 'Styles the actual HTML input element.' },
+          { name: 'inputLabel', description: 'Styles the label text element.' },
+          { name: 'inputDescription', description: 'Styles the description text element.' },
+          { name: 'inputError', description: 'Styles the error message text element.' },
+          { name: 'inputIcon', description: 'Styles the icon wrapper elements (left or right).' },
+          { name: 'inputProgressContainer', description: 'Styles the password strength bar container.' },
+          { name: 'inputProgressBar', description: 'Styles the password strength indicator line.' },
+        ]}
+        stylingStructure={`inputRoot
+ ├── inputLabel
+ ├── inputContainer
+ │    ├── inputIcon
+ │    └── inputElement
+ ├── inputProgressContainer
+ │    └── inputProgressBar
+ ├── inputDescription
+ └── inputError`}
       />
     </>
   );
 };
+

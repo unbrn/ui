@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
-import { domToSvg } from '../../utils/figma';
 
 interface ShowcaseProps {
   title: string;
@@ -11,20 +10,7 @@ interface ShowcaseProps {
 
 export const Showcase: React.FC<ShowcaseProps> = ({ title, description, code, children }) => {
   const [showCode, setShowCode] = useState(false);
-  const [figmaCopied, setFigmaCopied] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const handleCopyToFigma = async () => {
-    if (!contentRef.current) return;
-    try {
-      const svgString = domToSvg(contentRef.current, title);
-      await navigator.clipboard.writeText(svgString);
-      setFigmaCopied(true);
-      setTimeout(() => setFigmaCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy component to Figma:', err);
-    }
-  };
 
   return (
     <div className="showcase-block">
@@ -43,11 +29,11 @@ export const Showcase: React.FC<ShowcaseProps> = ({ title, description, code, ch
         {code && (
           <div className={`showcase-code-wrapper ${showCode ? 'open' : ''}`}>
             <CodeBlock
-              code={code}
-              language="tsx"
-              variant="outlined"
-              className="showcase-code-inner"
-              style={{
+              codeBlockCode={code}
+              codeBlockLanguage="tsx"
+              codeBlockVariant="outlined"
+              codeBlockClassName="showcase-code-inner"
+              codeBlockStyle={{
                 borderRadius: 0,
                 border: "0px"
               }}
@@ -62,12 +48,6 @@ export const Showcase: React.FC<ShowcaseProps> = ({ title, description, code, ch
               onClick={() => setShowCode(!showCode)}
             >
               {showCode ? 'HIDE CODE' : 'VIEW CODE'}
-            </button>
-            <button
-              className="view-code-btn"
-              onClick={handleCopyToFigma}
-            >
-              {figmaCopied ? 'COPIED!' : 'COPY TO FIGMA'}
             </button>
           </div>
         )}

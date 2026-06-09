@@ -67,38 +67,36 @@ export const DocsLayout: React.FC = () => {
                 style={{ width: '220px', cursor: 'pointer' }}
               >
                 <Input
-                  readOnly
-                  variant="outlined"
-                  size="sm"
-                  leftIcon={<Search size={14} />}
-                  kbd="⌘K"
-                  placeholder="Search..."
-                  style={{ cursor: 'pointer' }}
-                  fullWidth
+                  inputReadOnly
+                  inputVariant="outlined"
+                  inputSize="sm"
+                  inputLeftIcon={<Search size={14} />}
+                  inputKbd="⌘K"
+                  inputPlaceholder="Search..."
+                  inputStyle={{ cursor: 'pointer' }}
+                  inputFullWidth
                 />
               </div>
 
               <div style={{ display: 'flex', gap: '0.75rem' }}>
                 <Button
-                  variant="duo"
-                  size="sm"
-                  icon={<ArrowLeft size={14} />}
-                  iconPosition="left"
-                  disabled={!prevRoute}
-                  onClick={() => prevRoute && navigate(prevRoute.path)}
-                >
-                  Previous
-                </Button>
+                  buttonVariant="duo"
+                  buttonSize="sm"
+                  buttonIcon={<ArrowLeft size={14} />}
+                  buttonIconPosition="left"
+                  buttonDisabled={!prevRoute}
+                  buttonOnClick={() => prevRoute && navigate(prevRoute.path)}
+                  buttonChildren="Previous"
+                />
                 <Button
-                  variant="duo"
-                  size="sm"
-                  icon={<ArrowRight size={14} />}
-                  iconPosition="right"
-                  disabled={!nextRoute}
-                  onClick={() => nextRoute && navigate(nextRoute.path)}
-                >
-                  Next
-                </Button>
+                  buttonVariant="duo"
+                  buttonSize="sm"
+                  buttonIcon={<ArrowRight size={14} />}
+                  buttonIconPosition="right"
+                  buttonDisabled={!nextRoute}
+                  buttonOnClick={() => nextRoute && navigate(nextRoute.path)}
+                  buttonChildren="Next"
+                />
               </div>
             </div>
           )}

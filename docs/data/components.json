@@ -78,12 +78,6 @@
     "addedAt": "2026-05-16"
   },
   {
-    "name": "Video Embed",
-    "description": "Premium HTML5 custom video player with glassmorphic controls.",
-    "path": "/components/video-embed",
-    "addedAt": "2026-05-19"
-  },
-  {
     "name": "Slider",
     "description": "Premium range sliders with touch support and live value bubbles.",
     "path": "/components/slider",
@@ -99,12 +93,6 @@
     "name": "Steps",
     "description": "Vertical visual guide indicators for progressive walkthroughs and sequences.",
     "path": "/components/steps",
-    "addedAt": "2026-06-05"
-  },
-  {
-    "name": "Tabs",
-    "description": "Dynamic capsule button tabs to swap content panels seamlessly.",
-    "path": "/components/tabs",
     "addedAt": "2026-06-05"
   },
   {

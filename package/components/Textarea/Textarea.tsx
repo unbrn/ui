@@ -4,74 +4,84 @@ import React, { forwardRef, useId } from 'react';
 import { cn } from '../../lib/utils';
 import './Textarea.css';
 
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  label?: React.ReactNode;
-  description?: React.ReactNode;
-  error?: string;
-  variant?: 'filled' | 'outlined' | 'duo';
-  fullWidth?: boolean;
-  showCount?: boolean;
+export interface TextareaProps {
+  textareaLabel?: React.ReactNode;
+  textareaDescription?: React.ReactNode;
+  textareaError?: string;
+  textareaVariant?: 'filled' | 'outlined' | 'duo';
+  textareaFullWidth?: boolean;
+  textareaShowCount?: boolean;
+  textareaDisabled?: boolean;
+  textareaId?: string;
+  textareaMaxLength?: number;
+  textareaValue?: string;
+  textareaDefaultValue?: string;
+  textareaOnChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  textareaPlaceholder?: string;
+  textareaClassName?: string;
+  textareaStyle?: React.CSSProperties;
   classNames?: {
-    root?: string;
-    container?: string;
-    textarea?: string;
-    label?: string;
-    description?: string;
-    error?: string;
-    footer?: string;
-    count?: string;
-    dragIndicator?: string;
+    textareaRoot?: string;
+    textareaContainer?: string;
+    textareaElement?: string;
+    textareaLabel?: string;
+    textareaDescription?: string;
+    textareaError?: string;
+    textareaFooter?: string;
+    textareaCount?: string;
+    textareaDragIndicator?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    container?: React.CSSProperties;
-    textarea?: React.CSSProperties;
-    label?: React.CSSProperties;
-    description?: React.CSSProperties;
-    error?: React.CSSProperties;
-    footer?: React.CSSProperties;
-    count?: React.CSSProperties;
-    dragIndicator?: React.CSSProperties;
+    textareaRoot?: React.CSSProperties;
+    textareaContainer?: React.CSSProperties;
+    textareaElement?: React.CSSProperties;
+    textareaLabel?: React.CSSProperties;
+    textareaDescription?: React.CSSProperties;
+    textareaError?: React.CSSProperties;
+    textareaFooter?: React.CSSProperties;
+    textareaCount?: React.CSSProperties;
+    textareaDragIndicator?: React.CSSProperties;
   };
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
-      className,
-      label,
-      description,
-      error,
-      variant = 'filled',
-      fullWidth = false,
-      showCount = false,
-      disabled,
-      id,
-      maxLength,
-      value,
-      defaultValue,
-      onChange,
+      textareaClassName,
+      textareaStyle,
+      textareaLabel,
+      textareaDescription,
+      textareaError,
+      textareaVariant = 'filled',
+      textareaFullWidth = false,
+      textareaShowCount = false,
+      textareaDisabled,
+      textareaId: customId,
+      textareaMaxLength,
+      textareaValue,
+      textareaDefaultValue,
+      textareaOnChange,
+      textareaPlaceholder,
       classNames,
       styles,
-      ...props
     },
     ref
   ) => {
     const generatedId = useId();
-    const textareaId = id || generatedId;
+    const textareaId = customId || generatedId;
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     const [currentLength, setCurrentLength] = React.useState(
-      (value?.toString() || defaultValue?.toString() || "").length
+      (textareaValue?.toString() || textareaDefaultValue?.toString() || "").length
     );
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       setCurrentLength(e.target.value.length);
-      onChange?.(e);
+      textareaOnChange?.(e);
     };
 
     const handleResizeStart = (e: React.MouseEvent | React.TouchEvent) => {
-      if (disabled) return;
+      if (textareaDisabled) return;
       
       const isTouch = 'touches' in e;
       const startY = isTouch ? e.touches[0].pageY : e.pageY;
@@ -109,18 +119,18 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       <div
         className={cn(
           "unburn-textarea-root",
-          fullWidth && "unburn-textarea-full-width",
-          classNames?.root
+          textareaFullWidth && "unburn-textarea-full-width",
+          classNames?.textareaRoot
         )}
-        style={styles?.root}
+        style={{ ...textareaStyle, ...styles?.textareaRoot }}
       >
-        {label && (
+        {textareaLabel && (
           <label
             htmlFor={textareaId}
-            className={cn("unburn-textarea-label", classNames?.label)}
-            style={styles?.label}
+            className={cn("unburn-textarea-label", classNames?.textareaLabel)}
+            style={styles?.textareaLabel}
           >
-            {label}
+            {textareaLabel}
           </label>
         )}
 
@@ -128,42 +138,42 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={containerRef}
           className={cn(
             "unburn-textarea-container",
-            `unburn-textarea-container-${variant}`,
-            error && "unburn-textarea-container-error",
-            disabled && "unburn-textarea-container-disabled",
-            classNames?.container
+            `unburn-textarea-container-${textareaVariant}`,
+            textareaError && "unburn-textarea-container-error",
+            textareaDisabled && "unburn-textarea-container-disabled",
+            classNames?.textareaContainer
           )}
-          style={styles?.container}
+          style={styles?.textareaContainer}
         >
           <textarea
             ref={ref}
             id={textareaId}
-            disabled={disabled}
-            maxLength={maxLength}
+            disabled={textareaDisabled}
+            maxLength={textareaMaxLength}
             onChange={handleChange}
-            value={value}
-            defaultValue={defaultValue}
+            value={textareaValue}
+            defaultValue={textareaDefaultValue}
+            placeholder={textareaPlaceholder}
             className={cn(
               "unburn-textarea",
-              className,
-              classNames?.textarea
+              textareaClassName,
+              classNames?.textareaElement
             )}
-            style={styles?.textarea}
-            {...props}
+            style={styles?.textareaElement}
           />
 
-          <div className={cn("unburn-textarea-footer", classNames?.footer)} style={styles?.footer}>
-            <div className={cn("unburn-textarea-count", classNames?.count)} style={styles?.count}>
-              {showCount && (
+          <div className={cn("unburn-textarea-footer", classNames?.textareaFooter)} style={styles?.textareaFooter}>
+            <div className={cn("unburn-textarea-count", classNames?.textareaCount)} style={styles?.textareaCount}>
+              {textareaShowCount && (
                 <>
-                  {currentLength}{maxLength ? `/${maxLength}` : ''}
+                  {currentLength}{textareaMaxLength ? `/${textareaMaxLength}` : ''}
                 </>
               )}
             </div>
 
             <div
-              className={cn("unburn-textarea-drag", classNames?.dragIndicator)}
-              style={styles?.dragIndicator}
+              className={cn("unburn-textarea-drag", classNames?.textareaDragIndicator)}
+              style={styles?.textareaDragIndicator}
               onMouseDown={handleResizeStart}
               onTouchStart={handleResizeStart}
             >
@@ -173,21 +183,21 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           </div>
         </div>
 
-        {description && !error && (
+        {textareaDescription && !textareaError && (
           <p
-            className={cn("unburn-textarea-description", classNames?.description)}
-            style={styles?.description}
+            className={cn("unburn-textarea-description", classNames?.textareaDescription)}
+            style={styles?.textareaDescription}
           >
-            {description}
+            {textareaDescription}
           </p>
         )}
 
-        {error && (
+        {textareaError && (
           <span
-            className={cn("unburn-textarea-error-message", classNames?.error)}
-            style={styles?.error}
+            className={cn("unburn-textarea-error-message", classNames?.textareaError)}
+            style={styles?.textareaError}
           >
-            {error}
+            {textareaError}
           </span>
         )}
       </div>

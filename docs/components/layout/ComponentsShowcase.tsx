@@ -32,7 +32,7 @@ export const ComponentCard = ({
         </div>
         {isNew && (
           <div style={{ position: 'absolute', top: '1rem', right: '1rem', zIndex: 5 }}>
-            <Badge variant="outlined" size='sm'>NEW</Badge>
+            <Badge badgeVariant="outlined" badgeSize="sm" badgeChildren="NEW" />
           </div>
         )}
       </div>
@@ -98,9 +98,9 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       <div style={{ flex: 1, height: '4px', background: 'var(--border-color)', borderRadius: '2px' }}></div>
     </div>
   ),
-  Avatars: <Avatar src="https://avatars.githubusercontent.com/u/197804266" showStatus statusColor="green" />,
-  Badges: <Badge variant="duo" icon={<CheckCircle2 size={12} />}>Verified</Badge>,
-  Buttons: <Button variant="filled">Action</Button>,
+  Avatars: <Avatar avatarSrc="https://avatars.githubusercontent.com/u/197804266" avatarShowStatus avatarStatusColor="green" />,
+  Badges: <Badge badgeVariant="duo" badgeIcon={<CheckCircle2 size={12} />} badgeChildren="Verified" />,
+  Buttons: <Button buttonVariant="filled" buttonChildren="Action" />,
   Checkbox: (
     <div style={{
       width: '130px',
@@ -115,9 +115,9 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <div style={{
-          width: '18px',
+          width: '25px',
           height: '18px',
-          borderRadius: '4px',
+          borderRadius: '100px',
           background: 'var(--accent-color)',
           display: 'flex',
           alignItems: 'center',
@@ -128,7 +128,7 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
         <div style={{ flex: 1, height: '4px', background: 'var(--accent-color)', opacity: 0.3, borderRadius: '2px' }}></div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', opacity: 0.2 }}>
-        <div style={{ width: '18px', height: '18px', borderRadius: '4px', border: '1px solid var(--text-main)' }}></div>
+        <div style={{ width: '25px', height: '18px', borderRadius: '100px', border: '1px solid var(--text-main)' }}></div>
         <div style={{ width: '60%', height: '4px', background: 'var(--text-main)', borderRadius: '2px' }}></div>
       </div>
     </div>
@@ -249,9 +249,9 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)'
     }}>
       <div style={{
-        width: '20px',
+        width: '28px',
         height: '20px',
-        borderRadius: '50%',
+        borderRadius: '100px',
         background: 'var(--accent-text)',
         boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
       }}></div>
@@ -340,7 +340,7 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       <div style={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative', height: '12px' }}>
         <div style={{ width: '100%', height: '4px', background: 'var(--border-color)', borderRadius: '2px' }}></div>
         <div style={{ width: '60%', height: '4px', background: 'var(--accent-color)', borderRadius: '2px', position: 'absolute', left: 0 }}></div>
-        <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'var(--accent-color)', position: 'absolute', left: '60%', transform: 'translateX(-50%)' }}></div>
+        <div style={{ width: '15px', height: '10px', borderRadius: '100px', background: 'var(--accent-color)', position: 'absolute', left: '60%', transform: 'translateX(-50%)' }}></div>
       </div>
     </div>
   ),
@@ -403,30 +403,16 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       <div style={{ width: '18px', height: '18px', borderRadius: '50%', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '9px', opacity: 0.5, color: 'var(--text-main)' }}>2</div>
     </div>
   ),
-  Tabs: (
-    <div style={{
-      display: 'flex',
-      gap: '4px',
-      background: 'var(--bg-glass)',
-      border: '1px solid var(--border-color)',
-      borderRadius: '8px',
-      padding: '4px',
-      backdropFilter: 'blur(10px)',
-    }}>
-      <div style={{ padding: '4px 8px', background: 'var(--accent-color)', borderRadius: '6px', width: '32px', height: '10px' }} />
-      <div style={{ padding: '4px 8px', borderRadius: '6px', width: '32px', height: '10px', opacity: 0.3, background: 'var(--text-main)' }} />
-    </div>
-  ),
   "Voice Agent": (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <VoiceAgent
-        status="speaking"
-        variant="grid"
-        color="var(--accent-color)"
-        gridSize={{ rows: 5, cols: 5 }}
-        showControls={false}
-        dotSize={6}
-        gridGap={4}
+        voiceAgentStatus="speaking"
+        voiceAgentVariant="grid"
+        voiceAgentAccentColor="var(--accent-color)"
+        voiceAgentGridSize={{ rows: 5, cols: 5 }}
+        voiceAgentShowControls={false}
+        voiceAgentDotSize={6}
+        voiceAgentGridGap={4}
       />
     </div>
   )

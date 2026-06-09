@@ -47,9 +47,9 @@ import { Badge } from '@unburn/ui/Badge';
 export default function Home() {
   return (
     <div style={{ display: 'flex', gap: '1rem', padding: '2rem' }}>
-      <Button variant="filled">Get Started</Button>
-      <Button variant="outlined">Learn More</Button>
-      <Badge variant="duo">NEW</Badge>
+      <Button buttonVariant="filled" buttonChildren="Get Started" />
+      <Button buttonVariant="outlined" buttonChildren="Learn More" />
+      <Badge badgeVariant="duo" badgeChildren="NEW" />
     </div>
   );
 }`,
@@ -90,8 +90,8 @@ import { Alert } from '@unburn/ui/Alert';
 function App() {
   return (
     <div style={{ padding: '2rem' }}>
-      <Button variant="filled">Click Me</Button>
-      <Alert color="green" title="Success!" description="Everything is working." />
+      <Button buttonVariant="filled" buttonChildren="Click Me" />
+      <Alert alertAccentColor="green" alertTitle="Success!" alertDescription="Everything is working." />
     </div>
   );
 }
@@ -137,8 +137,8 @@ import { Badge } from '@unburn/ui/Badge';
 export default function Index() {
   return (
     <div style={{ padding: '2rem' }}>
-      <Button variant="duo">Remix + Unburn</Button>
-      <Badge>v0.1.0</Badge>
+      <Button buttonVariant="duo" buttonChildren="Remix + Unburn" />
+      <Badge badgeChildren="v0.1.0" />
     </div>
   );
 }`,
@@ -187,7 +187,7 @@ import { Button } from '@unburn/ui/Button';
 
 <Layout>
   <div style="padding: 2rem;">
-    <Button client:load variant="filled">Interactive Button</Button>
+    <Button client:load buttonVariant="filled" buttonChildren="Interactive Button" />
   </div>
 </Layout>`,
         language: 'astro',
@@ -213,12 +213,11 @@ import '@unburn/ui/styles.css';`,
         title: '3. Use components in any page',
         code: `
 import { Button } from '@unburn/ui/Button';
-import { Accordion } from '@unburn/ui/Accordion';
 
 export default function Home() {
   return (
     <div style={{ padding: '2rem' }}>
-      <Button variant="filled" color="green">Gatsby + Unburn</Button>
+      <Button buttonVariant="filled" buttonAccentColor="green" buttonChildren="Gatsby + Unburn" />
     </div>
   );
 }`,
@@ -291,8 +290,8 @@ export const InstallationPage: React.FC = () => {
               </div>
               {step.language === 'bash' && step.code.includes('@unburn/ui') ? (
                 <CodeBlock
-                  defaultTab="npm"
-                  tabs={{
+                  codeBlockDefaultTab="npm"
+                  codeBlockTabs={{
                     npm: step.code,
                     pnpm: step.code.replace('npm install', 'pnpm add').replace('npx', 'pnpm dlx'),
                     yarn: step.code.replace('npm install', 'yarn add').replace('npx', 'yarn dlx'),
@@ -301,9 +300,9 @@ export const InstallationPage: React.FC = () => {
                 />
               ) : (
                 <CodeBlock
-                  code={step.code}
-                  language={step.language}
-                  variant="filled"
+                  codeBlockCode={step.code}
+                  codeBlockLanguage={step.language}
+                  codeBlockVariant="filled"
                 />
               )}
               {step.note && (
@@ -327,8 +326,8 @@ export const InstallationPage: React.FC = () => {
         <div className="install-step">
           <h3 className="install-step-title">1. Install package</h3>
           <CodeBlock
-            defaultTab="npm"
-            tabs={{
+            codeBlockDefaultTab="npm"
+            codeBlockTabs={{
               npm: 'npm install @unburn/ui',
               pnpm: 'pnpm add @unburn/ui',
               yarn: 'yarn add @unburn/ui',
@@ -343,9 +342,9 @@ export const InstallationPage: React.FC = () => {
             Import Unburn UI's main stylesheet at the top of your root or entry file (e.g., <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>main.tsx</code>, <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>index.js</code>, or <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>layout.tsx</code>):
           </p>
           <CodeBlock
-            code="import '@unburn/ui/styles.css';"
-            language="tsx"
-            variant="filled"
+            codeBlockCode="import '@unburn/ui/styles.css';"
+            codeBlockLanguage="tsx"
+            codeBlockVariant="filled"
           />
         </div>
 
@@ -355,19 +354,19 @@ export const InstallationPage: React.FC = () => {
             Now you can import and render any components in your application:
           </p>
           <CodeBlock
-            code={`import { Button } from '@unburn/ui/Button';
+            codeBlockCode={`import { Button } from '@unburn/ui/Button';
 import { Badge } from '@unburn/ui/Badge';
 
 export default function App() {
   return (
     <div style={{ display: 'flex', gap: '1rem', padding: '2rem' }}>
-      <Button variant="filled">Get Started</Button>
-      <Badge variant="duo">NEW</Badge>
+      <Button buttonVariant="filled" buttonChildren="Get Started" />
+      <Badge badgeVariant="duo" badgeChildren="NEW" />
     </div>
   );
 }`}
-            language="tsx"
-            variant="filled"
+            codeBlockLanguage="tsx"
+            codeBlockVariant="filled"
           />
         </div>
       </div>

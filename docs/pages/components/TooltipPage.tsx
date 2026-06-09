@@ -19,31 +19,36 @@ import { Button } from '@unburn/ui/Button';
 
 export default function Example() {
   return (
-    <Tooltip content="Unburn UI system tooltip feed" position="top">
-      <Button variant="filled">Hover Trigger</Button>
-    </Tooltip>
+    <Tooltip
+      tooltipContent="Unburn UI system tooltip feed"
+      tooltipPosition="top"
+      tooltipChildren={<Button buttonVariant="filled" buttonChildren="Hover Trigger" />}
+    />
   );
 }`}
       >
         <div style={{ padding: '2rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Tooltip content="Unburn UI system tooltip feed" position="top">
-            <Button variant="filled">Hover Trigger</Button>
-          </Tooltip>
+          <Tooltip
+            tooltipContent="Unburn UI system tooltip feed"
+            tooltipPosition="top"
+            tooltipChildren={<Button buttonVariant="filled" buttonChildren="Hover Trigger" />}
+          />
         </div>
       </Showcase>
 
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          language="tsx"
-          code={`import { Tooltip } from '@unburn/ui/Tooltip';
+          codeBlockLanguage="tsx"
+          codeBlockCode={`import { Tooltip } from '@unburn/ui/Tooltip';
 import { Button } from '@unburn/ui/Button';
 
 export default function Example() {
   return (
-    <Tooltip content="Frosted information bubble">
-      <Button>Trigger Area</Button>
-    </Tooltip>
+    <Tooltip
+      tooltipContent="Frosted information bubble"
+      tooltipChildren={<Button buttonChildren="Trigger Area" />}
+    />
   );
 }`}
         />
@@ -61,35 +66,19 @@ import { Button } from '@unburn/ui/Button';
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
-      <Tooltip content="Positioned Top" position="top">
-        <Button>Top</Button>
-      </Tooltip>
-      <Tooltip content="Positioned Bottom" position="bottom">
-        <Button>Bottom</Button>
-      </Tooltip>
-      <Tooltip content="Positioned Left" position="left">
-        <Button>Left</Button>
-      </Tooltip>
-      <Tooltip content="Positioned Right" position="right">
-        <Button>Right</Button>
-      </Tooltip>
+      <Tooltip tooltipContent="Positioned Top" tooltipPosition="top" tooltipChildren={<Button buttonChildren="Top" />} />
+      <Tooltip tooltipContent="Positioned Bottom" tooltipPosition="bottom" tooltipChildren={<Button buttonChildren="Bottom" />} />
+      <Tooltip tooltipContent="Positioned Left" tooltipPosition="left" tooltipChildren={<Button buttonChildren="Left" />} />
+      <Tooltip tooltipContent="Positioned Right" tooltipPosition="right" tooltipChildren={<Button buttonChildren="Right" />} />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center', padding: '1rem' }}>
-            <Tooltip content="Positioned Top" position="top">
-              <Button>Top</Button>
-            </Tooltip>
-            <Tooltip content="Positioned Bottom" position="bottom">
-              <Button>Bottom</Button>
-            </Tooltip>
-            <Tooltip content="Positioned Left" position="left">
-              <Button>Left</Button>
-            </Tooltip>
-            <Tooltip content="Positioned Right" position="right">
-              <Button>Right</Button>
-            </Tooltip>
+            <Tooltip tooltipContent="Positioned Top" tooltipPosition="top" tooltipChildren={<Button buttonChildren="Top" />} />
+            <Tooltip tooltipContent="Positioned Bottom" tooltipPosition="bottom" tooltipChildren={<Button buttonChildren="Bottom" />} />
+            <Tooltip tooltipContent="Positioned Left" tooltipPosition="left" tooltipChildren={<Button buttonChildren="Left" />} />
+            <Tooltip tooltipContent="Positioned Right" tooltipPosition="right" tooltipChildren={<Button buttonChildren="Right" />} />
           </div>
         </Showcase>
 
@@ -102,29 +91,17 @@ import { Button } from '@unburn/ui/Button';
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
-      <Tooltip content="Filled Variant" variant="filled" position="top">
-        <Button>Filled</Button>
-      </Tooltip>
-      <Tooltip content="Outlined Variant" variant="outlined" position="bottom">
-        <Button>Outlined</Button>
-      </Tooltip>
-      <Tooltip content="Duo Variant" variant="duo" position="top">
-        <Button>Duo</Button>
-      </Tooltip>
+      <Tooltip tooltipContent="Filled Variant" tooltipVariant="filled" tooltipPosition="top" tooltipChildren={<Button buttonChildren="Filled" />} />
+      <Tooltip tooltipContent="Outlined Variant" tooltipVariant="outlined" tooltipPosition="bottom" tooltipChildren={<Button buttonChildren="Outlined" />} />
+      <Tooltip tooltipContent="Duo Variant" tooltipVariant="duo" tooltipPosition="top" tooltipChildren={<Button buttonChildren="Duo" />} />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center', padding: '1rem' }}>
-            <Tooltip content="Filled Variant" variant="filled" position="top">
-              <Button>Filled</Button>
-            </Tooltip>
-            <Tooltip content="Outlined Variant" variant="outlined" position="bottom">
-              <Button>Outlined</Button>
-            </Tooltip>
-            <Tooltip content="Duo Variant" variant="duo" position="top">
-              <Button>Duo</Button>
-            </Tooltip>
+            <Tooltip tooltipContent="Filled Variant" tooltipVariant="filled" tooltipPosition="top" tooltipChildren={<Button buttonChildren="Filled" />} />
+            <Tooltip tooltipContent="Outlined Variant" tooltipVariant="outlined" tooltipPosition="bottom" tooltipChildren={<Button buttonChildren="Outlined" />} />
+            <Tooltip tooltipContent="Duo Variant" tooltipVariant="duo" tooltipPosition="top" tooltipChildren={<Button buttonChildren="Duo" />} />
           </div>
         </Showcase>
 
@@ -136,32 +113,40 @@ import { Button } from '@unburn/ui/Button';
 
 export default function Example() {
   return (
-    <Tooltip content="This will not show" disabled position="top">
-      <Button disabled>Disabled Trigger</Button>
-    </Tooltip>
+    <Tooltip tooltipContent="This will not show" tooltipDisabled tooltipPosition="top" tooltipChildren={<Button buttonDisabled buttonChildren="Disabled Trigger" />} />
   );
 }`}
         >
           <div style={{ display: 'flex', justifyContent: 'center', padding: '1rem' }}>
-            <Tooltip content="This will not show" disabled position="top">
-              <Button disabled>Disabled Trigger</Button>
-            </Tooltip>
+            <Tooltip tooltipContent="This will not show" tooltipDisabled tooltipPosition="top" tooltipChildren={<Button buttonDisabled buttonChildren="Disabled Trigger" />} />
           </div>
         </Showcase>
       </div>
 
       <Props
         props={[
-          { name: 'content', type: 'ReactNode', required: true, description: 'Display text or react node shown inside the tooltip bubble.' },
-          { name: 'children', type: 'ReactNode', description: 'Trigger component node that displays the tooltip when hovered or focused.' },
-          { name: 'position', type: "'top' | 'bottom' | 'left' | 'right'", defaultValue: "'top'", description: 'Alignment position of the bubble relative to the children trigger.' },
-          { name: 'visible', type: 'boolean', description: 'Explicitly control visibility of the tooltip (controlled mode).' },
-          { name: 'color', type: 'string', description: 'Custom primary accent color for active highlight styling overrides (hex, rgb, etc.).' },
-          { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'Styling architecture applied to the tooltip container.' },
-          { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disables interactive tooltip display.' },
+          { name: 'tooltipContent', type: 'ReactNode', required: true, description: 'Display text or react node shown inside the tooltip bubble.' },
+          { name: 'tooltipChildren', type: 'ReactNode', description: 'Trigger component node that displays the tooltip when hovered or focused.' },
+          { name: 'tooltipPosition', type: "'top' | 'bottom' | 'left' | 'right'", defaultValue: "'top'", description: 'Alignment position of the bubble relative to the children trigger.' },
+          { name: 'tooltipVisible', type: 'boolean', description: 'Explicitly control visibility of the tooltip (controlled mode).' },
+          { name: 'tooltipAccentColor', type: 'string', description: 'Custom primary accent color for active highlight styling overrides (hex, rgb, etc.).' },
+          { name: 'tooltipVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'Styling architecture applied to the tooltip container.' },
+          { name: 'tooltipDisabled', type: 'boolean', defaultValue: 'false', description: 'Disables interactive tooltip display.' },
+          { name: 'tooltipClassName', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'tooltipStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS class name configuration mapping (root, trigger, bubble, arrow).' },
           { name: 'styles', type: 'object', description: 'Inline style configuration mapping.' },
         ]}
+        stylingTargets={[
+          { name: 'tooltipRoot', description: 'Styles the outer tooltip wrapper container.' },
+          { name: 'tooltipTrigger', description: 'Styles the wrapper containing the target hover elements.' },
+          { name: 'tooltipBubble', description: 'Styles the absolute positioned tooltip popover bubble itself.' },
+          { name: 'tooltipArrow', description: 'Styles the arrow pointer element extending from the bubble.' },
+        ]}
+        stylingStructure={`tooltipRoot
+ ├── tooltipTrigger
+ └── tooltipBubble
+      └── tooltipArrow`}
       />
     </>
   );

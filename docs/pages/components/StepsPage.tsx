@@ -8,45 +8,45 @@ import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export const StepsPage: React.FC = () => {
   const basicItems = [
-    { title: 'Initialize Workspace' },
-    { title: 'Install Dependencies' },
-    { title: 'Start Dev Server' }
+    { stepTitle: 'Initialize Workspace' },
+    { stepTitle: 'Install Dependencies' },
+    { stepTitle: 'Start Dev Server' }
   ];
 
   const descriptiveItems = [
     { 
-      title: 'Initialize Workspace', 
-      description: 'Run `npm init` or setup using a starter kit to get core layout folders ready.' 
+      stepTitle: 'Initialize Workspace', 
+      stepDescription: 'Run `npm init` or setup using a starter kit to get core layout folders ready.' 
     },
     { 
-      title: 'Install Dependencies', 
-      description: 'Run `npm i @unburn/ui lucide-react` to get packages.' 
+      stepTitle: 'Install Dependencies', 
+      stepDescription: 'Run `npm i @unburn/ui lucide-react` to get packages.' 
     },
     { 
-      title: 'Start Dev Server', 
-      description: 'Launch environment with `npm run dev` to start hot-module reloading and previews.' 
+      stepTitle: 'Start Dev Server', 
+      stepDescription: 'Launch environment with `npm run dev` to start hot-module reloading and previews.' 
     }
   ];
 
   const customItems = [
     {
-      title: 'Choose Auth Strategy',
-      description: 'Select authentication method that fits your app security model.',
-      children: (
-        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
-          <Button size="sm" variant="filled">OAuth2 Login</Button>
-          <Button size="sm" variant="outlined">Passwordless Magic Link</Button>
+      stepTitle: 'Choose Auth Strategy',
+      stepDescription: 'Select authentication method that fits your app security model.',
+      stepChildren: (
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+          <Button buttonSize="sm" buttonVariant="filled" buttonChildren="OAuth2 Login" />
+          <Button buttonSize="sm" buttonVariant="outlined" buttonChildren="Passwordless Magic Link" />
         </div>
       )
     },
     {
-      title: 'Setup Database Hooks',
-      description: 'Configure relational schema and triggers to store credentials.',
-      children: (
+      stepTitle: 'Setup Database Hooks',
+      stepDescription: 'Configure relational schema and triggers to store credentials.',
+      stepChildren: (
         <div style={{ marginTop: '0.5rem', width: '100%', maxWidth: '500px' }}>
           <CodeBlock 
-            language="sql" 
-            code={`CREATE TABLE users (
+            codeBlockLanguage="sql" 
+            codeBlockCode={`CREATE TABLE users (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   email text UNIQUE NOT NULL
 );`} 
@@ -66,31 +66,31 @@ export const StepsPage: React.FC = () => {
 
 export default function Example() {
   const steps = [
-    { title: 'Initialize Workspace' },
-    { title: 'Install Dependencies' },
-    { title: 'Start Dev Server' }
+    { stepTitle: 'Initialize Workspace' },
+    { stepTitle: 'Install Dependencies' },
+    { stepTitle: 'Start Dev Server' }
   ];
 
-  return <Steps items={steps} />;
+  return <Steps stepsItems={steps} />;
 }`}
       >
         <div style={{ width: '100%', maxWidth: '500px' }}>
-          <Steps items={basicItems} />
+          <Steps stepsItems={basicItems} />
         </div>
       </Showcase>
 
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          language="tsx"
-          code={`import { Steps } from '@unburn/ui/Steps';
+          codeBlockLanguage="tsx"
+          codeBlockCode={`import { Steps } from '@unburn/ui/Steps';
 
 export default function Example() {
   return (
     <Steps
-      items={[
-        { title: 'Step One', description: 'Begin instructions here.' },
-        { title: 'Step Two', description: 'Follow up details.' }
+      stepsItems={[
+        { stepTitle: 'Step One', stepDescription: 'Begin instructions here.' },
+        { stepTitle: 'Step Two', stepDescription: 'Follow up details.' }
       ]}
     />
   );
@@ -109,24 +109,24 @@ export default function Example() {
 export default function Example() {
   const steps = [
     { 
-      title: 'Initialize Workspace', 
-      description: 'Run \`npm init\` or setup using a starter kit to get core layout folders ready.' 
+      stepTitle: 'Initialize Workspace', 
+      stepDescription: 'Run \`npm init\` or setup using a starter kit to get core layout folders ready.' 
     },
     { 
-      title: 'Install Dependencies', 
-      description: 'Run \`npm i @unburn/ui lucide-react\` to get packages.' 
+      stepTitle: 'Install Dependencies', 
+      stepDescription: 'Run \`npm i @unburn/ui lucide-react\` to get packages.' 
     },
     { 
-      title: 'Start Dev Server', 
-      description: 'Launch environment with \`npm run dev\` to start hot-module reloading and previews.' 
+      stepTitle: 'Start Dev Server', 
+      stepDescription: 'Launch environment with \`npm run dev\` to start hot-module reloading and previews.' 
     }
   ];
 
-  return <Steps items={steps} />;
+  return <Steps stepsItems={steps} />;
 }`}
         >
           <div style={{ width: '100%', maxWidth: '500px' }}>
-            <Steps items={descriptiveItems} />
+            <Steps stepsItems={descriptiveItems} />
           </div>
         </Showcase>
 
@@ -140,23 +140,23 @@ import { CodeBlock } from '@unburn/ui/CodeBlock';
 export default function Example() {
   const steps = [
     {
-      title: 'Choose Auth Strategy',
-      description: 'Select authentication method that fits your app security model.',
-      children: (
-        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
-          <Button size="sm" variant="filled">OAuth2 Login</Button>
-          <Button size="sm" variant="outlined">Passwordless Magic Link</Button>
+      stepTitle: 'Choose Auth Strategy',
+      stepDescription: 'Select authentication method that fits your app security model.',
+      stepChildren: (
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+          <Button buttonSize="sm" buttonVariant="filled" buttonChildren="OAuth2 Login" />
+          <Button buttonSize="sm" buttonVariant="outlined" buttonChildren="Passwordless Magic Link" />
         </div>
       )
     },
     {
-      title: 'Setup Database Hooks',
-      description: 'Configure relational schema and triggers to store credentials.',
-      children: (
+      stepTitle: 'Setup Database Hooks',
+      stepDescription: 'Configure relational schema and triggers to store credentials.',
+      stepChildren: (
         <div style={{ marginTop: '0.5rem', width: '100%', maxWidth: '500px' }}>
           <CodeBlock 
-            language="sql" 
-            code={\`CREATE TABLE users (
+            codeBlockLanguage="sql" 
+            codeBlockCode={\`CREATE TABLE users (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   email text UNIQUE NOT NULL
 );\`} 
@@ -166,33 +166,49 @@ export default function Example() {
     }
   ];
 
-  return <Steps items={steps} />;
+  return <Steps stepsItems={steps} />;
 }`}
         >
           <div style={{ width: '100%', maxWidth: '500px' }}>
-            <Steps items={customItems} />
+            <Steps stepsItems={customItems} />
           </div>
         </Showcase>
       </div>
 
       <Props
+        title="Steps Props"
         props={[
-          { name: 'items', type: 'StepItem[]', description: 'Array of step descriptor objects representing steps to render.' },
-          { name: 'classNames', type: 'object', description: 'Custom CSS classes for individual sub-nodes (root, step, marker, connector, title, description).' },
-          { name: 'styles', type: 'object', description: 'Custom inline styling properties for sub-nodes (root, step, marker, connector, title, description).' },
+          { name: 'stepsItems', type: 'StepItem[]', description: 'Array of step descriptor objects representing steps to render.' },
+          { name: 'stepsChildren', type: 'ReactNode', description: 'Custom children elements to render directly if stepsItems is not provided.' },
+          { name: 'stepsClassName', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'stepsStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'classNames', type: 'object', description: 'Custom CSS classes for individual sub-nodes (stepsRoot, stepsStep, stepsMarker, stepsConnector, stepsTitle, stepsDescription).' },
+          { name: 'styles', type: 'object', description: 'Custom inline styling properties for sub-nodes (stepsRoot, stepsStep, stepsMarker, stepsConnector, stepsTitle, stepsDescription).' },
         ]}
+        stylingTargets={[
+          { name: 'stepsRoot', description: 'Styles the outer container of the steps stepper list.' },
+          { name: 'stepsStep', description: 'Styles each step item row container.' },
+          { name: 'stepsMarker', description: 'Styles the circular step indicator bubble/number.' },
+          { name: 'stepsConnector', description: 'Styles the vertical connector lines linking steps.' },
+          { name: 'stepsTitle', description: 'Styles the step title text.' },
+          { name: 'stepsDescription', description: 'Styles the step description text.' },
+        ]}
+        stylingStructure={`stepsRoot
+ └── stepsStep
+      ├── stepsMarker
+      ├── stepsConnector
+      ├── stepsTitle
+      └── stepsDescription`}
       />
 
-      <div style={{ marginTop: '3rem' }}>
-        <h4 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-main)', marginBottom: '1rem' }}>StepItem Structure</h4>
-        <Props
-          props={[
-            { name: 'title', type: 'string', required: true, description: 'Main text heading of the step.' },
-            { name: 'description', type: 'string', description: 'Helper descriptor label shown below heading.' },
-            { name: 'children', type: 'ReactNode', description: 'Custom interactive React elements injected below description.' },
-          ]}
-        />
-      </div>
+      <Props
+        title="StepItem Props"
+        props={[
+          { name: 'stepTitle', type: 'string', required: true, description: 'Main text heading of the step.' },
+          { name: 'stepDescription', type: 'string', description: 'Helper descriptor label shown below heading.' },
+          { name: 'stepChildren', type: 'ReactNode', description: 'Custom interactive React elements injected below description.' },
+        ]}
+      />
     </>
   );
 };

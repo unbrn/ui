@@ -346,7 +346,11 @@ body.sidebar-open-lock { overflow: hidden !important; }
     background-color: var(--bg-main);
     transform: translateX(-100%);
     z-index: 950;
-    padding-top: 4.5rem;
+    padding-top: 0;
+  }
+
+  .docs-sidebar-inner {
+    padding: 5.5rem 0 6rem 0;
   }
 
   .docs-sidebar.open {

@@ -3,72 +3,73 @@ import { cn } from '../../lib/utils';
 import './Badge.css';
 import { getAccentVariables } from '../../lib/colors';
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'filled' | 'outlined' | 'duo';
-  size?: 'sm' | 'md' | 'lg';
-  icon?: React.ReactNode;
-  iconPosition?: 'left' | 'right';
-  color?: string;
+export interface BadgeProps {
+  badgeVariant?: 'filled' | 'outlined' | 'duo';
+  badgeSize?: 'sm' | 'md' | 'lg';
+  badgeIcon?: React.ReactNode;
+  badgeIconPosition?: 'left' | 'right';
+  badgeAccentColor?: string;
+  badgeClassName?: string;
+  badgeStyle?: React.CSSProperties;
+  badgeChildren?: React.ReactNode;
   classNames?: {
-    root?: string;
-    icon?: string;
-    text?: string;
+    badgeRoot?: string;
+    badgeIcon?: string;
+    badgeText?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    icon?: React.CSSProperties;
-    text?: React.CSSProperties;
+    badgeRoot?: React.CSSProperties;
+    badgeIcon?: React.CSSProperties;
+    badgeText?: React.CSSProperties;
   };
 }
 
 export const Badge: React.FC<BadgeProps> = ({
-  children,
-  variant = 'filled',
-  size = 'md',
-  icon,
-  iconPosition = 'left',
-  color,
-  className,
+  badgeChildren,
+  badgeVariant = 'filled',
+  badgeSize = 'md',
+  badgeIcon,
+  badgeIconPosition = 'left',
+  badgeAccentColor,
+  badgeClassName,
   classNames,
   styles,
-  style,
-  ...props
+  badgeStyle
 }) => {
-  const accentStyle = getAccentVariables(color);
+  const accentStyle = getAccentVariables(badgeAccentColor);
 
   return (
     <div
       className={cn(
         'unburn-badge',
-        `unburn-badge-${variant}`,
-        `unburn-badge-${size}`,
-        (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
-        className,
-        classNames?.root
+        `unburn-badge-${badgeVariant}`,
+        `unburn-badge-${badgeSize}`,
+        (badgeVariant === 'outlined' || badgeVariant === 'duo') && 'unburn-glass',
+        badgeClassName,
+        classNames?.badgeRoot
       )}
-      style={{ ...style, ...accentStyle, ...styles?.root }}
-      {...props}
+      style={{ ...badgeStyle, ...accentStyle, ...styles?.badgeRoot }}
     >
-      {icon && iconPosition === 'left' && (
+      {badgeIcon && badgeIconPosition === 'left' && (
         <span
-          className={cn('unburn-badge-icon-left', classNames?.icon)}
-          style={styles?.icon}
+          className={cn('unburn-badge-icon-left', classNames?.badgeIcon)}
+          style={styles?.badgeIcon}
         >
-          {icon}
+          {badgeIcon}
         </span>
       )}
       <span
-        className={cn('unburn-badge-text', classNames?.text)}
-        style={styles?.text}
+        className={cn('unburn-badge-text', classNames?.badgeText)}
+        style={styles?.badgeText}
       >
-        {children}
+        {badgeChildren}
       </span>
-      {icon && iconPosition === 'right' && (
+      {badgeIcon && badgeIconPosition === 'right' && (
         <span
-          className={cn('unburn-badge-icon-right', classNames?.icon)}
-          style={styles?.icon}
+          className={cn('unburn-badge-icon-right', classNames?.badgeIcon)}
+          style={styles?.badgeIcon}
         >
-          {icon}
+          {badgeIcon}
         </span>
       )}
     </div>

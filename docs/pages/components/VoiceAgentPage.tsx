@@ -157,8 +157,13 @@ export const VoiceAgentPage: React.FC = () => {
           }, 5000);
         });
     } catch (err) {
-      console.error('Mic setup failed, auto-advancing:', err);
-      onSpeechFinished();
+      console.warn('Mic setup failed, auto-advancing with fallback:', err);
+      setSessionStatus('listening');
+      setSubtitles('Listening for your response (simulated)...');
+      setTimeout(() => {
+        stopSessionMic();
+        onSpeechFinished();
+      }, 5000);
     }
   };
 
@@ -249,14 +254,12 @@ export const VoiceAgentPage: React.FC = () => {
 
       <div style={{ marginBottom: '2rem' }}>
         <Alert
-          variant="duo"
-          icon={<Mic size={16} />}
-          title="Try Live AI Voice Simulator"
-          description="Experience a live simulated voice call with our Voice Agent. Test real-time microphone voice detection and simulated conversational flow."
-          actions={
-            <Button onClick={startSession}>
-              Start Live Test
-            </Button>
+          alertVariant="duo"
+          alertIcon={<Mic size={16} />}
+          alertTitle="Try Live AI Voice Simulator"
+          alertDescription="Experience a live simulated voice call with our Voice Agent. Test real-time microphone voice detection and simulated conversational flow."
+          alertActions={
+            <Button buttonOnClick={startSession} buttonChildren="Start Live Test" />
           }
         />
       </div>
@@ -268,15 +271,15 @@ export const VoiceAgentPage: React.FC = () => {
 export default function Example() {
   return (
     <VoiceAgent
-      status="speaking"
-      variant="grid"
+      voiceAgentStatus="speaking"
+      voiceAgentVariant="grid"
     />
   );
 }`}
       >
         <VoiceAgent
-          status="speaking"
-          variant="grid"
+          voiceAgentStatus="speaking"
+          voiceAgentVariant="grid"
         />
       </Showcase>
 
@@ -297,13 +300,13 @@ export default function Example() {
         }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem', width: '100%', maxWidth: '400px', padding: '2rem' }}>
             <VoiceAgent
-              status={sessionStatus}
-              variant="grid"
-              isMuted={isSessionMuted}
-              audioAnalyser={sessionAnalyser || undefined}
-              showControls={true}
-              onMuteToggle={() => setIsSessionMuted(prev => !prev)}
-              onDisconnect={endSession}
+              voiceAgentStatus={sessionStatus}
+              voiceAgentVariant="grid"
+              voiceAgentIsMuted={isSessionMuted}
+              voiceAgentAudioAnalyser={sessionAnalyser || undefined}
+              voiceAgentShowControls={true}
+              voiceAgentOnMuteToggle={() => setIsSessionMuted(prev => !prev)}
+              voiceAgentOnDisconnect={endSession}
             />
 
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', textAlign: 'center' }}>
@@ -326,15 +329,15 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          language="tsx"
-          code={`import { VoiceAgent } from '@unburn/ui/VoiceAgent';
+          codeBlockLanguage="tsx"
+          codeBlockCode={`import { VoiceAgent } from '@unburn/ui/VoiceAgent';
 
 export default function Example() {
   return (
     <VoiceAgent
-      status="speaking"
-      onMuteToggle={() => console.log('Muted')}
-      onDisconnect={() => console.log('Hangup')}
+      voiceAgentStatus="speaking"
+      voiceAgentOnMuteToggle={() => console.log('Muted')}
+      voiceAgentOnDisconnect={() => console.log('Hangup')}
     />
   );
 }`}
@@ -352,11 +355,11 @@ export default function Example() {
 export default function Example() {
   return (
     <div className="flex gap-6 flex-wrap">
-      <VoiceAgent status="idle" showControls={false} />
-      <VoiceAgent status="connecting" showControls={false} />
-      <VoiceAgent status="listening" showControls={false} />
-      <VoiceAgent status="speaking" showControls={false} />
-      <VoiceAgent status="paused" showControls={false} />
+      <VoiceAgent voiceAgentStatus="idle" voiceAgentShowControls={false} />
+      <VoiceAgent voiceAgentStatus="connecting" voiceAgentShowControls={false} />
+      <VoiceAgent voiceAgentStatus="listening" voiceAgentShowControls={false} />
+      <VoiceAgent voiceAgentStatus="speaking" voiceAgentShowControls={false} />
+      <VoiceAgent voiceAgentStatus="paused" voiceAgentShowControls={false} />
     </div>
   );
 }`}
@@ -364,23 +367,23 @@ export default function Example() {
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>idle</span>
-              <VoiceAgent status="idle" showControls={false} />
+              <VoiceAgent voiceAgentStatus="idle" voiceAgentShowControls={false} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>connecting</span>
-              <VoiceAgent status="connecting" showControls={false} />
+              <VoiceAgent voiceAgentStatus="connecting" voiceAgentShowControls={false} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>listening</span>
-              <VoiceAgent status="listening" showControls={false} />
+              <VoiceAgent voiceAgentStatus="listening" voiceAgentShowControls={false} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>speaking</span>
-              <VoiceAgent status="speaking" showControls={false} />
+              <VoiceAgent voiceAgentStatus="speaking" voiceAgentShowControls={false} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>paused</span>
-              <VoiceAgent status="paused" showControls={false} />
+              <VoiceAgent voiceAgentStatus="paused" voiceAgentShowControls={false} />
             </div>
           </div>
         </Showcase>
@@ -393,9 +396,9 @@ export default function Example() {
 export default function Example() {
   return (
     <div className="flex gap-6 flex-wrap">
-      <VoiceAgent status="speaking" pattern="blob" showControls={false} />
-      <VoiceAgent status="speaking" pattern="wave" showControls={false} />
-      <VoiceAgent status="speaking" pattern="ripple" showControls={false} />
+      <VoiceAgent voiceAgentStatus="speaking" voiceAgentPattern="blob" voiceAgentShowControls={false} />
+      <VoiceAgent voiceAgentStatus="speaking" voiceAgentPattern="wave" voiceAgentShowControls={false} />
+      <VoiceAgent voiceAgentStatus="speaking" voiceAgentPattern="ripple" voiceAgentShowControls={false} />
     </div>
   );
 }`}
@@ -403,15 +406,15 @@ export default function Example() {
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>blob</span>
-              <VoiceAgent status="speaking" pattern="blob" showControls={false} />
+              <VoiceAgent voiceAgentStatus="speaking" voiceAgentPattern="blob" voiceAgentShowControls={false} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>wave</span>
-              <VoiceAgent status="speaking" pattern="wave" showControls={false} />
+              <VoiceAgent voiceAgentStatus="speaking" voiceAgentPattern="wave" voiceAgentShowControls={false} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>ripple</span>
-              <VoiceAgent status="speaking" pattern="ripple" showControls={false} />
+              <VoiceAgent voiceAgentStatus="speaking" voiceAgentPattern="ripple" voiceAgentShowControls={false} />
             </div>
           </div>
         </Showcase>
@@ -424,19 +427,19 @@ export default function Example() {
 export default function Example() {
   return (
     <div className="flex gap-6 flex-wrap">
-      <VoiceAgent status="speaking" color="#38bdf8" showControls={false} />
-      <VoiceAgent status="speaking" color="#c084fc" showControls={false} />
-      <VoiceAgent status="speaking" color="#34d399" showControls={false} />
-      <VoiceAgent status="speaking" color="#f43f5e" showControls={false} />
+      <VoiceAgent voiceAgentStatus="speaking" voiceAgentAccentColor="#38bdf8" voiceAgentShowControls={false} />
+      <VoiceAgent voiceAgentStatus="speaking" voiceAgentAccentColor="#c084fc" voiceAgentShowControls={false} />
+      <VoiceAgent voiceAgentStatus="speaking" voiceAgentAccentColor="#34d399" voiceAgentShowControls={false} />
+      <VoiceAgent voiceAgentStatus="speaking" voiceAgentAccentColor="#f43f5e" voiceAgentShowControls={false} />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
-            <VoiceAgent status="speaking" color="#38bdf8" showControls={false} />
-            <VoiceAgent status="speaking" color="#c084fc" showControls={false} />
-            <VoiceAgent status="speaking" color="#34d399" showControls={false} />
-            <VoiceAgent status="speaking" color="#f43f5e" showControls={false} />
+            <VoiceAgent voiceAgentStatus="speaking" voiceAgentAccentColor="#38bdf8" voiceAgentShowControls={false} />
+            <VoiceAgent voiceAgentStatus="speaking" voiceAgentAccentColor="#c084fc" voiceAgentShowControls={false} />
+            <VoiceAgent voiceAgentStatus="speaking" voiceAgentAccentColor="#34d399" voiceAgentShowControls={false} />
+            <VoiceAgent voiceAgentStatus="speaking" voiceAgentAccentColor="#f43f5e" voiceAgentShowControls={false} />
           </div>
         </Showcase>
 
@@ -449,18 +452,18 @@ export default function Example() {
   return (
     <div className="flex gap-6 flex-wrap">
       <VoiceAgent
-        status="speaking"
-        gridSize={{ rows: 5, cols: 5 }}
-        dotSize={6}
-        gridGap={4}
-        showControls={false}
+        voiceAgentStatus="speaking"
+        voiceAgentGridSize={{ rows: 5, cols: 5 }}
+        voiceAgentDotSize={6}
+        voiceAgentGridGap={4}
+        voiceAgentShowControls={false}
       />
       <VoiceAgent
-        status="speaking"
-        gridSize={{ rows: 9, cols: 9 }}
-        dotSize={12}
-        gridGap={8}
-        showControls={false}
+        voiceAgentStatus="speaking"
+        voiceAgentGridSize={{ rows: 9, cols: 9 }}
+        voiceAgentDotSize={12}
+        voiceAgentGridGap={8}
+        voiceAgentShowControls={false}
       />
     </div>
   );
@@ -470,21 +473,21 @@ export default function Example() {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>5x5 Grid (Micro)</span>
               <VoiceAgent
-                status="speaking"
-                gridSize={{ rows: 5, cols: 5 }}
-                dotSize={6}
-                gridGap={4}
-                showControls={false}
+                voiceAgentStatus="speaking"
+                voiceAgentGridSize={{ rows: 5, cols: 5 }}
+                voiceAgentDotSize={6}
+                voiceAgentGridGap={4}
+                voiceAgentShowControls={false}
               />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>9x9 Grid (Large LED)</span>
               <VoiceAgent
-                status="speaking"
-                gridSize={{ rows: 9, cols: 9 }}
-                dotSize={12}
-                gridGap={8}
-                showControls={false}
+                voiceAgentStatus="speaking"
+                voiceAgentGridSize={{ rows: 9, cols: 9 }}
+                voiceAgentDotSize={12}
+                voiceAgentGridGap={8}
+                voiceAgentShowControls={false}
               />
             </div>
           </div>
@@ -493,18 +496,20 @@ export default function Example() {
 
       <Props
         props={[
-          { name: 'status', type: "'idle' | 'connecting' | 'listening' | 'speaking' | 'paused'", defaultValue: "'idle'", description: 'State of the voice agent. Controls the visual pattern simulation.' },
-          { name: 'variant', type: "'grid'", defaultValue: "'grid'", description: 'Sets the layout variant. Only circle grid variant is supported currently.' },
-          { name: 'color', type: 'string', defaultValue: 'undefined', description: 'Sets the theme color. Supports any custom CSS color string (hex, rgb, hsl, named color, etc.). Defaults to white in dark mode and black in light mode.' },
-          { name: 'gridSize', type: '{ rows: number; cols: number }', defaultValue: '{ rows: 9, cols: 9 }', description: 'Sets the width and height count of LED nodes.' },
-          { name: 'dotSize', type: 'number', defaultValue: '8', description: 'Sets the individual node (LED) diameter in pixels.' },
-          { name: 'gridGap', type: 'number', defaultValue: '6', description: 'Sets the spacing gap between visualizer nodes.' },
-          { name: 'pattern', type: "'wave' | 'blob' | 'ripple'", description: 'Override the visual algorithm (wave, circular blob, or ripple).' },
-          { name: 'isMuted', type: 'boolean', defaultValue: 'false', description: 'Visual state change reflecting muted mic controls.' },
-          { name: 'onMuteToggle', type: '() => void', description: 'Event handler triggered by the microphone capsule toggle click.' },
-          { name: 'onDisconnect', type: '() => void', description: 'Event handler triggered by the hang-up button.' },
-          { name: 'onOptionClick', type: '() => void', description: 'Event handler triggered by the settings (...) button.' },
-          { name: 'showControls', type: 'boolean', defaultValue: 'true', description: 'Toggle control panel visibility below the grid.' },
+          { name: 'voiceAgentStatus', type: "'idle' | 'connecting' | 'listening' | 'speaking' | 'paused'", defaultValue: "'idle'", description: 'State of the voice agent. Controls the visual pattern simulation.' },
+          { name: 'voiceAgentVariant', type: "'grid'", defaultValue: "'grid'", description: 'Sets the layout variant. Only circle grid variant is supported currently.' },
+          { name: 'voiceAgentAccentColor', type: 'string', defaultValue: 'undefined', description: 'Sets the theme color. Supports any custom CSS color string (hex, rgb, hsl, named color, etc.). Defaults to white in dark mode and black in light mode.' },
+          { name: 'voiceAgentGridSize', type: '{ rows: number; cols: number }', defaultValue: '{ rows: 9, cols: 9 }', description: 'Sets the width and height count of LED nodes.' },
+          { name: 'voiceAgentDotSize', type: 'number', defaultValue: '8', description: 'Sets the individual node (LED) diameter in pixels.' },
+          { name: 'voiceAgentGridGap', type: 'number', defaultValue: '6', description: 'Sets the spacing gap between visualizer nodes.' },
+          { name: 'voiceAgentPattern', type: "'wave' | 'blob' | 'ripple'", description: 'Override the visual algorithm (wave, circular blob, or ripple).' },
+          { name: 'voiceAgentIsMuted', type: 'boolean', defaultValue: 'false', description: 'Visual state change reflecting muted mic controls.' },
+          { name: 'voiceAgentOnMuteToggle', type: '() => void', description: 'Event handler triggered by the microphone capsule toggle click.' },
+          { name: 'voiceAgentOnDisconnect', type: '() => void', description: 'Event handler triggered by the hang-up button.' },
+          { name: 'voiceAgentOnOptionClick', type: '() => void', description: 'Event handler triggered by the settings (...) button.' },
+          { name: 'voiceAgentShowControls', type: 'boolean', defaultValue: 'true', description: 'Toggle control panel visibility below the grid.' },
+          { name: 'voiceAgentClassName', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'voiceAgentStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
         ]}
       />
     </>

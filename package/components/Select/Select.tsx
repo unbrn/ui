@@ -6,72 +6,74 @@ import { cn } from '../../lib/utils';
 import './Select.css';
 
 export interface SelectOption {
-  value: string;
-  label: string;
-  disabled?: boolean;
+  selectOptionValue: string;
+  selectOptionLabel: string;
+  selectOptionDisabled?: boolean;
 }
 
 export interface SelectProps {
-  options: SelectOption[];
-  value?: string;
-  defaultValue?: string;
-  onChange?: (value: string) => void;
-  placeholder?: string;
-  label?: string;
-  description?: string;
-  error?: string;
-  disabled?: boolean;
-  variant?: 'filled' | 'outlined' | 'duo';
-  size?: 'sm' | 'default' | 'lg';
-  className?: string;
+  selectOptions: SelectOption[];
+  selectValue?: string;
+  selectDefaultValue?: string;
+  selectOnChange?: (value: string) => void;
+  selectPlaceholder?: string;
+  selectLabel?: string;
+  selectDescription?: string;
+  selectError?: string;
+  selectDisabled?: boolean;
+  selectVariant?: 'filled' | 'outlined' | 'duo';
+  selectSize?: 'sm' | 'default' | 'lg';
+  selectClassName?: string;
+  selectStyle?: React.CSSProperties;
   classNames?: {
-    root?: string;
-    label?: string;
-    trigger?: string;
-    content?: string;
-    item?: string;
-    description?: string;
-    error?: string;
+    selectRoot?: string;
+    selectLabel?: string;
+    selectTrigger?: string;
+    selectContent?: string;
+    selectItem?: string;
+    selectDescription?: string;
+    selectError?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    label?: React.CSSProperties;
-    trigger?: React.CSSProperties;
-    content?: React.CSSProperties;
-    item?: React.CSSProperties;
-    description?: React.CSSProperties;
-    error?: React.CSSProperties;
+    selectRoot?: React.CSSProperties;
+    selectLabel?: React.CSSProperties;
+    selectTrigger?: React.CSSProperties;
+    selectContent?: React.CSSProperties;
+    selectItem?: React.CSSProperties;
+    selectDescription?: React.CSSProperties;
+    selectError?: React.CSSProperties;
   };
 }
 
 export const Select = forwardRef<HTMLDivElement, SelectProps>(
   (
     {
-      options,
-      value: controlledValue,
-      defaultValue,
-      onChange,
-      placeholder = "Select an option",
-      label,
-      description,
-      error,
-      disabled,
-      variant = 'filled',
-      size = 'default',
-      className,
+      selectOptions,
+      selectValue: controlledValue,
+      selectDefaultValue,
+      selectOnChange,
+      selectPlaceholder = "Select an option",
+      selectLabel,
+      selectDescription,
+      selectError,
+      selectDisabled,
+      selectVariant = 'filled',
+      selectSize = 'default',
+      selectClassName,
       classNames,
       styles,
+      selectStyle,
     },
     ref
   ) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [internalValue, setInternalValue] = useState(defaultValue || "");
+    const [internalValue, setInternalValue] = useState(selectDefaultValue || "");
     const containerRef = useRef<HTMLDivElement>(null);
 
     useImperativeHandle(ref, () => containerRef.current!);
 
     const value = controlledValue !== undefined ? controlledValue : internalValue;
-    const selectedOption = options.find(opt => opt.value === value);
+    const selectedOption = selectOptions.find(opt => opt.selectOptionValue === value);
 
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -84,45 +86,45 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
     }, []);
 
     const handleSelect = (optionValue: string) => {
-      if (disabled) return;
+      if (selectDisabled) return;
       setInternalValue(optionValue);
       setIsOpen(false);
-      onChange?.(optionValue);
+      selectOnChange?.(optionValue);
     };
 
     return (
       <div
-        className={cn("unburn-select-root", classNames?.root)}
-        style={styles?.root}
+        className={cn("unburn-select-root", classNames?.selectRoot)}
+        style={{ ...selectStyle, ...styles?.selectRoot }}
         ref={containerRef}
       >
-        {label && (
-          <label className={cn("unburn-select-label", classNames?.label)} style={styles?.label}>
-            {label}
+        {selectLabel && (
+          <label className={cn("unburn-select-label", classNames?.selectLabel)} style={styles?.selectLabel}>
+            {selectLabel}
           </label>
         )}
         <div className="unburn-select-container">
           <button
             type="button"
-            onClick={() => !disabled && setIsOpen(!isOpen)}
+            onClick={() => !selectDisabled && setIsOpen(!isOpen)}
             className={cn(
               "unburn-select-trigger",
-              `unburn-select-trigger-${variant}`,
-              `unburn-select-trigger-${size}`,
-              (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
+              `unburn-select-trigger-${selectVariant}`,
+              `unburn-select-trigger-${selectSize}`,
+              (selectVariant === 'outlined' || selectVariant === 'duo') && 'unburn-glass',
               isOpen && "unburn-select-trigger-open",
-              disabled && "unburn-select-trigger-disabled",
-              error && "unburn-select-trigger-error",
-              className,
-              classNames?.trigger
+              selectDisabled && "unburn-select-trigger-disabled",
+              selectError && "unburn-select-trigger-error",
+              selectClassName,
+              classNames?.selectTrigger
             )}
-            style={styles?.trigger}
-            disabled={disabled}
+            style={styles?.selectTrigger}
+            disabled={selectDisabled}
             aria-haspopup="listbox"
             aria-expanded={isOpen}
           >
             <span className={cn("unburn-select-value", !selectedOption && "unburn-select-placeholder")}>
-              {selectedOption ? selectedOption.label : placeholder}
+              {selectedOption ? selectedOption.selectOptionLabel : selectPlaceholder}
             </span>
             <ChevronDown
               className={cn("unburn-select-chevron", isOpen && "unburn-select-chevron-open")}
@@ -132,27 +134,27 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 
           {isOpen && (
             <div
-              className={cn("unburn-select-content", classNames?.content)}
-              style={styles?.content}
+              className={cn("unburn-select-content", classNames?.selectContent)}
+              style={styles?.selectContent}
               role="listbox"
             >
               <div className="unburn-select-viewport">
-                {options.map((option) => (
+                {selectOptions.map((option) => (
                   <div
-                    key={option.value}
+                    key={option.selectOptionValue}
                     role="option"
-                    aria-selected={option.value === value}
-                    onClick={() => !option.disabled && handleSelect(option.value)}
+                    aria-selected={option.selectOptionValue === value}
+                    onClick={() => !option.selectOptionDisabled && handleSelect(option.selectOptionValue)}
                     className={cn(
                       "unburn-select-item",
-                      option.value === value && "unburn-select-item-selected",
-                      option.disabled && "unburn-select-item-disabled",
-                      classNames?.item
+                      option.selectOptionValue === value && "unburn-select-item-selected",
+                      option.selectOptionDisabled && "unburn-select-item-disabled",
+                      classNames?.selectItem
                     )}
-                    style={styles?.item}
+                    style={styles?.selectItem}
                   >
-                    <span className="unburn-select-item-label">{option.label}</span>
-                    {option.value === value && (
+                    <span className="unburn-select-item-label">{option.selectOptionLabel}</span>
+                    {option.selectOptionValue === value && (
                       <Check size={14} className="unburn-select-item-check" />
                     )}
                   </div>
@@ -161,16 +163,16 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             </div>
           )}
         </div>
-        {(description || error) && (
+        {(selectDescription || selectError) && (
           <div className="unburn-select-footer">
-            {error ? (
-              <span className={cn("unburn-select-error", classNames?.error)} style={styles?.error}>
-                {error}
+            {selectError ? (
+              <span className={cn("unburn-select-error", classNames?.selectError)} style={styles?.selectError}>
+                {selectError}
               </span>
             ) : (
-              description && (
-                <p className={cn("unburn-select-description", classNames?.description)} style={styles?.description}>
-                  {description}
+              selectDescription && (
+                <p className={cn("unburn-select-description", classNames?.selectDescription)} style={styles?.selectDescription}>
+                  {selectDescription}
                 </p>
               )
             )}

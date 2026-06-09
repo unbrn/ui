@@ -36,18 +36,18 @@ export default function Example() {
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <Switch 
-          label="Airplane Mode" 
-          description="Disable all wireless communications." 
+          switchLabel="Airplane Mode" 
+          switchDescription="Disable all wireless communications." 
         />
         <Switch 
-          label="Wi-Fi Network" 
-          description="Connect to wireless internet access points." 
-          defaultChecked
+          switchLabel="Wi-Fi Network" 
+          switchDescription="Connect to wireless internet access points." 
+          switchDefaultChecked
         />
         <Switch 
-          label="Do Not Disturb" 
-          description="Silence notifications and calls." 
-          defaultChecked
+          switchLabel="Do Not Disturb" 
+          switchDescription="Silence notifications and calls." 
+          switchDefaultChecked
         />
       </div>
     </div>
@@ -77,18 +77,18 @@ export default function Example() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <Switch
-              label="Airplane Mode"
-              description="Disable all wireless communications."
+              switchLabel="Airplane Mode"
+              switchDescription="Disable all wireless communications."
             />
             <Switch
-              label="Wi-Fi Network"
-              description="Connect to wireless internet access points."
-              defaultChecked
+              switchLabel="Wi-Fi Network"
+              switchDescription="Connect to wireless internet access points."
+              switchDefaultChecked
             />
             <Switch
-              label="Do Not Disturb"
-              description="Silence notifications and calls."
-              defaultChecked
+              switchLabel="Do Not Disturb"
+              switchDescription="Silence notifications and calls."
+              switchDefaultChecked
             />
           </div>
         </div>
@@ -97,11 +97,11 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          language="tsx"
-          code={`import { Switch } from '@unburn/ui/Switch';
+          codeBlockLanguage="tsx"
+          codeBlockCode={`import { Switch } from '@unburn/ui/Switch';
 
 export default function Example() {
-  return <Switch label="Toggle me" />;
+  return <Switch switchLabel="Toggle me" />;
 }`}
         />
       </div>
@@ -117,17 +117,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Switch variant="filled" label="Filled (Default)" defaultChecked />
-      <Switch variant="outlined" label="Outlined Variant" defaultChecked />
-      <Switch variant="duo" label="Duo Variant" defaultChecked />
+      <Switch switchVariant="filled" switchLabel="Filled (Default)" switchDefaultChecked />
+      <Switch switchVariant="outlined" switchLabel="Outlined Variant" switchDefaultChecked />
+      <Switch switchVariant="duo" switchLabel="Duo Variant" switchDefaultChecked />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <Switch variant="filled" label="Filled Variant" defaultChecked />
-            <Switch variant="outlined" label="Outlined Variant" defaultChecked />
-            <Switch variant="duo" label="Duo Variant" defaultChecked />
+            <Switch switchVariant="filled" switchLabel="Filled Variant" switchDefaultChecked />
+            <Switch switchVariant="outlined" switchLabel="Outlined Variant" switchDefaultChecked />
+            <Switch switchVariant="duo" switchLabel="Duo Variant" switchDefaultChecked />
           </div>
         </Showcase>
 
@@ -139,17 +139,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Switch size="sm" label="Small Switch" defaultChecked />
-      <Switch size="default" label="Default Switch" defaultChecked />
-      <Switch size="lg" label="Large Switch" defaultChecked />
+      <Switch switchSize="sm" switchLabel="Small Switch" switchDefaultChecked />
+      <Switch switchSize="default" switchLabel="Default Switch" switchDefaultChecked />
+      <Switch switchSize="lg" switchLabel="Large Switch" switchDefaultChecked />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <Switch size="sm" label="Small Switch" defaultChecked />
-            <Switch size="default" label="Default Switch" defaultChecked />
-            <Switch size="lg" label="Large Switch" defaultChecked />
+            <Switch switchSize="sm" switchLabel="Small Switch" switchDefaultChecked />
+            <Switch switchSize="default" switchLabel="Default Switch" switchDefaultChecked />
+            <Switch switchSize="lg" switchLabel="Large Switch" switchDefaultChecked />
           </div>
         </Showcase>
 
@@ -161,15 +161,15 @@ export default function Example() {
 export default function Example() {
   return (
     <Switch
-      label="Airplane Mode"
-      description="Disable all wireless communications including Wi-Fi and Bluetooth."
+      switchLabel="Airplane Mode"
+      switchDescription="Disable all wireless communications including Wi-Fi and Bluetooth."
     />
   );
 }`}
         >
           <Switch
-            label="Airplane Mode"
-            description="Disable all wireless communications including Wi-Fi and Bluetooth."
+            switchLabel="Airplane Mode"
+            switchDescription="Disable all wireless communications including Wi-Fi and Bluetooth."
           />
         </Showcase>
 
@@ -181,33 +181,47 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Switch disabled label="Disabled Switch" />
-      <Switch disabled defaultChecked label="Disabled Active" />
+      <Switch switchDisabled switchLabel="Disabled Switch" />
+      <Switch switchDisabled switchDefaultChecked switchLabel="Disabled Active" />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <Switch disabled label="Disabled Switch" />
-            <Switch disabled defaultChecked label="Disabled Active" />
+            <Switch switchDisabled switchLabel="Disabled Switch" />
+            <Switch switchDisabled switchDefaultChecked switchLabel="Disabled Active" />
           </div>
         </Showcase>
       </div>
 
       <Props
         props={[
-          { name: 'label', type: 'ReactNode', description: 'Text shown next to the switch.' },
-          { name: 'description', type: 'ReactNode', description: 'Helpful description text shown below the label.' },
-          { name: 'checked', type: 'boolean', description: 'Set if the switch is turned on.' },
-          { name: 'defaultChecked', type: 'boolean', description: 'Set if the switch starts as turned on.' },
-          { name: 'onChange', type: '(checked: boolean) => void', description: 'Function called when the switch state changes.' },
-          { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the switch.' },
-          { name: 'size', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the switch.' },
-          { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks on the switch.' },
-          { name: 'color', type: 'string', description: 'Custom color theme variable overrides (e.g. hex, rgb).' },
+          { name: 'switchLabel', type: 'ReactNode', description: 'Text shown next to the switch.' },
+          { name: 'switchDescription', type: 'ReactNode', description: 'Helpful description text shown below the label.' },
+          { name: 'switchChecked', type: 'boolean', description: 'Set if the switch is turned on.' },
+          { name: 'switchDefaultChecked', type: 'boolean', description: 'Set if the switch starts as turned on.' },
+          { name: 'switchOnChange', type: '(checked: boolean) => void', description: 'Function called when the switch state changes.' },
+          { name: 'switchVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the switch.' },
+          { name: 'switchSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the switch.' },
+          { name: 'switchDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks on the switch.' },
+          { name: 'switchAccentColor', type: 'string', description: 'Custom color theme variable overrides (e.g. hex, rgb).' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the switch.' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
         ]}
+        stylingTargets={[
+          { name: 'switchRoot', description: 'Styles the outer label wrapper container.' },
+          { name: 'switchContainer', description: 'Styles the toggle switch outer wrapper.' },
+          { name: 'switchTrack', description: 'Styles the track background element.' },
+          { name: 'switchThumb', description: 'Styles the sliding circular thumb element.' },
+          { name: 'switchLabel', description: 'Styles the label text element.' },
+          { name: 'switchDescription', description: 'Styles the description text below the label.' },
+        ]}
+        stylingStructure={`switchRoot
+ ├── switchContainer
+ │    ├── switchTrack
+ │    └── switchThumb
+ ├── switchLabel
+ └── switchDescription`}
       />
     </>
   );

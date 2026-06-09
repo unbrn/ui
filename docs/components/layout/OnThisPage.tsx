@@ -13,9 +13,15 @@ export const OnThisPage: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    let observer: IntersectionObserver | null = null;
+
+    const updateHeadings = () => {
+      if (observer) {
+        observer.disconnect();
+      }
+
       const elements = document.querySelectorAll(
-        '.showcase-title, .section-subtitle, .props-title, .install-step-title, .examples-page header h1'
+        '.showcase-title, .section-subtitle, .props-title, .install-step-title, .examples-page header h1, .changelog-version'
       );
 
       const items: HeadingItem[] = [];
@@ -23,7 +29,9 @@ export const OnThisPage: React.FC = () => {
         let text = el.textContent?.trim() || '';
         if (!text) return;
 
-        text = text.replace(/^\d+\.\s*/, '');
+        if (!el.classList.contains('changelog-version')) {
+          text = text.replace(/^\d+\.\s*/, '');
+        }
 
         let id = el.id;
         if (!id) {
@@ -47,7 +55,7 @@ export const OnThisPage: React.FC = () => {
         threshold: 0
       };
 
-      const observer = new IntersectionObserver((entries) => {
+      observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
@@ -56,15 +64,20 @@ export const OnThisPage: React.FC = () => {
       }, observerOptions);
 
       elements.forEach((el) => {
-        if (el.id) observer.observe(el);
+        if (el.id && observer) observer.observe(el);
       });
+    };
 
-      return () => {
+    const timer = setTimeout(updateHeadings, 150);
+    window.addEventListener('changelog-loaded', updateHeadings);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('changelog-loaded', updateHeadings);
+      if (observer) {
         observer.disconnect();
-      };
-    }, 150);
-
-    return () => clearTimeout(timer);
+      }
+    };
   }, [location.pathname]);
 
 

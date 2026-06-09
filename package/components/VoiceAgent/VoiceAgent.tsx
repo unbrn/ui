@@ -5,69 +5,131 @@ import { Mic, MicOff, X, MoreHorizontal } from 'lucide-react';
 import './VoiceAgent.css';
 import { cn } from '../../lib/utils';
 import { Button, ButtonGroup } from '../Button/Button';
+import { parseColor } from '../../lib/colors';
 
 export interface VoiceAgentProps {
-  status?: 'idle' | 'connecting' | 'listening' | 'speaking' | 'paused';
-  variant?: 'grid';
-  color?: string;
-  gridSize?: { rows: number; cols: number };
-  pattern?: 'wave' | 'blob' | 'ripple';
-  isMuted?: boolean;
-  onMuteToggle?: () => void;
-  onDisconnect?: () => void;
-  onOptionClick?: () => void;
-  showControls?: boolean;
-  audioAnalyser?: AnalyserNode;
-  dotSize?: number;
-  gridGap?: number;
-  className?: string;
-  style?: React.CSSProperties;
+  voiceAgentStatus?: 'idle' | 'connecting' | 'listening' | 'speaking' | 'paused';
+  voiceAgentVariant?: 'grid';
+  voiceAgentAccentColor?: string;
+  voiceAgentGridSize?: { rows: number; cols: number };
+  voiceAgentPattern?: 'wave' | 'blob' | 'ripple';
+  voiceAgentIsMuted?: boolean;
+  voiceAgentOnMuteToggle?: () => void;
+  voiceAgentOnDisconnect?: () => void;
+  voiceAgentOnOptionClick?: () => void;
+  voiceAgentShowControls?: boolean;
+  voiceAgentAudioAnalyser?: AnalyserNode;
+  voiceAgentDotSize?: number;
+  voiceAgentGridGap?: number;
+  voiceAgentClassName?: string;
+  voiceAgentStyle?: React.CSSProperties;
 }
 
 export const VoiceAgent: React.FC<VoiceAgentProps> = ({
-  status = 'idle',
-  variant = 'grid',
-  color,
-  gridSize = { rows: 9, cols: 9 },
-  pattern,
-  isMuted = false,
-  onMuteToggle,
-  onDisconnect,
-  onOptionClick,
-  showControls = true,
-  audioAnalyser,
-  dotSize = 8,
-  gridGap = 6,
-  className,
-  style
+  voiceAgentStatus = 'idle',
+  voiceAgentVariant = 'grid',
+  voiceAgentAccentColor,
+  voiceAgentGridSize = { rows: 9, cols: 9 },
+  voiceAgentPattern,
+  voiceAgentIsMuted = false,
+  voiceAgentOnMuteToggle,
+  voiceAgentOnDisconnect,
+  voiceAgentOnOptionClick,
+  voiceAgentShowControls = true,
+  voiceAgentAudioAnalyser,
+  voiceAgentDotSize = 8,
+  voiceAgentGridGap = 6,
+  voiceAgentClassName,
+  voiceAgentStyle
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number | null>(null);
-  const lastTimeRef = useRef<number>(0);
+  const dotStatesRef = useRef<Float32Array | null>(null);
+  const colorsRef = useRef({
+    active: '#ffffff',
+    glow: 'rgba(255, 255, 255, 0.3)',
+    inactive: 'rgba(255, 255, 255, 0.08)'
+  });
 
-  const speakPattern = pattern || 'blob';
-
+  const speakPattern = voiceAgentPattern || 'blob';
   const iconSize = 14;
-
-  const resolvedColor = color;
-
-  const { rows, cols } = gridSize;
+  const resolvedColor = voiceAgentAccentColor;
+  const { rows, cols } = voiceAgentGridSize;
   const totalDots = rows * cols;
 
+  // Function to update colors from DOM computed styles
+  const updateColors = () => {
+    const container = containerRef.current;
+    if (!container) return;
+    const computedStyle = window.getComputedStyle(container);
+    
+    const activeColor = computedStyle.getPropertyValue('--voice-accent').trim() || (voiceAgentStatus === 'speaking' ? '#ffffff' : '#34d399');
+    const glowColor = computedStyle.getPropertyValue('--voice-accent-glow').trim() || 'rgba(255, 255, 255, 0.3)';
+    const inactiveColor = computedStyle.getPropertyValue('--voice-dot-inactive').trim() || 'rgba(255, 255, 255, 0.08)';
+
+    colorsRef.current = {
+      active: activeColor,
+      glow: glowColor,
+      inactive: inactiveColor
+    };
+  };
+
+  // Setup observer to detect theme changes and update colors accordingly
   useEffect(() => {
-    const dots = containerRef.current?.querySelectorAll('.unburn-voice-dot');
-    if (!dots || dots.length !== totalDots) return;
+    updateColors();
+
+    const observer = new MutationObserver(updateColors);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme', 'data-accent']
+    });
+
+    return () => observer.disconnect();
+  }, [voiceAgentAccentColor, voiceAgentStatus]);
+
+  // Main canvas animation and layout effect
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const width = cols * voiceAgentDotSize + (cols - 1) * voiceAgentGridGap;
+    const height = rows * voiceAgentDotSize + (rows - 1) * voiceAgentGridGap;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    ctx.scale(dpr, dpr);
+
+    // Initialize or resize states array
+    if (!dotStatesRef.current || dotStatesRef.current.length !== totalDots) {
+      dotStatesRef.current = new Float32Array(totalDots);
+    }
+
+    const interpolateColor = (colorA: string, colorB: string, factor: number): string => {
+      const parsedA = parseColor(colorA) || { r: 255, g: 255, b: 255, a: 0.08 };
+      const parsedB = parseColor(colorB) || { r: 255, g: 255, b: 255, a: 1 };
+      
+      const r = Math.round(parsedA.r + (parsedB.r - parsedA.r) * factor);
+      const g = Math.round(parsedA.g + (parsedB.g - parsedA.g) * factor);
+      const b = Math.round(parsedA.b + (parsedB.b - parsedA.b) * factor);
+      const a = parsedA.a + (parsedB.a - parsedA.a) * factor;
+      
+      return `rgba(${r}, ${g}, ${b}, ${a})`;
+    };
 
     const animate = (time: number) => {
-      lastTimeRef.current = time;
-
       let analyserData: Uint8Array | null = null;
       let averageVolume = 0;
 
-      if (audioAnalyser && status !== 'idle' && status !== 'paused') {
-        analyserData = new Uint8Array(audioAnalyser.frequencyBinCount);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        audioAnalyser.getByteFrequencyData(analyserData as any);
+      if (voiceAgentAudioAnalyser && voiceAgentStatus !== 'idle' && voiceAgentStatus !== 'paused') {
+        analyserData = new Uint8Array(voiceAgentAudioAnalyser.frequencyBinCount);
+        voiceAgentAudioAnalyser.getByteFrequencyData(analyserData as any);
         
         let sum = 0;
         const range = Math.min(analyserData.length, 128);
@@ -77,11 +139,21 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
         averageVolume = sum / (range || 1) / 255;
       }
 
+      ctx.clearRect(0, 0, width, height);
+
+      const states = dotStatesRef.current;
+      if (!states) return;
+
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
           const index = r * cols + c;
-          const dot = dots[index] as HTMLElement;
-          if (!dot) continue;
+          const isCorner =
+            (r === 0 && c === 0) ||
+            (r === 0 && c === cols - 1) ||
+            (r === rows - 1 && c === 0) ||
+            (r === rows - 1 && c === cols - 1);
+
+          if (isCorner) continue;
 
           let active: boolean;
 
@@ -89,7 +161,7 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
           const nx = (c - (cols - 1) / 2) / ((cols - 1) / 2 || 1);
           const dist = Math.sqrt(nx * nx + ny * ny);
 
-          switch (status) {
+          switch (voiceAgentStatus) {
             case 'connecting': {
               const angle = Math.atan2(ny, nx) + Math.PI; // [0, 2*PI]
               const sweep = (time * 0.003) % (2 * Math.PI);
@@ -162,11 +234,27 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
             }
           }
 
-          if (active) {
-            dot.classList.add('unburn-dot-active');
-          } else {
-            dot.classList.remove('unburn-dot-active');
+          // Snappy animation factor transition (easing)
+          const target = active ? 1.0 : 0.0;
+          states[index] += (target - states[index]) * 0.18;
+          const f = states[index];
+
+          // Draw the dot
+          const cx = c * (voiceAgentDotSize + voiceAgentGridGap) + voiceAgentDotSize / 2;
+          const cy = r * (voiceAgentDotSize + voiceAgentGridGap) + voiceAgentDotSize / 2;
+          const radius = (voiceAgentDotSize / 2) * (1.0 + 0.15 * f);
+          const dotColor = interpolateColor(colorsRef.current.inactive, colorsRef.current.active, f);
+
+          ctx.save();
+          if (f > 0.05) {
+            ctx.shadowBlur = 10 * f;
+            ctx.shadowColor = colorsRef.current.glow;
           }
+          ctx.fillStyle = dotColor;
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+          ctx.fill();
+          ctx.restore();
         }
       }
 
@@ -180,77 +268,54 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [status, rows, cols, totalDots, speakPattern, audioAnalyser]);
-
-  const dotsArray = Array.from({ length: totalDots });
+  }, [voiceAgentStatus, rows, cols, totalDots, speakPattern, voiceAgentAudioAnalyser, voiceAgentDotSize, voiceAgentGridGap]);
 
   return (
     <div
       className={cn(
         'unburn-voice-agent',
-        `unburn-variant-${variant}`,
-        `unburn-status-${status}`,
-        isMuted && 'unburn-muted',
-        className
+        `unburn-variant-${voiceAgentVariant}`,
+        `unburn-status-${voiceAgentStatus}`,
+        voiceAgentIsMuted && 'unburn-muted',
+        voiceAgentClassName
       )}
       style={{
-        ...style,
-        ...(color ? { '--voice-accent': color } : {}),
-        '--voice-dot-size': `${dotSize}px`,
-        '--voice-grid-gap': `${gridGap}px`
+        ...voiceAgentStyle,
+        ...(resolvedColor ? { '--voice-accent': resolvedColor } : {}),
+        '--voice-dot-size': `${voiceAgentDotSize}px`,
+        '--voice-grid-gap': `${voiceAgentGridGap}px`
       } as React.CSSProperties}
     >
       <div className="unburn-voice-grid-container unburn-glass" ref={containerRef}>
-        <div
-          className="unburn-voice-grid"
-          style={{
-            gridTemplateRows: `repeat(${rows}, var(--voice-dot-size, 8px))`,
-            gridTemplateColumns: `repeat(${cols}, var(--voice-dot-size, 8px))`,
-          }}
-        >
-          {dotsArray.map((_, i) => {
-            const r = Math.floor(i / cols);
-            const c = i % cols;
-            const isCorner =
-              (r === 0 && c === 0) ||
-              (r === 0 && c === cols - 1) ||
-              (r === rows - 1 && c === 0) ||
-              (r === rows - 1 && c === cols - 1);
-            return (
-              <div
-                key={i}
-                className={cn("unburn-voice-dot", isCorner && "unburn-dot-hidden")}
-              />
-            );
-          })}
-        </div>
+        <canvas ref={canvasRef} className="unburn-voice-canvas" />
       </div>
 
-      {showControls && (
+      {voiceAgentShowControls && (
         <div className="unburn-voice-controls">
-          <ButtonGroup>
-            <Button
-              variant="duo"
-              color={isMuted ? 'red' : resolvedColor}
-              onClick={onMuteToggle}
-              aria-label={isMuted ? "Unmute Microphone" : "Mute Microphone"}
-              icon={isMuted ? <MicOff size={iconSize} /> : <Mic size={iconSize} />}
-            />
-            <Button
-              variant="duo"
-              color={resolvedColor}
-              onClick={onOptionClick}
-              aria-label="More Settings"
-              icon={<MoreHorizontal size={iconSize} />}
-            />
-          </ButtonGroup>
+          <ButtonGroup
+            buttonGroupChildren={
+              <>
+                <Button
+                  buttonVariant="duo"
+                  buttonAccentColor={voiceAgentIsMuted ? 'red' : resolvedColor}
+                  buttonOnClick={voiceAgentOnMuteToggle}
+                  buttonIcon={voiceAgentIsMuted ? <MicOff size={iconSize} /> : <Mic size={iconSize} />}
+                />
+                <Button
+                  buttonVariant="duo"
+                  buttonAccentColor={resolvedColor}
+                  buttonOnClick={voiceAgentOnOptionClick}
+                  buttonIcon={<MoreHorizontal size={iconSize} />}
+                />
+              </>
+            }
+          />
 
           <Button
-            variant="duo"
-            color="red"
-            onClick={onDisconnect}
-            aria-label="End Voice Call"
-            icon={<X size={iconSize} />}
+            buttonVariant="duo"
+            buttonAccentColor="red"
+            buttonOnClick={voiceAgentOnDisconnect}
+            buttonIcon={<X size={iconSize} />}
           />
         </div>
       )}

@@ -1307,3 +1307,10 @@
   border-radius: var(--radius);
   transition: transform 0.3s ease;
 }
+
+/* Hide dock when sidebar is open on mobile */
+.unburn-dock-wrapper.dock-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translate(-50%, 120px) !important;
+}

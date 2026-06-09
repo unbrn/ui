@@ -6,11 +6,11 @@ import { Props } from '../../components/layout/Props';
 import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 const fruitOptions = [
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' },
-  { value: 'blueberry', label: 'Blueberry' },
-  { value: 'grapes', label: 'Grapes' },
-  { value: 'pineapple', label: 'Pineapple' },
+  { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
+  { selectOptionValue: 'banana', selectOptionLabel: 'Banana' },
+  { selectOptionValue: 'blueberry', selectOptionLabel: 'Blueberry' },
+  { selectOptionValue: 'grapes', selectOptionLabel: 'Grapes' },
+  { selectOptionValue: 'pineapple', selectOptionLabel: 'Pineapple' },
 ];
 
 const ControlledSelectExample = () => {
@@ -19,11 +19,11 @@ const ControlledSelectExample = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
       <Select
-        label="Select a fruit"
-        options={fruitOptions}
-        value={value}
-        onChange={setValue}
-        description={`Selection: ${value}`}
+        selectLabel="Select a fruit"
+        selectOptions={fruitOptions}
+        selectValue={value}
+        selectOnChange={setValue}
+        selectDescription={`Selection: ${value}`}
       />
     </div>
   );
@@ -39,20 +39,20 @@ export const SelectPage: React.FC = () => {
         code={`import { Select } from '@unburn/ui/Select';
 
 const fruitOptions = [
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' },
-  { value: 'blueberry', label: 'Blueberry' },
-  { value: 'grapes', label: 'Grapes' },
-  { value: 'pineapple', label: 'Pineapple' },
+  { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
+  { selectOptionValue: 'banana', selectOptionLabel: 'Banana' },
+  { selectOptionValue: 'blueberry', selectOptionLabel: 'Blueberry' },
+  { selectOptionValue: 'grapes', selectOptionLabel: 'Grapes' },
+  { selectOptionValue: 'pineapple', selectOptionLabel: 'Pineapple' },
 ];
 
 export default function Example() {
   return (
     <div style={{ width: '300px' }}>
       <Select
-        options={fruitOptions}
-        placeholder="Choose a fruit"
-        label="Favorite Fruit"
+        selectOptions={fruitOptions}
+        selectPlaceholder="Choose a fruit"
+        selectLabel="Favorite Fruit"
       />
     </div>
   );
@@ -60,9 +60,9 @@ export default function Example() {
       >
         <div style={{ width: '300px', paddingBottom: '200px' }}>
           <Select
-            options={fruitOptions}
-            placeholder="Choose a fruit"
-            label="Favorite Fruit"
+            selectOptions={fruitOptions}
+            selectPlaceholder="Choose a fruit"
+            selectLabel="Favorite Fruit"
           />
         </div>
       </Showcase>
@@ -70,16 +70,16 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          language="tsx"
-          code={`import { Select } from '@unburn/ui/Select';
+          codeBlockLanguage="tsx"
+          codeBlockCode={`import { Select } from '@unburn/ui/Select';
 
 const options = [
-  { value: '1', label: 'Option 1' },
-  { value: '2', label: 'Option 2' },
+  { selectOptionValue: '1', selectOptionLabel: 'Option 1' },
+  { selectOptionValue: '2', selectOptionLabel: 'Option 2' },
 ];
 
 export default function Example() {
-  return <Select options={options} label="Choose an option" />;
+  return <Select selectOptions={options} selectLabel="Choose an option" />;
 }`}
         />
       </div>
@@ -93,25 +93,25 @@ export default function Example() {
           code={`import { Select } from '@unburn/ui/Select';
 
 const fruitOptions = [
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' },
-  { value: 'blueberry', label: 'Blueberry' }
+  { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
+  { selectOptionValue: 'banana', selectOptionLabel: 'Banana' },
+  { selectOptionValue: 'blueberry', selectOptionLabel: 'Blueberry' }
 ];
 
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '300px' }}>
-      <Select variant="filled" label="Filled (Default)" options={fruitOptions} defaultValue="apple" />
-      <Select variant="outlined" label="Outlined Variant" options={fruitOptions} defaultValue="banana" />
-      <Select variant="duo" label="Duo Variant" options={fruitOptions} defaultValue="blueberry" />
+      <Select selectVariant="filled" selectLabel="Filled (Default)" selectOptions={fruitOptions} selectDefaultValue="apple" />
+      <Select selectVariant="outlined" selectLabel="Outlined Variant" selectOptions={fruitOptions} selectDefaultValue="banana" />
+      <Select selectVariant="duo" selectLabel="Duo Variant" selectOptions={fruitOptions} selectDefaultValue="blueberry" />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '300px', paddingBottom: '200px' }}>
-            <Select variant="filled" label="Filled (Default)" options={fruitOptions.slice(0, 3)} defaultValue="apple" />
-            <Select variant="outlined" label="Outlined Variant" options={fruitOptions.slice(0, 3)} defaultValue="banana" />
-            <Select variant="duo" label="Duo Variant" options={fruitOptions.slice(0, 3)} defaultValue="blueberry" />
+            <Select selectVariant="filled" selectLabel="Filled (Default)" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="apple" />
+            <Select selectVariant="outlined" selectLabel="Outlined Variant" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="banana" />
+            <Select selectVariant="duo" selectLabel="Duo Variant" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="blueberry" />
           </div>
         </Showcase>
 
@@ -121,24 +121,24 @@ export default function Example() {
           code={`import { Select } from '@unburn/ui/Select';
 
 const fruitOptions = [
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' }
+  { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
+  { selectOptionValue: 'banana', selectOptionLabel: 'Banana' }
 ];
 
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '300px' }}>
-      <Select size="sm" placeholder="Small Select" options={fruitOptions} />
-      <Select size="default" placeholder="Default Select" options={fruitOptions} />
-      <Select size="lg" placeholder="Large Select" options={fruitOptions} />
+      <Select selectSize="sm" selectPlaceholder="Small Select" selectOptions={fruitOptions} />
+      <Select selectSize="default" selectPlaceholder="Default Select" selectOptions={fruitOptions} />
+      <Select selectSize="lg" selectPlaceholder="Large Select" selectOptions={fruitOptions} />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '300px', paddingBottom: '200px' }}>
-            <Select size="sm" placeholder="Small Select" options={fruitOptions} />
-            <Select size="default" placeholder="Default Select" options={fruitOptions} />
-            <Select size="lg" placeholder="Large Select" options={fruitOptions} />
+            <Select selectSize="sm" selectPlaceholder="Small Select" selectOptions={fruitOptions.slice(0, 2)} />
+            <Select selectSize="default" selectPlaceholder="Default Select" selectOptions={fruitOptions.slice(0, 2)} />
+            <Select selectSize="lg" selectPlaceholder="Large Select" selectOptions={fruitOptions.slice(0, 2)} />
           </div>
         </Showcase>
 
@@ -148,24 +148,24 @@ export default function Example() {
           code={`import { Select } from '@unburn/ui/Select';
 
 const fruitOptions = [
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' }
+  { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
+  { selectOptionValue: 'banana', selectOptionLabel: 'Banana' }
 ];
 
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '300px' }}>
       <Select
-        label="Error State"
-        error="Please select a valid fruit."
-        options={fruitOptions}
-        placeholder="Error highlight"
+        selectLabel="Error State"
+        selectError="Please select a valid fruit."
+        selectOptions={fruitOptions}
+        selectPlaceholder="Error highlight"
       />
       <Select
-        label="Disabled"
-        disabled
-        options={fruitOptions}
-        placeholder="Cannot interact"
+        selectLabel="Disabled"
+        selectDisabled
+        selectOptions={fruitOptions}
+        selectPlaceholder="Cannot interact"
       />
     </div>
   );
@@ -173,16 +173,16 @@ export default function Example() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '300px', paddingBottom: '200px' }}>
             <Select
-              label="Error State"
-              error="Please select a valid fruit."
-              options={fruitOptions}
-              placeholder="Error highlight"
+              selectLabel="Error State"
+              selectError="Please select a valid fruit."
+              selectOptions={fruitOptions.slice(0, 2)}
+              selectPlaceholder="Error highlight"
             />
             <Select
-              label="Disabled"
-              disabled
-              options={fruitOptions}
-              placeholder="Cannot interact"
+              selectLabel="Disabled"
+              selectDisabled
+              selectOptions={fruitOptions.slice(0, 2)}
+              selectPlaceholder="Cannot interact"
             />
           </div>
         </Showcase>
@@ -194,9 +194,9 @@ export default function Example() {
 import { useState } from 'react';
 
 const fruitOptions = [
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' },
-  { value: 'blueberry', label: 'Blueberry' }
+  { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
+  { selectOptionValue: 'banana', selectOptionLabel: 'Banana' },
+  { selectOptionValue: 'blueberry', selectOptionLabel: 'Blueberry' }
 ];
 
 export default function Example() {
@@ -205,11 +205,11 @@ export default function Example() {
   return (
     <div style={{ width: '300px' }}>
       <Select
-        label="Select a fruit"
-        options={fruitOptions}
-        value={value}
-        onChange={setValue}
-        description={\`Selection: \${value}\`}
+        selectLabel="Select a fruit"
+        selectOptions={fruitOptions}
+        selectValue={value}
+        selectOnChange={setValue}
+        selectDescription={\`Selection: \${value}\`}
       />
     </div>
   );
@@ -222,20 +222,48 @@ export default function Example() {
       </div>
 
       <Props
+        title="Select Props"
         props={[
-          { name: 'options', type: 'SelectOption[]', required: true, description: 'List of options with values, labels, and disabled states.' },
-          { name: 'value', type: 'string', description: 'The selected option value.' },
-          { name: 'defaultValue', type: 'string', description: 'The default selected option.' },
-          { name: 'onChange', type: '(value: string) => void', description: 'Function called when a new option is chosen.' },
-          { name: 'placeholder', type: 'string', defaultValue: "'Select an option'", description: 'Text shown when no option is selected.' },
-          { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the dropdown.' },
-          { name: 'size', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the select box.' },
-          { name: 'label', type: 'string', description: 'Label text shown above the dropdown.' },
-          { name: 'description', type: 'string', description: 'Helpful detail text shown below the dropdown.' },
-          { name: 'error', type: 'string', description: 'Error message to show under the dropdown.' },
-          { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks on the dropdown.' },
+          { name: 'selectOptions', type: 'SelectOption[]', required: true, description: 'List of options with values, labels, and disabled states.' },
+          { name: 'selectValue', type: 'string', description: 'The selected option value.' },
+          { name: 'selectDefaultValue', type: 'string', description: 'The default selected option.' },
+          { name: 'selectOnChange', type: '(value: string) => void', description: 'Function called when a new option is chosen.' },
+          { name: 'selectPlaceholder', type: 'string', defaultValue: "'Select an option'", description: 'Text shown when no option is selected.' },
+          { name: 'selectVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the dropdown.' },
+          { name: 'selectSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the select box.' },
+          { name: 'selectLabel', type: 'string', description: 'Label text shown above the dropdown.' },
+          { name: 'selectDescription', type: 'string', description: 'Helpful detail text shown below the dropdown.' },
+          { name: 'selectError', type: 'string', description: 'Error message to show under the dropdown.' },
+          { name: 'selectDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks on the dropdown.' },
+          { name: 'selectClassName', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'selectStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the dropdown.' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
+        ]}
+        stylingTargets={[
+          { name: 'selectRoot', description: 'Styles the outer Select container.' },
+          { name: 'selectLabel', description: 'Styles the label text element.' },
+          { name: 'selectTrigger', description: 'Styles the toggle/trigger button.' },
+          { name: 'selectContent', description: 'Styles the dropdown menu panel containing option items.' },
+          { name: 'selectItem', description: 'Styles each option list item.' },
+          { name: 'selectDescription', description: 'Styles the description text below the trigger.' },
+          { name: 'selectError', description: 'Styles the error message text below the trigger.' },
+        ]}
+        stylingStructure={`selectRoot
+ ├── selectLabel
+ ├── selectTrigger
+ ├── selectContent
+ │    └── selectItem
+ ├── selectDescription
+ └── selectError`}
+      />
+
+      <Props
+        title="SelectOption Props"
+        props={[
+          { name: 'selectOptionValue', type: 'string', required: true, description: 'The value associated with the option.' },
+          { name: 'selectOptionLabel', type: 'string', required: true, description: 'The user-facing label text of the option.' },
+          { name: 'selectOptionDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable selecting this option.' },
         ]}
       />
     </>

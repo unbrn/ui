@@ -7,7 +7,6 @@
 .unburn-step {
   display: flex;
   gap: 1.25rem;
-  align-items: flex-start;
 }
 
 .unburn-step-left {
@@ -27,7 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 700;
   flex-shrink: 0;
@@ -46,6 +45,7 @@
 
 .unburn-step-content {
   flex: 1;
+  min-width: 0;
   padding-bottom: 2rem;
 }
 
@@ -71,4 +71,21 @@
 
 .unburn-step-body {
   margin-top: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .unburn-step {
+    gap: 0.85rem;
+  }
+  .unburn-step-marker {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+  .unburn-step-content {
+    padding-bottom: 1.5rem;
+  }
+  .unburn-step-connector {
+    min-height: 1.5rem;
+  }
 }

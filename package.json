@@ -1,6 +1,6 @@
 {
   "name": "@unburn/ui",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "private": false,
   "description": "A premium, softly-rounded React component library.",
   "author": "Unburn",
@@ -91,20 +91,10 @@
       "import": "./dist/components/Textarea/Textarea.mjs",
       "require": "./dist/components/Textarea/Textarea.cjs"
     },
-    "./VideoEmbed": {
-      "types": "./dist/components/VideoEmbed/VideoEmbed.d.ts",
-      "import": "./dist/components/VideoEmbed/VideoEmbed.mjs",
-      "require": "./dist/components/VideoEmbed/VideoEmbed.cjs"
-    },
     "./Steps": {
       "types": "./dist/components/Steps/Steps.d.ts",
       "import": "./dist/components/Steps/Steps.mjs",
       "require": "./dist/components/Steps/Steps.cjs"
-    },
-    "./Tabs": {
-      "types": "./dist/components/Tabs/Tabs.d.ts",
-      "import": "./dist/components/Tabs/Tabs.mjs",
-      "require": "./dist/components/Tabs/Tabs.cjs"
     },
     "./VoiceAgent": {
       "types": "./dist/components/VoiceAgent/VoiceAgent.d.ts",
@@ -179,6 +169,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
     "@vitejs/plugin-react": "^6.0.1",
     "esbuild": "^0.28.0",
     "eslint": "^10.3.0",

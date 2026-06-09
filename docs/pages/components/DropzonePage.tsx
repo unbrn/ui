@@ -19,30 +19,25 @@ export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
       <Dropzone
-        label="Upload Documents"
-        description="Drag and drop your files here or click to browse"
-        multiple
-        accept=".pdf,.docx,.txt"
+        dropzoneLabel="Upload Documents"
+        dropzoneDescription="Drag and drop your files here or click to browse"
+        dropzoneMultiple
+        dropzoneAccept=".pdf,.docx,.txt"
       />
     </div>
   );
 }`}
       >
         <div style={{ width: '100%', maxWidth: '600px' }}>
-          <Dropzone
-            label="Upload Documents"
-            description="Drag and drop your files here or click to browse"
-            multiple
-            accept=".pdf,.docx,.txt"
-          />
+          <DockPagePropsWorkaroundForDropzone />
         </div>
       </Showcase>
 
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          language="tsx"
-          code={`import { Dropzone } from '@unburn/ui/Dropzone';
+          codeBlockLanguage="tsx"
+          codeBlockCode={`import { Dropzone } from '@unburn/ui/Dropzone';
 
 export default function Example() {
   const handleFiles = (files: File[]) => {
@@ -51,9 +46,9 @@ export default function Example() {
 
   return (
     <Dropzone 
-      onFilesDrop={handleFiles}
-      multiple
-      accept=".jpg,.png,.webp"
+      dropzoneOnFilesDrop={handleFiles}
+      dropzoneMultiple
+      dropzoneAccept=".jpg,.png,.webp"
     />
   );
 }`}
@@ -73,10 +68,10 @@ export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
       <Dropzone
-        icon={<Image size={24} />}
-        label="Upload Photos"
-        description="Up to 10MB per file"
-        accept=".jpg,.png,.webp"
+        dropzoneIcon={<Image size={24} />}
+        dropzoneLabel="Upload Photos"
+        dropzoneDescription="Up to 10MB per file"
+        dropzoneAccept=".jpg,.png,.webp"
       />
     </div>
   );
@@ -84,10 +79,10 @@ export default function Example() {
         >
           <div style={{ width: '100%', maxWidth: '600px' }}>
             <Dropzone
-              icon={<Image size={24} />}
-              label="Upload Photos"
-              description="Up to 10MB per file"
-              accept=".jpg,.png,.webp"
+              dropzoneIcon={<Image size={24} />}
+              dropzoneLabel="Upload Photos"
+              dropzoneDescription="Up to 10MB per file"
+              dropzoneAccept=".jpg,.png,.webp"
             />
           </div>
         </Showcase>
@@ -102,11 +97,11 @@ export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
       <Dropzone
-        icon={<FileText size={24} />}
-        label="Upload Contract"
-        description="Only PDF files are accepted"
-        multiple={false}
-        accept=".pdf"
+        dropzoneIcon={<FileText size={24} />}
+        dropzoneLabel="Upload Contract"
+        dropzoneDescription="Only PDF files are accepted"
+        dropzoneMultiple={false}
+        dropzoneAccept=".pdf"
       />
     </div>
   );
@@ -114,11 +109,11 @@ export default function Example() {
         >
           <div style={{ width: '100%', maxWidth: '600px' }}>
             <Dropzone
-              icon={<FileText size={24} />}
-              label="Upload Contract"
-              description="Only PDF files are accepted"
-              multiple={false}
-              accept=".pdf"
+              dropzoneIcon={<FileText size={24} />}
+              dropzoneLabel="Upload Contract"
+              dropzoneDescription="Only PDF files are accepted"
+              dropzoneMultiple={false}
+              dropzoneAccept=".pdf"
             />
           </div>
         </Showcase>
@@ -133,11 +128,11 @@ export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
       <Dropzone
-        icon={<Lock size={24} />}
-        label="Uploader Locked"
-        description="You do not have permission to upload files"
-        disabled
-        color="red"
+        dropzoneIcon={<Lock size={24} />}
+        dropzoneLabel="Uploader Locked"
+        dropzoneDescription="You do not have permission to upload files"
+        dropzoneDisabled
+        dropzoneAccentColor="red"
       />
     </div>
   );
@@ -145,11 +140,11 @@ export default function Example() {
         >
           <div style={{ width: '100%', maxWidth: '600px' }}>
             <Dropzone
-              icon={<Lock size={24} />}
-              label="Uploader Locked"
-              description="You do not have permission to upload files"
-              disabled
-              color='red'
+              dropzoneIcon={<Lock size={24} />}
+              dropzoneLabel="Uploader Locked"
+              dropzoneDescription="You do not have permission to upload files"
+              dropzoneDisabled
+              dropzoneAccentColor='red'
             />
           </div>
         </Showcase>
@@ -157,19 +152,45 @@ export default function Example() {
 
       <Props
         props={[
-          { name: 'onFilesDrop', type: '(files: File[]) => void', description: 'Function called when files are dropped or selected.' },
-          { name: 'accept', type: 'string', description: 'File formats allowed (e.g. .png, .pdf).' },
-          { name: 'multiple', type: 'boolean', defaultValue: 'false', description: 'Allow selecting more than one file.' },
-          { name: 'maxSize', type: 'number', description: 'Maximum allowed file size in bytes.' },
-          { name: 'label', type: 'string', defaultValue: '"Drop files here"', description: 'The header text inside the upload box.' },
-          { name: 'description', type: 'string', defaultValue: '"Drag and drop or click to upload"', description: 'The detail text below the header.' },
-          { name: 'icon', type: 'ReactNode', description: 'An icon shown at the center of the uploader.' },
-          { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disable file drops and clicks.' },
-          { name: 'color', type: 'string', description: 'Custom accent color for drag overlay and highlights.' },
-          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the uploader.' },
-          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
+          { name: 'dropzoneOnFilesDrop', type: '(files: File[]) => void', description: 'Function called when files are dropped or selected.' },
+          { name: 'dropzoneAccept', type: 'string', description: 'File formats allowed (e.g. .png, .pdf).' },
+          { name: 'dropzoneMultiple', type: 'boolean', defaultValue: 'false', description: 'Allow selecting more than one file.' },
+          { name: 'dropzoneMaxSize', type: 'number', description: 'Maximum allowed file size in bytes.' },
+          { name: 'dropzoneLabel', type: 'string', defaultValue: '"Drop files here"', description: 'The header text inside the upload box.' },
+          { name: 'dropzoneDescription', type: 'string', defaultValue: '"Drag and drop or click to upload"', description: 'The detail text below the header.' },
+          { name: 'dropzoneIcon', type: 'ReactNode', description: 'An icon shown at the center of the uploader.' },
+          { name: 'dropzoneDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable file drops and clicks.' },
+          { name: 'dropzoneAccentColor', type: 'string', description: 'Custom accent color for drag overlay and highlights.' },
+          { name: 'dropzoneClassName', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'dropzoneStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the uploader (prefixed with dropzone).' },
+          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with dropzone).' },
         ]}
+        stylingTargets={[
+          { name: 'dropzoneRoot', description: 'Styles the outer dropzone dashed container.' },
+          { name: 'dropzoneContent', description: 'Styles the center aligned content wrapper.' },
+          { name: 'dropzoneIcon', description: 'Styles the central illustration/icon wrapper.' },
+          { name: 'dropzoneLabel', description: 'Styles the main label text.' },
+          { name: 'dropzoneDescription', description: 'Styles the secondary description text.' },
+        ]}
+        stylingStructure={`dropzoneRoot
+ └── dropzoneContent
+      ├── dropzoneIcon
+      ├── dropzoneLabel
+      └── dropzoneDescription`}
       />
     </>
+  );
+};
+
+// Workaround function to keep lines correct and render the preview
+const DockPagePropsWorkaroundForDropzone: React.FC = () => {
+  return (
+    <Dropzone
+      dropzoneLabel="Upload Documents"
+      dropzoneDescription="Drag and drop your files here or click to browse"
+      dropzoneMultiple
+      dropzoneAccept=".pdf,.docx,.txt"
+    />
   );
 };

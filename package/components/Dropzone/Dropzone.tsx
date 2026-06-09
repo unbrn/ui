@@ -8,30 +8,31 @@ import './Dropzone.css';
 import { getAccentVariables } from '../../lib/colors';
 
 export interface DropzoneProps {
-  onFilesDrop?: (files: File[]) => void;
-  accept?: string;
-  multiple?: boolean;
-  maxSize?: number;
-  label?: string;
-  description?: string;
-  icon?: React.ReactNode;
-  className?: string;
-  disabled?: boolean;
-  color?: string;
+  dropzoneOnFilesDrop?: (files: File[]) => void;
+  dropzoneAccept?: string;
+  dropzoneMultiple?: boolean;
+  dropzoneMaxSize?: number;
+  dropzoneLabel?: string;
+  dropzoneDescription?: string;
+  dropzoneIcon?: React.ReactNode;
+  dropzoneClassName?: string;
+  dropzoneDisabled?: boolean;
+  dropzoneAccentColor?: string;
   classNames?: {
-    root?: string;
-    content?: string;
-    icon?: string;
-    label?: string;
-    description?: string;
+    dropzoneRoot?: string;
+    dropzoneContent?: string;
+    dropzoneIcon?: string;
+    dropzoneLabel?: string;
+    dropzoneDescription?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    content?: React.CSSProperties;
-    icon?: React.CSSProperties;
-    label?: React.CSSProperties;
-    description?: React.CSSProperties;
+    dropzoneRoot?: React.CSSProperties;
+    dropzoneContent?: React.CSSProperties;
+    dropzoneIcon?: React.CSSProperties;
+    dropzoneLabel?: React.CSSProperties;
+    dropzoneDescription?: React.CSSProperties;
   };
+  dropzoneStyle?: React.CSSProperties;
 }
 
 const formatFileSize = (bytes: number): string => {
@@ -63,18 +64,19 @@ const isFileTypeAccepted = (file: File, accept?: string): boolean => {
 };
 
 export const Dropzone: React.FC<DropzoneProps> = ({
-  onFilesDrop,
-  accept,
-  multiple = false,
-  maxSize,
-  label = 'Drop files here',
-  description = 'Drag and drop or click to upload',
-  icon,
-  className,
-  disabled = false,
-  color,
+  dropzoneOnFilesDrop,
+  dropzoneAccept,
+  dropzoneMultiple = false,
+  dropzoneMaxSize,
+  dropzoneLabel = 'Drop files here',
+  dropzoneDescription = 'Drag and drop or click to upload',
+  dropzoneIcon,
+  dropzoneClassName,
+  dropzoneDisabled = false,
+  dropzoneAccentColor,
   classNames,
   styles,
+  dropzoneStyle
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
@@ -83,8 +85,8 @@ export const Dropzone: React.FC<DropzoneProps> = ({
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!disabled) setIsDragging(true);
-  }, [disabled]);
+    if (!dropzoneDisabled) setIsDragging(true);
+  }, [dropzoneDisabled]);
 
   const handleDragLeave = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -93,21 +95,21 @@ export const Dropzone: React.FC<DropzoneProps> = ({
   }, []);
 
   const processFiles = useCallback((newFiles: FileList | null) => {
-    if (!newFiles || disabled) return;
+    if (!newFiles || dropzoneDisabled) return;
 
     const validFiles: File[] = [];
     const filesArray = Array.from(newFiles);
 
     filesArray.forEach(file => {
-      if (maxSize && file.size > maxSize) return;
-      if (!isFileTypeAccepted(file, accept)) return;
+      if (dropzoneMaxSize && file.size > dropzoneMaxSize) return;
+      if (!isFileTypeAccepted(file, dropzoneAccept)) return;
       validFiles.push(file);
     });
 
-    const updatedFiles = multiple ? [...files, ...validFiles] : validFiles;
+    const updatedFiles = dropzoneMultiple ? [...files, ...validFiles] : validFiles;
     setFiles(updatedFiles);
-    onFilesDrop?.(updatedFiles);
-  }, [disabled, maxSize, multiple, files, onFilesDrop, accept]);
+    dropzoneOnFilesDrop?.(updatedFiles);
+  }, [dropzoneDisabled, dropzoneMaxSize, dropzoneMultiple, files, dropzoneOnFilesDrop, dropzoneAccept]);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -121,65 +123,63 @@ export const Dropzone: React.FC<DropzoneProps> = ({
   };
 
   const handleClick = () => {
-    if (!disabled) fileInputRef.current?.click();
+    if (!dropzoneDisabled) fileInputRef.current?.click();
   };
 
   const removeFile = (index: number, e: React.MouseEvent) => {
     e.stopPropagation();
     const newFiles = files.filter((_, i) => i !== index);
     setFiles(newFiles);
-    onFilesDrop?.(newFiles);
+    dropzoneOnFilesDrop?.(newFiles);
   };
 
-  const accentStyle = getAccentVariables(color);
+  const accentStyle = getAccentVariables(dropzoneAccentColor);
 
   return (
-    <div className={cn("unburn-dropzone-container", className, classNames?.root)} style={{ ...styles?.root, ...accentStyle }}>
+    <div className={cn("unburn-dropzone-container", dropzoneClassName, classNames?.dropzoneRoot)} style={{ ...dropzoneStyle, ...styles?.dropzoneRoot, ...accentStyle }}>
       <div
         className={cn(
           "unburn-dropzone",
           isDragging && "unburn-dropzone-dragging",
-          disabled && "unburn-dropzone-disabled",
+          dropzoneDisabled && "unburn-dropzone-disabled",
           files.length > 0 && "unburn-dropzone-has-files"
         )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={handleClick}
-        style={styles?.content}
+        style={styles?.dropzoneContent}
       >
         <input
           type="file"
           ref={fileInputRef}
           onChange={handleFileInputChange}
-          accept={accept}
-          multiple={multiple}
+          accept={dropzoneAccept}
+          multiple={dropzoneMultiple}
           className="unburn-dropzone-input"
           tabIndex={-1}
         />
 
         <div className="unburn-dropzone-content">
-          <div className={cn("unburn-dropzone-icon", classNames?.icon)} style={styles?.icon}>
-            {icon || <Upload size={24} />}
+          <div className={cn("unburn-dropzone-icon", classNames?.dropzoneIcon)} style={styles?.dropzoneIcon}>
+            {dropzoneIcon || <Upload size={24} />}
           </div>
           <div className="unburn-dropzone-text">
-            <h4 className={cn("unburn-dropzone-label", classNames?.label)} style={styles?.label}>
-              {label}
+            <h4 className={cn("unburn-dropzone-label", classNames?.dropzoneLabel)} style={styles?.dropzoneLabel}>
+              {dropzoneLabel}
             </h4>
-            <p className={cn("unburn-dropzone-description", classNames?.description)} style={styles?.description}>
-              {description}
+            <p className={cn("unburn-dropzone-description", classNames?.dropzoneDescription)} style={styles?.dropzoneDescription}>
+              {dropzoneDescription}
             </p>
           </div>
 
-          {accept && (
+          {dropzoneAccept && (
             <div className="unburn-dropzone-badges">
-              {accept.split(',').map((type) => {
+              {dropzoneAccept.split(',').map((type) => {
                 const cleanType = type.trim().replace('.', '').replace('*', '').toUpperCase();
                 if (!cleanType) return null;
                 return (
-                  <Badge key={type} variant="outlined" size="sm" className="unburn-dropzone-badge">
-                    {cleanType}
-                  </Badge>
+                  <Badge key={type} badgeVariant="outlined" badgeSize="sm" badgeClassName="unburn-dropzone-badge" badgeChildren={cleanType} />
                 );
               })}
             </div>

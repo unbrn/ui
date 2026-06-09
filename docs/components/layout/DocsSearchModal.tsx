@@ -173,20 +173,20 @@ export const DocsSearchModal: React.FC = () => {
         <div className="search-header" style={{ padding: '1rem 1.25rem' }}>
           <Input
             ref={inputRef}
-            variant="duo"
-            size="default"
-            leftIcon={<Search size={18} />}
-            kbd="ESC"
-            placeholder="Search documentation..."
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-            fullWidth
+            inputVariant="duo"
+            inputSize="default"
+            inputLeftIcon={<Search size={18} />}
+            inputKbd="ESC"
+            inputPlaceholder="Search documentation..."
+            inputValue={query}
+            inputOnChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
+            inputFullWidth
             classNames={{
-              root: 'search-modal-input-root',
-              container: 'search-modal-input-container',
-              input: 'search-modal-input-field'
+              inputRoot: 'search-modal-input-root',
+              inputContainer: 'search-modal-input-container',
+              inputElement: 'search-modal-input-field'
             }}
-            rightIcon={query ? (
+            inputRightIcon={query ? (
               <button
                 className="search-clear-btn"
                 onClick={(e) => {

@@ -36,34 +36,35 @@ export default function Example() {
 
   return (
     <Dock
-      isMenuOpen={isOpen}
-      onMenuToggle={() => setIsOpen(!isOpen)}
-    >
-      <Button onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}>
-        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-      </Button>
-    </Dock>
+      dockIsMenuOpen={isOpen}
+      dockOnMenuToggle={() => setIsOpen(!isOpen)}
+      dockChildren={
+        <Button buttonOnClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')} buttonChildren={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />} />
+      }
+    />
   );
 }`}
       >
         <div style={{ height: '120px', position: 'relative', width: '100%', overflow: 'hidden' }}>
           <Dock
-            isMenuOpen={demoOpen1}
-            onMenuToggle={() => setDemoOpen1(!demoOpen1)}
-            className="showcase-dock"
-          >
-            <Button onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}>
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </Button>
-          </Dock>
+            dockIsMenuOpen={demoOpen1}
+            dockOnMenuToggle={() => setDemoOpen1(!demoOpen1)}
+            dockClassName="showcase-dock"
+            dockChildren={
+              <Button
+                buttonOnClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
+                buttonChildren={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              />
+            }
+          />
         </div>
       </Showcase>
 
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          language="tsx"
-          code={`import { Dock } from '@unburn/ui/Dock';
+          codeBlockLanguage="tsx"
+          codeBlockCode={`import { Dock } from '@unburn/ui/Dock';
 import { Button } from '@unburn/ui/Button';
 import { Sun, Moon } from 'lucide-react';
 
@@ -74,13 +75,12 @@ export default function Layout({ children }) {
     <>
       {children}
       <Dock 
-        isMenuOpen={isOpen}
-        onMenuToggle={() => setIsOpen(!isOpen)}
-      >
-        <Button onClick={toggleTheme}>
-          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-        </Button>
-      </Dock>
+        dockIsMenuOpen={isOpen}
+        dockOnMenuToggle={() => setIsOpen(!isOpen)}
+        dockChildren={
+          <Button buttonOnClick={toggleTheme} buttonChildren={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />} />
+        }
+      />
     </>
   );
 }`}
@@ -102,26 +102,32 @@ export default function Example() {
 
   return (
     <Dock
-      isMenuOpen={isOpen}
-      onMenuToggle={() => setIsOpen(!isOpen)}
-    >
-      <Button><Home size={20} /></Button>
-      <Button><Search size={20} /></Button>
-      <Button><Plus size={20} /></Button>
-    </Dock>
+      dockIsMenuOpen={isOpen}
+      dockOnMenuToggle={() => setIsOpen(!isOpen)}
+      dockChildren={
+        <>
+          <Button buttonChildren={<Home size={20} />} />
+          <Button buttonChildren={<Search size={20} />} />
+          <Button buttonChildren={<Plus size={20} />} />
+        </>
+      }
+    />
   );
 }`}
         >
           <div style={{ height: '120px', position: 'relative', width: '100%', overflow: 'hidden' }}>
             <Dock
-              isMenuOpen={demoOpen2}
-              onMenuToggle={() => setDemoOpen2(!demoOpen2)}
-              className="showcase-dock"
-            >
-              <Button><Home size={20} /></Button>
-              <Button><Search size={20} /></Button>
-              <Button><Plus size={20} /></Button>
-            </Dock>
+              dockIsMenuOpen={demoOpen2}
+              dockOnMenuToggle={() => setDemoOpen2(!demoOpen2)}
+              dockClassName="showcase-dock"
+              dockChildren={
+                <>
+                  <Button buttonChildren={<Home size={20} />} />
+                  <Button buttonChildren={<Search size={20} />} />
+                  <Button buttonChildren={<Plus size={20} />} />
+                </>
+              }
+            />
           </div>
         </Showcase>
 
@@ -133,9 +139,9 @@ export default function Example() {
 export default function Example() {
   return (
     <Dock
-      showHideToggle={false}
-      isMenuOpen={false}
-      onMenuToggle={() => {}}
+      dockShowHideToggle={false}
+      dockIsMenuOpen={false}
+      dockOnMenuToggle={() => {}}
     />
   );
 }`}
@@ -143,10 +149,10 @@ export default function Example() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem', width: '100%' }}>
             <div style={{ height: '100px', position: 'relative', overflow: 'hidden' }}>
               <Dock
-                showHideToggle={false}
-                isMenuOpen={false}
-                onMenuToggle={() => { }}
-                className="showcase-dock"
+                dockShowHideToggle={false}
+                dockIsMenuOpen={false}
+                dockOnMenuToggle={() => { }}
+                dockClassName="showcase-dock"
               />
             </div>
           </div>
@@ -155,13 +161,30 @@ export default function Example() {
 
       <Props
         props={[
-          { name: 'isMenuOpen', type: 'boolean', required: true, description: 'Turn the main menu on or off.' },
-          { name: 'onMenuToggle', type: 'function', required: true, description: 'Function called when clicking the menu button.' },
-          { name: 'position', type: "'top' | 'bottom' | 'left' | 'right'", defaultValue: "'bottom'", description: 'Where the dock attaches on the screen (top, bottom, left, or right).' },
-          { name: 'showHideToggle', type: 'boolean', defaultValue: 'true', description: 'Show the arrow button to hide the dock.' },
-          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the dock.' },
-          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
+          { name: 'dockIsMenuOpen', type: 'boolean', required: true, description: 'Turn the main menu on or off.' },
+          { name: 'dockOnMenuToggle', type: 'function', required: true, description: 'Function called when clicking the menu button.' },
+          { name: 'dockPosition', type: "'top' | 'bottom' | 'left' | 'right'", defaultValue: "'bottom'", description: 'Where the dock attaches on the screen (top, bottom, left, or right).' },
+          { name: 'dockShowHideToggle', type: 'boolean', defaultValue: 'true', description: 'Show the arrow button to hide the dock.' },
+          { name: 'dockClassName', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'dockStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'dockChildren', type: 'ReactNode', description: 'The buttons or action components inside the dock.' },
+          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the dock (prefixed with dock).' },
+          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with dock).' },
         ]}
+        stylingTargets={[
+          { name: 'dockRoot', description: 'Styles the outer fixed container overlay.' },
+          { name: 'dockContainer', description: 'Styles the main blurred dock bar wrapper.' },
+          { name: 'dockTrigger', description: 'Styles the main hamburger/menu action button.' },
+          { name: 'dockActionBtn', description: 'Styles each action button slot inside the dock.' },
+          { name: 'dockCollapseBtn', description: 'Styles the button to hide the dock.' },
+          { name: 'dockExpandBtn', description: 'Styles the floating indicator to expand the dock.' },
+        ]}
+        stylingStructure={`dockRoot
+ └── dockContainer
+      ├── dockTrigger
+      ├── dockActionBtn
+      ├── dockCollapseBtn
+      └── dockExpandBtn`}
       />
 
       <style>{`

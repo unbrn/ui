@@ -5,51 +5,52 @@ import { cn } from '../../lib/utils';
 import './Tooltip.css';
 import { getAccentVariables } from '../../lib/colors';
 
-export interface TooltipProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
-  content: React.ReactNode;
-  children?: React.ReactNode;
-  position?: 'top' | 'bottom' | 'left' | 'right';
-  visible?: boolean;
-  color?: string;
-  variant?: 'filled' | 'outlined' | 'duo';
-  disabled?: boolean;
+export interface TooltipProps {
+  tooltipContent: React.ReactNode;
+  tooltipChildren?: React.ReactNode;
+  tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
+  tooltipVisible?: boolean;
+  tooltipAccentColor?: string;
+  tooltipVariant?: 'filled' | 'outlined' | 'duo';
+  tooltipDisabled?: boolean;
+  tooltipClassName?: string;
+  tooltipStyle?: React.CSSProperties;
   classNames?: {
-    root?: string;
-    trigger?: string;
-    bubble?: string;
-    arrow?: string;
+    tooltipRoot?: string;
+    tooltipTrigger?: string;
+    tooltipBubble?: string;
+    tooltipArrow?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    trigger?: React.CSSProperties;
-    bubble?: React.CSSProperties;
-    arrow?: React.CSSProperties;
+    tooltipRoot?: React.CSSProperties;
+    tooltipTrigger?: React.CSSProperties;
+    tooltipBubble?: React.CSSProperties;
+    tooltipArrow?: React.CSSProperties;
   };
 }
 
 export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
   (
     {
-      className,
-      style,
-      content,
-      children,
-      position = 'top',
-      visible: controlledVisible,
-      color,
-      variant = 'filled',
-      disabled = false,
+      tooltipClassName,
+      tooltipStyle,
+      tooltipContent,
+      tooltipChildren,
+      tooltipPosition = 'top',
+      tooltipVisible: controlledVisible,
+      tooltipAccentColor,
+      tooltipVariant = 'filled',
+      tooltipDisabled = false,
       classNames,
       styles,
-      ...props
     },
     ref
   ) => {
     const [isHovered, setIsHovered] = useState(false);
-    const showTooltip = (controlledVisible !== undefined ? controlledVisible : isHovered) && !disabled;
-    const accentStyle = getAccentVariables(color);
+    const showTooltip = (controlledVisible !== undefined ? controlledVisible : isHovered) && !tooltipDisabled;
+    const accentStyle = getAccentVariables(tooltipAccentColor);
 
-    if (!children) {
+    if (!tooltipChildren) {
       if (!showTooltip) return null;
       return (
         <div
@@ -57,16 +58,15 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           className={cn(
             "unburn-tooltip-bubble",
             "unburn-tooltip-bubble-standalone",
-            `unburn-tooltip-bubble-${position}`,
-            `unburn-tooltip-bubble-${variant}`,
-            className,
-            classNames?.bubble
+            `unburn-tooltip-bubble-${tooltipPosition}`,
+            `unburn-tooltip-bubble-${tooltipVariant}`,
+            tooltipClassName,
+            classNames?.tooltipBubble
           )}
-          style={{ ...style, ...styles?.bubble, ...accentStyle }}
-          {...props}
+          style={{ ...tooltipStyle, ...styles?.tooltipBubble, ...accentStyle }}
         >
-          <span className="unburn-tooltip-content">{content}</span>
-          <div className={cn("unburn-tooltip-arrow", classNames?.arrow)} style={styles?.arrow} />
+          <span className="unburn-tooltip-content">{tooltipContent}</span>
+          <div className={cn("unburn-tooltip-arrow", classNames?.tooltipArrow)} style={styles?.tooltipArrow} />
         </div>
       );
     }
@@ -74,33 +74,32 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     return (
       <div
         ref={ref}
-        className={cn("unburn-tooltip-root", className, classNames?.root)}
-        style={{ ...style, ...styles?.root, ...accentStyle }}
+        className={cn("unburn-tooltip-root", tooltipClassName, classNames?.tooltipRoot)}
+        style={{ ...tooltipStyle, ...styles?.tooltipRoot, ...accentStyle }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
-        {...props}
       >
         <div 
-          className={cn("unburn-tooltip-trigger", classNames?.trigger)} 
-          style={styles?.trigger}
+          className={cn("unburn-tooltip-trigger", classNames?.tooltipTrigger)} 
+          style={styles?.tooltipTrigger}
         >
-          {children}
+          {tooltipChildren}
         </div>
         
         {showTooltip && (
           <div
             className={cn(
               "unburn-tooltip-bubble",
-              `unburn-tooltip-bubble-${position}`,
-              `unburn-tooltip-bubble-${variant}`,
-              classNames?.bubble
+              `unburn-tooltip-bubble-${tooltipPosition}`,
+              `unburn-tooltip-bubble-${tooltipVariant}`,
+              classNames?.tooltipBubble
             )}
-            style={{ ...styles?.bubble, ...accentStyle }}
+            style={{ ...styles?.tooltipBubble, ...accentStyle }}
           >
-            <span className="unburn-tooltip-content">{content}</span>
-            <div className={cn("unburn-tooltip-arrow", classNames?.arrow)} style={styles?.arrow} />
+            <span className="unburn-tooltip-content">{tooltipContent}</span>
+            <div className={cn("unburn-tooltip-arrow", classNames?.tooltipArrow)} style={styles?.tooltipArrow} />
           </div>
         )}
       </div>

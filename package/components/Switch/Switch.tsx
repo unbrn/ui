@@ -6,58 +6,58 @@ import './Switch.css';
 import { getAccentVariables } from '../../lib/colors';
 
 export interface SwitchProps {
-  checked?: boolean;
-  defaultChecked?: boolean;
-  onChange?: (checked: boolean) => void;
-  disabled?: boolean;
-  label?: React.ReactNode;
-  description?: React.ReactNode;
-  variant?: 'filled' | 'outlined' | 'duo';
-  size?: 'sm' | 'default' | 'lg';
-  className?: string;
-  id?: string;
-  color?: string;
+  switchChecked?: boolean;
+  switchDefaultChecked?: boolean;
+  switchOnChange?: (checked: boolean) => void;
+  switchDisabled?: boolean;
+  switchLabel?: React.ReactNode;
+  switchDescription?: React.ReactNode;
+  switchVariant?: 'filled' | 'outlined' | 'duo';
+  switchSize?: 'sm' | 'default' | 'lg';
+  switchClassName?: string;
+  switchId?: string;
+  switchAccentColor?: string;
   classNames?: {
-    root?: string;
-    container?: string;
-    track?: string;
-    thumb?: string;
-    label?: string;
-    description?: string;
+    switchRoot?: string;
+    switchContainer?: string;
+    switchTrack?: string;
+    switchThumb?: string;
+    switchLabel?: string;
+    switchDescription?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    container?: React.CSSProperties;
-    track?: React.CSSProperties;
-    thumb?: React.CSSProperties;
-    label?: React.CSSProperties;
-    description?: React.CSSProperties;
+    switchRoot?: React.CSSProperties;
+    switchContainer?: React.CSSProperties;
+    switchTrack?: React.CSSProperties;
+    switchThumb?: React.CSSProperties;
+    switchLabel?: React.CSSProperties;
+    switchDescription?: React.CSSProperties;
   };
 }
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (
     {
-      className,
-      label,
-      description,
-      variant = 'filled',
-      size = 'default',
-      checked: controlledChecked,
-      defaultChecked,
-      onChange,
-      disabled = false,
-      id,
+      switchClassName,
+      switchLabel,
+      switchDescription,
+      switchVariant = 'filled',
+      switchSize = 'default',
+      switchChecked: controlledChecked,
+      switchDefaultChecked,
+      switchOnChange,
+      switchDisabled = false,
+      switchId,
       classNames,
       styles,
-      color
+      switchAccentColor
     },
     ref
   ) => {
     const generatedId = useId();
-    const switchId = id || generatedId;
+    const resolvedId = switchId || generatedId;
 
-    const [isChecked, setIsChecked] = useState(controlledChecked ?? defaultChecked ?? false);
+    const [isChecked, setIsChecked] = useState(controlledChecked ?? switchDefaultChecked ?? false);
     const [isAnimating, setIsAnimating] = useState(false);
 
     useEffect(() => {
@@ -70,7 +70,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     }, [controlledChecked]);
 
     const handleToggle = () => {
-      if (disabled) return;
+      if (switchDisabled) return;
 
       const nextChecked = !isChecked;
 
@@ -80,89 +80,89 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         setTimeout(() => setIsAnimating(false), 400);
       }
 
-      onChange?.(nextChecked);
+      switchOnChange?.(nextChecked);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
-      if (disabled) return;
+      if (switchDisabled) return;
       if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
         handleToggle();
       }
     };
 
-    const accentStyle = getAccentVariables(color);
+    const accentStyle = getAccentVariables(switchAccentColor);
 
     return (
       <div
         className={cn(
           "unburn-switch-root",
           isAnimating && (isChecked ? "unburn-switch-jar-on" : "unburn-switch-jar-off"),
-          classNames?.root
+          classNames?.switchRoot
         )}
-        style={{ ...styles?.root, ...accentStyle }}
+        style={{ ...styles?.switchRoot, ...accentStyle }}
       >
         <div
           className={cn(
             "unburn-switch-container",
-            disabled && "unburn-switch-disabled",
-            classNames?.container
+            switchDisabled && "unburn-switch-disabled",
+            classNames?.switchContainer
           )}
-          style={styles?.container}
+          style={styles?.switchContainer}
           onClick={handleToggle}
         >
-          <div className={cn("unburn-switch-wrapper", `unburn-switch-wrapper-${size}`)}>
+          <div className={cn("unburn-switch-wrapper", `unburn-switch-wrapper-${switchSize}`)}>
             <button
               type="button"
-              id={switchId}
+              id={resolvedId}
               ref={ref}
               role="switch"
               aria-checked={isChecked}
-              aria-labelledby={label ? `${switchId}-label` : undefined}
-              aria-describedby={description ? `${switchId}-desc` : undefined}
-              disabled={disabled}
+              aria-labelledby={switchLabel ? `${resolvedId}-label` : undefined}
+              aria-describedby={switchDescription ? `${resolvedId}-desc` : undefined}
+              disabled={switchDisabled}
               onKeyDown={handleKeyDown}
               className={cn(
                 "unburn-switch-track",
-                `unburn-switch-track-${variant}`,
-                `unburn-switch-track-${size}`,
-                (variant === 'outlined' || variant === 'duo') && 'unburn-glass',
+                `unburn-switch-track-${switchVariant}`,
+                `unburn-switch-track-${switchSize}`,
+                (switchVariant === 'outlined' || switchVariant === 'duo') && 'unburn-glass',
                 isChecked && "unburn-switch-track-checked",
-                className,
-                classNames?.track
+                switchClassName,
+                classNames?.switchTrack
               )}
-              style={styles?.track}
+              style={styles?.switchTrack}
             >
               <div
                 className={cn(
                   "unburn-switch-thumb",
-                  `unburn-switch-thumb-${size}`,
+                  `unburn-switch-thumb-${switchSize}`,
                   isChecked && "unburn-switch-thumb-checked",
-                  classNames?.thumb
+                  classNames?.switchThumb
                 )}
-                style={styles?.thumb}
+                style={styles?.switchThumb}
               />
             </button>
           </div>
-          {(label || description) && (
+          {(switchLabel || switchDescription) && (
             <div className="unburn-switch-content">
-              {label && (
+              {switchLabel && (
                 <label
-                  id={`${switchId}-label`}
-                  className={cn("unburn-switch-label", classNames?.label)}
-                  style={styles?.label}
+                  id={`${resolvedId}-label`}
+                  className={cn("unburn-switch-label", classNames?.switchLabel)}
+                  style={styles?.switchLabel}
                   onClick={(e) => e.preventDefault()}
                 >
-                  {label}
+                  {switchLabel}
                 </label>
               )}
-              {description && (
+              {switchDescription && (
                 <p
-                  id={`${switchId}-desc`}
-                  className={cn("unburn-switch-description", classNames?.description)}
-                  style={styles?.description}
+                  id={`${resolvedId}-desc`}
+                  className={cn("unburn-switch-description", classNames?.switchDescription)}
+                  style={styles?.switchDescription}
                 >
-                  {description}
+                  {switchDescription}
                 </p>
               )}
             </div>

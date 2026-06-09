@@ -41,33 +41,10 @@
   transition: border-color var(--transition);
 }
 
-.unburn-voice-grid {
-  display: grid;
-  width: max-content;
-  height: max-content;
-  gap: var(--voice-grid-gap);
+.unburn-voice-canvas {
+  display: block;
   z-index: 2;
   position: relative;
-}
-
-.unburn-voice-dot {
-  width: var(--voice-dot-size, 8px);
-  height: var(--voice-dot-size, 8px);
-  border-radius: var(--voice-dot-radius);
-  background-color: var(--voice-dot-inactive);
-  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.unburn-voice-dot.unburn-dot-hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.unburn-voice-dot.unburn-dot-active {
-  background-color: var(--voice-accent);
-  box-shadow: 0 0 10px var(--voice-accent-glow), 0 0 20px color-mix(in srgb, var(--voice-accent) 20%, transparent);
-  transform: scale(1.15);
-  z-index: 3;
 }
 
 .unburn-voice-controls {

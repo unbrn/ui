@@ -26,12 +26,11 @@ const CodeBlockPage = lazy(() => import('./pages/components/CodeBlockPage').then
 const ComponentsPage = lazy(() => import('./pages/ComponentsPage').then(m => ({ default: m.ComponentsPage })));
 const InstallationPage = lazy(() => import('./pages/InstallationPage').then(m => ({ default: m.InstallationPage })));
 const DropzonePage = lazy(() => import('./pages/components/DropzonePage').then(m => ({ default: m.DropzonePage })));
-const VideoEmbedPage = lazy(() => import('./pages/components/VideoEmbedPage').then(m => ({ default: m.VideoEmbedPage })));
 const SliderPage = lazy(() => import('./pages/components/SliderPage').then(m => ({ default: m.SliderPage })));
 const TooltipPage = lazy(() => import('./pages/components/TooltipPage').then(m => ({ default: m.TooltipPage })));
 const StepsPage = lazy(() => import('./pages/components/StepsPage').then(m => ({ default: m.StepsPage })));
-const TabsPage = lazy(() => import('./pages/components/TabsPage').then(m => ({ default: m.TabsPage })));
 const VoiceAgentPage = lazy(() => import('./pages/components/VoiceAgentPage').then(m => ({ default: m.VoiceAgentPage })));
+const ChangelogPage = lazy(() => import('./pages/ChangelogPage').then(m => ({ default: m.ChangelogPage })));
 
 type Theme = 'light' | 'dark';
 
@@ -69,6 +68,22 @@ interface AppContentProps {
 function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: AppContentProps) {
   const location = useLocation();
   const isDocsRoute = location.pathname.startsWith('/docs');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    const handleState = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      setIsSidebarOpen(customEvent.detail.isOpen);
+    };
+    window.addEventListener('docs-sidebar-state', handleState);
+    return () => window.removeEventListener('docs-sidebar-state', handleState);
+  }, []);
+
+  useEffect(() => {
+    if (!isDocsRoute) {
+      setIsSidebarOpen(false);
+    }
+  }, [isDocsRoute]);
 
   return (
     <div className="unburn-app">
@@ -107,12 +122,11 @@ function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: A
                 <Route path="components/textarea" element={<TextareaPage />} />
                 <Route path="components/code-block" element={<CodeBlockPage />} />
                 <Route path="components/dropzone" element={<DropzonePage />} />
-                <Route path="components/video-embed" element={<VideoEmbedPage />} />
                 <Route path="components/slider" element={<SliderPage />} />
                 <Route path="components/tooltip" element={<TooltipPage />} />
                 <Route path="components/steps" element={<StepsPage />} />
-                <Route path="components/tabs" element={<TabsPage />} />
                 <Route path="components/voice-agent" element={<VoiceAgentPage />} />
+                <Route path="changelog" element={<ChangelogPage />} />
               </Route>
 
               <Route path="/installation" element={<Navigate to="/docs/quick-start" replace />} />
@@ -125,14 +139,17 @@ function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: A
       </div>
 
       <Dock
-        isMenuOpen={isMenuOpen}
-        onMenuToggle={() => setMenuOpen(!isMenuOpen)}
-        position='bottom'
-      >
-        <Button onClick={toggleTheme}>
-          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-        </Button>
-      </Dock>
+        dockIsMenuOpen={isMenuOpen}
+        dockOnMenuToggle={() => setMenuOpen(!isMenuOpen)}
+        dockPosition='bottom'
+        dockClassName={isSidebarOpen ? 'dock-hidden' : ''}
+        dockChildren={
+          <Button
+            buttonOnClick={toggleTheme}
+            buttonChildren={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          />
+        }
+      />
 
       {!isDocsRoute && (
         <footer className="unburn-footer">

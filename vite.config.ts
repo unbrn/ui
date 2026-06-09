@@ -2,6 +2,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
+import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -15,7 +16,9 @@ export default defineConfig(({ mode }) => {
           tsconfigPath: './tsconfig.lib.json',
           insertTypesEntry: true,
         })
-      ] : []),
+      ] : [
+        basicSsl()
+      ]),
     ],
     build: isLib ? {
       lib: {
@@ -36,9 +39,7 @@ export default defineConfig(({ mode }) => {
           'components/Slider/Slider': resolve(__dirname, 'package/components/Slider/Slider.tsx'),
           'components/Tooltip/Tooltip': resolve(__dirname, 'package/components/Tooltip/Tooltip.tsx'),
           'components/Textarea/Textarea': resolve(__dirname, 'package/components/Textarea/Textarea.tsx'),
-          'components/VideoEmbed/VideoEmbed': resolve(__dirname, 'package/components/VideoEmbed/VideoEmbed.tsx'),
           'components/Steps/Steps': resolve(__dirname, 'package/components/Steps/Steps.tsx'),
-          'components/Tabs/Tabs': resolve(__dirname, 'package/components/Tabs/Tabs.tsx'),
           'components/VoiceAgent/VoiceAgent': resolve(__dirname, 'package/components/VoiceAgent/VoiceAgent.tsx'),
           'lib/utils': resolve(__dirname, 'package/lib/utils.ts'),
           'lib/colors': resolve(__dirname, 'package/lib/colors.ts'),

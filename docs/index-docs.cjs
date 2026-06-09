@@ -43,7 +43,8 @@ function createHtmlPage(title, route, bodyText) {
 
 const standardPages = [
   { file: 'InstallationPage.tsx', title: 'Quick Start', route: '/docs/quick-start' },
-  { file: 'HomePage.tsx', title: 'Homepage', route: '/' }
+  { file: 'HomePage.tsx', title: 'Homepage', route: '/' },
+  { file: 'ChangelogPage.tsx', title: 'Changelog', route: '/docs/changelog' }
 ];
 
 standardPages.forEach(p => {

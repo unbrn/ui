@@ -87,6 +87,18 @@ export const DocsSidebar: React.FC = () => {
 
           <div className="sidebar-tree-branch">
             <NavLink
+              to="/docs/changelog"
+              end
+              className={({ isActive }) =>
+                `sidebar-branch-header sidebar-branch-link ${isActive ? 'active' : ''}`
+              }
+            >
+              Changelog
+            </NavLink>
+          </div>
+
+          <div className="sidebar-tree-branch">
+            <NavLink
               to="/docs/components"
               end
               className={({ isActive }) =>

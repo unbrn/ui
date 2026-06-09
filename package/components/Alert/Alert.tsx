@@ -1,97 +1,100 @@
-import React, { type HTMLAttributes, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { cn } from '../../lib/utils';
 import { getAccentVariables } from '../../lib/colors';
 import './Alert.css';
 
-export interface AlertProps extends HTMLAttributes<HTMLDivElement> {
-  color?: string;
-  variant?: 'outlined' | 'duo' | 'filled';
-  icon?: React.ReactNode;
-  title: string;
-  description?: React.ReactNode;
-  actions?: React.ReactNode;
+export interface AlertProps {
+  alertAccentColor?: string;
+  alertVariant?: 'outlined' | 'duo' | 'filled';
+  alertIcon?: React.ReactNode;
+  alertTitle: string;
+  alertDescription?: React.ReactNode;
+  alertActions?: React.ReactNode;
+  alertClassName?: string;
+  alertStyle?: React.CSSProperties;
+  alertChildren?: React.ReactNode;
   classNames?: {
-    root?: string;
-    icon?: string;
-    title?: string;
-    description?: string;
-    actions?: string;
+    alertRoot?: string;
+    alertIcon?: string;
+    alertTitle?: string;
+    alertDescription?: string;
+    alertActions?: string;
   };
   styles?: {
-    root?: React.CSSProperties;
-    icon?: React.CSSProperties;
-    title?: React.CSSProperties;
-    description?: React.CSSProperties;
-    actions?: React.CSSProperties;
+    alertRoot?: React.CSSProperties;
+    alertIcon?: React.CSSProperties;
+    alertTitle?: React.CSSProperties;
+    alertDescription?: React.CSSProperties;
+    alertActions?: React.CSSProperties;
   };
 }
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   (
     {
-      className,
-      color,
-      variant = 'filled',
-      icon,
-      title,
-      description,
-      actions,
-      style,
+      alertClassName,
+      alertAccentColor,
+      alertVariant = 'filled',
+      alertIcon,
+      alertTitle,
+      alertDescription,
+      alertActions,
+      alertStyle,
       classNames,
       styles,
-      ...props
+      alertChildren
     },
     ref
   ) => {
-    const accentStyle = getAccentVariables(color);
+    const accentStyle = getAccentVariables(alertAccentColor);
 
     return (
       <div
         ref={ref}
-        style={{ ...style, ...accentStyle, ...styles?.root }}
+        style={{ ...alertStyle, ...accentStyle, ...styles?.alertRoot }}
         className={cn(
           'unburn-alert',
-          icon && 'unburn-alert-has-icon',
-          variant !== 'filled' && 'unburn-glass',
-          variant === 'duo' && 'unburn-alert-duo',
-          variant === 'filled' && 'unburn-alert-filled',
-          className,
-          classNames?.root
+          alertIcon && 'unburn-alert-has-icon',
+          alertVariant !== 'filled' && 'unburn-glass',
+          alertVariant === 'duo' && 'unburn-alert-duo',
+          alertVariant === 'filled' && 'unburn-alert-filled',
+          alertClassName,
+          classNames?.alertRoot
         )}
-        {...props}
       >
         <div className="unburn-alert-header">
-          {icon && (
+          {alertIcon && (
             <div
-              className={cn("unburn-alert-icon", classNames?.icon)}
-              style={styles?.icon}
+              className={cn("unburn-alert-icon", classNames?.alertIcon)}
+              style={styles?.alertIcon}
             >
-              {icon}
+              {alertIcon}
             </div>
           )}
           <div
-            className={cn("unburn-alert-title", classNames?.title)}
-            style={styles?.title}
+            className={cn("unburn-alert-title", classNames?.alertTitle)}
+            style={styles?.alertTitle}
           >
-            {title}
+            {alertTitle}
           </div>
         </div>
-        {description && (
+        {alertDescription && (
           <div
-            className={cn("unburn-alert-description", classNames?.description)}
-            style={styles?.description}
+            className={cn("unburn-alert-description", classNames?.alertDescription)}
+            style={styles?.alertDescription}
           >
-            {description}
+            {alertDescription}
           </div>
         )}
-        {actions && (
+        {alertActions && (
           <div
-            className={cn("unburn-alert-actions", classNames?.actions)}
-            style={styles?.actions}
+            className={cn("unburn-alert-actions", classNames?.alertActions)}
+            style={styles?.alertActions}
           >
-            {actions}
+            {alertActions}
           </div>
         )}
+        {alertChildren}
       </div>
     );
   }
