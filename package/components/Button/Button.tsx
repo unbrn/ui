@@ -8,7 +8,7 @@ import './Button.css';
 import { getAccentVariables } from '../../lib/colors';
 
 export interface ButtonProps {
-  buttonVariant?: 'filled' | 'outlined' | 'duo';
+  buttonVariant?: 'filled' | 'outlined' | 'duo' | 'ghost';
   buttonSize?: 'sm' | 'default' | 'lg';
   buttonLoading?: boolean;
   buttonFullWidth?: boolean;
@@ -23,6 +23,7 @@ export interface ButtonProps {
   buttonOnClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   buttonType?: 'button' | 'submit' | 'reset';
   buttonChildren?: React.ReactNode;
+  children?: React.ReactNode;
   buttonId?: string;
   classNames?: {
     buttonRoot?: string;
@@ -36,18 +37,25 @@ export interface ButtonProps {
   };
 }
 
+export const ButtonContext = React.createContext<{
+  buttonSize?: 'sm' | 'default' | 'lg';
+  buttonVariant?: 'filled' | 'outlined' | 'duo' | 'ghost';
+  buttonAccentColor?: string;
+}>({});
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       buttonClassName,
-      buttonVariant = 'filled',
-      buttonSize = 'default',
+      buttonVariant,
+      buttonSize,
       buttonLoading = false,
       buttonFullWidth = false,
       buttonOpacityLevel = '100',
       buttonIcon,
       buttonIconPosition = 'left',
       buttonChildren,
+      children,
       buttonDisabled,
       buttonStyle,
       classNames,
@@ -60,8 +68,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const isIconOnly = (buttonIcon || buttonLoading) && !buttonChildren;
-    const accentStyle = getAccentVariables(buttonAccentColor);
+    const context = React.useContext(ButtonContext);
+    const resolvedVariant = buttonVariant ?? context.buttonVariant ?? 'filled';
+    const resolvedSize = buttonSize ?? context.buttonSize ?? 'default';
+    const resolvedAccentColor = buttonAccentColor ?? context.buttonAccentColor;
+
+    const resolvedChildren = buttonChildren ?? children;
+    const isIconOnly = (buttonIcon || buttonLoading) && !resolvedChildren;
+    const accentStyle = getAccentVariables(resolvedAccentColor);
 
     return (
       <button
@@ -73,10 +87,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         style={{ ...buttonStyle, ...styles?.buttonRoot, ...accentStyle }}
         className={cn(
           'unburn-btn',
-          `unburn-btn-${buttonVariant}`,
-          `unburn-btn-${buttonSize}`,
+          `unburn-btn-${resolvedVariant}`,
+          `unburn-btn-${resolvedSize}`,
           `unburn-btn-opacity-${buttonOpacityLevel}`,
-          (buttonVariant === 'outlined' || buttonVariant === 'duo') && 'unburn-glass',
+          (resolvedVariant === 'outlined' || resolvedVariant === 'duo') && 'unburn-glass',
           isIconOnly && 'unburn-btn-icon-only',
           buttonFullWidth && 'unburn-btn-full-width',
           buttonActive && 'unburn-btn-active',
@@ -99,7 +113,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             {buttonIcon}
           </span>
         )}
-        {buttonChildren}
+        {resolvedChildren}
         {!buttonLoading && buttonIcon && buttonIconPosition === 'right' && (
           <span
             className={cn(!isIconOnly && "unburn-btn-icon-right", classNames?.buttonIcon)}
@@ -359,6 +373,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
         buttonGroupTabs && 'unburn-btn-group-tabs',
         buttonGroupTabs && `unburn-btn-group-tabs-${buttonGroupVariant}`,
         isDraggingState && 'unburn-btn-group-dragging',
+        'unburn-glass',
         buttonGroupClassName
       )}
       style={buttonGroupStyle}

@@ -13,6 +13,7 @@ export interface AlertProps {
   alertClassName?: string;
   alertStyle?: React.CSSProperties;
   alertChildren?: React.ReactNode;
+  children?: React.ReactNode;
   classNames?: {
     alertRoot?: string;
     alertIcon?: string;
@@ -42,7 +43,8 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
       alertStyle,
       classNames,
       styles,
-      alertChildren
+      alertChildren,
+      children
     },
     ref
   ) => {
@@ -94,7 +96,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
             {alertActions}
           </div>
         )}
-        {alertChildren}
+        {children ?? alertChildren}
       </div>
     );
   }

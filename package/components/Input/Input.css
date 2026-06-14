@@ -26,13 +26,11 @@
   transition: all 0.2s var(--transition-curve);
   border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
   background-color: color-mix(in srgb, var(--bg-secondary) 30%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   overflow: hidden;
 }
 
 .unburn-input-container:focus-within {
-  border-color: var(--accent-color);
+  border-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
 }
 
 .unburn-input-container-filled {
@@ -44,8 +42,6 @@
 .unburn-input-container-duo {
   background-color: color-mix(in srgb, var(--accent-color) 8%, transparent);
   border-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .unburn-input-container-sm {

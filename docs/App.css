@@ -687,7 +687,7 @@
 
 .catalog-preview-area {
   height: 200px;
-  background-color: var(--bg-glass);
+  background-color: transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   display: flex;
@@ -1051,13 +1051,6 @@
 
   .hero-br {
     display: none;
-  }
-
-  .unburn-btn-lg {
-    min-height: 44px !important;
-    padding: 0 1.25rem !important;
-    font-size: 0.9rem !important;
-    border-radius: var(--radius-md) !important;
   }
 
   .hero-actions {

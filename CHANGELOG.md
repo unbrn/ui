@@ -2,6 +2,30 @@
 
 All notable changes to @unburn/ui will be documented in this file.
 
+## [1.5.3] - 2026-06-14
+### Features
+- **Added new Component (`Action`)**: Introduced a customizable popover and action-list component supporting flexible positions, alignments, controlled state, custom headers/footers, and custom accents.
+- **Select Component Enhancements**:
+  - Added support for item-specific leading icons (`selectOptionIcon`) and default trigger icons (`selectIcon`).
+  - Added support for asynchronous loading state (`selectLoading`) featuring an elegant, responsive spinner and proper `aria-busy` state mapping.
+  - Implemented dynamic positioning (`dropdownPosition`) that intelligently switches alignment to open `top` or `bottom` depending on available viewport height.
+  - Integrated custom accent color configurations (`selectAccentColor`).
+- **Dock Component Overrides**:
+  - Implemented nested button context propagation (`ButtonContext`), enabling uniform styling (`dockButtonSize`, `dockButtonVariant`, `dockButtonAccentColor`) to propagate from `Dock` to all children buttons automatically.
+  - Added corner positioning (`top-left`, `top-right`, `bottom-left`, `bottom-right`) for extra placement flexibility.
+  - Added a `dockShowMenuToggle` flag to optionally hide the default menu/hamburger icon trigger.
+- **Button Component Enhancements**:
+  - Introduced a clean, subtle `ghost` variant (`buttonVariant="ghost"`).
+  - Integrated `ButtonContext` support to seamlessly inherit sizing/variant configurations when nested inside parent wrappers (like `Dock`).
+- **Standard React Children Support**: Added fallbacks to allow standard `children` arrays alongside custom layout props (`buttonChildren`, `alertChildren`, `badgeChildren`, `dockChildren`, `tooltipChildren`, `stepsChildren`, and `stepChildren`).
+- **Enhanced Glassmorphism Aesthetics**:
+  - Increased backdrop-filter blur on the core `.unburn-glass` class to `20px` for a richer, more premium feel.
+  - Automatically applied glass styling properties to `ButtonGroup`, `Select` dropdowns, outlined `CodeBlock`s, `Dropzone` panels, outlined/duo `Textarea` wrappers, and `Tooltip` bubbles.
+
+### Bug Fixes & Adjustments
+- **Docs Layout Simplification**: Refactored the `Props` layout tables to display a clean, flat list of component options instead of split prop groups, simplifying properties tables across all component pages.
+- **Docs Maintenance**: Cleaned up obsolete layout and showcase references to the deleted "Video Embed" component, and updated previews for `Select` and `Dock` components to showcase new customization options.
+
 ## [1.5.2] - 2026-06-10
 ### Bug Fixes & Adjustments
 - **Fixed Dock Collapse Button Styles**: Restored the missing built-in `.unburn-dock-collapse-btn` CSS class to the collapse Button component in `Dock.tsx` so that it receives correct library styling.

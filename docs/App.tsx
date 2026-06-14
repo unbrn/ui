@@ -12,6 +12,7 @@ import { DocsSearchModal } from './components/layout/DocsSearchModal';
 
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
 const ButtonsPage = lazy(() => import('./pages/components/ButtonsPage').then(m => ({ default: m.ButtonsPage })));
+const ActionPage = lazy(() => import('./pages/components/ActionPage').then(m => ({ default: m.ActionPage })));
 const AvatarsPage = lazy(() => import('./pages/components/AvatarsPage').then(m => ({ default: m.AvatarsPage })));
 const AlertsPage = lazy(() => import('./pages/components/AlertsPage').then(m => ({ default: m.AlertsPage })));
 const AccordionsPage = lazy(() => import('./pages/components/AccordionsPage').then(m => ({ default: m.AccordionsPage })));
@@ -112,6 +113,7 @@ function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: A
 
                 <Route path="components" element={<ComponentsPage />} />
                 <Route path="components/buttons" element={<ButtonsPage />} />
+                <Route path="components/action" element={<ActionPage />} />
                 <Route path="components/avatars" element={<AvatarsPage />} />
                 <Route path="components/alerts" element={<AlertsPage />} />
                 <Route path="components/accordions" element={<AccordionsPage />} />
@@ -148,7 +150,7 @@ function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: A
         dockChildren={
           <Button
             buttonOnClick={toggleTheme}
-            buttonChildren={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            buttonIcon={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           />
         }
       />

@@ -4,7 +4,7 @@ import { Button } from '../../../package/components/Button/Button';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
-import { Plus, Search, Home, Sun, Moon } from 'lucide-react';
+import { Plus, Search, Home, Sun, Moon, Trash } from 'lucide-react';
 import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export interface DockPageProps {
@@ -53,7 +53,7 @@ export default function Example() {
             dockChildren={
               <Button
                 buttonOnClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
-                buttonChildren={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                buttonIcon={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
               />
             }
           />
@@ -92,23 +92,21 @@ export default function Layout({ children }) {
 
         <Showcase
           title="Custom Actions"
-          description="Add custom action buttons inside the dock."
+          description="By default, buttons inside the dock use the duo variant and large size."
           code={`import { Dock } from '@unburn/ui/Dock';
 import { Button } from '@unburn/ui/Button';
 import { Home, Search, Plus } from 'lucide-react';
 
 export default function Example() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <Dock
-      dockIsMenuOpen={isOpen}
-      dockOnMenuToggle={() => setIsOpen(!isOpen)}
+      dockIsMenuOpen={false}
+      dockOnMenuToggle={() => {}}
       dockChildren={
         <>
-          <Button buttonChildren={<Home size={20} />} />
-          <Button buttonChildren={<Search size={20} />} />
-          <Button buttonChildren={<Plus size={20} />} />
+          <Button buttonIcon={<Home size={20} />} />
+          <Button buttonIcon={<Search size={20} />} />
+          <Button buttonIcon={<Plus size={20} />} />
         </>
       }
     />
@@ -122,9 +120,90 @@ export default function Example() {
               dockClassName="showcase-dock"
               dockChildren={
                 <>
-                  <Button buttonChildren={<Home size={20} />} />
-                  <Button buttonChildren={<Search size={20} />} />
-                  <Button buttonChildren={<Plus size={20} />} />
+                  <Button buttonIcon={<Home size={20} />} />
+                  <Button buttonIcon={<Search size={20} />} />
+                  <Button buttonIcon={<Plus size={20} />} />
+                </>
+              }
+            />
+          </div>
+        </Showcase>
+
+        <Showcase
+          title="Global Customization"
+          description="Style all dock buttons globally using dockButtonVariant, dockButtonSize, and dockButtonAccentColor."
+          code={`import { Dock } from '@unburn/ui/Dock';
+import { Button } from '@unburn/ui/Button';
+import { Home, Search, Plus } from 'lucide-react';
+
+export default function Example() {
+  return (
+    <Dock
+      dockIsMenuOpen={false}
+      dockOnMenuToggle={() => {}}
+      dockButtonAccentColor="#10b981"
+      dockChildren={
+        <>
+          <Button buttonIcon={<Home size={20} />} />
+          <Button buttonIcon={<Search size={20} />} />
+          <Button buttonIcon={<Plus size={20} />} />
+        </>
+      }
+    />
+  );
+}`}
+        >
+          <div style={{ height: '120px', position: 'relative', width: '100%', overflow: 'hidden' }}>
+            <Dock
+              dockIsMenuOpen={false}
+              dockOnMenuToggle={() => { }}
+              dockClassName="showcase-dock"
+              dockButtonAccentColor="#10b981"
+              dockShowHideToggle={false}
+              dockChildren={
+                <>
+                  <Button buttonIcon={<Home size={20} />} />
+                  <Button buttonIcon={<Search size={20} />} />
+                  <Button buttonIcon={<Plus size={20} />} />
+                </>
+              }
+            />
+          </div>
+        </Showcase>
+
+        <Showcase
+          title="Buttons with Text & Overrides"
+          description="Buttons inside the dock can include text labels and override global styles individually."
+          code={`import { Dock } from '@unburn/ui/Dock';
+import { Button } from '@unburn/ui/Button';
+import { Trash } from 'lucide-react';
+
+export default function Example() {
+  return (
+    <Dock
+      dockShowMenuToggle={false}
+      dockShowHideToggle={false}
+      dockChildren={
+        <>
+          <Button>Save Changes</Button>
+          <Button buttonAccentColor="red" buttonIcon={<Trash size={20} />} />
+        </>
+      }
+    />
+  );
+}`}
+        >
+          <div style={{ height: '120px', position: 'relative', width: '100%', overflow: 'hidden' }}>
+            <Dock
+              dockIsMenuOpen={false}
+              dockOnMenuToggle={() => { }}
+              dockClassName="showcase-dock"
+              dockShowMenuToggle={false}
+              dockShowHideToggle={false}
+              dockChildren={
+                <>
+                  <Button>Save Changes</Button>
+                  <Button buttonAccentColor="red" buttonIcon={<Trash size={20} />} />
                 </>
               }
             />
@@ -135,7 +214,7 @@ export default function Example() {
           title="Configuration"
           description="Show or hide the collapse button on the right."
           code={`import { Dock } from '@unburn/ui/Dock';
-
+ 
 export default function Example() {
   return (
     <Dock
@@ -161,10 +240,14 @@ export default function Example() {
 
       <Props
         props={[
-          { name: 'dockIsMenuOpen', type: 'boolean', required: true, description: 'Turn the main menu on or off.' },
-          { name: 'dockOnMenuToggle', type: 'function', required: true, description: 'Function called when clicking the menu button.' },
+          { name: 'dockIsMenuOpen', type: 'boolean', defaultValue: 'false', description: 'Turn the main menu on or off.' },
+          { name: 'dockOnMenuToggle', type: 'function', description: 'Function called when clicking the menu button.' },
+          { name: 'dockShowMenuToggle', type: 'boolean', defaultValue: 'true', description: 'Show the main menu hamburger/toggle button.' },
           { name: 'dockPosition', type: "'top' | 'bottom' | 'left' | 'right'", defaultValue: "'bottom'", description: 'Where the dock attaches on the screen (top, bottom, left, or right).' },
           { name: 'dockShowHideToggle', type: 'boolean', defaultValue: 'true', description: 'Show the arrow button to hide the dock.' },
+          { name: 'dockButtonSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'Default size for all buttons inside the dock.' },
+          { name: 'dockButtonVariant', type: "'filled' | 'outlined' | 'duo' | 'ghost'", defaultValue: "'outlined'", description: 'Default variant for all buttons inside the dock.' },
+          { name: 'dockButtonAccentColor', type: 'string', description: 'Default accent color for all buttons inside the dock.' },
           { name: 'dockClassName', type: 'string', description: 'Custom CSS class for the root container.' },
           { name: 'dockStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
           { name: 'dockChildren', type: 'ReactNode', description: 'The buttons or action components inside the dock.' },

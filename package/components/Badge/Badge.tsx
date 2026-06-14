@@ -12,6 +12,7 @@ export interface BadgeProps {
   badgeClassName?: string;
   badgeStyle?: React.CSSProperties;
   badgeChildren?: React.ReactNode;
+  children?: React.ReactNode;
   classNames?: {
     badgeRoot?: string;
     badgeIcon?: string;
@@ -26,6 +27,7 @@ export interface BadgeProps {
 
 export const Badge: React.FC<BadgeProps> = ({
   badgeChildren,
+  children,
   badgeVariant = 'filled',
   badgeSize = 'md',
   badgeIcon,
@@ -37,6 +39,7 @@ export const Badge: React.FC<BadgeProps> = ({
   badgeStyle
 }) => {
   const accentStyle = getAccentVariables(badgeAccentColor);
+  const displayChildren = children ?? badgeChildren;
 
   return (
     <div
@@ -62,7 +65,7 @@ export const Badge: React.FC<BadgeProps> = ({
         className={cn('unburn-badge-text', classNames?.badgeText)}
         style={styles?.badgeText}
       >
-        {badgeChildren}
+        {displayChildren}
       </span>
       {badgeIcon && badgeIconPosition === 'right' && (
         <span

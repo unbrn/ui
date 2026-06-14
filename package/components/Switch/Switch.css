@@ -163,8 +163,6 @@
 .unburn-switch-track-outlined {
   background-color: color-mix(in srgb, var(--bg-secondary) 30%, transparent);
   border-color: color-mix(in srgb, var(--border-color) 60%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .unburn-switch-track-outlined:hover {
@@ -184,8 +182,6 @@
 .unburn-switch-track-duo {
   background-color: color-mix(in srgb, var(--accent-color) 8%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent-color) 15%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .unburn-switch-track-duo:hover {

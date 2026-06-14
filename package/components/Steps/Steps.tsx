@@ -8,11 +8,13 @@ export interface StepItem {
   stepTitle: string;
   stepDescription?: string;
   stepChildren?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface StepsProps {
   stepsItems?: StepItem[];
   stepsChildren?: React.ReactNode;
+  children?: React.ReactNode;
   stepsClassName?: string;
   stepsStyle?: React.CSSProperties;
   classNames?: {
@@ -38,6 +40,7 @@ export const Steps = forwardRef<HTMLDivElement, StepsProps>(
     {
       stepsItems,
       stepsChildren,
+      children,
       stepsClassName,
       stepsStyle,
       classNames,
@@ -46,48 +49,51 @@ export const Steps = forwardRef<HTMLDivElement, StepsProps>(
     ref
   ) => {
     const childArray = stepsItems
-      ? stepsItems.map((item, i) => (
-        <div
-          key={i}
-          className={cn('unburn-step', classNames?.stepsStep)}
-          style={styles?.stepsStep}
-        >
-          <div className="unburn-step-left">
-            <div
-              className={cn('unburn-step-marker', classNames?.stepsMarker)}
-              style={styles?.stepsMarker}
-            >
-              {i + 1}
-            </div>
-            {i < stepsItems.length - 1 && (
+      ? stepsItems.map((item, i) => {
+        const displayStepChildren = item.children ?? item.stepChildren;
+        return (
+          <div
+            key={i}
+            className={cn('unburn-step', classNames?.stepsStep)}
+            style={styles?.stepsStep}
+          >
+            <div className="unburn-step-left">
               <div
-                className={cn('unburn-step-connector', classNames?.stepsConnector)}
-                style={styles?.stepsConnector}
-              />
-            )}
-          </div>
-          <div className="unburn-step-content">
-            <div
-              className={cn('unburn-step-title', classNames?.stepsTitle)}
-              style={styles?.stepsTitle}
-            >
-              {item.stepTitle}
-            </div>
-            {item.stepDescription && (
-              <div
-                className={cn('unburn-step-description', classNames?.stepsDescription)}
-                style={styles?.stepsDescription}
+                className={cn('unburn-step-marker', classNames?.stepsMarker)}
+                style={styles?.stepsMarker}
               >
-                {item.stepDescription}
+                {i + 1}
               </div>
-            )}
-            {item.stepChildren && (
-              <div className="unburn-step-body">{item.stepChildren}</div>
-            )}
+              {i < stepsItems.length - 1 && (
+                <div
+                  className={cn('unburn-step-connector', classNames?.stepsConnector)}
+                  style={styles?.stepsConnector}
+                />
+              )}
+            </div>
+            <div className="unburn-step-content">
+              <div
+                className={cn('unburn-step-title', classNames?.stepsTitle)}
+                style={styles?.stepsTitle}
+              >
+                {item.stepTitle}
+              </div>
+              {item.stepDescription && (
+                <div
+                  className={cn('unburn-step-description', classNames?.stepsDescription)}
+                  style={styles?.stepsDescription}
+                >
+                  {item.stepDescription}
+                </div>
+              )}
+              {displayStepChildren && (
+                <div className="unburn-step-body">{displayStepChildren}</div>
+              )}
+            </div>
           </div>
-        </div>
-      ))
-      : stepsChildren;
+        );
+      })
+      : (children ?? stepsChildren);
 
     return (
       <div

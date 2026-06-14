@@ -19,8 +19,6 @@
   border-radius: var(--radius-xxl);
   padding: 0 1.25rem;
   background-color: color-mix(in srgb, var(--bg-secondary) 40%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .unburn-accordion-outlined .unburn-accordion-item:last-child {
@@ -152,8 +150,6 @@
   border: 1px solid color-mix(in srgb, var(--accent-color) 15%, transparent);
   border-radius: var(--radius-xxl);
   padding: 0 1.25rem;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .unburn-accordion-duo .unburn-accordion-item[data-state="open"] {

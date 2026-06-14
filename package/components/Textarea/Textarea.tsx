@@ -139,6 +139,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={cn(
             "unburn-textarea-container",
             `unburn-textarea-container-${textareaVariant}`,
+            (textareaVariant === 'outlined' || textareaVariant === 'duo') && 'unburn-glass',
             textareaError && "unburn-textarea-container-error",
             textareaDisabled && "unburn-textarea-container-disabled",
             classNames?.textareaContainer

@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => {
         entry: {
           index: resolve(__dirname, 'package/index.ts'),
           'components/Accordion/Accordion': resolve(__dirname, 'package/components/Accordion/Accordion.tsx'),
+          'components/Action/Action': resolve(__dirname, 'package/components/Action/Action.tsx'),
           'components/Alert/Alert': resolve(__dirname, 'package/components/Alert/Alert.tsx'),
           'components/Avatar/Avatar': resolve(__dirname, 'package/components/Avatar/Avatar.tsx'),
           'components/Badge/Badge': resolve(__dirname, 'package/components/Badge/Badge.tsx'),

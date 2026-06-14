@@ -14,15 +14,9 @@ interface StylingTarget {
   description: string;
 }
 
-interface PropGroup {
-  title: string;
-  props: PropDefinition[];
-}
-
 interface PropsTableProps {
   title?: string;
   props?: PropDefinition[];
-  groups?: PropGroup[];
   stylingTargets?: StylingTarget[];
   stylingStructure?: string;
 }
@@ -89,15 +83,8 @@ const renderStructure = (structure: string, targets: StylingTarget[]) => {
   return parts;
 };
 
-export const Props: React.FC<PropsTableProps> = ({ title = 'Props', props, groups, stylingTargets, stylingStructure }) => {
-  const resolvedGroups: PropGroup[] = [];
-  if (groups) {
-    resolvedGroups.push(...groups);
-  } else if (props) {
-    resolvedGroups.push({ title: 'Props', props });
-  }
-
-  if (resolvedGroups.length === 0) return null;
+export const Props: React.FC<PropsTableProps> = ({ title = 'Props', props, stylingTargets, stylingStructure }) => {
+  if (!props || props.length === 0) return null;
 
   return (
     <div className="props-section">
@@ -113,59 +100,39 @@ export const Props: React.FC<PropsTableProps> = ({ title = 'Props', props, group
             </tr>
           </thead>
           <tbody>
-            {resolvedGroups.map((group, groupIdx) => (
-              <React.Fragment key={groupIdx}>
-                {resolvedGroups.length > 1 && (
-                  <tr className="prop-group-header-row">
-                    <td colSpan={3}>
-                      <div className="prop-group-header-title">{group.title}</div>
-                    </td>
-                  </tr>
-                )}
-                {group.props.map((prop) => (
-                  <tr key={prop.name}>
-                    <td>
-                      <div className="prop-name">
-                        {prop.name}
-                        {prop.required && <span className="prop-required">*</span>}
-                      </div>
-                    </td>
-                    <td className="prop-type">{renderType(prop.type)}</td>
-                    <td className="prop-description">{prop.description}</td>
-                  </tr>
-                ))}
-              </React.Fragment>
+            {props.map((prop) => (
+              <tr key={prop.name}>
+                <td>
+                  <div className="prop-name">
+                    {prop.name}
+                    {prop.required && <span className="prop-required">*</span>}
+                  </div>
+                </td>
+                <td className="prop-type">{renderType(prop.type)}</td>
+                <td className="prop-description">{prop.description}</td>
+              </tr>
             ))}
           </tbody>
         </table>
       </div>
 
       <div className="props-mobile-list">
-        {resolvedGroups.map((group, groupIdx) => (
-          <React.Fragment key={groupIdx}>
-            {resolvedGroups.length > 1 && (
-              <div className="prop-group-mobile-header">
-                {group.title}
+        {props.map((prop) => (
+          <div className="prop-card" key={prop.name}>
+            <div className="prop-card-header">
+              <span className="prop-name">
+                {prop.name}
+                {prop.required && <span className="prop-required">*</span>}
+              </span>
+            </div>
+            <div className="prop-card-body">
+              <div className="prop-type-row">
+                <span className="label">Type:</span>
+                {renderType(prop.type)}
               </div>
-            )}
-            {group.props.map((prop) => (
-              <div className="prop-card" key={prop.name}>
-                <div className="prop-card-header">
-                  <span className="prop-name">
-                    {prop.name}
-                    {prop.required && <span className="prop-required">*</span>}
-                  </span>
-                </div>
-                <div className="prop-card-body">
-                  <div className="prop-type-row">
-                    <span className="label">Type:</span>
-                    {renderType(prop.type)}
-                  </div>
-                  <p className="prop-description">{prop.description}</p>
-                </div>
-              </div>
-            ))}
-          </React.Fragment>
+              <p className="prop-description">{prop.description}</p>
+            </div>
+          </div>
         ))}
       </div>
 
@@ -227,5 +194,3 @@ export const Props: React.FC<PropsTableProps> = ({ title = 'Props', props, group
     </div>
   );
 };
-
-

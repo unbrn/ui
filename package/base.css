@@ -2,131 +2,130 @@
 
 :root,
 :root[data-theme="light"] {
-  --font-sans: "Bricolage Grotesque", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+    --font-sans: "Bricolage Grotesque", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
 
-  --bg-main: #ffffff;
-  --bg-secondary: #f4f4f5;
-  --border-color: #c8c8c8ce;
-  --text-main: #000000;
-  --text-muted: #71717a;
+    --bg-main: #ffffff;
+    --bg-secondary: #f4f4f5;
+    --border-color: #c8c8c8ce;
+    --text-main: #000000;
+    --text-muted: #71717a;
 
-  --accent-color: #000000;
-  --accent-text: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.45);
+    --accent-color: #000000;
+    --accent-text: #ffffff;
+    --bg-glass: rgba(255, 255, 255, 0.45);
 
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-red: #ef4444;
-  --color-yellow: #facc15;
-  --color-green: #10b981;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-red: #ef4444;
+    --color-yellow: #facc15;
+    --color-green: #10b981;
 
-  --radius-xxl: 32px;
-  --radius-xl: 24px;
-  --radius-lg: 18px;
-  --radius-md: 14px;
-  --radius-sm: 10px;
-  --radius-xs: 6px;
-  --radius-full: 9999px;
+    --radius-xxl: 32px;
+    --radius-xl: 24px;
+    --radius-lg: 18px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+    --radius-full: 9999px;
 
-  --radius: var(--radius-md);
-  --shadow: none;
+    --radius: var(--radius-md);
+    --shadow: none;
 
-  --height-sm: 32px;
-  --height-default: 42px;
-  --height-lg: 52px;
+    --height-sm: 32px;
+    --height-default: 42px;
+    --height-lg: 52px;
 
-  --transition-speed: 0.4s;
-  --transition-curve: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --transition: var(--transition-speed) var(--transition-curve);
+    --transition-speed: 0.4s;
+    --transition-curve: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --transition: var(--transition-speed) var(--transition-curve);
 
 }
 
 :root[data-theme="dark"] {
-  --bg-main: #0a0a0a;
-  --bg-secondary: #161616;
-  --border-color: #222222;
-  --text-main: #ffffff;
-  --text-muted: #888888;
+    --bg-main: #0a0a0a;
+    --bg-secondary: #161616;
+    --border-color: #222222;
+    --text-main: #ffffff;
+    --text-muted: #888888;
 
-  --accent-color: #ffffff;
-  --accent-text: #000000;
-  --shadow: none;
-  --bg-glass: rgba(10, 10, 10, 0.5);
+    --accent-color: #ffffff;
+    --accent-text: #000000;
+    --shadow: none;
+    --bg-glass: rgba(10, 10, 10, 0.5);
 
 }
 
 .unburn-glass {
-  background-color: color-mix(in srgb, var(--bg-secondary) 40%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px)
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-sans);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .font-sans {
-  font-family: var(--font-sans);
+    font-family: var(--font-sans);
 }
 
 .font-serif {
-  font-family: var(--font-serif);
+    font-family: var(--font-serif);
 }
 
 .font-mono {
-  font-family: var(--font-mono);
+    font-family: var(--font-mono);
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 button,
 input,
 select,
 textarea {
-  font-family: inherit;
-  border-radius: var(--radius);
+    font-family: inherit;
+    border-radius: var(--radius);
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-main);
+    background: var(--bg-main);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-color);
+    background: var(--border-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+    background: var(--text-muted);
 }
 
 
 ::selection {
-  background-color: var(--accent-color);
-  color: var(--accent-text);
+    background-color: var(--accent-color);
+    color: var(--accent-text);
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }

@@ -140,6 +140,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({
       <div
         className={cn(
           "unburn-dropzone",
+          "unburn-glass",
           isDragging && "unburn-dropzone-dragging",
           dropzoneDisabled && "unburn-dropzone-disabled",
           files.length > 0 && "unburn-dropzone-has-files"
@@ -205,7 +206,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({
             };
 
             return (
-              <div key={`${file.name}-${index}`} className="unburn-dropzone-file-item">
+              <div key={`${file.name}-${index}`} className="unburn-dropzone-file-item unburn-glass">
                 <div className="unburn-dropzone-file-info">
                   <div className="unburn-dropzone-file-icon-wrapper">
                     {getFileIcon()}

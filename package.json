@@ -1,6 +1,6 @@
 {
   "name": "@unburn/ui",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "private": false,
   "description": "A premium, softly-rounded React component library.",
   "author": "Unburn",
@@ -20,6 +20,11 @@
       "types": "./dist/components/Accordion/Accordion.d.ts",
       "import": "./dist/components/Accordion/Accordion.mjs",
       "require": "./dist/components/Accordion/Accordion.cjs"
+    },
+    "./Action": {
+      "types": "./dist/components/Action/Action.d.ts",
+      "import": "./dist/components/Action/Action.mjs",
+      "require": "./dist/components/Action/Action.cjs"
     },
     "./Alert": {
       "types": "./dist/components/Alert/Alert.d.ts",

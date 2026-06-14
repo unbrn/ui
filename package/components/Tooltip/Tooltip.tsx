@@ -8,6 +8,7 @@ import { getAccentVariables } from '../../lib/colors';
 export interface TooltipProps {
   tooltipContent: React.ReactNode;
   tooltipChildren?: React.ReactNode;
+  children?: React.ReactNode;
   tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
   tooltipVisible?: boolean;
   tooltipAccentColor?: string;
@@ -36,6 +37,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       tooltipStyle,
       tooltipContent,
       tooltipChildren,
+      children,
       tooltipPosition = 'top',
       tooltipVisible: controlledVisible,
       tooltipAccentColor,
@@ -49,8 +51,9 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     const [isHovered, setIsHovered] = useState(false);
     const showTooltip = (controlledVisible !== undefined ? controlledVisible : isHovered) && !tooltipDisabled;
     const accentStyle = getAccentVariables(tooltipAccentColor);
+    const displayChildren = children ?? tooltipChildren;
 
-    if (!tooltipChildren) {
+    if (!displayChildren) {
       if (!showTooltip) return null;
       return (
         <div
@@ -60,6 +63,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
             "unburn-tooltip-bubble-standalone",
             `unburn-tooltip-bubble-${tooltipPosition}`,
             `unburn-tooltip-bubble-${tooltipVariant}`,
+            (tooltipVariant === 'outlined' || tooltipVariant === 'duo') && 'unburn-glass',
             tooltipClassName,
             classNames?.tooltipBubble
           )}
@@ -75,7 +79,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       <div
         ref={ref}
         className={cn("unburn-tooltip-root", tooltipClassName, classNames?.tooltipRoot)}
-        style={{ ...tooltipStyle, ...styles?.tooltipRoot, ...accentStyle }}
+        style={{ ...tooltipStyle, ...styles?.tooltipRoot }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onFocus={() => setIsHovered(true)}
@@ -85,7 +89,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           className={cn("unburn-tooltip-trigger", classNames?.tooltipTrigger)} 
           style={styles?.tooltipTrigger}
         >
-          {tooltipChildren}
+          {displayChildren}
         </div>
         
         {showTooltip && (
@@ -94,6 +98,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
               "unburn-tooltip-bubble",
               `unburn-tooltip-bubble-${tooltipPosition}`,
               `unburn-tooltip-bubble-${tooltipVariant}`,
+              (tooltipVariant === 'outlined' || tooltipVariant === 'duo') && 'unburn-glass',
               classNames?.tooltipBubble
             )}
             style={{ ...styles?.tooltipBubble, ...accentStyle }}

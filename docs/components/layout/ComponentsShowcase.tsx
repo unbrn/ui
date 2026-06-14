@@ -54,7 +54,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
     }}>
       <div style={{
         height: '32px',
-        background: 'var(--bg-glass)',
         border: '1px solid var(--accent-color)',
         borderRadius: '8px',
         display: 'flex',
@@ -68,7 +67,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       </div>
       <div style={{
         height: '32px',
-        background: 'var(--bg-glass)',
         border: '1px solid var(--border-color)',
         borderRadius: '8px',
         display: 'flex',
@@ -82,11 +80,83 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       </div>
     </div>
   ),
+  Action: (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '8px',
+      position: 'relative',
+      width: '140px',
+      padding: '8px'
+    }}>
+      <div style={{
+        width: '100px',
+        height: '30px',
+        border: '1px solid var(--border-color)',
+        borderRadius: '8px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0 10px',
+        background: 'var(--bg-secondary)',
+        opacity: 0.9,
+        zIndex: 1
+      }}>
+        <div style={{ width: '40px', height: '4px', background: 'var(--text-main)', opacity: 0.6, borderRadius: '2px' }}></div>
+        <ChevronDown size={12} color="var(--text-muted)" />
+      </div>
+      <div style={{
+        position: 'absolute',
+        top: '42px',
+        width: '120px',
+        padding: '6px',
+        border: '1px solid var(--border-color)',
+        borderRadius: '10px',
+        background: 'var(--bg-glass)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '4px',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+        zIndex: 2
+      }}>
+        <div style={{
+          height: '24px',
+          background: 'var(--accent-color)',
+          borderRadius: '6px',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '0 8px',
+        }}>
+          <div style={{ width: '50px', height: '3px', background: 'var(--accent-text)', borderRadius: '1.5px' }}></div>
+        </div>
+        <div style={{
+          height: '24px',
+          borderRadius: '6px',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '0 8px',
+        }}>
+          <div style={{ width: '40px', height: '3px', background: 'var(--text-main)', opacity: 0.5, borderRadius: '1.5px' }}></div>
+        </div>
+        <div style={{
+          height: '24px',
+          borderRadius: '6px',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '0 8px',
+        }}>
+          <div style={{ width: '35px', height: '3px', background: 'var(--text-main)', opacity: 0.5, borderRadius: '1.5px' }}></div>
+        </div>
+      </div>
+    </div>
+  ),
   Alerts: (
     <div style={{
       width: '140px',
       padding: '12px',
-      background: 'var(--bg-glass)',
       border: '1px solid var(--border-color)',
       borderRadius: '12px',
       display: 'flex',
@@ -105,7 +175,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
     <div style={{
       width: '130px',
       padding: '12px',
-      background: 'var(--bg-glass)',
       border: '1px solid var(--border-color)',
       borderRadius: '12px',
       display: 'flex',
@@ -137,7 +206,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
     <div style={{
       width: '140px',
       padding: '12px',
-      background: 'var(--bg-glass)',
       border: '1px solid var(--border-color)',
       borderLeft: '4px solid var(--accent-color)',
       borderRadius: '8px',
@@ -154,7 +222,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
   Dock: (
     <div style={{
       padding: '8px',
-      background: 'var(--bg-glass)',
       border: '1px solid var(--border-color)',
       borderRadius: '100px',
       display: 'flex',
@@ -170,7 +237,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
     <div style={{
       width: '130px',
       height: '90px',
-      background: 'var(--bg-glass)',
       border: '1px solid var(--border-color)',
       borderRadius: '16px',
       display: 'flex',
@@ -204,7 +270,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
     <div style={{
       width: '140px',
       padding: '12px 16px',
-      background: 'var(--bg-glass)',
       border: '1px solid var(--border-color)',
       borderRadius: '8px',
       display: 'flex',
@@ -221,7 +286,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
     <div style={{
       width: '140px',
       padding: '10px 14px',
-      background: 'var(--bg-glass)',
       border: '1px solid var(--border-color)',
       borderRadius: '10px',
       display: 'flex',
@@ -261,7 +325,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
     <div style={{
       width: '140px',
       padding: '16px',
-      background: 'var(--bg-glass)',
       border: '1px solid var(--border-color)',
       borderRadius: '12px',
       display: 'flex',
@@ -285,47 +348,10 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       }}></div>
     </div>
   ),
-  "Video Embed": (
-    <div style={{
-      width: '140px',
-      aspectRatio: '16/9',
-      background: 'var(--bg-glass)',
-      border: '1px solid var(--border-color)',
-      borderRadius: '8px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      overflow: 'hidden',
-    }}>
-      <div style={{
-        width: '32px',
-        height: '32px',
-        borderRadius: '50%',
-        background: 'var(--bg-glass)',
-        border: '1px solid var(--accent-color)',
-        backdropFilter: 'blur(8px)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-        <div style={{
-          width: '0',
-          height: '0',
-          borderTop: '6px solid transparent',
-          borderBottom: '6px solid transparent',
-          borderLeft: '8px solid var(--accent-color)',
-          transform: 'translateX(1.5px)',
-          borderRadius: '10px'
-        }}></div>
-      </div>
-    </div>
-  ),
   Slider: (
     <div style={{
       width: '140px',
       padding: '12px 16px',
-      background: 'var(--bg-glass)',
       border: '1px solid var(--border-color)',
       borderRadius: '8px',
       display: 'flex',
@@ -379,7 +405,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
         height: '32px',
         border: '1px solid var(--border-color)',
         borderRadius: '8px',
-        background: 'var(--bg-glass)',
         backdropFilter: 'blur(10px)',
         display: 'flex',
         alignItems: 'center',

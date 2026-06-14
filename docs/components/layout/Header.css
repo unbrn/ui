@@ -8,13 +8,6 @@
   align-items: center;
 }
 
-.unburn-header.unburn-glass {
-  background-color: var(--bg-glass, rgba(255, 255, 255, 0.45));
-  border-left: none;
-  border-right: none;
-  border-top: none;
-}
-
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -24,7 +17,6 @@
   width: 100%;
   height: 100%;
 }
-
 
 .unburn-logo {
   display: flex;

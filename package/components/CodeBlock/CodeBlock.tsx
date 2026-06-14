@@ -136,6 +136,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       className={cn(
         "unburn-code-block",
         `unburn-code-block-${codeBlockVariant}`,
+        codeBlockVariant === 'outlined' && 'unburn-glass',
         codeBlockTabs && "has-tabs",
         codeBlockClassName,
         classNames?.codeBlockRoot

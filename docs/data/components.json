@@ -6,6 +6,12 @@
     "addedAt": "2026-05-13"
   },
   {
+    "name": "Action",
+    "description": "Dropdown menus that attach to buttons, avatars, or other interactive elements.",
+    "path": "/components/action",
+    "addedAt": "2026-06-10"
+  },
+  {
     "name": "Alerts",
     "description": "Banners for quick notices, warnings, and messages.",
     "path": "/components/alerts",

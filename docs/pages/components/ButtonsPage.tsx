@@ -43,7 +43,7 @@ export default function Example() {
 
         <Showcase
           title="Variants"
-          description="Choose from three styles: filled, outlined, and duo."
+          description="Choose from four styles: filled, outlined, duo, and ghost."
           code={`import { Button } from '@unburn/ui/Button';
 
 export default function Example() {
@@ -52,6 +52,7 @@ export default function Example() {
       <Button buttonVariant="filled" buttonChildren="Filled" />
       <Button buttonVariant="outlined" buttonChildren="Outlined" />
       <Button buttonVariant="duo" buttonChildren="Duo" />
+      <Button buttonVariant="ghost" buttonChildren="Ghost" />
     </div>
   );
 }`}
@@ -60,6 +61,7 @@ export default function Example() {
             <Button buttonVariant="filled" buttonChildren="Filled" />
             <Button buttonVariant="outlined" buttonChildren="Outlined" />
             <Button buttonVariant="duo" buttonChildren="Duo" />
+            <Button buttonVariant="ghost" buttonChildren="Ghost" />
           </div>
         </Showcase>
 
@@ -259,7 +261,7 @@ export default function Example() {
       <Props
         title="Button Props"
         props={[
-          { name: 'buttonVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style of the button.' },
+          { name: 'buttonVariant', type: "'filled' | 'outlined' | 'duo' | 'ghost'", defaultValue: "'filled'", description: 'The style variant of the button.' },
           { name: 'buttonSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The button size.' },
           { name: 'buttonLoading', type: 'boolean', defaultValue: 'false', description: 'Show a loading spinner and turn off button clicks.' },
           { name: 'buttonFullWidth', type: 'boolean', defaultValue: 'false', description: 'Make the button fill the entire width of its box.' },
@@ -267,12 +269,14 @@ export default function Example() {
           { name: 'buttonIconPosition', type: "'left' | 'right'", defaultValue: "'left'", description: 'Show the icon on the left or right side.' },
           { name: 'buttonOpacityLevel', type: "'25' | '50' | '75' | '100'", defaultValue: "'100'", description: 'Set the background opacity level.' },
           { name: 'buttonAccentColor', type: 'string', description: 'Custom color theme for the button.' },
+          { name: 'buttonActive', type: 'boolean', defaultValue: 'false', description: 'Applies active styling (useful for tabs in a ButtonGroup).' },
           { name: 'buttonClassName', type: 'string', description: 'Custom CSS class for the button.' },
           { name: 'buttonStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the button.' },
           { name: 'buttonDisabled', type: 'boolean', description: 'Disable button interactions.' },
           { name: 'buttonOnClick', type: 'function', description: 'Handler for button click events.' },
           { name: 'buttonType', type: "'button' | 'submit' | 'reset'", defaultValue: "'button'", description: 'HTML type attribute of the button.' },
           { name: 'buttonChildren', type: 'ReactNode', description: 'The text or element contents inside the button.' },
+          { name: 'buttonId', type: 'string', description: 'Optional HTML ID attribute for the button.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the button (prefixed with button).' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with button).' },
         ]}

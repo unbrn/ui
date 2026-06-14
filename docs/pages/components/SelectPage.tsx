@@ -29,6 +29,40 @@ const ControlledSelectExample = () => {
   );
 };
 
+const LoadingToggleExample = () => {
+  const [loading, setLoading] = useState(false);
+
+  const simulate = () => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 2000);
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '300px' }}>
+      <Select
+        selectLabel="Loading State"
+        selectOptions={fruitOptions}
+        selectPlaceholder="Fetching options..."
+        selectLoading={loading}
+      />
+      <button
+        onClick={simulate}
+        style={{
+          padding: '8px 16px',
+          borderRadius: '8px',
+          border: '1px solid rgba(255,255,255,0.15)',
+          background: 'rgba(255,255,255,0.08)',
+          color: 'white',
+          cursor: 'pointer',
+          fontSize: '0.85rem',
+        }}
+      >
+        {loading ? 'Loading...' : 'Simulate Load'}
+      </button>
+    </div>
+  );
+};
+
 export const SelectPage: React.FC = () => {
   return (
     <>
@@ -112,6 +146,73 @@ export default function Example() {
             <Select selectVariant="filled" selectLabel="Filled (Default)" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="apple" />
             <Select selectVariant="outlined" selectLabel="Outlined Variant" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="banana" />
             <Select selectVariant="duo" selectLabel="Duo Variant" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="blueberry" />
+          </div>
+        </Showcase>
+
+        <Showcase
+          title="Accent Color"
+          description="Apply a custom accent color to the border, focus ring, and spinner using selectAccentColor."
+          code={`import { Select } from '@unburn/ui/Select';
+
+const fruitOptions = [
+  { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
+  { selectOptionValue: 'banana', selectOptionLabel: 'Banana' },
+  { selectOptionValue: 'blueberry', selectOptionLabel: 'Blueberry' }
+];
+
+export default function Example() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '300px' }}>
+      <Select selectVariant='duo' selectAccentColor="#7c3aed" selectLabel="Purple" selectOptions={fruitOptions} selectDefaultValue="apple" />
+      <Select selectVariant='duo' selectAccentColor="#0ea5e9" selectLabel="Sky Blue" selectOptions={fruitOptions} selectDefaultValue="banana" />
+      <Select selectVariant='duo' selectAccentColor="#f5a623" selectLabel="Amber" selectOptions={fruitOptions} selectDefaultValue="blueberry" />
+    </div>
+  );
+}`}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '300px', paddingBottom: '200px' }}>
+            <Select selectVariant='duo' selectAccentColor="#7c3aed" selectLabel="Purple" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="apple" />
+            <Select selectVariant='duo' selectAccentColor="#0ea5e9" selectLabel="Sky Blue" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="banana" />
+            <Select selectVariant='duo' selectAccentColor="#f5a623" selectLabel="Amber" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="blueberry" />
+          </div>
+        </Showcase>
+
+        <Showcase
+          title="Loading State"
+          description="Show a spinner and block interaction while options are being fetched using selectLoading."
+          code={`import { Select } from '@unburn/ui/Select';
+import { useState } from 'react';
+
+const fruitOptions = [
+  { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
+  { selectOptionValue: 'banana', selectOptionLabel: 'Banana' },
+];
+
+export default function Example() {
+  const [loading, setLoading] = useState(false);
+
+  const simulate = () => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 2000);
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '300px' }}>
+      <Select
+        selectLabel="Loading State"
+        selectOptions={fruitOptions}
+        selectPlaceholder="Fetching options..."
+        selectLoading={loading}
+      />
+      <button onClick={simulate}>
+        {loading ? 'Loading...' : 'Simulate Load'}
+      </button>
+    </div>
+  );
+}`}
+        >
+          <div style={{ paddingBottom: '80px' }}>
+            <LoadingToggleExample />
           </div>
         </Showcase>
 
@@ -224,21 +325,24 @@ export default function Example() {
       <Props
         title="Select Props"
         props={[
-          { name: 'selectOptions', type: 'SelectOption[]', required: true, description: 'List of options with values, labels, and disabled states.' },
-          { name: 'selectValue', type: 'string', description: 'The selected option value.' },
-          { name: 'selectDefaultValue', type: 'string', description: 'The default selected option.' },
-          { name: 'selectOnChange', type: '(value: string) => void', description: 'Function called when a new option is chosen.' },
+          { name: 'selectOptions', type: 'SelectOption[]', required: true, description: 'List of options with values, labels, icons, and disabled states.' },
+          { name: 'selectValue', type: 'string', description: 'The controlled selected option value.' },
+          { name: 'selectDefaultValue', type: 'string', description: 'The default selected option (uncontrolled).' },
+          { name: 'selectOnChange', type: '(value: string) => void', description: 'Callback fired when a new option is chosen.' },
           { name: 'selectPlaceholder', type: 'string', defaultValue: "'Select an option'", description: 'Text shown when no option is selected.' },
-          { name: 'selectVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the dropdown.' },
-          { name: 'selectSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the select box.' },
-          { name: 'selectLabel', type: 'string', description: 'Label text shown above the dropdown.' },
-          { name: 'selectDescription', type: 'string', description: 'Helpful detail text shown below the dropdown.' },
-          { name: 'selectError', type: 'string', description: 'Error message to show under the dropdown.' },
-          { name: 'selectDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks on the dropdown.' },
-          { name: 'selectClassName', type: 'string', description: 'Custom CSS class for the root container.' },
-          { name: 'selectStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
-          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the dropdown.' },
-          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
+          { name: 'selectVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The visual style variant of the dropdown.' },
+          { name: 'selectSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the select trigger.' },
+          { name: 'selectAccentColor', type: 'string', description: 'Custom accent color applied to the focus ring, open border, and loading spinner. Accepts any CSS color value.' },
+          { name: 'selectLoading', type: 'boolean', defaultValue: 'false', description: 'Shows a spinning indicator and disables interaction. Use when fetching options asynchronously.' },
+          { name: 'selectLabel', type: 'string', description: 'Label text displayed above the dropdown.' },
+          { name: 'selectDescription', type: 'string', description: 'Helper text shown below the dropdown.' },
+          { name: 'selectError', type: 'string', description: 'Error message displayed below the dropdown with error styling.' },
+          { name: 'selectDisabled', type: 'boolean', defaultValue: 'false', description: 'Disables all interaction with the dropdown.' },
+          { name: 'selectIcon', type: 'React.ReactNode', description: 'Static icon shown inside the trigger when no option is selected.' },
+          { name: 'selectClassName', type: 'string', description: 'Additional CSS class for the trigger button.' },
+          { name: 'selectStyle', type: 'React.CSSProperties', description: 'Inline styles for the root container.' },
+          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each internal part.' },
+          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each internal part.' },
         ]}
         stylingTargets={[
           { name: 'selectRoot', description: 'Styles the outer Select container.' },
@@ -263,7 +367,8 @@ export default function Example() {
         props={[
           { name: 'selectOptionValue', type: 'string', required: true, description: 'The value associated with the option.' },
           { name: 'selectOptionLabel', type: 'string', required: true, description: 'The user-facing label text of the option.' },
-          { name: 'selectOptionDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable selecting this option.' },
+          { name: 'selectOptionIcon', type: 'React.ReactNode', description: 'Icon rendered to the left of the label, also shown in the trigger when selected.' },
+          { name: 'selectOptionDisabled', type: 'boolean', defaultValue: 'false', description: 'Prevents this option from being selected.' },
         ]}
       />
     </>

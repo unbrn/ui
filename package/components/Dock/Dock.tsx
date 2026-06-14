@@ -1,17 +1,23 @@
 "use client";
-
 import React, { useState } from 'react';
 import { Menu, X, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import './Dock.css';
 import { cn } from '../../lib/utils';
-import { Button } from '../Button/Button';
+import { Button, ButtonContext } from '../Button/Button';
+import { getAccentVariables } from '../../lib/colors';
 
 export interface DockProps {
-  dockIsMenuOpen: boolean;
-  dockOnMenuToggle: () => void;
+  dockVariant?: 'filled' | 'outlined';
+  dockIsMenuOpen?: boolean;
+  dockOnMenuToggle?: () => void;
+  dockShowMenuToggle?: boolean;
   dockShowHideToggle?: boolean;
-  dockPosition?: 'top' | 'bottom' | 'left' | 'right';
+  dockPosition?: 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   dockClassName?: string;
+  dockButtonSize?: 'sm' | 'default' | 'lg';
+  dockButtonVariant?: 'filled' | 'outlined' | 'duo' | 'ghost';
+  dockButtonAccentColor?: string;
+  dockAccentColor?: string;
   classNames?: {
     dockRoot?: string;
     dockContainer?: string;
@@ -30,52 +36,73 @@ export interface DockProps {
   };
   dockStyle?: React.CSSProperties;
   dockChildren?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const Dock: React.FC<DockProps> = ({
-  dockIsMenuOpen,
+  dockVariant = 'outlined',
+  dockIsMenuOpen = false,
   dockOnMenuToggle,
+  dockShowMenuToggle = true,
   dockShowHideToggle = true,
   dockPosition = 'bottom',
   dockClassName,
+  dockButtonSize = "lg",
+  dockButtonVariant = "duo",
+  dockButtonAccentColor,
+  dockAccentColor,
   classNames,
   styles,
   dockStyle,
-  dockChildren
+  dockChildren,
+  children
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-
+  const resolvedVariant = dockButtonVariant ?? 'outlined';
+  const accentStyle = getAccentVariables(dockAccentColor);
   return (
     <div
       className={cn('unburn-dock-wrapper', `unburn-pos-${dockPosition}`, isCollapsed && 'unburn-collapsed', dockClassName, classNames?.dockRoot)}
-      style={{ ...dockStyle, ...styles?.dockRoot }}
+      style={{ ...dockStyle, ...styles?.dockRoot, ...accentStyle }}
     >
       <div
-        className={cn("unburn-dock", classNames?.dockContainer)}
+        className={cn(
+          "unburn-dock",
+          dockVariant === 'filled' ? "unburn-dock-filled" : "unburn-dock-outlined unburn-glass",
+          classNames?.dockContainer
+        )}
         style={styles?.dockContainer}
       >
-        <Button
-          buttonClassName={cn('unburn-dock-trigger', dockIsMenuOpen && 'unburn-open', classNames?.dockTrigger)}
-          buttonStyle={styles?.dockTrigger}
-          buttonOnClick={dockOnMenuToggle}
-          buttonChildren={
-            <div className="unburn-trigger-icon-wrapper">
-              {dockIsMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </div>
-          }
-        />
-
-        {dockChildren}
-
+        {dockShowMenuToggle && (
+          <Button
+            buttonClassName={cn('unburn-dock-trigger', dockIsMenuOpen && 'unburn-open', classNames?.dockTrigger)}
+            buttonStyle={styles?.dockTrigger}
+            buttonOnClick={dockOnMenuToggle}
+            buttonVariant="filled"
+            buttonSize={dockButtonSize}
+            buttonAccentColor={dockButtonAccentColor}
+            buttonIcon={
+              <div className="unburn-trigger-icon-wrapper">
+                {dockIsMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              </div>
+            }
+          />
+        )}
+        <ButtonContext.Provider value={{ buttonSize: dockButtonSize, buttonVariant: resolvedVariant, buttonAccentColor: dockButtonAccentColor }}>
+          {children ?? dockChildren}
+        </ButtonContext.Provider>
         {dockShowHideToggle && (
           <Button
             buttonClassName={cn("unburn-dock-collapse-btn", classNames?.dockCollapseBtn)}
             buttonStyle={styles?.dockCollapseBtn}
             buttonOnClick={() => setIsCollapsed(true)}
-            buttonChildren={
+            buttonVariant={resolvedVariant}
+            buttonSize={dockButtonSize}
+            buttonAccentColor={dockButtonAccentColor}
+            buttonIcon={
               <>
-                {dockPosition === 'bottom' && <ChevronDown size={20} />}
-                {dockPosition === 'top' && <ChevronUp size={20} />}
+                {(dockPosition === 'bottom' || dockPosition === 'bottom-left' || dockPosition === 'bottom-right') && <ChevronDown size={20} />}
+                {(dockPosition === 'top' || dockPosition === 'top-left' || dockPosition === 'top-right') && <ChevronUp size={20} />}
                 {dockPosition === 'left' && <ChevronLeft size={20} />}
                 {dockPosition === 'right' && <ChevronRight size={20} />}
               </>
@@ -83,16 +110,18 @@ export const Dock: React.FC<DockProps> = ({
           />
         )}
       </div>
-
       {dockShowHideToggle && (
         <Button
           buttonClassName={cn("unburn-dock-expand-btn", classNames?.dockExpandBtn)}
           buttonStyle={styles?.dockExpandBtn}
           buttonOnClick={() => setIsCollapsed(false)}
-          buttonChildren={
+          buttonVariant={resolvedVariant}
+          buttonSize={dockButtonSize}
+          buttonAccentColor={dockButtonAccentColor}
+          buttonIcon={
             <>
-              {dockPosition === 'bottom' && <ChevronUp size={20} />}
-              {dockPosition === 'top' && <ChevronDown size={20} />}
+              {(dockPosition === 'bottom' || dockPosition === 'bottom-left' || dockPosition === 'bottom-right') && <ChevronUp size={20} />}
+              {(dockPosition === 'top' || dockPosition === 'top-left' || dockPosition === 'top-right') && <ChevronDown size={20} />}
               {dockPosition === 'left' && <ChevronRight size={20} />}
               {dockPosition === 'right' && <ChevronLeft size={20} />}
             </>
@@ -102,4 +131,3 @@ export const Dock: React.FC<DockProps> = ({
     </div>
   );
 };
-

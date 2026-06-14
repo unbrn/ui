@@ -5,11 +5,12 @@
 
 .unburn-tooltip-trigger {
   display: inline-flex;
+  width: 100%;
 }
 
 .unburn-tooltip-bubble {
   position: absolute;
-  background: var(--accent-color, var(--bg-glass));
+  background: var(--accent-color);
   border: 1px solid var(--accent-color, var(--border-color));
   border-radius: var(--radius-sm);
   padding: 0.35rem 0.65rem;
@@ -19,8 +20,6 @@
   color: var(--accent-text, var(--text-main));
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
   pointer-events: none;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -37,14 +36,12 @@
   background: var(--accent-color, color-mix(in srgb, var(--bg-secondary) 40%, transparent));
   border-right: 1px solid var(--accent-color, var(--border-color));
   border-bottom: 1px solid var(--accent-color, var(--border-color));
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   box-sizing: border-box;
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
 
 .unburn-tooltip-bubble-filled {
-  background: var(--accent-color, var(--bg-glass));
+  background: var(--accent-color);
   border: 1px solid var(--accent-color, var(--border-color));
   color: var(--accent-text, var(--text-main));
 }
@@ -56,7 +53,7 @@
 }
 
 .unburn-tooltip-bubble-outlined {
-  background: var(--bg-glass);
+  background: transparent;
   border: 1px solid color-mix(in srgb, var(--accent-color) 40%, var(--border-color));
   color: var(--accent-color, var(--text-main));
 }
@@ -68,7 +65,7 @@
 }
 
 .unburn-tooltip-bubble-duo {
-  background: color-mix(in srgb, var(--accent-color) 8%, var(--bg-glass));
+  background: color-mix(in srgb, var(--accent-color) 8%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent-color) 20%, var(--border-color));
   color: var(--accent-color, var(--text-main));
 }
@@ -150,6 +147,7 @@
     opacity: 0;
     transform: translateX(-50%) translateY(4px);
   }
+
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
@@ -161,6 +159,7 @@
     opacity: 0;
     transform: translateX(-50%) translateY(-4px);
   }
+
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
@@ -172,6 +171,7 @@
     opacity: 0;
     transform: translateY(-50%) translateX(4px);
   }
+
   to {
     opacity: 1;
     transform: translateY(-50%) translateX(0);
@@ -183,6 +183,7 @@
     opacity: 0;
     transform: translateY(-50%) translateX(-4px);
   }
+
   to {
     opacity: 1;
     transform: translateY(-50%) translateX(0);

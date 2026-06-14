@@ -6,8 +6,6 @@
   padding: 1.25rem 1.5rem;
   border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
   background-color: color-mix(in srgb, var(--bg-secondary) 30%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   font-family: var(--font-sans);
   margin-bottom: 1rem;
   border-radius: var(--radius-xxl);
@@ -63,7 +61,7 @@
 
 .unburn-alert-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
   margin-top: 1rem;
@@ -101,8 +99,6 @@
 .unburn-alert-duo {
   background-color: color-mix(in srgb, var(--accent-color, var(--text-main)) 8%, transparent);
   border-color: color-mix(in srgb, var(--accent-color, var(--text-main)) 15%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .unburn-alert-duo .unburn-alert-icon {
