@@ -37,7 +37,7 @@ export const InputsPage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        code={`import { Input } from '@unburn/ui/Input';
+        code={`import { Input } from '@unbrn/ui/Input';
 
 export default function Example() {
   return (
@@ -56,7 +56,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Input } from '@unburn/ui/Input';
+          codeBlockCode={`import { Input } from '@unbrn/ui/Input';
 
 export default function Example() {
   return <Input inputLabel="Username" inputPlaceholder="Enter your name" />;
@@ -70,7 +70,7 @@ export default function Example() {
         <Showcase
           title="Variants"
           description="Choose from three styles: filled, outlined, and duo."
-          code={`import { Input } from '@unburn/ui/Input';
+          code={`import { Input } from '@unbrn/ui/Input';
 
 export default function Example() {
   return (
@@ -92,7 +92,7 @@ export default function Example() {
         <Showcase
           title="Sizes"
           description="Choose from small, medium, or large sizes."
-          code={`import { Input } from '@unburn/ui/Input';
+          code={`import { Input } from '@unbrn/ui/Input';
 
 export default function Example() {
   return (
@@ -114,7 +114,7 @@ export default function Example() {
         <Showcase
           title="Icons"
           description="Add icons on the left or right side of the input field."
-          code={`import { Input } from '@unburn/ui/Input';
+          code={`import { Input } from '@unbrn/ui/Input';
 import { User, Mail, Lock } from 'lucide-react';
 
 export default function Example() {
@@ -149,7 +149,7 @@ export default function Example() {
         <Showcase
           title="Keyboard Shortcut"
           description="Display a keyboard shortcut helper (KBD) inside the input field."
-          code={`import { Input } from '@unburn/ui/Input';
+          code={`import { Input } from '@unbrn/ui/Input';
 import { Search } from 'lucide-react';
 
 export default function Example() {
@@ -184,7 +184,7 @@ export default function Example() {
         <Showcase
           title="Progressive Input"
           description="Show a password strength bar under the field."
-          code={`import { Input } from '@unburn/ui/Input';
+          code={`import { Input } from '@unbrn/ui/Input';
 import { useState } from 'react';
 
 export default function Example() {
@@ -217,7 +217,7 @@ export default function Example() {
         <Showcase
           title="States"
           description="Use error messages and disabled inputs for forms."
-          code={`import { Input } from '@unburn/ui/Input';
+          code={`import { Input } from '@unbrn/ui/Input';
 
 export default function Example() {
   return (
@@ -274,6 +274,7 @@ export default function Example() {
           { name: 'inputOnChange', type: 'function', description: 'Change event handler.' },
           { name: 'inputPlaceholder', type: 'string', description: 'Placeholder text.' },
           { name: 'inputType', type: 'string', defaultValue: "'text'", description: 'HTML input type attribute.' },
+          { name: 'inputReadOnly', type: 'boolean', defaultValue: 'false', description: 'Prevent changing the value of the input.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the input (prefixed with input).' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with input).' },
         ]}

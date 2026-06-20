@@ -55,26 +55,26 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         ref={ref}
         style={{ ...alertStyle, ...accentStyle, ...styles?.alertRoot }}
         className={cn(
-          'unburn-alert',
-          alertIcon && 'unburn-alert-has-icon',
-          alertVariant !== 'filled' && 'unburn-glass',
-          alertVariant === 'duo' && 'unburn-alert-duo',
-          alertVariant === 'filled' && 'unburn-alert-filled',
+          'unbrn-alert',
+          alertIcon && 'unbrn-alert-has-icon',
+          alertVariant !== 'filled' && 'unbrn-glass',
+          alertVariant === 'duo' && 'unbrn-alert-duo',
+          alertVariant === 'filled' && 'unbrn-alert-filled',
           alertClassName,
           classNames?.alertRoot
         )}
       >
-        <div className="unburn-alert-header">
+        <div className="unbrn-alert-header">
           {alertIcon && (
             <div
-              className={cn("unburn-alert-icon", classNames?.alertIcon)}
+              className={cn("unbrn-alert-icon", classNames?.alertIcon)}
               style={styles?.alertIcon}
             >
               {alertIcon}
             </div>
           )}
           <div
-            className={cn("unburn-alert-title", classNames?.alertTitle)}
+            className={cn("unbrn-alert-title", classNames?.alertTitle)}
             style={styles?.alertTitle}
           >
             {alertTitle}
@@ -82,7 +82,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         </div>
         {alertDescription && (
           <div
-            className={cn("unburn-alert-description", classNames?.alertDescription)}
+            className={cn("unbrn-alert-description", classNames?.alertDescription)}
             style={styles?.alertDescription}
           >
             {alertDescription}
@@ -90,7 +90,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         )}
         {alertActions && (
           <div
-            className={cn("unburn-alert-actions", classNames?.alertActions)}
+            className={cn("unbrn-alert-actions", classNames?.alertActions)}
             style={styles?.alertActions}
           >
             {alertActions}

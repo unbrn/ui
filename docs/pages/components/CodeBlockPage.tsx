@@ -8,7 +8,7 @@ export const CodeBlockPage: React.FC = () => {
   const code = `import React from 'react';
 
 const HelloWorld = () => {
-  return <h1>Hello, Unburn UI!</h1>;
+  return <h1>Hello, Unbrn UI!</h1>;
 };
 
 export default HelloWorld;`;
@@ -19,12 +19,12 @@ export default HelloWorld;`;
 
       <Showcase
         title="Preview"
-        code={`import { CodeBlock } from '@unburn/ui/CodeBlock';
+        code={`import { CodeBlock } from '@unbrn/ui/CodeBlock';
 
 const code = \`import React from 'react';
 
 const HelloWorld = () => {
-  return <h1>Hello, Unburn UI!</h1>;
+  return <h1>Hello, Unbrn UI!</h1>;
 };
 
 export default HelloWorld;\`;
@@ -54,7 +54,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { CodeBlock } from '@unburn/ui/CodeBlock';
+          codeBlockCode={`import { CodeBlock } from '@unbrn/ui/CodeBlock';
 
 export default function Example() {
   return (
@@ -73,19 +73,19 @@ export default function Example() {
         <Showcase
           title="Variants"
           description="Choose between two styles: filled and outlined."
-          code={`import { CodeBlock } from '@unburn/ui/CodeBlock';
+          code={`import { CodeBlock } from '@unbrn/ui/CodeBlock';
 
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', maxWidth: '600px' }}>
       <CodeBlock
-        codeBlockCode="npm install @unburn/ui"
+        codeBlockCode="npm install @unbrn/ui"
         codeBlockLanguage="bash"
         codeBlockVariant="filled"
         codeBlockTitle="Filled (Default)"
       />
       <CodeBlock
-        codeBlockCode="npm install @unburn/ui"
+        codeBlockCode="npm install @unbrn/ui"
         codeBlockLanguage="bash"
         codeBlockVariant="outlined"
         codeBlockTitle="Outlined Variant"
@@ -96,13 +96,13 @@ export default function Example() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', maxWidth: '600px' }}>
             <CodeBlock
-              codeBlockCode="npm install @unburn/ui"
+              codeBlockCode="npm install @unbrn/ui"
               codeBlockLanguage="bash"
               codeBlockVariant="filled"
               codeBlockTitle="Filled (Default)"
             />
             <CodeBlock
-              codeBlockCode="npm install @unburn/ui"
+              codeBlockCode="npm install @unbrn/ui"
               codeBlockLanguage="bash"
               codeBlockVariant="outlined"
               codeBlockTitle="Outlined Variant"
@@ -113,17 +113,17 @@ export default function Example() {
         <Showcase
           title="Tabs (Package Managers)"
           description="Display multiple snippets under tabs for easy switching."
-          code={`import { CodeBlock } from '@unburn/ui/CodeBlock';
+          code={`import { CodeBlock } from '@unbrn/ui/CodeBlock';
 
 export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
       <CodeBlock
         codeBlockTabs={{
-          npm: 'npm install @unburn/ui',
-          pnpm: 'pnpm add @unburn/ui',
-          yarn: 'yarn add @unburn/ui',
-          bun: 'bun add @unburn/ui'
+          npm: 'npm install @unbrn/ui',
+          pnpm: 'pnpm add @unbrn/ui',
+          yarn: 'yarn add @unbrn/ui',
+          bun: 'bun add @unbrn/ui'
         }}
         codeBlockDefaultTab="pnpm"
       />
@@ -134,10 +134,10 @@ export default function Example() {
           <div style={{ width: '100%', maxWidth: '600px' }}>
             <CodeBlock
               codeBlockTabs={{
-                npm: 'npm install @unburn/ui',
-                pnpm: 'pnpm add @unburn/ui',
-                yarn: 'yarn add @unburn/ui',
-                bun: 'bun add @unburn/ui'
+                npm: 'npm install @unbrn/ui',
+                pnpm: 'pnpm add @unbrn/ui',
+                yarn: 'yarn add @unbrn/ui',
+                bun: 'bun add @unbrn/ui'
               }}
               codeBlockDefaultTab="pnpm"
             />
@@ -147,7 +147,7 @@ export default function Example() {
         <Showcase
           title="Title & No Line Numbers"
           description="Show a file title header and hide line numbers if needed."
-          code={`import { CodeBlock } from '@unburn/ui/CodeBlock';
+          code={`import { CodeBlock } from '@unbrn/ui/CodeBlock';
 
 export default function Example() {
   return (

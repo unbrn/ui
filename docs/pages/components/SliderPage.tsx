@@ -14,11 +14,11 @@ const AudioMixerExample = () => {
   const averageLevel = Math.round((musicVol + ambientVol + voiceVol) / 3);
 
   return (
-    <div 
-      className="unburn-glass" 
-      style={{ 
-        padding: '1.5rem', 
-        borderRadius: 'calc(var(--radius) - 6px)', 
+    <div
+      className="unbrn-glass"
+      style={{
+        padding: '1.5rem',
+        borderRadius: 'calc(var(--radius) - 6px)',
         border: '1px solid var(--border-color)',
         display: 'flex',
         flexDirection: 'column',
@@ -35,7 +35,7 @@ const AudioMixerExample = () => {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span style={{ fontSize: '0.8rem', fontWeight: 500, color: 'var(--text-muted)' }}>Level:</span>
-          <div 
+          <div
             style={{
               padding: '2px 8px',
               borderRadius: '4px',
@@ -105,12 +105,12 @@ export const SliderPage: React.FC = () => {
       <Showcase
         title="Preview"
         description="A beautiful hardware device control center showing dynamic displays, volumes, and peripheral backlights."
-        code={`import { Slider } from '@unburn/ui/Slider';
+        code={`import { Slider } from '@unbrn/ui/Slider';
 import { Volume2, Sun, Keyboard } from 'lucide-react';
 
 export default function Example() {
   return (
-    <div className="unburn-glass" style={{
+    <div className="unbrn-glass" style={{
       padding: '1.5rem',
       borderRadius: 'var(--radius)',
       border: '1px solid var(--border-color)',
@@ -159,8 +159,8 @@ export default function Example() {
   );
 }`}
       >
-        <div 
-          className="unburn-glass" 
+        <div
+          className="unbrn-glass"
           style={{
             padding: '1.5rem',
             borderRadius: 'var(--radius)',
@@ -177,9 +177,9 @@ export default function Example() {
             <h4 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600 }}>Device Mixer</h4>
             <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-muted)' }}>Control visual and sound peripherals.</p>
           </div>
-          
+
           <div style={{ height: '1px', backgroundColor: 'var(--border-color)', opacity: 0.5 }} />
-          
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -215,7 +215,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Slider } from '@unburn/ui/Slider';
+          codeBlockCode={`import { Slider } from '@unbrn/ui/Slider';
 
 export default function Example() {
   return <Slider sliderLabel="Volume Level" sliderDefaultValue={50} sliderShowTooltip />;
@@ -229,7 +229,7 @@ export default function Example() {
         <Showcase
           title="Sizes"
           description="Sizing structures representing proportional alignments across sm, default, and lg scaling systems."
-          code={`import { Slider } from '@unburn/ui/Slider';
+          code={`import { Slider } from '@unbrn/ui/Slider';
 
 export default function Example() {
   return (
@@ -251,7 +251,7 @@ export default function Example() {
         <Showcase
           title="With Description"
           description="Contextual helper captions aligned dynamically below labels."
-          code={`import { Slider } from '@unburn/ui/Slider';
+          code={`import { Slider } from '@unbrn/ui/Slider';
 
 export default function Example() {
   return (
@@ -283,7 +283,7 @@ export default function Example() {
         <Showcase
           title="States"
           description="Support for interactive disabled configurations, muting slider interactions while maintaining glassmorphic balance."
-          code={`import { Slider } from '@unburn/ui/Slider';
+          code={`import { Slider } from '@unbrn/ui/Slider';
 
 export default function Example() {
   return (
@@ -303,7 +303,7 @@ export default function Example() {
         <Showcase
           title="Controlled Mixer Deck"
           description="An interactive multi-channel deck connecting states, showing dynamic updates mapped to custom color-coded progress feeds."
-          code={`import { Slider } from '@unburn/ui/Slider';
+          code={`import { Slider } from '@unbrn/ui/Slider';
 import { useState } from 'react';
 import { Music, Wind, Mic } from 'lucide-react';
 
@@ -315,7 +315,7 @@ export default function Example() {
   const averageLevel = Math.round((musicVol + ambientVol + voiceVol) / 3);
 
   return (
-    <div className="unburn-glass" style={{ padding: '1.5rem', borderRadius: 'var(--radius)', border: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '440px' }}>
+    <div className="unbrn-glass" style={{ padding: '1.5rem', borderRadius: 'var(--radius)', border: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '440px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
           <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>Audio Deck</h4>
@@ -368,6 +368,7 @@ export default function Example() {
           { name: 'sliderDisabled', type: 'boolean', defaultValue: 'false', description: 'Disables slider interaction.' },
           { name: 'sliderAccentColor', type: 'string', description: 'Custom primary accent override color (hex, rgb, etc.).' },
           { name: 'sliderShowTooltip', type: 'boolean', defaultValue: 'false', description: 'Enables floating value bubble indicator.' },
+          { name: 'sliderId', type: 'string', description: 'Custom ID attribute for the input element.' },
           { name: 'sliderClassName', type: 'string', description: 'Custom CSS class for the root container.' },
           { name: 'sliderStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes targeting key elements.' },

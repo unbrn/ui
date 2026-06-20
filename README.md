@@ -1,10 +1,10 @@
-# [unburn/ui](https://ui.unburn.tech)
+# [unbrn/ui](https://ui.unbrn.tech)
 
 **Minimalist UI Crafted with Precision.**
 
 A clean, modern React component library built with vanilla CSS. Get beautiful, highly-customizable components that look great out of the box.
 
-![banner](https://raw.githubusercontent.com/unburn/ui/main/public/banner.jpg)
+![banner](https://raw.githubusercontent.com/unbrn/ui/main/public/unbrn_ui_banner.jpg)
 
 ## 📄 License
 

@@ -12,7 +12,7 @@ export const TextareaPage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        code={`import { Textarea } from '@unburn/ui/Textarea';
+        code={`import { Textarea } from '@unbrn/ui/Textarea';
 
 export default function Example() {
   return (
@@ -31,7 +31,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Textarea } from '@unburn/ui/Textarea';
+          codeBlockCode={`import { Textarea } from '@unbrn/ui/Textarea';
 
 export default function Example() {
   return <Textarea textareaLabel="Biography" textareaPlaceholder="Tell your story..." />;
@@ -45,7 +45,7 @@ export default function Example() {
         <Showcase
           title="Variants"
           description="Choose from three styles: filled, outlined, and duo."
-          code={`import { Textarea } from '@unburn/ui/Textarea';
+          code={`import { Textarea } from '@unbrn/ui/Textarea';
 
 export default function Example() {
   return (
@@ -58,7 +58,7 @@ export default function Example() {
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '500px' }}>
-            <Textarea textareaVariant="filled" textareaPlaceholder="Filled (Default)"/>
+            <Textarea textareaVariant="filled" textareaPlaceholder="Filled (Default)" />
             <Textarea textareaVariant="outlined" textareaPlaceholder="Outlined variant" />
             <Textarea textareaVariant="duo" textareaPlaceholder="Duo variant" />
           </div>
@@ -67,7 +67,7 @@ export default function Example() {
         <Showcase
           title="Character Count"
           description="Show the number of typed characters."
-          code={`import { Textarea } from '@unburn/ui/Textarea';
+          code={`import { Textarea } from '@unbrn/ui/Textarea';
 
 export default function Example() {
   return (
@@ -95,7 +95,7 @@ export default function Example() {
         <Showcase
           title="States"
           description="Use error states and disabled textareas."
-          code={`import { Textarea } from '@unburn/ui/Textarea';
+          code={`import { Textarea } from '@unbrn/ui/Textarea';
 
 export default function Example() {
   return (

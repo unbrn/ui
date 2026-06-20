@@ -1,5 +1,6 @@
 import React from 'react';
 import componentsMeta from '../../data/components.json';
+import backgroundsMeta from '../../data/backgrounds.json';
 import { AddedAt } from './AddedAt';
 
 interface ComponentHeaderProps {
@@ -7,7 +8,7 @@ interface ComponentHeaderProps {
 }
 
 export const ComponentHeader: React.FC<ComponentHeaderProps> = ({ title }) => {
-  const meta = componentsMeta.find(c => c.name === title);
+  const meta = componentsMeta.find(c => c.name === title) || backgroundsMeta.find(b => b.name === title);
 
   return (
     <div className="section-header">

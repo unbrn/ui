@@ -23,6 +23,8 @@
     "package/css.d.ts",
     "package/components/**/*.ts",
     "package/components/**/*.tsx",
+    "package/backgrounds/**/*.ts",
+    "package/backgrounds/**/*.tsx",
     "package/lib/**/*.ts"
   ],
   "exclude": [

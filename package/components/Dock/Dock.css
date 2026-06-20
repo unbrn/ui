@@ -1,4 +1,4 @@
-.unburn-dock-wrapper {
+.unbrn-dock-wrapper {
   position: fixed;
   z-index: 9999;
   transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -8,82 +8,82 @@
   --dock-padding: 0.75rem;
   --dock-gap: 0.75rem;
 
-  &.unburn-pos-bottom {
+  &.unbrn-pos-bottom {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
   }
 
-  &.unburn-pos-top {
+  &.unbrn-pos-top {
     top: 2rem;
     left: 50%;
     transform: translateX(-50%);
   }
 
-  &.unburn-pos-left {
+  &.unbrn-pos-left {
     left: 2rem;
     top: 50%;
     transform: translateY(-50%);
   }
 
-  &.unburn-pos-right {
+  &.unbrn-pos-right {
     right: 2rem;
     top: 50%;
     transform: translateY(-50%);
   }
 
-  &.unburn-pos-top-left {
+  &.unbrn-pos-top-left {
     top: 2rem;
     left: 2rem;
   }
 
-  &.unburn-pos-top-right {
+  &.unbrn-pos-top-right {
     top: 2rem;
     right: 2rem;
   }
 
-  &.unburn-pos-bottom-left {
+  &.unbrn-pos-bottom-left {
     bottom: 2rem;
     left: 2rem;
   }
 
-  &.unburn-pos-bottom-right {
+  &.unbrn-pos-bottom-right {
     bottom: 2rem;
     right: 2rem;
   }
 }
 
-.unburn-dock-wrapper.unburn-collapsed.unburn-pos-bottom {
+.unbrn-dock-wrapper.unbrn-collapsed.unbrn-pos-bottom {
   transform: translateX(-50%) translateY(calc(100% + 4rem));
 }
 
-.unburn-dock-wrapper.unburn-collapsed.unburn-pos-top {
+.unbrn-dock-wrapper.unbrn-collapsed.unbrn-pos-top {
   transform: translateX(-50%) translateY(calc(-100% - 4rem));
 }
 
-.unburn-dock-wrapper.unburn-collapsed.unburn-pos-left {
+.unbrn-dock-wrapper.unbrn-collapsed.unbrn-pos-left {
   transform: translateY(-50%) translateX(calc(-100% - 4rem));
 }
 
-.unburn-dock-wrapper.unburn-collapsed.unburn-pos-right {
+.unbrn-dock-wrapper.unbrn-collapsed.unbrn-pos-right {
   transform: translateY(-50%) translateX(calc(100% + 4rem));
 }
 
-.unburn-dock-wrapper.unburn-collapsed.unburn-pos-top-left,
-.unburn-dock-wrapper.unburn-collapsed.unburn-pos-top-right {
+.unbrn-dock-wrapper.unbrn-collapsed.unbrn-pos-top-left,
+.unbrn-dock-wrapper.unbrn-collapsed.unbrn-pos-top-right {
   transform: translateY(calc(-100% - 4rem));
 }
 
-.unburn-dock-wrapper.unburn-collapsed.unburn-pos-bottom-left,
-.unburn-dock-wrapper.unburn-collapsed.unburn-pos-bottom-right {
+.unbrn-dock-wrapper.unbrn-collapsed.unbrn-pos-bottom-left,
+.unbrn-dock-wrapper.unbrn-collapsed.unbrn-pos-bottom-right {
   transform: translateY(calc(100% + 4rem));
 }
 
-.unburn-dock-wrapper.unburn-collapsed {
+.unbrn-dock-wrapper.unbrn-collapsed {
   pointer-events: none;
 }
 
-.unburn-dock {
+.unbrn-dock {
   display: flex;
   align-items: center;
   gap: var(--dock-gap);
@@ -94,19 +94,19 @@
   will-change: backdrop-filter;
   transition: background-color var(--transition), border-color var(--transition);
 
-  .unburn-pos-top &,
-  .unburn-pos-bottom &,
-  .unburn-pos-top-left &,
-  .unburn-pos-top-right &,
-  .unburn-pos-bottom-left &,
-  .unburn-pos-bottom-right & {
+  .unbrn-pos-top &,
+  .unbrn-pos-bottom &,
+  .unbrn-pos-top-left &,
+  .unbrn-pos-top-right &,
+  .unbrn-pos-bottom-left &,
+  .unbrn-pos-bottom-right & {
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
   }
 
-  .unburn-pos-left &,
-  .unburn-pos-right & {
+  .unbrn-pos-left &,
+  .unbrn-pos-right & {
     flex-direction: column;
     height: auto;
     max-height: 90vh;
@@ -122,20 +122,20 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.unburn-dock-outlined {
+.unbrn-dock-outlined {
   background-color: color-mix(in srgb, var(--accent-color, var(--bg-secondary)) 3%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent-color, var(--bg-secondary)) 10%, transparent);
 }
 
-.unburn-dock-filled {
+.unbrn-dock-filled {
   background-color: var(--accent-color);
 }
 
-.unburn-dock::-webkit-scrollbar {
+.unbrn-dock::-webkit-scrollbar {
   display: none;
 }
 
-.unburn-trigger-icon-wrapper {
+.unbrn-trigger-icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,15 +144,15 @@
   height: 100%;
 }
 
-.unburn-btn.unburn-dock-trigger.unburn-open .unburn-trigger-icon-wrapper {
+.unbrn-btn.unbrn-dock-trigger.unbrn-open .unbrn-trigger-icon-wrapper {
   transform: rotate(90deg);
 }
 
-.unburn-btn.unburn-dock-trigger:active:not(:disabled) {
+.unbrn-btn.unbrn-dock-trigger:active:not(:disabled) {
   transform: scale(0.9);
 }
 
-.unburn-btn.unburn-dock-expand-btn {
+.unbrn-btn.unbrn-dock-expand-btn {
   position: absolute;
   background-image: none;
   color: var(--accent-color);
@@ -167,9 +167,9 @@
   padding: 0;
   min-height: unset;
 
-  .unburn-pos-bottom &,
-  .unburn-pos-bottom-left &,
-  .unburn-pos-bottom-right & {
+  .unbrn-pos-bottom &,
+  .unbrn-pos-bottom-left &,
+  .unbrn-pos-bottom-right & {
     top: -1.3rem;
     left: 50%;
     transform: translateX(-50%) translateY(2rem);
@@ -178,9 +178,9 @@
     border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   }
 
-  .unburn-pos-top &,
-  .unburn-pos-top-left &,
-  .unburn-pos-top-right & {
+  .unbrn-pos-top &,
+  .unbrn-pos-top-left &,
+  .unbrn-pos-top-right & {
     bottom: -1.5rem;
     left: 50%;
     transform: translateX(-50%) translateY(-2rem);
@@ -189,7 +189,7 @@
     border-radius: 0 0 var(--radius-sm) var(--radius-sm);
   }
 
-  .unburn-pos-left & {
+  .unbrn-pos-left & {
     right: -1.5rem;
     top: 50%;
     transform: translateY(-50%) translateX(-2rem);
@@ -198,7 +198,7 @@
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
 
-  .unburn-pos-right & {
+  .unbrn-pos-right & {
     left: -1.5rem;
     top: 50%;
     transform: translateY(-50%) translateX(2rem);
@@ -208,52 +208,53 @@
   }
 }
 
-.unburn-dock-wrapper.unburn-collapsed .unburn-btn.unburn-dock-expand-btn {
+.unbrn-dock-wrapper.unbrn-collapsed .unbrn-btn.unbrn-dock-expand-btn {
   opacity: 1 !important;
   pointer-events: auto !important;
 
-  .unburn-pos-bottom &,
-  .unburn-pos-bottom-left &,
-  .unburn-pos-bottom-right & {
+  .unbrn-pos-bottom &,
+  .unbrn-pos-bottom-left &,
+  .unbrn-pos-bottom-right & {
     transform: translateX(-50%) translateY(-2.5rem);
   }
 
-  .unburn-pos-top &,
-  .unburn-pos-top-left &,
-  .unburn-pos-top-right & {
+  .unbrn-pos-top &,
+  .unbrn-pos-top-left &,
+  .unbrn-pos-top-right & {
     transform: translateX(-50%) translateY(2.5rem);
   }
 
-  .unburn-pos-left & {
+  .unbrn-pos-left & {
     transform: translateY(-50%) translateX(2.5rem);
   }
 
-  .unburn-pos-right & {
+  .unbrn-pos-right & {
     transform: translateY(-50%) translateX(-2.5rem);
   }
 }
 
-.unburn-dock-wrapper.unburn-collapsed .unburn-btn.unburn-dock-expand-btn:hover:not(:disabled) {
-  .unburn-pos-bottom &,
-  .unburn-pos-bottom-left &,
-  .unburn-pos-bottom-right & {
+.unbrn-dock-wrapper.unbrn-collapsed .unbrn-btn.unbrn-dock-expand-btn:hover:not(:disabled) {
+
+  .unbrn-pos-bottom &,
+  .unbrn-pos-bottom-left &,
+  .unbrn-pos-bottom-right & {
     height: 40px;
     transform: translateX(-50%) translateY(-3rem);
   }
 
-  .unburn-pos-top &,
-  .unburn-pos-top-left &,
-  .unburn-pos-top-right & {
+  .unbrn-pos-top &,
+  .unbrn-pos-top-left &,
+  .unbrn-pos-top-right & {
     height: 40px;
     transform: translateX(-50%) translateY(3rem);
   }
 
-  .unburn-pos-left & {
+  .unbrn-pos-left & {
     width: 40px;
     transform: translateY(-50%) translateX(3rem);
   }
 
-  .unburn-pos-right & {
+  .unbrn-pos-right & {
     width: 40px;
     transform: translateY(-50%) translateX(-3rem);
   }

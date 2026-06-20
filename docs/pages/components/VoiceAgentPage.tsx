@@ -177,7 +177,7 @@ export const VoiceAgentPage: React.FC = () => {
     setSessionStep(step);
 
     if (step === 1) {
-      setSubtitles('Hello! I am your Unburn AI voice assistant. How can I help you today?');
+      setSubtitles('Hello! I am your Unbrn AI voice assistant. How can I help you today?');
       playSessionAudio('/voice-intro.wav', () => {
         runSessionStep(2);
       });
@@ -210,7 +210,7 @@ export const VoiceAgentPage: React.FC = () => {
         setTimeout(() => runSessionStep(7), 1200);
       });
     } else if (step === 7) {
-      setSubtitles("Thank you for testing the Unburn Voice Agent live simulator. I'll close the session now. Have an amazing day!");
+      setSubtitles("Thank you for testing the Unbrn Voice Agent live simulator. I'll close the session now. Have an amazing day!");
       playSessionAudio('/voice-response-3.wav', () => {
         endSession();
       });
@@ -266,7 +266,7 @@ export const VoiceAgentPage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        code={`import { VoiceAgent } from '@unburn/ui/VoiceAgent';
+        code={`import { VoiceAgent } from '@unbrn/ui/VoiceAgent';
 
 export default function Example() {
   return (
@@ -330,7 +330,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { VoiceAgent } from '@unburn/ui/VoiceAgent';
+          codeBlockCode={`import { VoiceAgent } from '@unbrn/ui/VoiceAgent';
 
 export default function Example() {
   return (
@@ -350,7 +350,7 @@ export default function Example() {
         <Showcase
           title="Agent Statuses"
           description="The voice agent supports 5 statuses: idle, connecting, listening, speaking, and paused."
-          code={`import { VoiceAgent } from '@unburn/ui/VoiceAgent';
+          code={`import { VoiceAgent } from '@unbrn/ui/VoiceAgent';
 
 export default function Example() {
   return (
@@ -391,7 +391,7 @@ export default function Example() {
         <Showcase
           title="Speaking Patterns"
           description="Choose from three distinct visualization algorithms: blob, wave, and ripple."
-          code={`import { VoiceAgent } from '@unburn/ui/VoiceAgent';
+          code={`import { VoiceAgent } from '@unbrn/ui/VoiceAgent';
 
 export default function Example() {
   return (
@@ -422,7 +422,7 @@ export default function Example() {
         <Showcase
           title="Colors"
           description="Custom color accents support any valid CSS color property (Hex, RGB, HSL, presets)."
-          code={`import { VoiceAgent } from '@unburn/ui/VoiceAgent';
+          code={`import { VoiceAgent } from '@unbrn/ui/VoiceAgent';
 
 export default function Example() {
   return (
@@ -446,7 +446,7 @@ export default function Example() {
         <Showcase
           title="Grid Sizes & LED Density"
           description="Configure the LED matrix dimensions, dot size diameter, and grid gaps."
-          code={`import { VoiceAgent } from '@unburn/ui/VoiceAgent';
+          code={`import { VoiceAgent } from '@unbrn/ui/VoiceAgent';
 
 export default function Example() {
   return (
@@ -508,6 +508,7 @@ export default function Example() {
           { name: 'voiceAgentOnDisconnect', type: '() => void', description: 'Event handler triggered by the hang-up button.' },
           { name: 'voiceAgentOnOptionClick', type: '() => void', description: 'Event handler triggered by the settings (...) button.' },
           { name: 'voiceAgentShowControls', type: 'boolean', defaultValue: 'true', description: 'Toggle control panel visibility below the grid.' },
+          { name: 'voiceAgentAudioAnalyser', type: 'AnalyserNode', description: 'Web Audio AnalyserNode instance to connect real-time mic or audio feed frequencies.' },
           { name: 'voiceAgentClassName', type: 'string', description: 'Custom CSS class for the root container.' },
           { name: 'voiceAgentStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
         ]}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import componentsMeta from '../../data/components.json';
+import backgroundsMeta from '../../data/backgrounds.json';
 
 const frameworks = [
   { id: 'nextjs', name: 'Next.js' },
@@ -35,6 +36,10 @@ export const DocsSidebar: React.FC = () => {
   }, [isOpen]);
 
   const sortedComponents = [...componentsMeta].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+
+  const sortedBackgrounds = [...backgroundsMeta].sort((a, b) =>
     a.name.localeCompare(b.name)
   );
 
@@ -124,6 +129,41 @@ export const DocsSidebar: React.FC = () => {
                   >
                     {comp.name}
                     {isComponentNew(comp.addedAt) && (
+                      <span className="sidebar-new-badge">NEW</span>
+                    )}
+                  </NavLink>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="sidebar-tree-branch">
+            <NavLink
+              to="/docs/backgrounds"
+              end
+              className={({ isActive }) =>
+                `sidebar-branch-header sidebar-branch-link ${isActive ? 'active' : ''}`
+              }
+            >
+              Backgrounds
+            </NavLink>
+
+            <div className="sidebar-sub-links">
+              {sortedBackgrounds.map((bg) => {
+                const docsPath = bg.path.replace(
+                  /^\/backgrounds/,
+                  '/docs/backgrounds'
+                );
+                return (
+                  <NavLink
+                    key={bg.name}
+                    to={docsPath}
+                    className={({ isActive }) =>
+                      `sidebar-sub-link ${isActive ? 'active' : ''}`
+                    }
+                  >
+                    {bg.name}
+                    {isComponentNew(bg.addedAt) && (
                       <span className="sidebar-new-badge">NEW</span>
                     )}
                   </NavLink>

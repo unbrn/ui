@@ -13,11 +13,11 @@ export const SwitchPage: React.FC = () => {
       <Showcase
         title="Preview"
         description="A beautiful mac-style System Preferences panel demonstrating various premium styles and custom brand colors."
-        code={`import { Switch } from '@unburn/ui/Switch';
+        code={`import { Switch } from '@unbrn/ui/Switch';
 
 export default function Example() {
   return (
-    <div className="unburn-glass" style={{
+    <div className="unbrn-glass" style={{
       padding: '1.5rem',
       borderRadius: 'var(--radius)',
       border: '1px solid var(--border-color)',
@@ -55,7 +55,7 @@ export default function Example() {
 }`}
       >
         <div
-          className="unburn-glass"
+          className="unbrn-glass"
           style={{
             padding: '1.5rem',
             borderRadius: 'var(--radius)',
@@ -98,7 +98,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Switch } from '@unburn/ui/Switch';
+          codeBlockCode={`import { Switch } from '@unbrn/ui/Switch';
 
 export default function Example() {
   return <Switch switchLabel="Toggle me" />;
@@ -112,7 +112,7 @@ export default function Example() {
         <Showcase
           title="Variants"
           description="Three visual variants optimized for premium backgrounds: filled (solid color with dynamic depth gradient), outlined (frosted glass border), and duo (frosted glass tinted with accent fill)."
-          code={`import { Switch } from '@unburn/ui/Switch';
+          code={`import { Switch } from '@unbrn/ui/Switch';
 
 export default function Example() {
   return (
@@ -134,7 +134,7 @@ export default function Example() {
         <Showcase
           title="Sizes"
           description="Highly responsive small, medium, and large sizing structures scaled to perfectly proportional alignment."
-          code={`import { Switch } from '@unburn/ui/Switch';
+          code={`import { Switch } from '@unbrn/ui/Switch';
 
 export default function Example() {
   return (
@@ -156,7 +156,7 @@ export default function Example() {
         <Showcase
           title="With Description"
           description="Include clear details and captions placed side-by-side with perfect structural text scaling."
-          code={`import { Switch } from '@unburn/ui/Switch';
+          code={`import { Switch } from '@unbrn/ui/Switch';
 
 export default function Example() {
   return (
@@ -176,7 +176,7 @@ export default function Example() {
         <Showcase
           title="States"
           description="Disabled toggle states representing non-interactive states while maintaining glassmorphic transparency."
-          code={`import { Switch } from '@unburn/ui/Switch';
+          code={`import { Switch } from '@unbrn/ui/Switch';
 
 export default function Example() {
   return (
@@ -205,6 +205,8 @@ export default function Example() {
           { name: 'switchSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the switch.' },
           { name: 'switchDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks on the switch.' },
           { name: 'switchAccentColor', type: 'string', description: 'Custom color theme variable overrides (e.g. hex, rgb).' },
+          { name: 'switchClassName', type: 'string', description: 'Custom CSS class for the track element.' },
+          { name: 'switchId', type: 'string', description: 'Custom ID attribute for the button element.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the switch.' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
         ]}

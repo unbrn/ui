@@ -1,9 +1,9 @@
 {
-  "name": "@unburn/ui",
-  "version": "1.5.3",
+  "name": "@unbrn/ui",
+  "version": "2.0.0",
   "private": false,
   "description": "A premium, softly-rounded React component library.",
-  "author": "Unburn",
+  "author": "Unbrn",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -56,6 +56,11 @@
       "import": "./dist/components/CodeBlock/CodeBlock.mjs",
       "require": "./dist/components/CodeBlock/CodeBlock.cjs"
     },
+    "./ColorPicker": {
+      "types": "./dist/components/ColorPicker/ColorPicker.d.ts",
+      "import": "./dist/components/ColorPicker/ColorPicker.mjs",
+      "require": "./dist/components/ColorPicker/ColorPicker.cjs"
+    },
     "./Dock": {
       "types": "./dist/components/Dock/Dock.d.ts",
       "import": "./dist/components/Dock/Dock.mjs",
@@ -106,6 +111,36 @@
       "import": "./dist/components/VoiceAgent/VoiceAgent.mjs",
       "require": "./dist/components/VoiceAgent/VoiceAgent.cjs"
     },
+    "./LumenBeam": {
+      "types": "./dist/backgrounds/LumenBeam/LumenBeam.d.ts",
+      "import": "./dist/backgrounds/LumenBeam/LumenBeam.mjs",
+      "require": "./dist/backgrounds/LumenBeam/LumenBeam.cjs"
+    },
+    "./backgrounds/LumenBeam": {
+      "types": "./dist/backgrounds/LumenBeam/LumenBeam.d.ts",
+      "import": "./dist/backgrounds/LumenBeam/LumenBeam.mjs",
+      "require": "./dist/backgrounds/LumenBeam/LumenBeam.cjs"
+    },
+    "./SatinFlow": {
+      "types": "./dist/backgrounds/SatinFlow/SatinFlow.d.ts",
+      "import": "./dist/backgrounds/SatinFlow/SatinFlow.mjs",
+      "require": "./dist/backgrounds/SatinFlow/SatinFlow.cjs"
+    },
+    "./backgrounds/SatinFlow": {
+      "types": "./dist/backgrounds/SatinFlow/SatinFlow.d.ts",
+      "import": "./dist/backgrounds/SatinFlow/SatinFlow.mjs",
+      "require": "./dist/backgrounds/SatinFlow/SatinFlow.cjs"
+    },
+    "./LiquidChrome": {
+      "types": "./dist/backgrounds/LiquidChrome/LiquidChrome.d.ts",
+      "import": "./dist/backgrounds/LiquidChrome/LiquidChrome.mjs",
+      "require": "./dist/backgrounds/LiquidChrome/LiquidChrome.cjs"
+    },
+    "./backgrounds/LiquidChrome": {
+      "types": "./dist/backgrounds/LiquidChrome/LiquidChrome.d.ts",
+      "import": "./dist/backgrounds/LiquidChrome/LiquidChrome.mjs",
+      "require": "./dist/backgrounds/LiquidChrome/LiquidChrome.cjs"
+    },
     "./utils": {
       "types": "./dist/lib/utils.d.ts",
       "import": "./dist/lib/utils.mjs",
@@ -140,11 +175,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/unburn/ui"
+    "url": "https://github.com/unbrn/ui"
   },
-  "homepage": "https://ui.unburn.tech",
+  "homepage": "https://ui.unbrn.tech",
   "bugs": {
-    "url": "https://github.com/unburn/ui/issues"
+    "url": "https://github.com/unbrn/ui/issues"
   },
   "scripts": {
     "dev": "vite",
@@ -181,10 +216,8 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
-    "lucide-react": "^1.14.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-live": "^4.1.8",
     "react-router-dom": "^7.15.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",

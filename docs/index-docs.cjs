@@ -4,10 +4,15 @@ const { execSync } = require('child_process');
 
 const tempDir = path.join(__dirname, 'dist-docs-temp');
 const docsComponentsDir = path.join(__dirname, 'pages/components');
+const docsBackgroundsDir = path.join(__dirname, 'pages/backgrounds');
 const docsPagesDir = path.join(__dirname, 'pages');
 const outputDir = path.resolve(__dirname, '../dist-docs/pagefind');
 
-console.log('=== STARTING UNBURN UI STATIC SEARCH INDEX GENERATOR ===');
+function toKebabCase(str) {
+  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+console.log('=== STARTING UNBRN UI STATIC SEARCH INDEX GENERATOR ===');
 
 if (fs.existsSync(tempDir)) {
   fs.rmSync(tempDir, { recursive: true, force: true });
@@ -27,7 +32,7 @@ function createHtmlPage(title, route, bodyText) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title} - Unburn UI</title>
+  <title>${title} - Unbrn UI</title>
 </head>
 <body>
   <main data-pagefind-body>
@@ -66,13 +71,32 @@ if (fs.existsSync(docsComponentsDir)) {
       const rawContent = fs.readFileSync(filePath, 'utf-8');
       
       const componentName = file.replace('Page.tsx', '');
-      const cleanTitle = componentName.charAt(0).toUpperCase() + componentName.slice(1);
-      const route = `/docs/components/${componentName.toLowerCase()}`;
+      const cleanTitle = componentName.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+      const route = `/docs/components/${toKebabCase(componentName)}`;
       
       const html = createHtmlPage(`${cleanTitle} Component`, route, rawContent);
       const outputName = file.replace('.tsx', '.html');
       fs.writeFileSync(path.join(tempDir, outputName), html, 'utf-8');
       console.log(`- Created static HTML index page for component: ${cleanTitle}`);
+    }
+  });
+}
+
+if (fs.existsSync(docsBackgroundsDir)) {
+  const files = fs.readdirSync(docsBackgroundsDir);
+  files.forEach(file => {
+    if (file.endsWith('Page.tsx')) {
+      const filePath = path.join(docsBackgroundsDir, file);
+      const rawContent = fs.readFileSync(filePath, 'utf-8');
+      
+      const backgroundName = file.replace('Page.tsx', '');
+      const cleanTitle = backgroundName.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+      const route = `/docs/backgrounds/${toKebabCase(backgroundName)}`;
+      
+      const html = createHtmlPage(`${cleanTitle} Background`, route, rawContent);
+      const outputName = file.replace('.tsx', '.html');
+      fs.writeFileSync(path.join(tempDir, outputName), html, 'utf-8');
+      console.log(`- Created static HTML index page for background: ${cleanTitle}`);
     }
   });
 }

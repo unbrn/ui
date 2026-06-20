@@ -6,6 +6,7 @@ import { OnThisPage } from './OnThisPage';
 import { Input } from '../../../package/components/Input/Input';
 import { Button } from '../../../package/components/Button/Button';
 import componentsMeta from '../../data/components.json';
+import backgroundsMeta from '../../data/backgrounds.json';
 import './DocsLayout.css';
 
 const frameworks = [
@@ -26,6 +27,10 @@ export const DocsLayout: React.FC = () => {
     a.name.localeCompare(b.name)
   );
 
+  const sortedBackgrounds = [...backgroundsMeta].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+
   const docsRoutes = [
     { path: '/docs/quick-start', name: 'Quick Start' },
     ...frameworks.map(fw => ({
@@ -36,6 +41,11 @@ export const DocsLayout: React.FC = () => {
     ...sortedComponents.map(c => ({
       path: c.path.replace(/^\/components/, '/docs/components'),
       name: c.name
+    })),
+    { path: '/docs/backgrounds', name: 'Backgrounds Overview' },
+    ...sortedBackgrounds.map(b => ({
+      path: b.path.replace(/^\/backgrounds/, '/docs/backgrounds'),
+      name: b.name
     }))
   ];
 

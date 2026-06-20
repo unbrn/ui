@@ -70,7 +70,7 @@ export const SelectPage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        code={`import { Select } from '@unburn/ui/Select';
+        code={`import { Select } from '@unbrn/ui/Select';
 
 const fruitOptions = [
   { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
@@ -105,7 +105,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Select } from '@unburn/ui/Select';
+          codeBlockCode={`import { Select } from '@unbrn/ui/Select';
 
 const options = [
   { selectOptionValue: '1', selectOptionLabel: 'Option 1' },
@@ -124,7 +124,7 @@ export default function Example() {
         <Showcase
           title="Variants"
           description="Choose from three styles: filled, outlined, and duo."
-          code={`import { Select } from '@unburn/ui/Select';
+          code={`import { Select } from '@unbrn/ui/Select';
 
 const fruitOptions = [
   { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
@@ -152,7 +152,7 @@ export default function Example() {
         <Showcase
           title="Accent Color"
           description="Apply a custom accent color to the border, focus ring, and spinner using selectAccentColor."
-          code={`import { Select } from '@unburn/ui/Select';
+          code={`import { Select } from '@unbrn/ui/Select';
 
 const fruitOptions = [
   { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
@@ -180,7 +180,7 @@ export default function Example() {
         <Showcase
           title="Loading State"
           description="Show a spinner and block interaction while options are being fetched using selectLoading."
-          code={`import { Select } from '@unburn/ui/Select';
+          code={`import { Select } from '@unbrn/ui/Select';
 import { useState } from 'react';
 
 const fruitOptions = [
@@ -219,7 +219,7 @@ export default function Example() {
         <Showcase
           title="Sizes"
           description="Choose from small, medium, or large sizes."
-          code={`import { Select } from '@unburn/ui/Select';
+          code={`import { Select } from '@unbrn/ui/Select';
 
 const fruitOptions = [
   { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
@@ -246,7 +246,7 @@ export default function Example() {
         <Showcase
           title="States"
           description="Use error states and disabled dropdowns for forms."
-          code={`import { Select } from '@unburn/ui/Select';
+          code={`import { Select } from '@unbrn/ui/Select';
 
 const fruitOptions = [
   { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
@@ -291,7 +291,7 @@ export default function Example() {
         <Showcase
           title="Controlled"
           description="Control and track selected options easily."
-          code={`import { Select } from '@unburn/ui/Select';
+          code={`import { Select } from '@unbrn/ui/Select';
 import { useState } from 'react';
 
 const fruitOptions = [

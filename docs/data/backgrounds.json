@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Lumen Beam",
+    "description": "An ethereal, interactive volumetric beam background animation rendered using raw WebGL.",
+    "path": "/backgrounds/lumen-beam",
+    "addedAt": "2026-06-20"
+  },
+  {
+    "name": "Satin Flow",
+    "description": "A smooth, undulating dual-color satin wave shader animation rendered using raw WebGL.",
+    "path": "/backgrounds/satin-flow",
+    "addedAt": "2026-06-20"
+  },
+  {
+    "name": "Liquid Chrome",
+    "description": "A glossy, reflective liquid chrome surface with dynamic metallic refractions, chromatic shifts, and mouse interactivity.",
+    "path": "/backgrounds/liquid-chrome",
+    "addedAt": "2026-06-20"
+  }
+]

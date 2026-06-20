@@ -13,7 +13,7 @@ export const AccordionsPage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        code={`import { Accordion } from '@unburn/ui/Accordion';
+        code={`import { Accordion } from '@unbrn/ui/Accordion';
 import { Settings } from 'lucide-react';
 
 const items = [
@@ -53,7 +53,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Accordion } from '@unburn/ui/Accordion';
+          codeBlockCode={`import { Accordion } from '@unbrn/ui/Accordion';
 
 const items = [
   { accordionItemId: '1', accordionItemTitle: 'Section 1', accordionItemContent: 'Content 1' },
@@ -71,7 +71,7 @@ export default function Example() {
         <Showcase
           title="Variants"
           description="Choose from three styles: outlined, duo, and filled."
-          code={`import { Accordion } from '@unburn/ui/Accordion';
+          code={`import { Accordion } from '@unbrn/ui/Accordion';
 
 export default function Example() {
   return (
@@ -111,7 +111,7 @@ export default function Example() {
         <Showcase
           title="With Icons & Subtitles"
           description="Add icons and subtitles to give more details to each item."
-          code={`import { Accordion } from '@unburn/ui/Accordion';
+          code={`import { Accordion } from '@unbrn/ui/Accordion';
 import { Shield, Zap } from 'lucide-react';
 
 const items = [
@@ -164,7 +164,7 @@ export default function Example() {
         <Showcase
           title="Multiple Selection"
           description="Allow users to open more than one item at the same time."
-          code={`import { Accordion } from '@unburn/ui/Accordion';
+          code={`import { Accordion } from '@unbrn/ui/Accordion';
 
 const items = [
   { accordionItemId: 'm1', accordionItemTitle: 'Independent Item A', accordionItemContent: 'You can open this...' },

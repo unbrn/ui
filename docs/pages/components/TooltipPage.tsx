@@ -14,13 +14,13 @@ export const TooltipPage: React.FC = () => {
       <Showcase
         title="Preview"
         description="A premium glassmorphic hover information bubble showing interactive trigger components."
-        code={`import { Tooltip } from '@unburn/ui/Tooltip';
-import { Button } from '@unburn/ui/Button';
+        code={`import { Tooltip } from '@unbrn/ui/Tooltip';
+import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return (
     <Tooltip
-      tooltipContent="Unburn UI system tooltip feed"
+      tooltipContent="Unbrn UI system tooltip feed"
       tooltipPosition="top"
       tooltipChildren={<Button buttonVariant="filled" buttonChildren="Hover Trigger" />}
     />
@@ -29,7 +29,7 @@ export default function Example() {
       >
         <div style={{ padding: '2rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Tooltip
-            tooltipContent="Unburn UI system tooltip feed"
+            tooltipContent="Unbrn UI system tooltip feed"
             tooltipPosition="top"
             tooltipChildren={<Button buttonVariant="filled" buttonChildren="Hover Trigger" />}
           />
@@ -40,8 +40,8 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Tooltip } from '@unburn/ui/Tooltip';
-import { Button } from '@unburn/ui/Button';
+          codeBlockCode={`import { Tooltip } from '@unbrn/ui/Tooltip';
+import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return (
@@ -60,8 +60,8 @@ export default function Example() {
         <Showcase
           title="Positions"
           description="Support for four-directional alignments: top, bottom, left, and right."
-          code={`import { Tooltip } from '@unburn/ui/Tooltip';
-import { Button } from '@unburn/ui/Button';
+          code={`import { Tooltip } from '@unbrn/ui/Tooltip';
+import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return (
@@ -85,8 +85,8 @@ export default function Example() {
         <Showcase
           title="Variants"
           description="Support for three distinct styling architectures: filled (solid color/high-contrast), outlined (crisp border highlight), and duo (translucent background and border tinter)."
-          code={`import { Tooltip } from '@unburn/ui/Tooltip';
-import { Button } from '@unburn/ui/Button';
+          code={`import { Tooltip } from '@unbrn/ui/Tooltip';
+import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return (
@@ -108,8 +108,8 @@ export default function Example() {
         <Showcase
           title="States"
           description="Support for disabled states, preventing bubble rendering when disabled is set."
-          code={`import { Tooltip } from '@unburn/ui/Tooltip';
-import { Button } from '@unburn/ui/Button';
+          code={`import { Tooltip } from '@unbrn/ui/Tooltip';
+import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return (

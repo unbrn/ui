@@ -48,6 +48,12 @@
     "addedAt": "2026-05-14"
   },
   {
+    "name": "Color Picker",
+    "description": "Premium color pickers with custom hex validation and pre-made preset swatches.",
+    "path": "/components/color-picker",
+    "addedAt": "2026-06-20"
+  },
+  {
     "name": "Dock",
     "description": "Floating menu bar with smooth pop-out animations.",
     "path": "/components/dock",

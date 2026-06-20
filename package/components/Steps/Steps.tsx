@@ -54,40 +54,40 @@ export const Steps = forwardRef<HTMLDivElement, StepsProps>(
         return (
           <div
             key={i}
-            className={cn('unburn-step', classNames?.stepsStep)}
+            className={cn('unbrn-step', classNames?.stepsStep)}
             style={styles?.stepsStep}
           >
-            <div className="unburn-step-left">
+            <div className="unbrn-step-left">
               <div
-                className={cn('unburn-step-marker', classNames?.stepsMarker)}
+                className={cn('unbrn-step-marker', classNames?.stepsMarker)}
                 style={styles?.stepsMarker}
               >
                 {i + 1}
               </div>
               {i < stepsItems.length - 1 && (
                 <div
-                  className={cn('unburn-step-connector', classNames?.stepsConnector)}
+                  className={cn('unbrn-step-connector', classNames?.stepsConnector)}
                   style={styles?.stepsConnector}
                 />
               )}
             </div>
-            <div className="unburn-step-content">
+            <div className="unbrn-step-content">
               <div
-                className={cn('unburn-step-title', classNames?.stepsTitle)}
+                className={cn('unbrn-step-title', classNames?.stepsTitle)}
                 style={styles?.stepsTitle}
               >
                 {item.stepTitle}
               </div>
               {item.stepDescription && (
                 <div
-                  className={cn('unburn-step-description', classNames?.stepsDescription)}
+                  className={cn('unbrn-step-description', classNames?.stepsDescription)}
                   style={styles?.stepsDescription}
                 >
                   {item.stepDescription}
                 </div>
               )}
               {displayStepChildren && (
-                <div className="unburn-step-body">{displayStepChildren}</div>
+                <div className="unbrn-step-body">{displayStepChildren}</div>
               )}
             </div>
           </div>
@@ -99,7 +99,7 @@ export const Steps = forwardRef<HTMLDivElement, StepsProps>(
       <div
         ref={ref}
         style={{ ...stepsStyle, ...styles?.stepsRoot }}
-        className={cn('unburn-steps', stepsClassName, classNames?.stepsRoot)}
+        className={cn('unbrn-steps', stepsClassName, classNames?.stepsRoot)}
       >
         {childArray}
       </div>

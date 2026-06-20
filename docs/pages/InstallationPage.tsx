@@ -17,14 +17,14 @@ const frameworkGuides: Record<string, { steps: { title: string; code: string; la
   nextjs: {
     steps: [
       {
-        title: '1. Install @unburn/ui',
-        code: 'npm install @unburn/ui',
+        title: '1. Install @unbrn/ui',
+        code: 'npm install @unbrn/ui',
         language: 'bash',
       },
       {
         title: '2. Import styles in your root layout',
         code: `
-import '@unburn/ui/styles.css';
+import '@unbrn/ui/styles.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -41,8 +41,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         code: `
 'use client';
 
-import { Button } from '@unburn/ui/Button';
-import { Badge } from '@unburn/ui/Badge';
+import { Button } from '@unbrn/ui/Button';
+import { Badge } from '@unbrn/ui/Badge';
 
 export default function Home() {
   return (
@@ -61,8 +61,8 @@ export default function Home() {
   vite: {
     steps: [
       {
-        title: '1. Install @unburn/ui',
-        code: 'npm install @unburn/ui',
+        title: '1. Install @unbrn/ui',
+        code: 'npm install @unbrn/ui',
         language: 'bash',
       },
       {
@@ -70,7 +70,7 @@ export default function Home() {
         code: `
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '@unburn/ui/styles.css';
+import '@unbrn/ui/styles.css';
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -84,8 +84,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       {
         title: '3. Use components',
         code: `
-import { Button } from '@unburn/ui/Button';
-import { Alert } from '@unburn/ui/Alert';
+import { Button } from '@unbrn/ui/Button';
+import { Alert } from '@unbrn/ui/Alert';
 
 function App() {
   return (
@@ -104,14 +104,14 @@ export default App;`,
   remix: {
     steps: [
       {
-        title: '1. Install @unburn/ui',
-        code: 'npm install @unburn/ui',
+        title: '1. Install @unbrn/ui',
+        code: 'npm install @unbrn/ui',
         language: 'bash',
       },
       {
         title: '2. Import styles in your root',
         code: `
-import '@unburn/ui/styles.css';
+import '@unbrn/ui/styles.css';
 
 export default function App() {
   return (
@@ -131,13 +131,13 @@ export default function App() {
       {
         title: '3. Use components in any route',
         code: `
-import { Button } from '@unburn/ui/Button';
-import { Badge } from '@unburn/ui/Badge';
+import { Button } from '@unbrn/ui/Button';
+import { Badge } from '@unbrn/ui/Badge';
 
 export default function Index() {
   return (
     <div style={{ padding: '2rem' }}>
-      <Button buttonVariant="duo" buttonChildren="Remix + Unburn" />
+      <Button buttonVariant="duo" buttonChildren="Remix + Unbrn" />
       <Badge badgeChildren="v0.1.0" />
     </div>
   );
@@ -155,15 +155,15 @@ export default function Index() {
         note: 'Astro requires a framework integration to render React components.',
       },
       {
-        title: '2. Install @unburn/ui',
-        code: 'npm install @unburn/ui',
+        title: '2. Install @unbrn/ui',
+        code: 'npm install @unbrn/ui',
         language: 'bash',
       },
       {
         title: '3. Import styles in your layout',
         code: `---
 
-import '@unburn/ui/styles.css';
+import '@unbrn/ui/styles.css';
 ---
 
 <html lang="en" data-theme="dark" data-accent="green">
@@ -182,7 +182,7 @@ import '@unburn/ui/styles.css';
         code: `---
 
 import Layout from '../layouts/Layout.astro';
-import { Button } from '@unburn/ui/Button';
+import { Button } from '@unbrn/ui/Button';
 ---
 
 <Layout>
@@ -198,26 +198,26 @@ import { Button } from '@unburn/ui/Button';
   gatsby: {
     steps: [
       {
-        title: '1. Install @unburn/ui',
-        code: 'npm install @unburn/ui',
+        title: '1. Install @unbrn/ui',
+        code: 'npm install @unbrn/ui',
         language: 'bash',
       },
       {
         title: '2. Import styles in gatsby-browser',
         code: `
-import '@unburn/ui/styles.css';`,
+import '@unbrn/ui/styles.css';`,
         language: 'javascript',
         note: 'Set data-theme and data-accent on the <html> element via gatsby-ssr.js or a layout component.',
       },
       {
         title: '3. Use components in any page',
         code: `
-import { Button } from '@unburn/ui/Button';
+import { Button } from '@unbrn/ui/Button';
 
 export default function Home() {
   return (
     <div style={{ padding: '2rem' }}>
-      <Button buttonVariant="filled" buttonAccentColor="green" buttonChildren="Gatsby + Unburn" />
+      <Button buttonVariant="filled" buttonAccentColor="green" buttonChildren="Gatsby + Unbrn" />
     </div>
   );
 }`,
@@ -228,13 +228,13 @@ export default function Home() {
   manual: {
     steps: [
       {
-        title: '1. Install @unburn/ui',
-        code: 'npm install @unburn/ui',
+        title: '1. Install @unbrn/ui',
+        code: 'npm install @unbrn/ui',
         language: 'bash',
       },
       {
         title: '2. Import the stylesheet',
-        code: `import '@unburn/ui/styles.css';`,
+        code: `import '@unbrn/ui/styles.css';`,
         language: 'javascript',
         note: 'This single import includes all design tokens and component styles.',
       },
@@ -249,16 +249,16 @@ export default function Home() {
       },
       {
         title: '4. Import and use components',
-        code: `import { Button } from '@unburn/ui/Button';
-import { Alert } from '@unburn/ui/Alert';
-import { Badge } from '@unburn/ui/Badge';
-import { Avatar } from '@unburn/ui/Avatar';
-import { Accordion } from '@unburn/ui/Accordion';
-import { Checkbox } from '@unburn/ui/Checkbox';
-import { Switch } from '@unburn/ui/Switch';
-import { Select } from '@unburn/ui/Select';
-import { Dock } from '@unburn/ui/Dock';
-import { CodeBlock } from '@unburn/ui/CodeBlock';`,
+        code: `import { Button } from '@unbrn/ui/Button';
+import { Alert } from '@unbrn/ui/Alert';
+import { Badge } from '@unbrn/ui/Badge';
+import { Avatar } from '@unbrn/ui/Avatar';
+import { Accordion } from '@unbrn/ui/Accordion';
+import { Checkbox } from '@unbrn/ui/Checkbox';
+import { Switch } from '@unbrn/ui/Switch';
+import { Select } from '@unbrn/ui/Select';
+import { Dock } from '@unbrn/ui/Dock';
+import { CodeBlock } from '@unbrn/ui/CodeBlock';`,
         language: 'javascript',
       },
     ],
@@ -279,7 +279,7 @@ export const InstallationPage: React.FC = () => {
           {fw.name}
         </h2>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '3rem', lineHeight: '1.6' }}>
-          Follow these simple steps to get <span style={{ color: 'var(--text-main)', fontWeight: 500 }}>@unburn/ui</span> running in your {fw.name} app.
+          Follow these simple steps to get <span style={{ color: 'var(--text-main)', fontWeight: 500 }}>@unbrn/ui</span> running in your {fw.name} app.
         </p>
 
         <div className="install-steps">
@@ -288,7 +288,7 @@ export const InstallationPage: React.FC = () => {
               <div className="install-step-header">
                 <h3 className="install-step-title">{step.title}</h3>
               </div>
-              {step.language === 'bash' && step.code.includes('@unburn/ui') ? (
+              {step.language === 'bash' && step.code.includes('@unbrn/ui') ? (
                 <CodeBlock
                   codeBlockDefaultTab="npm"
                   codeBlockTabs={{
@@ -319,7 +319,7 @@ export const InstallationPage: React.FC = () => {
     <div className="installation-page">
       <h2 className="section-title">Quick Start</h2>
       <p style={{ color: 'var(--text-muted)', fontSize: '1.125rem', maxWidth: '600px', lineHeight: '1.6', marginBottom: '3rem' }}>
-        Get started with @unburn/ui in less than a minute. Our components work seamlessly out of the box in any modern React application.
+        Get started with @unbrn/ui in less than a minute. Our components work seamlessly out of the box in any modern React application.
       </p>
 
       <div className="install-steps" style={{ marginBottom: '5rem' }}>
@@ -328,10 +328,10 @@ export const InstallationPage: React.FC = () => {
           <CodeBlock
             codeBlockDefaultTab="npm"
             codeBlockTabs={{
-              npm: 'npm install @unburn/ui',
-              pnpm: 'pnpm add @unburn/ui',
-              yarn: 'yarn add @unburn/ui',
-              bun: 'bun add @unburn/ui',
+              npm: 'npm install @unbrn/ui',
+              pnpm: 'pnpm add @unbrn/ui',
+              yarn: 'yarn add @unbrn/ui',
+              bun: 'bun add @unbrn/ui',
             }}
           />
         </div>
@@ -339,10 +339,10 @@ export const InstallationPage: React.FC = () => {
         <div className="install-step">
           <h3 className="install-step-title">2. Import styles</h3>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '1.25rem', lineHeight: '1.6' }}>
-            Import Unburn UI's main stylesheet at the top of your root or entry file (e.g., <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>main.tsx</code>, <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>index.js</code>, or <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>layout.tsx</code>):
+            Import Unbrn UI's main stylesheet at the top of your root or entry file (e.g., <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>main.tsx</code>, <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>index.js</code>, or <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>layout.tsx</code>):
           </p>
           <CodeBlock
-            codeBlockCode="import '@unburn/ui/styles.css';"
+            codeBlockCode="import '@unbrn/ui/styles.css';"
             codeBlockLanguage="tsx"
             codeBlockVariant="filled"
           />
@@ -354,8 +354,8 @@ export const InstallationPage: React.FC = () => {
             Now you can import and render any components in your application:
           </p>
           <CodeBlock
-            codeBlockCode={`import { Button } from '@unburn/ui/Button';
-import { Badge } from '@unburn/ui/Badge';
+            codeBlockCode={`import { Button } from '@unbrn/ui/Button';
+import { Badge } from '@unbrn/ui/Badge';
 
 export default function App() {
   return (

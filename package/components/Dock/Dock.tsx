@@ -62,27 +62,27 @@ export const Dock: React.FC<DockProps> = ({
   const accentStyle = getAccentVariables(dockAccentColor);
   return (
     <div
-      className={cn('unburn-dock-wrapper', `unburn-pos-${dockPosition}`, isCollapsed && 'unburn-collapsed', dockClassName, classNames?.dockRoot)}
+      className={cn('unbrn-dock-wrapper', `unbrn-pos-${dockPosition}`, isCollapsed && 'unbrn-collapsed', dockClassName, classNames?.dockRoot)}
       style={{ ...dockStyle, ...styles?.dockRoot, ...accentStyle }}
     >
       <div
         className={cn(
-          "unburn-dock",
-          dockVariant === 'filled' ? "unburn-dock-filled" : "unburn-dock-outlined unburn-glass",
+          "unbrn-dock",
+          dockVariant === 'filled' ? "unbrn-dock-filled" : "unbrn-dock-outlined unbrn-glass",
           classNames?.dockContainer
         )}
         style={styles?.dockContainer}
       >
         {dockShowMenuToggle && (
           <Button
-            buttonClassName={cn('unburn-dock-trigger', dockIsMenuOpen && 'unburn-open', classNames?.dockTrigger)}
+            buttonClassName={cn('unbrn-dock-trigger', dockIsMenuOpen && 'unbrn-open', classNames?.dockTrigger)}
             buttonStyle={styles?.dockTrigger}
             buttonOnClick={dockOnMenuToggle}
             buttonVariant="filled"
             buttonSize={dockButtonSize}
             buttonAccentColor={dockButtonAccentColor}
             buttonIcon={
-              <div className="unburn-trigger-icon-wrapper">
+              <div className="unbrn-trigger-icon-wrapper">
                 {dockIsMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </div>
             }
@@ -93,7 +93,7 @@ export const Dock: React.FC<DockProps> = ({
         </ButtonContext.Provider>
         {dockShowHideToggle && (
           <Button
-            buttonClassName={cn("unburn-dock-collapse-btn", classNames?.dockCollapseBtn)}
+            buttonClassName={cn("unbrn-dock-collapse-btn", classNames?.dockCollapseBtn)}
             buttonStyle={styles?.dockCollapseBtn}
             buttonOnClick={() => setIsCollapsed(true)}
             buttonVariant={resolvedVariant}
@@ -112,7 +112,7 @@ export const Dock: React.FC<DockProps> = ({
       </div>
       {dockShowHideToggle && (
         <Button
-          buttonClassName={cn("unburn-dock-expand-btn", classNames?.dockExpandBtn)}
+          buttonClassName={cn("unbrn-dock-expand-btn", classNames?.dockExpandBtn)}
           buttonStyle={styles?.dockExpandBtn}
           buttonOnClick={() => setIsCollapsed(false)}
           buttonVariant={resolvedVariant}

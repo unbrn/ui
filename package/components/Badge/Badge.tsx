@@ -44,10 +44,10 @@ export const Badge: React.FC<BadgeProps> = ({
   return (
     <div
       className={cn(
-        'unburn-badge',
-        `unburn-badge-${badgeVariant}`,
-        `unburn-badge-${badgeSize}`,
-        (badgeVariant === 'outlined' || badgeVariant === 'duo') && 'unburn-glass',
+        'unbrn-badge',
+        `unbrn-badge-${badgeVariant}`,
+        `unbrn-badge-${badgeSize}`,
+        (badgeVariant === 'outlined' || badgeVariant === 'duo') && 'unbrn-glass',
         badgeClassName,
         classNames?.badgeRoot
       )}
@@ -55,21 +55,21 @@ export const Badge: React.FC<BadgeProps> = ({
     >
       {badgeIcon && badgeIconPosition === 'left' && (
         <span
-          className={cn('unburn-badge-icon-left', classNames?.badgeIcon)}
+          className={cn('unbrn-badge-icon-left', classNames?.badgeIcon)}
           style={styles?.badgeIcon}
         >
           {badgeIcon}
         </span>
       )}
       <span
-        className={cn('unburn-badge-text', classNames?.badgeText)}
+        className={cn('unbrn-badge-text', classNames?.badgeText)}
         style={styles?.badgeText}
       >
         {displayChildren}
       </span>
       {badgeIcon && badgeIconPosition === 'right' && (
         <span
-          className={cn('unburn-badge-icon-right', classNames?.badgeIcon)}
+          className={cn('unbrn-badge-icon-right', classNames?.badgeIcon)}
           style={styles?.badgeIcon}
         >
           {badgeIcon}

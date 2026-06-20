@@ -136,14 +136,14 @@ export const Dropzone: React.FC<DropzoneProps> = ({
   const accentStyle = getAccentVariables(dropzoneAccentColor);
 
   return (
-    <div className={cn("unburn-dropzone-container", dropzoneClassName, classNames?.dropzoneRoot)} style={{ ...dropzoneStyle, ...styles?.dropzoneRoot, ...accentStyle }}>
+    <div className={cn("unbrn-dropzone-container", dropzoneClassName, classNames?.dropzoneRoot)} style={{ ...dropzoneStyle, ...styles?.dropzoneRoot, ...accentStyle }}>
       <div
         className={cn(
-          "unburn-dropzone",
-          "unburn-glass",
-          isDragging && "unburn-dropzone-dragging",
-          dropzoneDisabled && "unburn-dropzone-disabled",
-          files.length > 0 && "unburn-dropzone-has-files"
+          "unbrn-dropzone",
+          "unbrn-glass",
+          isDragging && "unbrn-dropzone-dragging",
+          dropzoneDisabled && "unbrn-dropzone-disabled",
+          files.length > 0 && "unbrn-dropzone-has-files"
         )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -157,71 +157,71 @@ export const Dropzone: React.FC<DropzoneProps> = ({
           onChange={handleFileInputChange}
           accept={dropzoneAccept}
           multiple={dropzoneMultiple}
-          className="unburn-dropzone-input"
+          className="unbrn-dropzone-input"
           tabIndex={-1}
         />
 
-        <div className="unburn-dropzone-content">
-          <div className={cn("unburn-dropzone-icon", classNames?.dropzoneIcon)} style={styles?.dropzoneIcon}>
+        <div className="unbrn-dropzone-content">
+          <div className={cn("unbrn-dropzone-icon", classNames?.dropzoneIcon)} style={styles?.dropzoneIcon}>
             {dropzoneIcon || <Upload size={24} />}
           </div>
-          <div className="unburn-dropzone-text">
-            <h4 className={cn("unburn-dropzone-label", classNames?.dropzoneLabel)} style={styles?.dropzoneLabel}>
+          <div className="unbrn-dropzone-text">
+            <h4 className={cn("unbrn-dropzone-label", classNames?.dropzoneLabel)} style={styles?.dropzoneLabel}>
               {dropzoneLabel}
             </h4>
-            <p className={cn("unburn-dropzone-description", classNames?.dropzoneDescription)} style={styles?.dropzoneDescription}>
+            <p className={cn("unbrn-dropzone-description", classNames?.dropzoneDescription)} style={styles?.dropzoneDescription}>
               {dropzoneDescription}
             </p>
           </div>
 
           {dropzoneAccept && (
-            <div className="unburn-dropzone-badges">
+            <div className="unbrn-dropzone-badges">
               {dropzoneAccept.split(',').map((type) => {
                 const cleanType = type.trim().replace('.', '').replace('*', '').toUpperCase();
                 if (!cleanType) return null;
                 return (
-                  <Badge key={type} badgeVariant="outlined" badgeSize="sm" badgeClassName="unburn-dropzone-badge" badgeChildren={cleanType} />
+                  <Badge key={type} badgeVariant="outlined" badgeSize="sm" badgeClassName="unbrn-dropzone-badge" badgeChildren={cleanType} />
                 );
               })}
             </div>
           )}
         </div>
 
-        <div className="unburn-dropzone-noise" />
-        <div className="unburn-dropzone-glow" />
+        <div className="unbrn-dropzone-noise" />
+        <div className="unbrn-dropzone-glow" />
       </div>
 
       {files.length > 0 && (
-        <div className="unburn-dropzone-file-list">
+        <div className="unbrn-dropzone-file-list">
           {files.map((file, index) => {
             const extension = file.name.split('.').pop()?.toLowerCase();
             const getFileIcon = () => {
               if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'].includes(extension || '')) {
-                return <Image size={18} className="unburn-dropzone-file-icon" />;
+                return <Image size={18} className="unbrn-dropzone-file-icon" />;
               }
               if (['pdf', 'doc', 'docx', 'txt', 'rtf'].includes(extension || '')) {
-                return <FileText size={18} className="unburn-dropzone-file-icon" />;
+                return <FileText size={18} className="unbrn-dropzone-file-icon" />;
               }
-              return <File size={18} className="unburn-dropzone-file-icon" />;
+              return <File size={18} className="unbrn-dropzone-file-icon" />;
             };
 
             return (
-              <div key={`${file.name}-${index}`} className="unburn-dropzone-file-item unburn-glass">
-                <div className="unburn-dropzone-file-info">
-                  <div className="unburn-dropzone-file-icon-wrapper">
+              <div key={`${file.name}-${index}`} className="unbrn-dropzone-file-item unbrn-glass">
+                <div className="unbrn-dropzone-file-info">
+                  <div className="unbrn-dropzone-file-icon-wrapper">
                     {getFileIcon()}
                   </div>
-                  <div className="unburn-dropzone-file-text">
-                    <span className="unburn-dropzone-file-name" title={file.name}>
+                  <div className="unbrn-dropzone-file-text">
+                    <span className="unbrn-dropzone-file-name" title={file.name}>
                       {file.name}
                     </span>
-                    <span className="unburn-dropzone-file-size">
+                    <span className="unbrn-dropzone-file-size">
                       {formatFileSize(file.size)}
                     </span>
                   </div>
                 </div>
                 <button
-                  className="unburn-dropzone-file-remove"
+                  className="unbrn-dropzone-file-remove"
                   onClick={(e) => removeFile(index, e)}
                   aria-label="Remove file"
                 >

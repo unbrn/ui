@@ -56,9 +56,10 @@
 
 }
 
-.unburn-glass {
+.unbrn-glass {
     -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px)
+    backdrop-filter: blur(20px);
+    background-color: var(--bg-glass);
 }
 
 * {
@@ -87,12 +88,6 @@ body {
 
 .font-mono {
     font-family: var(--font-mono);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
 }
 
 button,

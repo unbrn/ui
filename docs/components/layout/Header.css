@@ -1,4 +1,4 @@
-.unburn-header {
+.unbrn-header {
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -6,6 +6,8 @@
   border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
+  padding: 0 2rem;
+  background-color: var(--bg-glass);
 }
 
 .header-container {
@@ -18,32 +20,31 @@
   height: 100%;
 }
 
-.unburn-logo {
+.unbrn-logo {
   display: flex;
   align-items: center;
   gap: 0.8rem;
   font-family: var(--font-sans);
-  font-weight: 700;
   font-size: 1.35rem;
   letter-spacing: -0.04em;
 }
 
-.unburn-logo svg {
+.unbrn-logo svg {
   display: block;
   transition: all var(--transition);
 }
 
-.unburn-logo svg rect {
+.unbrn-logo svg rect {
   transition: all var(--transition);
 }
 
-.unburn-header-actions {
+.unbrn-header-actions {
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
 
-.unburn-search-btn {
+.unbrn-search-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -60,34 +61,34 @@
   min-width: 140px;
 }
 
-.unburn-search-btn:hover {
+.unbrn-search-btn:hover {
   border-color: var(--accent-color);
   color: var(--text-main);
   background-color: color-mix(in srgb, var(--accent-color) 4%, var(--bg-main));
   transform: translateY(-1px);
 }
 
-.unburn-search-btn:active {
+.unbrn-search-btn:active {
   transform: translateY(0);
 }
 
-.unburn-search-btn .search-icon {
+.unbrn-search-btn .search-icon {
   flex-shrink: 0;
   opacity: 0.7;
   transition: transform 0.2s ease;
 }
 
-.unburn-search-btn:hover .search-icon {
+.unbrn-search-btn:hover .search-icon {
   transform: scale(1.1);
   opacity: 1;
 }
 
-.unburn-search-btn .search-text {
+.unbrn-search-btn .search-text {
   flex: 1;
   text-align: left;
 }
 
-.unburn-search-btn .search-kbd {
+.unbrn-search-btn .search-kbd {
   font-family: var(--font-sans);
   font-size: 0.65rem;
   font-weight: 700;
@@ -99,12 +100,12 @@
   letter-spacing: 0.05em;
 }
 
-.unburn-search-btn:hover .search-kbd {
+.unbrn-search-btn:hover .search-kbd {
   border-color: var(--accent-color);
   color: var(--accent-color);
 }
 
-.unburn-color-swatches {
+.unbrn-color-swatches {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -112,7 +113,7 @@
   border-right: 1px solid var(--border-color);
 }
 
-.unburn-swatch {
+.unbrn-swatch {
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -122,11 +123,11 @@
   transition: transform 0.2s ease;
 }
 
-.unburn-swatch:hover {
+.unbrn-swatch:hover {
   transform: scale(1.2);
 }
 
-.unburn-theme-toggle {
+.unbrn-theme-toggle {
   background: transparent;
   border: none;
   color: var(--text-main);
@@ -245,11 +246,47 @@
 }
 
 @media (max-width: 900px) {
-  .header-container {
-    padding: 0 1.5rem;
-  }
-
   .docs-sidebar-mobile-hamburger {
     display: flex;
+  }
+}
+
+.header-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.header-nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition), transform var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+.header-nav-link:hover {
+  color: var(--text-main);
+}
+
+.header-nav-link.active {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .header-nav-links {
+    display: none;
+  }
+
+  .header-search-wrapper {
+    display: none !important;
+  }
+
+  .github-link-btn {
+    display: none;
   }
 }

@@ -1,15 +1,15 @@
-.unburn-textarea-root {
+.unbrn-textarea-root {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   width: auto;
 }
 
-.unburn-textarea-full-width {
+.unbrn-textarea-full-width {
   width: 100%;
 }
 
-.unburn-textarea-label {
+.unbrn-textarea-label {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
@@ -18,7 +18,7 @@
   margin-left: 0.25rem;
 }
 
-.unburn-textarea-container {
+.unbrn-textarea-container {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -29,21 +29,21 @@
   min-height: 120px;
 }
 
-.unburn-textarea-container:focus-within {
+.unbrn-textarea-container:focus-within {
   border-color: var(--accent-color);
 }
 
-.unburn-textarea-container-filled {
+.unbrn-textarea-container-filled {
   background-color: var(--bg-secondary);
   border-color: transparent;
 }
 
-.unburn-textarea-container-duo {
+.unbrn-textarea-container-duo {
   background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
   border-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
 }
 
-.unburn-textarea {
+.unbrn-textarea {
   width: 100%;
   min-height: 100px;
   border: none;
@@ -57,16 +57,16 @@
   display: block;
 }
 
-.unburn-textarea::-webkit-resizer {
+.unbrn-textarea::-webkit-resizer {
   display: none;
 }
 
-.unburn-textarea::placeholder {
+.unbrn-textarea::placeholder {
   color: var(--text-muted);
   opacity: 0.5;
 }
 
-.unburn-textarea-footer {
+.unbrn-textarea-footer {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -79,19 +79,19 @@
   z-index: 1;
 }
 
-.unburn-textarea-count,
-.unburn-textarea-drag {
+.unbrn-textarea-count,
+.unbrn-textarea-drag {
   pointer-events: none;
 }
 
-.unburn-textarea-count {
+.unbrn-textarea-count {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-muted);
   opacity: 0.8;
 }
 
-.unburn-textarea-drag {
+.unbrn-textarea-drag {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -106,41 +106,40 @@
   transition: opacity 0.2s var(--transition-curve);
 }
 
-.unburn-textarea-drag:hover {
+.unbrn-textarea-drag:hover {
   opacity: 1;
   color: var(--accent-color);
 }
 
-.unburn-textarea-drag-circle {
+.unbrn-textarea-drag-circle {
   width: 14px;
   height: 14px;
   border-radius: 50%;
   border: 1.5px solid currentColor;
 }
 
-.unburn-textarea-container-error {
+.unbrn-textarea-container-error {
   border-color: var(--color-red);
 }
 
-
-.unburn-textarea-error-message {
+.unbrn-textarea-error-message {
   font-size: 0.75rem;
   color: var(--color-red);
   margin-left: 0.25rem;
 }
 
-.unburn-textarea-description {
+.unbrn-textarea-description {
   font-size: 0.75rem;
   color: var(--text-muted);
   margin-left: 0.25rem;
 }
 
-.unburn-textarea-container-disabled {
+.unbrn-textarea-container-disabled {
   opacity: 0.5;
   cursor: not-allowed;
   background-color: var(--bg-secondary);
 }
 
-.unburn-textarea-container-disabled .unburn-textarea {
+.unbrn-textarea-container-disabled .unbrn-textarea {
   cursor: not-allowed;
 }

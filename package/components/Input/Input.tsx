@@ -83,8 +83,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "unburn-input-root",
-          inputFullWidth && "unburn-input-full-width",
+          "unbrn-input-root",
+          inputFullWidth && "unbrn-input-full-width",
           classNames?.inputRoot
         )}
         style={{ ...inputStyle, ...styles?.inputRoot }}
@@ -92,7 +92,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {inputLabel && (
           <label
             htmlFor={resolvedId}
-            className={cn("unburn-input-label", classNames?.inputLabel)}
+            className={cn("unbrn-input-label", classNames?.inputLabel)}
             style={styles?.inputLabel}
           >
             {inputLabel}
@@ -101,18 +101,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
         <div
           className={cn(
-            "unburn-input-container",
-            `unburn-input-container-${inputVariant}`,
-            `unburn-input-container-${inputSize}`,
-            (inputVariant === 'outlined' || inputVariant === 'duo') && 'unburn-glass',
-            inputError && "unburn-input-container-error",
-            inputDisabled && "unburn-input-container-disabled",
+            "unbrn-input-container",
+            `unbrn-input-container-${inputVariant}`,
+            `unbrn-input-container-${inputSize}`,
+            (inputVariant === 'outlined' || inputVariant === 'duo') && 'unbrn-glass',
+            inputError && "unbrn-input-container-error",
+            inputDisabled && "unbrn-input-container-disabled",
             classNames?.inputContainer
           )}
           style={styles?.inputContainer}
         >
           {inputLeftIcon && (
-            <div className={cn("unburn-input-icon unburn-input-icon-left", classNames?.inputIcon)} style={styles?.inputIcon}>
+            <div className={cn("unbrn-input-icon unbrn-input-icon-left", classNames?.inputIcon)} style={styles?.inputIcon}>
               {inputLeftIcon}
             </div>
           )}
@@ -128,7 +128,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             onChange={inputOnChange}
             placeholder={inputPlaceholder}
             className={cn(
-              "unburn-input",
+              "unbrn-input",
               inputClassName,
               classNames?.inputElement
             )}
@@ -136,14 +136,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
 
           {(inputKbd || inputRightIcon) && (
-            <div className="unburn-input-right-section">
+            <div className="unbrn-input-right-section">
               {inputKbd && (
-                <kbd className="unburn-input-kbd">
+                <kbd className="unbrn-input-kbd">
                   {inputKbd}
                 </kbd>
               )}
               {inputRightIcon && (
-                <div className={cn("unburn-input-icon unburn-input-icon-right", classNames?.inputIcon)} style={styles?.inputIcon}>
+                <div className={cn("unbrn-input-icon unbrn-input-icon-right", classNames?.inputIcon)} style={styles?.inputIcon}>
                   {inputRightIcon}
                 </div>
               )}
@@ -152,10 +152,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {inputProgressLevel !== undefined && (
-          <div className={cn("unburn-input-progress-container", classNames?.inputProgressContainer)} style={styles?.inputProgressContainer}>
+          <div className={cn("unbrn-input-progress-container", classNames?.inputProgressContainer)} style={styles?.inputProgressContainer}>
             <div
               className={cn(
-                "unburn-input-progress-bar unburn-input-progress-bar-1",
+                "unbrn-input-progress-bar unbrn-input-progress-bar-1",
                 inputProgressLevel >= 1 && "active",
                 classNames?.inputProgressBar
               )}
@@ -163,7 +163,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             />
             <div
               className={cn(
-                "unburn-input-progress-bar unburn-input-progress-bar-2",
+                "unbrn-input-progress-bar unbrn-input-progress-bar-2",
                 inputProgressLevel >= 2 && "active",
                 classNames?.inputProgressBar
               )}
@@ -171,7 +171,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             />
             <div
               className={cn(
-                "unburn-input-progress-bar unburn-input-progress-bar-3",
+                "unbrn-input-progress-bar unbrn-input-progress-bar-3",
                 inputProgressLevel >= 3 && "active",
                 classNames?.inputProgressBar
               )}
@@ -182,7 +182,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
         {inputDescription && !inputError && (
           <p
-            className={cn("unburn-input-description", classNames?.inputDescription)}
+            className={cn("unbrn-input-description", classNames?.inputDescription)}
             style={styles?.inputDescription}
           >
             {inputDescription}
@@ -191,7 +191,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
         {inputError && (
           <span
-            className={cn("unburn-input-error-message", classNames?.inputError)}
+            className={cn("unbrn-input-error-message", classNames?.inputError)}
             style={styles?.inputError}
           >
             {inputError}

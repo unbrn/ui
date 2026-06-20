@@ -14,17 +14,17 @@ export const StepsPage: React.FC = () => {
   ];
 
   const descriptiveItems = [
-    { 
-      stepTitle: 'Initialize Workspace', 
-      stepDescription: 'Run `npm init` or setup using a starter kit to get core layout folders ready.' 
+    {
+      stepTitle: 'Initialize Workspace',
+      stepDescription: 'Run `npm init` or setup using a starter kit to get core layout folders ready.'
     },
-    { 
-      stepTitle: 'Install Dependencies', 
-      stepDescription: 'Run `npm i @unburn/ui lucide-react` to get packages.' 
+    {
+      stepTitle: 'Install Dependencies',
+      stepDescription: 'Run `npm i @unbrn/ui lucide-react` to get packages.'
     },
-    { 
-      stepTitle: 'Start Dev Server', 
-      stepDescription: 'Launch environment with `npm run dev` to start hot-module reloading and previews.' 
+    {
+      stepTitle: 'Start Dev Server',
+      stepDescription: 'Launch environment with `npm run dev` to start hot-module reloading and previews.'
     }
   ];
 
@@ -44,12 +44,12 @@ export const StepsPage: React.FC = () => {
       stepDescription: 'Configure relational schema and triggers to store credentials.',
       stepChildren: (
         <div style={{ marginTop: '0.5rem', width: '100%', maxWidth: '500px' }}>
-          <CodeBlock 
-            codeBlockLanguage="sql" 
+          <CodeBlock
+            codeBlockLanguage="sql"
             codeBlockCode={`CREATE TABLE users (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   email text UNIQUE NOT NULL
-);`} 
+);`}
           />
         </div>
       )
@@ -62,7 +62,7 @@ export const StepsPage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        code={`import { Steps } from '@unburn/ui/Steps';
+        code={`import { Steps } from '@unbrn/ui/Steps';
 
 export default function Example() {
   const steps = [
@@ -83,7 +83,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Steps } from '@unburn/ui/Steps';
+          codeBlockCode={`import { Steps } from '@unbrn/ui/Steps';
 
 export default function Example() {
   return (
@@ -104,7 +104,7 @@ export default function Example() {
         <Showcase
           title="With Descriptions"
           description="Include secondary sub-labels to guide users through each step detail."
-          code={`import { Steps } from '@unburn/ui/Steps';
+          code={`import { Steps } from '@unbrn/ui/Steps';
 
 export default function Example() {
   const steps = [
@@ -114,7 +114,7 @@ export default function Example() {
     },
     { 
       stepTitle: 'Install Dependencies', 
-      stepDescription: 'Run \`npm i @unburn/ui lucide-react\` to get packages.' 
+      stepDescription: 'Run \`npm i @unbrn/ui lucide-react\` to get packages.' 
     },
     { 
       stepTitle: 'Start Dev Server', 
@@ -133,9 +133,9 @@ export default function Example() {
         <Showcase
           title="With Custom Children"
           description="You can inject interactive react child nodes such as buttons or custom components inside a step."
-          code={`import { Steps } from '@unburn/ui/Steps';
-import { Button } from '@unburn/ui/Button';
-import { CodeBlock } from '@unburn/ui/CodeBlock';
+          code={`import { Steps } from '@unbrn/ui/Steps';
+import { Button } from '@unbrn/ui/Button';
+import { CodeBlock } from '@unbrn/ui/CodeBlock';
 
 export default function Example() {
   const steps = [

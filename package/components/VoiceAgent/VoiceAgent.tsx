@@ -63,7 +63,7 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
     const container = containerRef.current;
     if (!container) return;
     const computedStyle = window.getComputedStyle(container);
-    
+
     const activeColor = computedStyle.getPropertyValue('--voice-accent').trim() || (voiceAgentStatus === 'speaking' ? '#ffffff' : '#34d399');
     const glowColor = computedStyle.getPropertyValue('--voice-accent-glow').trim() || 'rgba(255, 255, 255, 0.3)';
     const inactiveColor = computedStyle.getPropertyValue('--voice-dot-inactive').trim() || 'rgba(255, 255, 255, 0.08)';
@@ -114,12 +114,12 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
     const interpolateColor = (colorA: string, colorB: string, factor: number): string => {
       const parsedA = parseColor(colorA) || { r: 255, g: 255, b: 255, a: 0.08 };
       const parsedB = parseColor(colorB) || { r: 255, g: 255, b: 255, a: 1 };
-      
+
       const r = Math.round(parsedA.r + (parsedB.r - parsedA.r) * factor);
       const g = Math.round(parsedA.g + (parsedB.g - parsedA.g) * factor);
       const b = Math.round(parsedA.b + (parsedB.b - parsedA.b) * factor);
       const a = parsedA.a + (parsedB.a - parsedA.a) * factor;
-      
+
       return `rgba(${r}, ${g}, ${b}, ${a})`;
     };
 
@@ -131,7 +131,7 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
         const data = new Uint8Array(voiceAgentAudioAnalyser.frequencyBinCount);
         voiceAgentAudioAnalyser.getByteFrequencyData(data);
         analyserData = data;
-        
+
         let sum = 0;
         const range = Math.min(analyserData.length, 128);
         for (let i = 0; i < range; i++) {
@@ -187,7 +187,7 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
                 const angle = Math.atan2(ny, nx);
                 const noise = Math.sin(angle * 5 + time * 0.006) * 0.12 +
                   Math.cos(angle * 3 - time * 0.004) * 0.08;
-                
+
                 const activity = analyserData
                   ? 0.25 + 0.6 * averageVolume
                   : 0.45 + 0.35 * Math.sin(time * 0.007) * Math.cos(time * 0.003);
@@ -200,9 +200,9 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
                 const frequency = 12.0;
                 const speed = 0.012;
                 const wave = Math.sin(dist * frequency - time * speed);
-                
+
                 const maxRadius = 0.2 + 0.8 * speechActivity;
-                
+
                 const threshold = 0.2 + (dist / maxRadius) * 0.6;
                 active = dist <= maxRadius && wave > threshold;
               } else {
@@ -274,10 +274,10 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
   return (
     <div
       className={cn(
-        'unburn-voice-agent',
-        `unburn-variant-${voiceAgentVariant}`,
-        `unburn-status-${voiceAgentStatus}`,
-        voiceAgentIsMuted && 'unburn-muted',
+        'unbrn-voice-agent',
+        `unbrn-variant-${voiceAgentVariant}`,
+        `unbrn-status-${voiceAgentStatus}`,
+        voiceAgentIsMuted && 'unbrn-muted',
         voiceAgentClassName
       )}
       style={{
@@ -287,12 +287,12 @@ export const VoiceAgent: React.FC<VoiceAgentProps> = ({
         '--voice-grid-gap': `${voiceAgentGridGap}px`
       } as React.CSSProperties}
     >
-      <div className="unburn-voice-grid-container unburn-glass" ref={containerRef}>
-        <canvas ref={canvasRef} className="unburn-voice-canvas" />
+      <div className="unbrn-voice-grid-container unbrn-glass" ref={containerRef}>
+        <canvas ref={canvasRef} className="unbrn-voice-canvas" />
       </div>
 
       {voiceAgentShowControls && (
-        <div className="unburn-voice-controls">
+        <div className="unbrn-voice-controls">
           <ButtonGroup
             buttonGroupChildren={
               <>

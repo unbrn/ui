@@ -26,8 +26,8 @@ export const DockPage: React.FC<DockPageProps> = ({ globalTheme, setGlobalTheme 
 
       <Showcase
         title="Preview"
-        code={`import { Dock } from '@unburn/ui/Dock';
-import { Button } from '@unburn/ui/Button';
+        code={`import { Dock } from '@unbrn/ui/Dock';
+import { Button } from '@unbrn/ui/Button';
 import { Sun, Moon } from 'lucide-react';
 
 export default function Example() {
@@ -64,8 +64,8 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Dock } from '@unburn/ui/Dock';
-import { Button } from '@unburn/ui/Button';
+          codeBlockCode={`import { Dock } from '@unbrn/ui/Dock';
+import { Button } from '@unbrn/ui/Button';
 import { Sun, Moon } from 'lucide-react';
 
 export default function Layout({ children }) {
@@ -93,8 +93,8 @@ export default function Layout({ children }) {
         <Showcase
           title="Custom Actions"
           description="By default, buttons inside the dock use the duo variant and large size."
-          code={`import { Dock } from '@unburn/ui/Dock';
-import { Button } from '@unburn/ui/Button';
+          code={`import { Dock } from '@unbrn/ui/Dock';
+import { Button } from '@unbrn/ui/Button';
 import { Home, Search, Plus } from 'lucide-react';
 
 export default function Example() {
@@ -132,8 +132,8 @@ export default function Example() {
         <Showcase
           title="Global Customization"
           description="Style all dock buttons globally using dockButtonVariant, dockButtonSize, and dockButtonAccentColor."
-          code={`import { Dock } from '@unburn/ui/Dock';
-import { Button } from '@unburn/ui/Button';
+          code={`import { Dock } from '@unbrn/ui/Dock';
+import { Button } from '@unbrn/ui/Button';
 import { Home, Search, Plus } from 'lucide-react';
 
 export default function Example() {
@@ -174,8 +174,8 @@ export default function Example() {
         <Showcase
           title="Buttons with Text & Overrides"
           description="Buttons inside the dock can include text labels and override global styles individually."
-          code={`import { Dock } from '@unburn/ui/Dock';
-import { Button } from '@unburn/ui/Button';
+          code={`import { Dock } from '@unbrn/ui/Dock';
+import { Button } from '@unbrn/ui/Button';
 import { Trash } from 'lucide-react';
 
 export default function Example() {
@@ -213,7 +213,7 @@ export default function Example() {
         <Showcase
           title="Configuration"
           description="Show or hide the collapse button on the right."
-          code={`import { Dock } from '@unburn/ui/Dock';
+          code={`import { Dock } from '@unbrn/ui/Dock';
  
 export default function Example() {
   return (
@@ -240,10 +240,12 @@ export default function Example() {
 
       <Props
         props={[
+          { name: 'dockVariant', type: "'filled' | 'outlined'", defaultValue: "'outlined'", description: 'The visual style variant of the dock bar.' },
           { name: 'dockIsMenuOpen', type: 'boolean', defaultValue: 'false', description: 'Turn the main menu on or off.' },
           { name: 'dockOnMenuToggle', type: 'function', description: 'Function called when clicking the menu button.' },
           { name: 'dockShowMenuToggle', type: 'boolean', defaultValue: 'true', description: 'Show the main menu hamburger/toggle button.' },
-          { name: 'dockPosition', type: "'top' | 'bottom' | 'left' | 'right'", defaultValue: "'bottom'", description: 'Where the dock attaches on the screen (top, bottom, left, or right).' },
+          { name: 'dockPosition', type: "'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'", defaultValue: "'bottom'", description: 'Where the dock attaches on the screen.' },
+          { name: 'dockAccentColor', type: 'string', description: 'Custom accent color for the dock container.' },
           { name: 'dockShowHideToggle', type: 'boolean', defaultValue: 'true', description: 'Show the arrow button to hide the dock.' },
           { name: 'dockButtonSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'Default size for all buttons inside the dock.' },
           { name: 'dockButtonVariant', type: "'filled' | 'outlined' | 'duo' | 'ghost'", defaultValue: "'outlined'", description: 'Default variant for all buttons inside the dock.' },
@@ -281,11 +283,11 @@ export default function Example() {
           margin-bottom: 0 !important;
         }
 
-        .showcase-dock.unburn-collapsed {
+        .showcase-dock.unbrn-collapsed {
           bottom: -4rem !important;
         }
 
-        .unburn-accent-preview {
+        .unbrn-accent-preview {
           width: 20px;
           height: 20px;
           border-radius: var(--radius);

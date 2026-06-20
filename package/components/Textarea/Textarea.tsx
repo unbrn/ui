@@ -82,7 +82,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const handleResizeStart = (e: React.MouseEvent | React.TouchEvent) => {
       if (textareaDisabled) return;
-      
+
       const isTouch = 'touches' in e;
       const startY = isTouch ? e.touches[0].pageY : e.pageY;
       const startHeight = containerRef.current?.offsetHeight || 0;
@@ -118,8 +118,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div
         className={cn(
-          "unburn-textarea-root",
-          textareaFullWidth && "unburn-textarea-full-width",
+          "unbrn-textarea-root",
+          textareaFullWidth && "unbrn-textarea-full-width",
           classNames?.textareaRoot
         )}
         style={{ ...textareaStyle, ...styles?.textareaRoot }}
@@ -127,7 +127,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {textareaLabel && (
           <label
             htmlFor={textareaId}
-            className={cn("unburn-textarea-label", classNames?.textareaLabel)}
+            className={cn("unbrn-textarea-label", classNames?.textareaLabel)}
             style={styles?.textareaLabel}
           >
             {textareaLabel}
@@ -137,11 +137,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         <div
           ref={containerRef}
           className={cn(
-            "unburn-textarea-container",
-            `unburn-textarea-container-${textareaVariant}`,
-            (textareaVariant === 'outlined' || textareaVariant === 'duo') && 'unburn-glass',
-            textareaError && "unburn-textarea-container-error",
-            textareaDisabled && "unburn-textarea-container-disabled",
+            "unbrn-textarea-container",
+            `unbrn-textarea-container-${textareaVariant}`,
+            (textareaVariant === 'outlined' || textareaVariant === 'duo') && 'unbrn-glass',
+            textareaError && "unbrn-textarea-container-error",
+            textareaDisabled && "unbrn-textarea-container-disabled",
             classNames?.textareaContainer
           )}
           style={styles?.textareaContainer}
@@ -156,15 +156,15 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             defaultValue={textareaDefaultValue}
             placeholder={textareaPlaceholder}
             className={cn(
-              "unburn-textarea",
+              "unbrn-textarea",
               textareaClassName,
               classNames?.textareaElement
             )}
             style={styles?.textareaElement}
           />
 
-          <div className={cn("unburn-textarea-footer", classNames?.textareaFooter)} style={styles?.textareaFooter}>
-            <div className={cn("unburn-textarea-count", classNames?.textareaCount)} style={styles?.textareaCount}>
+          <div className={cn("unbrn-textarea-footer", classNames?.textareaFooter)} style={styles?.textareaFooter}>
+            <div className={cn("unbrn-textarea-count", classNames?.textareaCount)} style={styles?.textareaCount}>
               {textareaShowCount && (
                 <>
                   {currentLength}{textareaMaxLength ? `/${textareaMaxLength}` : ''}
@@ -173,20 +173,20 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             </div>
 
             <div
-              className={cn("unburn-textarea-drag", classNames?.textareaDragIndicator)}
+              className={cn("unbrn-textarea-drag", classNames?.textareaDragIndicator)}
               style={styles?.textareaDragIndicator}
               onMouseDown={handleResizeStart}
               onTouchStart={handleResizeStart}
             >
               <span>DRAG</span>
-              <div className="unburn-textarea-drag-circle" />
+              <div className="unbrn-textarea-drag-circle" />
             </div>
           </div>
         </div>
 
         {textareaDescription && !textareaError && (
           <p
-            className={cn("unburn-textarea-description", classNames?.textareaDescription)}
+            className={cn("unbrn-textarea-description", classNames?.textareaDescription)}
             style={styles?.textareaDescription}
           >
             {textareaDescription}
@@ -195,7 +195,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
         {textareaError && (
           <span
-            className={cn("unburn-textarea-error-message", classNames?.textareaError)}
+            className={cn("unbrn-textarea-error-message", classNames?.textareaError)}
             style={styles?.textareaError}
           >
             {textareaError}

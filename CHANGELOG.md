@@ -1,6 +1,24 @@
 # Changelog
 
-All notable changes to @unburn/ui will be documented in this file.
+All notable changes to @unbrn/ui will be documented in this file.
+
+## [2.0.0] - 2026-06-20
+### Features
+- **Added new Component (`ColorPicker`)**: Introduced a highly-interactive, premium color picker component with support for custom formats, visual spectrum selection, presets, and alpha channel configuration.
+- **Introducing Background Shaders**:
+  - Added the `LiquidChrome` background component (a highly-dynamic fluid chrome liquid canvas animation).
+  - Added the `LumenBeam` background component (a premium interactive beam light shader effect).
+  - Added the `SatinFlow` background component (a smooth, modern flowing color pattern animation).
+- **Library Rebranding**: Rebranded the package from `@unburn/ui` to `@unbrn/ui` across all codebases, packages, imports, and references.
+- **Redesigned Documentation Site**:
+  - Overhauled the documentation homepage with a left-aligned hero layout, modern typography, and a fading Liquid Chrome background.
+  - Redesigned the sticky header to include inline navigation links, a mobile-responsive search trigger, and Discord link integrations.
+  - Unified sizing structures (`sm`, `default`, `lg`) and heights (`32px`/`42px`/`52px`) across inputs, buttons, and select dropdowns.
+
+### Bug Fixes & Adjustments
+- **Properties and API Validation**: Verified and corrected property tables across all component pages (including `Checkbox`, `Dock`, `Input`, `Slider`, and `VoiceAgent`) to ensure 100% alignment with actual TypeScript interfaces.
+- **Textarea Class Typo**: Standardized styling class names in `Textarea.css` to use hyphens (`unbrn-textarea-*`), matching the React component classes.
+- **Mobile Responsiveness**: Addressed multiple styling regressions on smaller viewports, including header spacing, padding alignments, and hero button stacking on the homepage.
 
 ## [1.5.3] - 2026-06-14
 ### Features
@@ -19,7 +37,7 @@ All notable changes to @unburn/ui will be documented in this file.
   - Integrated `ButtonContext` support to seamlessly inherit sizing/variant configurations when nested inside parent wrappers (like `Dock`).
 - **Standard React Children Support**: Added fallbacks to allow standard `children` arrays alongside custom layout props (`buttonChildren`, `alertChildren`, `badgeChildren`, `dockChildren`, `tooltipChildren`, `stepsChildren`, and `stepChildren`).
 - **Enhanced Glassmorphism Aesthetics**:
-  - Increased backdrop-filter blur on the core `.unburn-glass` class to `20px` for a richer, more premium feel.
+  - Increased backdrop-filter blur on the core `.unbrn-glass` class to `20px` for a richer, more premium feel.
   - Automatically applied glass styling properties to `ButtonGroup`, `Select` dropdowns, outlined `CodeBlock`s, `Dropzone` panels, outlined/duo `Textarea` wrappers, and `Tooltip` bubbles.
 
 ### Bug Fixes & Adjustments
@@ -28,8 +46,8 @@ All notable changes to @unburn/ui will be documented in this file.
 
 ## [1.5.2] - 2026-06-10
 ### Bug Fixes & Adjustments
-- **Fixed Dock Collapse Button Styles**: Restored the missing built-in `.unburn-dock-collapse-btn` CSS class to the collapse Button component in `Dock.tsx` so that it receives correct library styling.
-- **Cleaned Up Unused Styles**: Removed unused CSS rules (`.unburn-code-terminal-icon` in CodeBlock, `.unburn-mobile-dock` in Dock, and `.unburn-voice-status-badge` in VoiceAgent) to minimize styling footprint.
+- **Fixed Dock Collapse Button Styles**: Restored the missing built-in `.unbrn-dock-collapse-btn` CSS class to the collapse Button component in `Dock.tsx` so that it receives correct library styling.
+- **Cleaned Up Unused Styles**: Removed unused CSS rules (`.unbrn-code-terminal-icon` in CodeBlock, `.unbrn-mobile-dock` in Dock, and `.unbrn-voice-status-badge` in VoiceAgent) to minimize styling footprint.
 - **Quality & ESLint Improvements**:
   - Removed unused `err` parameters in `Button.tsx` catch blocks.
   - Type-narrowed the frequency data array in `VoiceAgent.tsx` to eliminate `as any` casting.
@@ -81,7 +99,7 @@ All notable changes to @unburn/ui will be documented in this file.
 
 ## [1.0.0] - 2026-05-15
 ### Features
-- **Core Library Launch**: Stable production release of `@unburn/ui`.
+- **Core Library Launch**: Stable production release of `@unbrn/ui`.
 - **New Components**: Introduced `CodeBlock` component for dynamic syntax-highlighted code panels.
 - **Build Pipeline**: Configured production library bundling via Vite/DTS, multi-framework support, and ESM/CommonJS sub-path exports.
 

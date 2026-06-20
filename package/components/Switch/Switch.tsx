@@ -96,22 +96,22 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     return (
       <div
         className={cn(
-          "unburn-switch-root",
-          isAnimating && (isChecked ? "unburn-switch-jar-on" : "unburn-switch-jar-off"),
+          "unbrn-switch-root",
+          isAnimating && (isChecked ? "unbrn-switch-jar-on" : "unbrn-switch-jar-off"),
           classNames?.switchRoot
         )}
         style={{ ...styles?.switchRoot, ...accentStyle }}
       >
         <div
           className={cn(
-            "unburn-switch-container",
-            switchDisabled && "unburn-switch-disabled",
+            "unbrn-switch-container",
+            switchDisabled && "unbrn-switch-disabled",
             classNames?.switchContainer
           )}
           style={styles?.switchContainer}
           onClick={handleToggle}
         >
-          <div className={cn("unburn-switch-wrapper", `unburn-switch-wrapper-${switchSize}`)}>
+          <div className={cn("unbrn-switch-wrapper", `unbrn-switch-wrapper-${switchSize}`)}>
             <button
               type="button"
               id={resolvedId}
@@ -123,11 +123,11 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
               disabled={switchDisabled}
               onKeyDown={handleKeyDown}
               className={cn(
-                "unburn-switch-track",
-                `unburn-switch-track-${switchVariant}`,
-                `unburn-switch-track-${switchSize}`,
-                (switchVariant === 'outlined' || switchVariant === 'duo') && 'unburn-glass',
-                isChecked && "unburn-switch-track-checked",
+                "unbrn-switch-track",
+                `unbrn-switch-track-${switchVariant}`,
+                `unbrn-switch-track-${switchSize}`,
+                (switchVariant === 'outlined' || switchVariant === 'duo') && 'unbrn-glass',
+                isChecked && "unbrn-switch-track-checked",
                 switchClassName,
                 classNames?.switchTrack
               )}
@@ -135,9 +135,9 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
             >
               <div
                 className={cn(
-                  "unburn-switch-thumb",
-                  `unburn-switch-thumb-${switchSize}`,
-                  isChecked && "unburn-switch-thumb-checked",
+                  "unbrn-switch-thumb",
+                  `unbrn-switch-thumb-${switchSize}`,
+                  isChecked && "unbrn-switch-thumb-checked",
                   classNames?.switchThumb
                 )}
                 style={styles?.switchThumb}
@@ -145,11 +145,11 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
             </button>
           </div>
           {(switchLabel || switchDescription) && (
-            <div className="unburn-switch-content">
+            <div className="unbrn-switch-content">
               {switchLabel && (
                 <label
                   id={`${resolvedId}-label`}
-                  className={cn("unburn-switch-label", classNames?.switchLabel)}
+                  className={cn("unbrn-switch-label", classNames?.switchLabel)}
                   style={styles?.switchLabel}
                   onClick={(e) => e.preventDefault()}
                 >
@@ -159,7 +159,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
               {switchDescription && (
                 <p
                   id={`${resolvedId}-desc`}
-                  className={cn("unburn-switch-description", classNames?.switchDescription)}
+                  className={cn("unbrn-switch-description", classNames?.switchDescription)}
                   style={styles?.switchDescription}
                 >
                   {switchDescription}

@@ -1,15 +1,15 @@
-.unburn-input-root {
+.unbrn-input-root {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   width: auto;
 }
 
-.unburn-input-full-width {
+.unbrn-input-full-width {
   width: 100%;
 }
 
-.unburn-input-label {
+.unbrn-input-label {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
@@ -18,7 +18,7 @@
   margin-left: 0.25rem;
 }
 
-.unburn-input-container {
+.unbrn-input-container {
   display: flex;
   align-items: center;
   position: relative;
@@ -29,37 +29,37 @@
   overflow: hidden;
 }
 
-.unburn-input-container:focus-within {
+.unbrn-input-container:focus-within {
   border-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
 }
 
-.unburn-input-container-filled {
+.unbrn-input-container-filled {
   background-color: var(--bg-secondary);
   background-image: linear-gradient(135deg, var(--bg-secondary) 0%, color-mix(in srgb, var(--bg-secondary) 60%, var(--bg-main)) 100%);
   border-color: transparent;
 }
 
-.unburn-input-container-duo {
+.unbrn-input-container-duo {
   background-color: color-mix(in srgb, var(--accent-color) 8%, transparent);
   border-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
 }
 
-.unburn-input-container-sm {
-  min-height: var(--height-sm);
+.unbrn-input-container-sm {
+  height: var(--height-sm);
   border-radius: var(--radius-sm);
 }
 
-.unburn-input-container-default {
-  min-height: var(--height-default);
+.unbrn-input-container-default {
+  height: var(--height-default);
   border-radius: var(--radius-md);
 }
 
-.unburn-input-container-lg {
-  min-height: var(--height-lg);
+.unbrn-input-container-lg {
+  height: var(--height-lg);
   border-radius: var(--radius-lg);
 }
 
-.unburn-input-icon {
+.unbrn-input-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,36 +67,36 @@
   pointer-events: none;
 }
 
-.unburn-input-container-sm .unburn-input-icon {
+.unbrn-input-container-sm .unbrn-input-icon {
   padding: 0 0.625rem;
 }
 
-.unburn-input-container-default .unburn-input-icon {
+.unbrn-input-container-default .unbrn-input-icon {
   padding: 0 0.875rem;
 }
 
-.unburn-input-container-lg .unburn-input-icon {
+.unbrn-input-container-lg .unbrn-input-icon {
   padding: 0 1.125rem;
 }
 
-.unburn-input-icon svg {
+.unbrn-input-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.unburn-input-container-lg .unburn-input-icon svg {
+.unbrn-input-container-lg .unbrn-input-icon svg {
   width: 20px;
   height: 20px;
 }
 
-.unburn-input {
+.unbrn-input {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: none;
   background: transparent;
-  padding: 0 1rem;
+  padding: 0 1.25rem;
   font-family: var(--font-sans);
   font-size: 0.875rem;
   color: var(--text-main);
@@ -104,46 +104,46 @@
   z-index: 1;
 }
 
-.unburn-input::placeholder {
+.unbrn-input::placeholder {
   color: var(--text-muted);
   opacity: 0.5;
 }
 
-.unburn-input-container-sm .unburn-input {
+.unbrn-input-container-sm .unbrn-input {
   font-size: 0.75rem;
   padding: 0 0.75rem;
 }
 
-.unburn-input-container-lg .unburn-input {
+.unbrn-input-container-lg .unbrn-input {
   font-size: 1rem;
-  padding: 0 1.25rem;
+  padding: 0 1.5rem;
 }
 
-.unburn-input-container:has(.unburn-input-icon-left) .unburn-input {
+.unbrn-input-container:has(.unbrn-input-icon-left) .unbrn-input {
   padding-left: 3rem;
 }
 
-.unburn-input-container-sm:has(.unburn-input-icon-left) .unburn-input {
+.unbrn-input-container-sm:has(.unbrn-input-icon-left) .unbrn-input {
   padding-left: 2.25rem;
 }
 
-.unburn-input-container-lg:has(.unburn-input-icon-left) .unburn-input {
+.unbrn-input-container-lg:has(.unbrn-input-icon-left) .unbrn-input {
   padding-left: 3.5rem;
 }
 
-.unburn-input-container:has(.unburn-input-icon-right) .unburn-input {
+.unbrn-input-container:has(.unbrn-input-icon-right) .unbrn-input {
   padding-right: 3rem;
 }
 
-.unburn-input-container-sm:has(.unburn-input-icon-right) .unburn-input {
+.unbrn-input-container-sm:has(.unbrn-input-icon-right) .unbrn-input {
   padding-right: 2.25rem;
 }
 
-.unburn-input-container-lg:has(.unburn-input-icon-right) .unburn-input {
+.unbrn-input-container-lg:has(.unbrn-input-icon-right) .unbrn-input {
   padding-right: 3.5rem;
 }
 
-.unburn-input-icon {
+.unbrn-input-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,45 +155,45 @@
   height: 100%;
 }
 
-.unburn-input-container-sm .unburn-input-icon {
+.unbrn-input-container-sm .unbrn-input-icon {
   width: 2.25rem;
 }
 
-.unburn-input-container-lg .unburn-input-icon {
+.unbrn-input-container-lg .unbrn-input-icon {
   width: 3.5rem;
 }
 
-.unburn-input-icon-right {
+.unbrn-input-icon-right {
   margin-left: auto;
 }
 
-.unburn-input-container-error {
+.unbrn-input-container-error {
   border-color: var(--color-red);
 }
 
-.unburn-input-error-message {
+.unbrn-input-error-message {
   font-size: 0.75rem;
   color: var(--color-red);
   margin-left: 0.25rem;
 }
 
-.unburn-input-description {
+.unbrn-input-description {
   font-size: 0.75rem;
   color: var(--text-muted);
   margin-left: 0.25rem;
 }
 
-.unburn-input-container-disabled {
+.unbrn-input-container-disabled {
   opacity: 0.5;
   cursor: not-allowed;
   background-color: var(--bg-secondary);
 }
 
-.unburn-input-container-disabled .unburn-input {
+.unbrn-input-container-disabled .unbrn-input {
   cursor: not-allowed;
 }
 
-.unburn-input-progress-container {
+.unbrn-input-progress-container {
   display: flex;
   gap: 0.5rem;
   padding: 0 1rem;
@@ -201,7 +201,7 @@
 
 }
 
-.unburn-input-progress-bar {
+.unbrn-input-progress-bar {
   flex: 1;
   height: 6px;
   border-radius: 100px;
@@ -210,23 +210,23 @@
   opacity: 0.3;
 }
 
-.unburn-input-progress-bar.active {
+.unbrn-input-progress-bar.active {
   opacity: 1;
 }
 
-.unburn-input-progress-bar-1.active {
+.unbrn-input-progress-bar-1.active {
   background-color: var(--color-red);
 }
 
-.unburn-input-progress-bar-2.active {
+.unbrn-input-progress-bar-2.active {
   background-color: var(--color-yellow);
 }
 
-.unburn-input-progress-bar-3.active {
+.unbrn-input-progress-bar-3.active {
   background-color: var(--color-green);
 }
 
-.unburn-input-right-section {
+.unbrn-input-right-section {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -238,7 +238,7 @@
   pointer-events: none;
 }
 
-.unburn-input-kbd {
+.unbrn-input-kbd {
   font-family: var(--font-sans);
   font-size: 0.65rem;
   font-weight: 700;
@@ -251,6 +251,6 @@
   user-select: none;
 }
 
-.unburn-input-container:has(.unburn-input-right-section) .unburn-input {
+.unbrn-input-container:has(.unbrn-input-right-section) .unbrn-input {
   padding-right: 4.5rem;
 }

@@ -1,4 +1,4 @@
-.unburn-alert {
+.unbrn-alert {
   position: relative;
   overflow: visible;
   display: flex;
@@ -12,16 +12,16 @@
   transition: all var(--transition);
 }
 
-.unburn-alert-has-icon {
+.unbrn-alert-has-icon {
   padding-top: 2.25rem;
 }
 
-.unburn-alert-header {
+.unbrn-alert-header {
   display: flex;
   align-items: center;
 }
 
-.unburn-alert-icon {
+.unbrn-alert-icon {
   position: absolute;
   left: 2.5rem;
   top: 0;
@@ -41,25 +41,25 @@
   color: var(--accent-color, var(--text-main));
 }
 
-.unburn-alert-icon svg {
+.unbrn-alert-icon svg {
   width: 20px;
   height: 20px;
 }
 
-.unburn-alert-title {
+.unbrn-alert-title {
   font-weight: 800;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
 }
 
-.unburn-alert-description {
+.unbrn-alert-description {
   color: var(--text-muted);
   font-size: 0.85rem;
   line-height: 1.6;
   margin-top: 0.375rem;
 }
 
-.unburn-alert-actions {
+.unbrn-alert-actions {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -67,41 +67,41 @@
   margin-top: 1rem;
 }
 
-.unburn-alert {
+.unbrn-alert {
   border-color: color-mix(in srgb, var(--accent-color) 40%, transparent);
 }
 
-.unburn-alert-title {
+.unbrn-alert-title {
   color: var(--accent-color, var(--text-main));
 }
 
-.unburn-alert-filled {
+.unbrn-alert-filled {
   background-color: var(--accent-color, var(--text-main));
   color: var(--accent-text, var(--bg-main));
   border-color: transparent;
 }
 
-.unburn-alert-filled .unburn-alert-title {
+.unbrn-alert-filled .unbrn-alert-title {
   color: inherit !important;
 }
 
-.unburn-alert-filled .unburn-alert-icon {
+.unbrn-alert-filled .unbrn-alert-icon {
   background-color: var(--accent-color, var(--text-main));
   border-color: var(--accent-color, var(--text-main));
   color: var(--accent-text, var(--bg-main)) !important;
 }
 
-.unburn-alert-filled .unburn-alert-description {
+.unbrn-alert-filled .unbrn-alert-description {
   color: inherit;
   opacity: 0.9;
 }
 
-.unburn-alert-duo {
+.unbrn-alert-duo {
   background-color: color-mix(in srgb, var(--accent-color, var(--text-main)) 8%, transparent);
   border-color: color-mix(in srgb, var(--accent-color, var(--text-main)) 15%, transparent);
 }
 
-.unburn-alert-duo .unburn-alert-icon {
+.unbrn-alert-duo .unbrn-alert-icon {
   background-color: color-mix(in srgb, var(--accent-color, var(--text-main)) 8%, var(--bg-main));
   border-color: color-mix(in srgb, var(--accent-color, var(--text-main)) 15%, transparent);
 }

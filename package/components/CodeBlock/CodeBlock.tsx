@@ -5,7 +5,7 @@ import { Copy, Check } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import './CodeBlock.css';
 
-const unburnTheme: { [key: string]: React.CSSProperties } = {
+const unbrnTheme: { [key: string]: React.CSSProperties } = {
   'code[class*="language-"]': { color: 'var(--text-main)', background: 'none', fontFamily: 'var(--font-mono)' },
   'pre[class*="language-"]': { color: 'var(--text-main)', background: 'none', fontFamily: 'var(--font-mono)' },
   'comment': { color: 'var(--text-muted)', fontStyle: 'italic' },
@@ -134,9 +134,9 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   return (
     <div
       className={cn(
-        "unburn-code-block",
-        `unburn-code-block-${codeBlockVariant}`,
-        codeBlockVariant === 'outlined' && 'unburn-glass',
+        "unbrn-code-block",
+        `unbrn-code-block-${codeBlockVariant}`,
+        codeBlockVariant === 'outlined' && 'unbrn-glass',
         codeBlockTabs && "has-tabs",
         codeBlockClassName,
         classNames?.codeBlockRoot
@@ -144,18 +144,18 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       style={{ ...codeBlockStyle, ...styles?.codeBlockRoot }}
     >
       <div
-        className={cn("unburn-code-header", classNames?.codeBlockHeader)}
+        className={cn("unbrn-code-header", classNames?.codeBlockHeader)}
         style={styles?.codeBlockHeader}
       >
-        <div className="unburn-code-info">
+        <div className="unbrn-code-info">
           {codeBlockTabs ? (
-            <div className="unburn-code-tabs-container">
-              <div className={cn("unburn-code-tabs", classNames?.codeBlockTabs)} style={styles?.codeBlockTabs}>
+            <div className="unbrn-code-tabs-container">
+              <div className={cn("unbrn-code-tabs", classNames?.codeBlockTabs)} style={styles?.codeBlockTabs}>
                 {Object.keys(codeBlockTabs).map((tab) => (
                   <button
                     key={tab}
                     className={cn(
-                      "unburn-code-tab",
+                      "unbrn-code-tab",
                       activeTab === tab && "active",
                       classNames?.codeBlockTab
                     )}
@@ -171,14 +171,14 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
             <>
               {codeBlockTitle && (
                 <span
-                  className={cn("unburn-code-title", classNames?.codeBlockTitle)}
+                  className={cn("unbrn-code-title", classNames?.codeBlockTitle)}
                   style={styles?.codeBlockTitle}
                 >
                   {codeBlockTitle}
                 </span>
               )}
               <span
-                className={cn("unburn-code-lang", classNames?.codeBlockLang)}
+                className={cn("unbrn-code-lang", classNames?.codeBlockLang)}
                 style={styles?.codeBlockLang}
               >
                 {codeBlockLanguage}
@@ -187,7 +187,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           )}
         </div>
         <button
-          className={cn("unburn-code-copy-btn", classNames?.codeBlockCopyButton)}
+          className={cn("unbrn-code-copy-btn", classNames?.codeBlockCopyButton)}
           onClick={handleCopy}
           title={copied ? "Copied!" : "Copy Code"}
           style={styles?.codeBlockCopyButton}
@@ -196,17 +196,17 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
         </button>
       </div>
       <div
-        className={cn("unburn-code-content", classNames?.codeBlockContent)}
+        className={cn("unbrn-code-content", classNames?.codeBlockContent)}
         style={styles?.codeBlockContent}
       >
         {!mounted || !Highlighter ? (
-          <pre className="unburn-code-ssr-fallback">
+          <pre className="unbrn-code-ssr-fallback">
             <code>{displayCode}</code>
           </pre>
         ) : (
           <Highlighter
             language={getLanguage()}
-            style={unburnTheme}
+            style={unbrnTheme}
             showLineNumbers={!codeBlockTabs && codeBlockShowLineNumbers}
             lineNumberStyle={{
               minWidth: isMobile ? '1.5rem' : '2.5rem',

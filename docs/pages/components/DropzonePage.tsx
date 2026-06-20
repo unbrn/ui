@@ -13,7 +13,7 @@ export const DropzonePage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        code={`import { Dropzone } from '@unburn/ui/Dropzone';
+        code={`import { Dropzone } from '@unbrn/ui/Dropzone';
 
 export default function Example() {
   return (
@@ -37,7 +37,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Dropzone } from '@unburn/ui/Dropzone';
+          codeBlockCode={`import { Dropzone } from '@unbrn/ui/Dropzone';
 
 export default function Example() {
   const handleFiles = (files: File[]) => {
@@ -61,7 +61,7 @@ export default function Example() {
         <Showcase
           title="Custom Icons"
           description="Show a custom icon matching the files you want."
-          code={`import { Dropzone } from '@unburn/ui/Dropzone';
+          code={`import { Dropzone } from '@unbrn/ui/Dropzone';
 import { Image } from 'lucide-react';
 
 export default function Example() {
@@ -90,7 +90,7 @@ export default function Example() {
         <Showcase
           title="Single File"
           description="Limit the uploader to only accept one file."
-          code={`import { Dropzone } from '@unburn/ui/Dropzone';
+          code={`import { Dropzone } from '@unbrn/ui/Dropzone';
 import { FileText } from 'lucide-react';
 
 export default function Example() {
@@ -121,7 +121,7 @@ export default function Example() {
         <Showcase
           title="Disabled State"
           description="Lock the uploader to prevent file drops."
-          code={`import { Dropzone } from '@unburn/ui/Dropzone';
+          code={`import { Dropzone } from '@unbrn/ui/Dropzone';
 import { Lock } from 'lucide-react';
 
 export default function Example() {

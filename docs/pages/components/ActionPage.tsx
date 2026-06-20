@@ -57,8 +57,8 @@ export const ActionPage: React.FC = () => {
       <Showcase
         title="Preview"
         description="A click-triggered dropdown popup menu that attaches to any clickable component (buttons, avatars, text elements)."
-        code={`import { Action } from '@unburn/ui/Action';
-import { Button } from '@unburn/ui/Button';
+        code={`import { Action } from '@unbrn/ui/Action';
+import { Button } from '@unbrn/ui/Button';
 import { Settings, LogOut } from 'lucide-react';
 
 export default function Example() {
@@ -103,7 +103,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Action } from '@unburn/ui/Action';`}
+          codeBlockCode={`import { Action } from '@unbrn/ui/Action';`}
         />
       </div>
 
@@ -113,9 +113,9 @@ export default function Example() {
         <Showcase
           title="Implemented to Button & Avatar"
           description="The Action component can wrap buttons, avatars, or any standard clickable markup."
-          code={`import { Action } from '@unburn/ui/Action';
-import { Button } from '@unburn/ui/Button';
-import { Avatar } from '@unburn/ui/Avatar';
+          code={`import { Action } from '@unbrn/ui/Action';
+import { Button } from '@unbrn/ui/Button';
+import { Avatar } from '@unbrn/ui/Avatar';
 import { User, Settings, HelpCircle, LogOut } from 'lucide-react';
 
 export default function Example() {
@@ -178,8 +178,8 @@ export default function Example() {
         <Showcase
           title="Positions & Alignments"
           description="Supports placement in four directions (top, bottom, left, right) and alignment options (start, center, end)."
-          code={`import { Action } from '@unburn/ui/Action';
-import { Button } from '@unburn/ui/Button';
+          code={`import { Action } from '@unbrn/ui/Action';
+import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   const items = [
@@ -248,8 +248,8 @@ export default function Example() {
         <Showcase
           title="Dropdown Header & Footer"
           description="Supports built-in header and footer sections separated from action items with premium borders, ideal for user profile cards and settings actions."
-          code={`import { Action } from '@unburn/ui/Action';
-import { Avatar } from '@unburn/ui/Avatar';
+          code={`import { Action } from '@unbrn/ui/Action';
+import { Avatar } from '@unbrn/ui/Avatar';
 import { Settings, HelpCircle, LogOut } from 'lucide-react';
 
 export default function Example() {
@@ -267,7 +267,7 @@ export default function Example() {
           <Avatar avatarSrc="..." avatarSize="sm" />
           <div>
             <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>Kunal KandePatil</div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>kunal@unburn.tech</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>kunal@unbrn.tech</div>
           </div>
         </div>
       }
@@ -295,7 +295,7 @@ export default function Example() {
                   />
                   <div>
                     <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-main)' }}>Kunal KandePatil</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>kunal@unburn.tech</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>kunal@unbrn.tech</div>
                   </div>
                 </div>
               }
@@ -326,8 +326,8 @@ export default function Example() {
         <Showcase
           title="Auto Positioning"
           description="Setting actionPosition to 'auto' dynamically calculates the best orientation based on the viewport layout boundaries and available space."
-          code={`import { Action } from '@unburn/ui/Action';
-import { Button } from '@unburn/ui/Button';
+          code={`import { Action } from '@unbrn/ui/Action';
+import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   const items = [

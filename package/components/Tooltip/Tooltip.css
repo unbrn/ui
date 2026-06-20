@@ -1,14 +1,14 @@
-.unburn-tooltip-root {
+.unbrn-tooltip-root {
   position: relative;
   display: inline-block;
 }
 
-.unburn-tooltip-trigger {
+.unbrn-tooltip-trigger {
   display: inline-flex;
   width: 100%;
 }
 
-.unburn-tooltip-bubble {
+.unbrn-tooltip-bubble {
   position: absolute;
   background: var(--accent-color);
   border: 1px solid var(--accent-color, var(--border-color));
@@ -29,7 +29,7 @@
   box-sizing: border-box;
 }
 
-.unburn-tooltip-arrow {
+.unbrn-tooltip-arrow {
   position: absolute;
   width: 8px;
   height: 8px;
@@ -40,109 +40,109 @@
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
 
-.unburn-tooltip-bubble-filled {
+.unbrn-tooltip-bubble-filled {
   background: var(--accent-color);
   border: 1px solid var(--accent-color, var(--border-color));
   color: var(--accent-text, var(--text-main));
 }
 
-.unburn-tooltip-bubble-filled .unburn-tooltip-arrow {
+.unbrn-tooltip-bubble-filled .unbrn-tooltip-arrow {
   background: var(--accent-color, color-mix(in srgb, var(--bg-secondary) 40%, transparent));
   border-right: 1px solid var(--accent-color, var(--border-color));
   border-bottom: 1px solid var(--accent-color, var(--border-color));
 }
 
-.unburn-tooltip-bubble-outlined {
+.unbrn-tooltip-bubble-outlined {
   background: transparent;
   border: 1px solid color-mix(in srgb, var(--accent-color) 40%, var(--border-color));
   color: var(--accent-color, var(--text-main));
 }
 
-.unburn-tooltip-bubble-outlined .unburn-tooltip-arrow {
+.unbrn-tooltip-bubble-outlined .unbrn-tooltip-arrow {
   background: color-mix(in srgb, var(--bg-secondary) 40%, transparent);
   border-right: 1px solid color-mix(in srgb, var(--accent-color) 40%, var(--border-color));
   border-bottom: 1px solid color-mix(in srgb, var(--accent-color) 40%, var(--border-color));
 }
 
-.unburn-tooltip-bubble-duo {
+.unbrn-tooltip-bubble-duo {
   background: color-mix(in srgb, var(--accent-color) 8%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent-color) 20%, var(--border-color));
   color: var(--accent-color, var(--text-main));
 }
 
-.unburn-tooltip-bubble-duo .unburn-tooltip-arrow {
+.unbrn-tooltip-bubble-duo .unbrn-tooltip-arrow {
   background: color-mix(in srgb, var(--accent-color) 8%, color-mix(in srgb, var(--bg-secondary) 40%, transparent));
   border-right: 1px solid color-mix(in srgb, var(--accent-color) 20%, var(--border-color));
   border-bottom: 1px solid color-mix(in srgb, var(--accent-color) 20%, var(--border-color));
 }
 
-.unburn-tooltip-bubble-top {
+.unbrn-tooltip-bubble-top {
   bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  animation: unburn-tooltip-fade-top 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: unbrn-tooltip-fade-top 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.unburn-tooltip-bubble-top .unburn-tooltip-arrow {
+.unbrn-tooltip-bubble-top .unbrn-tooltip-arrow {
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%) rotate(45deg);
 }
 
-.unburn-tooltip-bubble-bottom {
+.unbrn-tooltip-bubble-bottom {
   top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  animation: unburn-tooltip-fade-bottom 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: unbrn-tooltip-fade-bottom 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.unburn-tooltip-bubble-bottom .unburn-tooltip-arrow {
+.unbrn-tooltip-bubble-bottom .unbrn-tooltip-arrow {
   top: -4px;
   left: 50%;
   transform: translateX(-50%) rotate(-135deg);
 }
 
-.unburn-tooltip-bubble-left {
+.unbrn-tooltip-bubble-left {
   right: calc(100% + 8px);
   top: 50%;
   transform: translateY(-50%);
-  animation: unburn-tooltip-fade-left 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: unbrn-tooltip-fade-left 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.unburn-tooltip-bubble-left .unburn-tooltip-arrow {
+.unbrn-tooltip-bubble-left .unbrn-tooltip-arrow {
   right: -4px;
   top: 50%;
   transform: translateY(-50%) rotate(-45deg);
 }
 
-.unburn-tooltip-bubble-right {
+.unbrn-tooltip-bubble-right {
   left: calc(100% + 8px);
   top: 50%;
   transform: translateY(-50%);
-  animation: unburn-tooltip-fade-right 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: unbrn-tooltip-fade-right 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.unburn-tooltip-bubble-right .unburn-tooltip-arrow {
+.unbrn-tooltip-bubble-right .unbrn-tooltip-arrow {
   left: -4px;
   top: 50%;
   transform: translateY(-50%) rotate(135deg);
 }
 
-.unburn-tooltip-bubble-standalone {
+.unbrn-tooltip-bubble-standalone {
   position: absolute;
   bottom: calc(100% + 8px);
   transform: translateX(-50%);
-  animation: unburn-tooltip-fade-top 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: unbrn-tooltip-fade-top 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.unburn-tooltip-bubble-standalone .unburn-tooltip-arrow {
+.unbrn-tooltip-bubble-standalone .unbrn-tooltip-arrow {
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%) rotate(45deg);
 }
 
 /* Animations */
-@keyframes unburn-tooltip-fade-top {
+@keyframes unbrn-tooltip-fade-top {
   from {
     opacity: 0;
     transform: translateX(-50%) translateY(4px);
@@ -154,7 +154,7 @@
   }
 }
 
-@keyframes unburn-tooltip-fade-bottom {
+@keyframes unbrn-tooltip-fade-bottom {
   from {
     opacity: 0;
     transform: translateX(-50%) translateY(-4px);
@@ -166,7 +166,7 @@
   }
 }
 
-@keyframes unburn-tooltip-fade-left {
+@keyframes unbrn-tooltip-fade-left {
   from {
     opacity: 0;
     transform: translateY(-50%) translateX(4px);
@@ -178,7 +178,7 @@
   }
 }
 
-@keyframes unburn-tooltip-fade-right {
+@keyframes unbrn-tooltip-fade-right {
   from {
     opacity: 0;
     transform: translateY(-50%) translateX(-4px);

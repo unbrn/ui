@@ -5,6 +5,9 @@ import { Button } from '../../../package/components/Button/Button';
 import { Avatar } from '../../../package/components/Avatar/Avatar';
 import { Badge } from '../../../package/components/Badge/Badge';
 import { VoiceAgent } from '../../../package/components/VoiceAgent/VoiceAgent';
+import { LumenBeam } from '../../../package/backgrounds/LumenBeam/LumenBeam';
+import { SatinFlow } from '../../../package/backgrounds/SatinFlow/SatinFlow';
+import { LiquidChrome } from '../../../package/backgrounds/LiquidChrome/LiquidChrome';
 import { CheckCircle2, ChevronDown } from 'lucide-react';
 
 export const ComponentCard = ({
@@ -20,9 +23,11 @@ export const ComponentCard = ({
   preview: React.ReactNode,
   isNew?: boolean
 }) => {
-  const targetPath = path.startsWith('/components/') 
-    ? path.replace(/^\/components/, '/docs/components') 
-    : path;
+  const targetPath = path.startsWith('/components/')
+    ? path.replace(/^\/components/, '/docs/components')
+    : path.startsWith('/backgrounds/')
+      ? path.replace(/^\/backgrounds/, '/docs/backgrounds')
+      : path;
 
   return (
     <Link to={targetPath} className="component-catalog-card">
@@ -217,6 +222,30 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       <div style={{ width: '30%', height: '6px', background: 'var(--accent-color)', borderRadius: '3px', opacity: 0.4 }}></div>
       <div style={{ width: '90%', height: '4px', background: 'var(--border-color)', borderRadius: '2px', opacity: 0.4 }}></div>
       <div style={{ width: '70%', height: '4px', background: 'var(--border-color)', borderRadius: '2px', opacity: 0.2 }}></div>
+    </div>
+  ),
+  "Color Picker": (
+    <div style={{
+      width: '140px',
+      padding: '12px',
+      border: '1px solid var(--border-color)',
+      borderRadius: '12px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      backdropFilter: 'blur(10px)',
+    }}>
+      <div style={{
+        width: '24px',
+        height: '24px',
+        borderRadius: '6px',
+        background: 'var(--accent-color)',
+        boxShadow: '0 0 10px rgba(82, 39, 255, 0.4)',
+      }}></div>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <div style={{ width: '50px', height: '4px', background: 'var(--text-main)', opacity: 0.6, borderRadius: '2px' }}></div>
+        <div style={{ width: '30px', height: '3px', background: 'var(--text-muted)', opacity: 0.4, borderRadius: '1.5px' }}></div>
+      </div>
     </div>
   ),
   Dock: (
@@ -438,6 +467,71 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
         voiceAgentShowControls={false}
         voiceAgentDotSize={6}
         voiceAgentGridGap={4}
+      />
+    </div>
+  ),
+  "Lumen Beam": (
+    <div style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      overflow: 'hidden',
+      background: '#000000'
+    }}>
+      <LumenBeam
+        topColor="#FFFFFF"
+        bottomColor="#000000"
+        intensity={1}
+        rotationSpeed={0.15}
+        beamRotation={60}
+        interactive={false}
+        beamWidth={6}
+        quality="high"
+      />
+    </div>
+  ),
+  "Satin Flow": (
+    <div style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      overflow: 'hidden',
+      background: '#000000'
+    }}>
+      <SatinFlow
+        primaryColor="#FFFFFF"
+        secondaryColor="#000000"
+        speed={0.5}
+        scale={1.2}
+        density={1.0}
+        noiseIntensity={0.5}
+        rotation={0}
+        interactive={false}
+        quality="high"
+      />
+    </div>
+  ),
+  "Liquid Chrome": (
+    <div style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      overflow: 'hidden',
+    }}>
+      <LiquidChrome
+        speed={0.4}
+        amplitude={0.3}
+        frequency={0.2}
+        chromaticShift={0.25}
+        noiseIntensity={0.12}
+        interactive={false}
+        quality="high"
       />
     </div>
   )

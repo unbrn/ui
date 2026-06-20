@@ -15,7 +15,7 @@ export const CheckboxPage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        code={`import { Checkbox } from '@unburn/ui/Checkbox';
+        code={`import { Checkbox } from '@unbrn/ui/Checkbox';
 
 export default function Example() {
   return <Checkbox checkboxLabel="Accept terms and conditions" checkboxDefaultChecked />;
@@ -28,7 +28,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Checkbox } from '@unburn/ui/Checkbox';
+          codeBlockCode={`import { Checkbox } from '@unbrn/ui/Checkbox';
 
 export default function Example() {
   return <Checkbox checkboxLabel="Remember me" />;
@@ -42,7 +42,7 @@ export default function Example() {
         <Showcase
           title="Variants"
           description="Choose from three styles: filled, outlined, and duo."
-          code={`import { Checkbox } from '@unburn/ui/Checkbox';
+          code={`import { Checkbox } from '@unbrn/ui/Checkbox';
 
 export default function Example() {
   return (
@@ -64,7 +64,7 @@ export default function Example() {
         <Showcase
           title="Sizes"
           description="Choose from small, medium, or large sizes."
-          code={`import { Checkbox } from '@unburn/ui/Checkbox';
+          code={`import { Checkbox } from '@unbrn/ui/Checkbox';
 
 export default function Example() {
   return (
@@ -86,7 +86,7 @@ export default function Example() {
         <Showcase
           title="States"
           description="Use disabled states and validation checks."
-          code={`import { Checkbox } from '@unburn/ui/Checkbox';
+          code={`import { Checkbox } from '@unbrn/ui/Checkbox';
 
 export default function Example() {
   return (
@@ -106,7 +106,7 @@ export default function Example() {
         <Showcase
           title="With Description"
           description="Add descriptive text below the checkbox label."
-          code={`import { Checkbox } from '@unburn/ui/Checkbox';
+          code={`import { Checkbox } from '@unbrn/ui/Checkbox';
 
 export default function Example() {
   return (
@@ -128,7 +128,7 @@ export default function Example() {
         <Showcase
           title="Interactive"
           description="Show error messages when unchecked."
-          code={`import { Checkbox } from '@unburn/ui/Checkbox';
+          code={`import { Checkbox } from '@unbrn/ui/Checkbox';
 import { useState } from 'react';
 
 export default function Example() {
@@ -165,6 +165,7 @@ export default function Example() {
           { name: 'checkboxDefaultChecked', type: 'boolean', description: 'Set if the checkbox starts as checked.' },
           { name: 'checkboxOnChange', type: '(e: ChangeEvent) => void', description: 'Function called when the checkbox state changes.' },
           { name: 'checkboxDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks on the checkbox.' },
+          { name: 'checkboxId', type: 'string', description: 'Custom ID attribute for the input element.' },
           { name: 'checkboxClassName', type: 'string', description: 'Custom CSS class for the root container.' },
           { name: 'checkboxStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the checkbox (prefixed with checkbox).' },

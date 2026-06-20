@@ -1,4 +1,4 @@
-.unburn-btn {
+.unbrn-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -16,130 +16,130 @@
   white-space: nowrap;
 }
 
-.unburn-btn:active:not(:disabled) {
+.unbrn-btn:active:not(:disabled) {
   transform: scale(0.96);
 }
 
-.unburn-btn span,
-.unburn-btn svg {
+.unbrn-btn span,
+.unbrn-btn svg {
   display: block;
 }
 
-.unburn-btn:disabled {
+.unbrn-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.unburn-btn-filled {
+.unbrn-btn-filled {
   background-color: var(--accent-color);
   color: var(--accent-text);
   border-color: var(--accent-color);
 }
 
-.unburn-btn-filled:hover:not(:disabled) {
+.unbrn-btn-filled:hover:not(:disabled) {
   opacity: 0.9;
 }
 
-.unburn-btn-outlined {
+.unbrn-btn-outlined {
   background-color: color-mix(in srgb, var(--bg-secondary) 8%, transparent);
   color: var(--accent-color);
   border-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
 }
 
-.unburn-btn-outlined:hover:not(:disabled) {
+.unbrn-btn-outlined:hover:not(:disabled) {
   border-color: color-mix(in srgb, var(--accent-color) 40%, transparent);
   color: var(--accent-color);
 }
 
-.unburn-btn-duo {
+.unbrn-btn-duo {
   background-color: color-mix(in srgb, var(--accent-color) 5%, transparent);
   color: var(--accent-color);
   border-color: color-mix(in srgb, var(--accent-color) 5%, transparent);
 }
 
-.unburn-btn-duo:hover:not(:disabled) {
+.unbrn-btn-duo:hover:not(:disabled) {
   background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
   border-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
 }
 
-.unburn-btn-ghost {
+.unbrn-btn-ghost {
   background-color: transparent;
   color: var(--text-main);
   border-color: transparent;
 }
 
-.unburn-btn-ghost:hover:not(:disabled) {
+.unbrn-btn-ghost:hover:not(:disabled) {
   background-color: color-mix(in srgb, var(--border-color) 25%, transparent);
   color: var(--text-main);
 }
 
-.unburn-btn-ghost:focus-visible:not(:disabled) {
+.unbrn-btn-ghost:focus-visible:not(:disabled) {
   background-color: color-mix(in srgb, var(--border-color) 35%, transparent);
   border-color: color-mix(in srgb, var(--border-color) 60%, transparent);
 }
 
-.unburn-btn-sm {
-  min-height: var(--height-sm);
+.unbrn-btn-sm {
+  height: var(--height-sm);
   padding: 0 0.75rem;
   font-size: 0.75rem;
   border-radius: var(--radius-sm);
 }
 
-.unburn-btn-default {
-  min-height: var(--height-default);
+.unbrn-btn-default {
+  height: var(--height-default);
   padding: 0 1.25rem;
   font-size: 0.875rem;
   border-radius: var(--radius-md);
 }
 
-.unburn-btn-lg {
-  min-height: var(--height-lg);
+.unbrn-btn-lg {
+  height: var(--height-lg);
   padding: 0 1.5rem;
   font-size: 1rem;
   border-radius: var(--radius-lg);
 }
 
-.unburn-btn-icon-only {
+.unbrn-btn-icon-only {
   aspect-ratio: 1 / 1;
 }
 
-.unburn-btn-sm.unburn-btn-icon-only {
+.unbrn-btn-sm.unbrn-btn-icon-only {
   padding: 0.25rem;
 }
 
-.unburn-btn-default.unburn-btn-icon-only {
+.unbrn-btn-default.unbrn-btn-icon-only {
   padding: 0.5rem;
 }
 
-.unburn-btn-lg.unburn-btn-icon-only {
+.unbrn-btn-lg.unbrn-btn-icon-only {
   padding: 0.75rem;
 }
 
-.unburn-btn-opacity-25 {
+.unbrn-btn-opacity-25 {
   opacity: 0.25;
 }
 
-.unburn-btn-opacity-50 {
+.unbrn-btn-opacity-50 {
   opacity: 0.5;
 }
 
-.unburn-btn-opacity-100 {
+.unbrn-btn-opacity-100 {
   opacity: 1;
 }
 
-.unburn-btn-icon-left {
+.unbrn-btn-icon-left {
   margin-right: 0.5rem;
 }
 
-.unburn-btn-icon-right {
+.unbrn-btn-icon-right {
   margin-left: 0.5rem;
 }
 
-.unburn-btn-loading-icon {
-  animation: unburn-spin 1s linear infinite;
+.unbrn-btn-loading-icon {
+  animation: unbrn-spin 1s linear infinite;
 }
 
-@keyframes unburn-spin {
+@keyframes unbrn-spin {
   from {
     transform: rotate(0deg);
   }
@@ -149,48 +149,48 @@
   }
 }
 
-.unburn-btn-full-width {
+.unbrn-btn-full-width {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.unburn-btn-group {
+.unbrn-btn-group {
   display: inline-flex;
   border-radius: var(--radius);
   overflow: hidden;
   width: fit-content;
 }
 
-.unburn-btn-group .unburn-btn {
+.unbrn-btn-group .unbrn-btn {
   margin: 0;
   border-radius: 0 !important;
   box-shadow: none;
 }
 
-.unburn-btn-group .unburn-btn:first-child {
+.unbrn-btn-group .unbrn-btn:first-child {
   border-top-left-radius: var(--radius) !important;
   border-bottom-left-radius: var(--radius) !important;
 }
 
-.unburn-btn-group .unburn-btn:last-child {
+.unbrn-btn-group .unbrn-btn:last-child {
   border-top-right-radius: var(--radius) !important;
   border-bottom-right-radius: var(--radius) !important;
 }
 
-.unburn-btn-group .unburn-btn:not(:first-child) {
+.unbrn-btn-group .unbrn-btn:not(:first-child) {
   margin-left: -1px;
 }
 
-.unburn-btn-group .unburn-btn-filled:not(:last-child) {
+.unbrn-btn-group .unbrn-btn-filled:not(:last-child) {
   border-right-color: color-mix(in srgb, var(--accent-text) 30%, transparent);
 }
 
-.unburn-btn-group .unburn-btn-filled:not(:first-child) {
+.unbrn-btn-group .unbrn-btn-filled:not(:first-child) {
   border-left-color: color-mix(in srgb, var(--accent-text) 30%, transparent);
 }
 
-.unburn-btn-group-split {
+.unbrn-btn-group-split {
   display: inline-flex;
   gap: 6px;
   border-radius: var(--radius);
@@ -198,24 +198,24 @@
   position: relative;
 }
 
-.unburn-btn-group-split .unburn-btn {
+.unbrn-btn-group-split .unbrn-btn {
   margin: 0;
   border-radius: var(--radius-xs) !important;
   box-shadow: none;
 }
 
-.unburn-btn-group-split .unburn-btn:first-child {
+.unbrn-btn-group-split .unbrn-btn:first-child {
   border-top-left-radius: var(--radius) !important;
   border-bottom-left-radius: var(--radius) !important;
 }
 
-.unburn-btn-group-split .unburn-btn:last-child {
+.unbrn-btn-group-split .unbrn-btn:last-child {
   border-top-right-radius: var(--radius) !important;
   border-bottom-right-radius: var(--radius) !important;
 }
 
 /* Tabs Button Group */
-.unburn-btn-group-tabs {
+.unbrn-btn-group-tabs {
   position: relative;
   padding: 3px;
   border-radius: var(--radius-lg);
@@ -228,19 +228,19 @@
   user-select: none;
 }
 
-.unburn-btn-group-dragging {
+.unbrn-btn-group-dragging {
   cursor: grabbing !important;
 }
 
-.unburn-btn-group-dragging .unburn-btn {
+.unbrn-btn-group-dragging .unbrn-btn {
   cursor: grabbing !important;
 }
 
-.unburn-btn-group-dragging .unburn-btn-group-indicator {
+.unbrn-btn-group-dragging .unbrn-btn-group-indicator {
   transition: none !important;
 }
 
-.unburn-btn-group-tabs .unburn-btn {
+.unbrn-btn-group-tabs .unbrn-btn {
   background-color: transparent !important;
   border-color: transparent !important;
   color: var(--text-muted) !important;
@@ -251,11 +251,11 @@
   z-index: 1;
 }
 
-.unburn-btn-group-tabs .unburn-btn:hover {
+.unbrn-btn-group-tabs .unbrn-btn:hover {
   opacity: 1 !important;
 }
 
-.unburn-btn-group-tabs .unburn-btn::before {
+.unbrn-btn-group-tabs .unbrn-btn::before {
   content: '';
   position: absolute;
   top: 0;
@@ -272,79 +272,79 @@
   pointer-events: none;
 }
 
-.unburn-btn-group-tabs .unburn-btn:not(.unburn-btn-active)::before {
+.unbrn-btn-group-tabs .unbrn-btn:not(.unbrn-btn-active)::before {
   opacity: 1;
 }
 
-.unburn-btn-group-dragging .unburn-btn:not(.unburn-btn-active)::before {
+.unbrn-btn-group-dragging .unbrn-btn:not(.unbrn-btn-active)::before {
   opacity: 0;
 }
 
 /* Filled Tabs Variant (Default) */
-.unburn-btn-group-tabs-filled {
+.unbrn-btn-group-tabs-filled {
   background-color: transparent;
   border: 1px solid transparent;
 }
 
-.unburn-btn-group-tabs-filled .unburn-btn-group-indicator {
+.unbrn-btn-group-tabs-filled .unbrn-btn-group-indicator {
   background-color: var(--accent-color);
   box-shadow: none;
   border: none;
 }
 
-.unburn-btn-group-tabs-filled .unburn-btn.unburn-btn-active {
+.unbrn-btn-group-tabs-filled .unbrn-btn.unbrn-btn-active {
   color: var(--accent-text) !important;
 }
 
-.unburn-btn-group-tabs-filled .unburn-btn:not(.unburn-btn-active):hover:not(:disabled) {
+.unbrn-btn-group-tabs-filled .unbrn-btn:not(.unbrn-btn-active):hover:not(:disabled) {
   color: var(--text-main) !important;
 }
 
 /* Outlined Tabs Variant */
-.unburn-btn-group-tabs-outlined {
+.unbrn-btn-group-tabs-outlined {
   background-color: transparent;
   border: 1px solid transparent;
 }
 
-.unburn-btn-group-tabs-outlined .unburn-btn-group-indicator {
+.unbrn-btn-group-tabs-outlined .unbrn-btn-group-indicator {
   background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
   border: 1px solid var(--accent-color);
   box-shadow: none;
 }
 
-.unburn-btn-group-tabs-outlined .unburn-btn.unburn-btn-active {
+.unbrn-btn-group-tabs-outlined .unbrn-btn.unbrn-btn-active {
   color: var(--accent-color) !important;
 }
 
-.unburn-btn-group-tabs-outlined .unburn-btn:not(.unburn-btn-active):hover:not(:disabled) {
+.unbrn-btn-group-tabs-outlined .unbrn-btn:not(.unbrn-btn-active):hover:not(:disabled) {
   color: var(--text-main) !important;
 }
 
 /* Duo Tabs Variant */
-.unburn-btn-group-tabs-duo {
+.unbrn-btn-group-tabs-duo {
   background-color: transparent;
   border: 1px solid transparent;
 }
 
-.unburn-btn-group-tabs-duo .unburn-btn-group-indicator {
+.unbrn-btn-group-tabs-duo .unbrn-btn-group-indicator {
   background-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
   box-shadow: none;
 }
 
-.unburn-btn-group-tabs-duo .unburn-btn.unburn-btn-active {
+.unbrn-btn-group-tabs-duo .unbrn-btn.unbrn-btn-active {
   color: var(--accent-color) !important;
 }
 
-.unburn-btn-group-tabs-duo .unburn-btn:not(.unburn-btn-active):hover:not(:disabled) {
+.unbrn-btn-group-tabs-duo .unbrn-btn:not(.unbrn-btn-active):hover:not(:disabled) {
   color: var(--text-main) !important;
 }
 
-.unburn-btn-group-split.unburn-btn-group-tabs {
+.unbrn-btn-group-split.unbrn-btn-group-tabs {
   gap: 3px;
 }
 
-.unburn-btn-group-indicator {
+.unbrn-btn-group-indicator {
   position: absolute;
   z-index: 0;
   pointer-events: none;

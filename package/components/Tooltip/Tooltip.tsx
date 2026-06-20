@@ -59,18 +59,18 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         <div
           ref={ref}
           className={cn(
-            "unburn-tooltip-bubble",
-            "unburn-tooltip-bubble-standalone",
-            `unburn-tooltip-bubble-${tooltipPosition}`,
-            `unburn-tooltip-bubble-${tooltipVariant}`,
-            (tooltipVariant === 'outlined' || tooltipVariant === 'duo') && 'unburn-glass',
+            "unbrn-tooltip-bubble",
+            "unbrn-tooltip-bubble-standalone",
+            `unbrn-tooltip-bubble-${tooltipPosition}`,
+            `unbrn-tooltip-bubble-${tooltipVariant}`,
+            (tooltipVariant === 'outlined' || tooltipVariant === 'duo') && 'unbrn-glass',
             tooltipClassName,
             classNames?.tooltipBubble
           )}
           style={{ ...tooltipStyle, ...styles?.tooltipBubble, ...accentStyle }}
         >
-          <span className="unburn-tooltip-content">{tooltipContent}</span>
-          <div className={cn("unburn-tooltip-arrow", classNames?.tooltipArrow)} style={styles?.tooltipArrow} />
+          <span className="unbrn-tooltip-content">{tooltipContent}</span>
+          <div className={cn("unbrn-tooltip-arrow", classNames?.tooltipArrow)} style={styles?.tooltipArrow} />
         </div>
       );
     }
@@ -78,33 +78,33 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     return (
       <div
         ref={ref}
-        className={cn("unburn-tooltip-root", tooltipClassName, classNames?.tooltipRoot)}
+        className={cn("unbrn-tooltip-root", tooltipClassName, classNames?.tooltipRoot)}
         style={{ ...tooltipStyle, ...styles?.tooltipRoot }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
       >
-        <div 
-          className={cn("unburn-tooltip-trigger", classNames?.tooltipTrigger)} 
+        <div
+          className={cn("unbrn-tooltip-trigger", classNames?.tooltipTrigger)}
           style={styles?.tooltipTrigger}
         >
           {displayChildren}
         </div>
-        
+
         {showTooltip && (
           <div
             className={cn(
-              "unburn-tooltip-bubble",
-              `unburn-tooltip-bubble-${tooltipPosition}`,
-              `unburn-tooltip-bubble-${tooltipVariant}`,
-              (tooltipVariant === 'outlined' || tooltipVariant === 'duo') && 'unburn-glass',
+              "unbrn-tooltip-bubble",
+              `unbrn-tooltip-bubble-${tooltipPosition}`,
+              `unbrn-tooltip-bubble-${tooltipVariant}`,
+              (tooltipVariant === 'outlined' || tooltipVariant === 'duo') && 'unbrn-glass',
               classNames?.tooltipBubble
             )}
             style={{ ...styles?.tooltipBubble, ...accentStyle }}
           >
-            <span className="unburn-tooltip-content">{tooltipContent}</span>
-            <div className={cn("unburn-tooltip-arrow", classNames?.tooltipArrow)} style={styles?.tooltipArrow} />
+            <span className="unbrn-tooltip-content">{tooltipContent}</span>
+            <div className={cn("unbrn-tooltip-arrow", classNames?.tooltipArrow)} style={styles?.tooltipArrow} />
           </div>
         )}
       </div>

@@ -1,15 +1,15 @@
-.unburn-steps {
+.unbrn-steps {
   display: flex;
   flex-direction: column;
   font-family: var(--font-sans);
 }
 
-.unburn-step {
+.unbrn-step {
   display: flex;
   gap: 1.25rem;
 }
 
-.unburn-step-left {
+.unbrn-step-left {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,7 @@
   padding-top: 0.1rem;
 }
 
-.unburn-step-marker {
+.unbrn-step-marker {
   width: 32px;
   height: 32px;
   border-radius: var(--radius-full);
@@ -33,7 +33,7 @@
   transition: all var(--transition);
 }
 
-.unburn-step-connector {
+.unbrn-step-connector {
   width: 1px;
   flex: 1;
   min-height: 2rem;
@@ -43,17 +43,17 @@
   opacity: 0.4;
 }
 
-.unburn-step-content {
+.unbrn-step-content {
   flex: 1;
   min-width: 0;
   padding-bottom: 2rem;
 }
 
-.unburn-step:last-child .unburn-step-content {
+.unbrn-step:last-child .unbrn-step-content {
   padding-bottom: 0;
 }
 
-.unburn-step-title {
+.unbrn-step-title {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-main);
@@ -62,30 +62,33 @@
   padding-top: 0.35rem;
 }
 
-.unburn-step-description {
+.unbrn-step-description {
   font-size: 0.85rem;
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 0.75rem;
 }
 
-.unburn-step-body {
+.unbrn-step-body {
   margin-top: 0.75rem;
 }
 
 @media (max-width: 600px) {
-  .unburn-step {
+  .unbrn-step {
     gap: 0.85rem;
   }
-  .unburn-step-marker {
+
+  .unbrn-step-marker {
     width: 28px;
     height: 28px;
     font-size: 0.7rem;
   }
-  .unburn-step-content {
+
+  .unbrn-step-content {
     padding-bottom: 1.5rem;
   }
-  .unburn-step-connector {
+
+  .unbrn-step-connector {
     min-height: 1.5rem;
   }
 }

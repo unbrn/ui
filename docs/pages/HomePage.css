@@ -2,49 +2,98 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-top: -64px;
+  padding-top: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 2rem;
 }
 
-/* Ambient glow spotlight in the center matching the active accent theme color */
-.home-page::before {
-  content: '';
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent-color) 8%, transparent) 0%, transparent 70%);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.home-grid-background {
+.home-chroma-bg {
+  mix-blend-mode: screen;
   position: absolute;
   inset: 0;
-  z-index: 1;
-  pointer-events: auto;
-  mask-image: radial-gradient(circle at center, black 40%, transparent 95%);
-  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 95%);
-  border-bottom: 1px solid var(--border-color);
+  z-index: 100000;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at 0% 0%, black 10%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 0% 0%, black 10%, transparent 80%);
   opacity: 0.75;
 }
 
-[data-theme='dark'] .home-grid-background {
-  opacity: 0.55;
+[data-theme='light'] .home-chroma-bg {
+  opacity: 0.45;
 }
 
-.home-grid-canvas {
+.home-page-container {
+  max-width: 1400px;
   width: 100%;
-  height: 100%;
-  display: block;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 10;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .hero-section {
-  position: relative;
-  z-index: 2;
-  pointer-events: none;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.hero-section > * {
-  pointer-events: auto;
+.home-page .hero-title {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(2.3rem, 7.5vw, 5.25rem);
+  line-height: 1.1;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.04em;
+}
+
+.home-page .hero-subtitle {
+  margin: 0 0 2.5rem 0;
+  max-width: 540px;
+}
+
+.home-page .hero-actions {
+  margin-top: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Adjust layout on mobile */
+@media (max-width: 768px) {
+  .hero-section {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-page .hero-title {
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .home-page .hero-subtitle {
+    margin: 0 auto 2.5rem auto;
+  }
+
+  .home-page .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+    margin-top: 0;
+  }
+
+  .home-page .hero-actions>button,
+  .home-page .hero-actions>a,
+  .home-page .hero-actions>* {
+    width: 100%;
+  }
 }

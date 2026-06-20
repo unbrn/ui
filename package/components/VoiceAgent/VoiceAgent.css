@@ -1,4 +1,4 @@
-.unburn-voice-agent {
+.unbrn-voice-agent {
   --voice-accent: #ffffff;
   --voice-accent-glow: color-mix(in srgb, var(--voice-accent) 60%, transparent);
   --voice-dot-inactive: rgba(255, 255, 255, 0.08);
@@ -17,17 +17,17 @@
   transition: all var(--transition);
 }
 
-[data-theme="light"] .unburn-voice-agent {
+[data-theme="light"] .unbrn-voice-agent {
   --voice-accent: #000000;
   --voice-dot-inactive: rgba(0, 0, 0, 0.07);
   --border-color: #cbd5e1;
 }
 
-.unburn-voice-agent.unburn-variant-grid {
+.unbrn-voice-agent.unbrn-variant-grid {
   --voice-dot-radius: 50%;
 }
 
-.unburn-voice-grid-container {
+.unbrn-voice-grid-container {
   position: relative;
   width: fit-content;
   height: fit-content;
@@ -41,13 +41,13 @@
   transition: border-color var(--transition);
 }
 
-.unburn-voice-canvas {
+.unbrn-voice-canvas {
   display: block;
   z-index: 2;
   position: relative;
 }
 
-.unburn-voice-controls {
+.unbrn-voice-controls {
   display: flex;
   align-items: center;
   justify-content: center;

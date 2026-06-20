@@ -231,7 +231,7 @@ export const resolveColor = (color: string): string => {
   return `var(--color-${color}, ${color})`;
 };
 
-export const getContrastText = (color: string): string => {
+const getContrastText = (color: string): string => {
   const metrics = parseColor(color);
   if (!metrics) return '#ffffff';
   return metrics.isLight ? '#000000' : '#ffffff';

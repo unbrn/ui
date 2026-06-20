@@ -48,8 +48,8 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     const [hasError, setHasError] = React.useState(false);
 
     const accentStyle = getAccentVariables(avatarAccentColor);
-    const statusVars = avatarStatusColor ? { 
-      '--status-color': resolveColor(avatarStatusColor) 
+    const statusVars = avatarStatusColor ? {
+      '--status-color': resolveColor(avatarStatusColor)
     } as React.CSSProperties : {};
 
     return (
@@ -57,24 +57,24 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
         ref={ref}
         style={{ ...avatarStyle, ...accentStyle, ...styles?.avatarRoot }}
         className={cn(
-          'unburn-avatar',
+          'unbrn-avatar',
           `size-${avatarSize}`,
           avatarClassName,
           classNames?.avatarRoot
         )}
       >
-        <div className="unburn-avatar-inner">
+        <div className="unbrn-avatar-inner">
           {avatarSrc && !hasError ? (
             <img
               src={avatarSrc}
               alt={avatarAlt || 'Avatar'}
-              className={cn("unburn-avatar-img", classNames?.avatarImage)}
+              className={cn("unbrn-avatar-img", classNames?.avatarImage)}
               style={styles?.avatarImage}
               onError={() => setHasError(true)}
             />
           ) : (
             <div
-              className={cn("unburn-avatar-fallback", classNames?.avatarFallback)}
+              className={cn("unbrn-avatar-fallback", classNames?.avatarFallback)}
               style={styles?.avatarFallback}
             >
               {avatarFallback || <User size={20} />}
@@ -83,7 +83,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
         </div>
         {avatarShowStatus && (
           <span
-            className={cn('unburn-avatar-status', classNames?.avatarStatus)}
+            className={cn('unbrn-avatar-status', classNames?.avatarStatus)}
             style={{ ...statusVars, ...styles?.avatarStatus }}
           />
         )}

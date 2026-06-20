@@ -34,13 +34,13 @@ export const Menu: React.FC<MenuProps> = ({
 
   return (
     <div className={`menu-overlay ${isMenuOpen ? 'active' : ''}`}>
-      <div className="menu-overlay-container unburn-glass">
+      <div className="menu-overlay-container unbrn-glass">
         <div className="menu-nav-panel">
           <nav className="menu-overlay-content">
             {navLinks.map((link, index) => {
               const className = `menu-overlay-link ${link.isExternal ? 'discord-touch' : ''}`;
               const delayStyle = { animationDelay: `${index * 0.08}s` } as React.CSSProperties;
-              
+
               const linkContent = (
                 <>
                   <div className="active-indicator" />

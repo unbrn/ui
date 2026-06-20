@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Search, X, BookOpen, Sparkles, FileText, ArrowRight } from 'lucide-react';
 import { Input } from '../../../package/components/Input/Input';
 import componentsData from '../../data/components.json';
+import backgroundsData from '../../data/backgrounds.json';
 import './DocsSearchModal.css';
 
 declare global {
@@ -122,7 +123,7 @@ export const DocsSearchModal: React.FC = () => {
         if (!isMounted) return;
 
         const lowercaseQuery = query.toLowerCase();
-        const fallbackResults = componentsData
+        const fallbackComponents = componentsData
           .filter(comp =>
             comp.name.toLowerCase().includes(lowercaseQuery) ||
             comp.description.toLowerCase().includes(lowercaseQuery)
@@ -134,8 +135,23 @@ export const DocsSearchModal: React.FC = () => {
             title: comp.name,
             excerpt: comp.description,
             isFallback: true
-          }))
-          .slice(0, 8);
+          }));
+
+        const fallbackBackgrounds = backgroundsData
+          .filter(bg =>
+            bg.name.toLowerCase().includes(lowercaseQuery) ||
+            bg.description.toLowerCase().includes(lowercaseQuery)
+          )
+          .map(bg => ({
+            url: bg.path.startsWith('/backgrounds/')
+              ? bg.path.replace(/^\/backgrounds/, '/docs/backgrounds')
+              : bg.path,
+            title: bg.name,
+            excerpt: bg.description,
+            isFallback: true
+          }));
+
+        const fallbackResults = [...fallbackComponents, ...fallbackBackgrounds].slice(0, 8);
 
         setResults(fallbackResults);
         setIsLoading(false);
@@ -214,7 +230,7 @@ export const DocsSearchModal: React.FC = () => {
               <div className="empty-icon-wrapper">
                 <Sparkles size={24} />
               </div>
-              <h3>Search Unburn UI</h3>
+              <h3>Search Unbrn UI</h3>
               <p>Type keywords to search components, layouts, custom themes, and configurations.</p>
               <div className="search-shortcuts-tips">
                 <div className="tip-item">

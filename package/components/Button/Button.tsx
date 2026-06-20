@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 "use client";
 
 import React, { forwardRef, useState, useLayoutEffect, useRef } from 'react';
@@ -86,28 +87,28 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={buttonDisabled || buttonLoading}
         style={{ ...buttonStyle, ...styles?.buttonRoot, ...accentStyle }}
         className={cn(
-          'unburn-btn',
-          `unburn-btn-${resolvedVariant}`,
-          `unburn-btn-${resolvedSize}`,
-          `unburn-btn-opacity-${buttonOpacityLevel}`,
-          (resolvedVariant === 'outlined' || resolvedVariant === 'duo') && 'unburn-glass',
-          isIconOnly && 'unburn-btn-icon-only',
-          buttonFullWidth && 'unburn-btn-full-width',
-          buttonActive && 'unburn-btn-active',
+          'unbrn-btn',
+          `unbrn-btn-${resolvedVariant}`,
+          `unbrn-btn-${resolvedSize}`,
+          `unbrn-btn-opacity-${buttonOpacityLevel}`,
+          (resolvedVariant === 'outlined' || resolvedVariant === 'duo') && 'unbrn-glass',
+          isIconOnly && 'unbrn-btn-icon-only',
+          buttonFullWidth && 'unbrn-btn-full-width',
+          buttonActive && 'unbrn-btn-active',
           buttonClassName,
           classNames?.buttonRoot
         )}
       >
         {buttonLoading && (
           <Loader2
-            className={cn("unburn-btn-loading-icon", !isIconOnly && "unburn-btn-icon-left", classNames?.buttonLoader)}
+            className={cn("unbrn-btn-loading-icon", !isIconOnly && "unbrn-btn-icon-left", classNames?.buttonLoader)}
             size={16}
             style={styles?.buttonLoader}
           />
         )}
         {!buttonLoading && buttonIcon && buttonIconPosition === 'left' && (
           <span
-            className={cn(!isIconOnly && "unburn-btn-icon-left", classNames?.buttonIcon)}
+            className={cn(!isIconOnly && "unbrn-btn-icon-left", classNames?.buttonIcon)}
             style={styles?.buttonIcon}
           >
             {buttonIcon}
@@ -116,7 +117,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {resolvedChildren}
         {!buttonLoading && buttonIcon && buttonIconPosition === 'right' && (
           <span
-            className={cn(!isIconOnly && "unburn-btn-icon-right", classNames?.buttonIcon)}
+            className={cn(!isIconOnly && "unbrn-btn-icon-right", classNames?.buttonIcon)}
             style={styles?.buttonIcon}
           >
             {buttonIcon}
@@ -171,7 +172,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
       const container = containerRef.current;
       if (!container) return;
 
-      const activeEl = container.querySelector('.unburn-btn-active') as HTMLElement;
+      const activeEl = container.querySelector('.unbrn-btn-active') as HTMLElement;
       if (activeEl) {
         setIndicatorStyle({
           left: `${activeEl.offsetLeft}px`,
@@ -205,10 +206,10 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const activeEl = container.querySelector('.unburn-btn-active') as HTMLElement;
+    const activeEl = container.querySelector('.unbrn-btn-active') as HTMLElement;
     if (!activeEl) return;
 
-    const buttons = Array.from(container.querySelectorAll('.unburn-btn')) as HTMLElement[];
+    const buttons = Array.from(container.querySelectorAll('.unbrn-btn')) as HTMLElement[];
     const activeIndex = buttons.indexOf(activeEl);
     lastClosestIndexRef.current = activeIndex !== -1 ? activeIndex : null;
 
@@ -224,7 +225,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const activeEl = container.querySelector('.unburn-btn-active') as HTMLElement;
+    const activeEl = container.querySelector('.unbrn-btn-active') as HTMLElement;
     if (!activeEl) return;
 
     const deltaX = e.clientX - startXRef.current;
@@ -256,7 +257,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
 
       // Trigger selection haptic when dragging across tab boundaries
       const indicatorCenter = newLeft + activeEl.offsetWidth / 2;
-      const buttons = Array.from(container.querySelectorAll('.unburn-btn')) as HTMLElement[];
+      const buttons = Array.from(container.querySelectorAll('.unbrn-btn')) as HTMLElement[];
       let closestIndex = -1;
       let minDistance = Infinity;
 
@@ -297,7 +298,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
       isDraggingRef.current = false;
       setIsDraggingState(false);
 
-      const activeEl = container.querySelector('.unburn-btn-active') as HTMLElement;
+      const activeEl = container.querySelector('.unbrn-btn-active') as HTMLElement;
       if (!activeEl) {
         setDragLeft(null);
         return;
@@ -315,7 +316,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
 
       const indicatorCenter = clampedFinalLeft + activeEl.offsetWidth / 2;
 
-      const buttons = Array.from(container.querySelectorAll('.unburn-btn')) as HTMLElement[];
+      const buttons = Array.from(container.querySelectorAll('.unbrn-btn')) as HTMLElement[];
       let closestButton: HTMLElement | null = null;
       let minDistance = Infinity;
 
@@ -352,7 +353,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
       setIsDraggingState(false);
       setDragLeft(null);
 
-      const targetBtn = (e.target as HTMLElement).closest('.unburn-btn') as HTMLElement;
+      const targetBtn = (e.target as HTMLElement).closest('.unbrn-btn') as HTMLElement;
       if (targetBtn && container.contains(targetBtn)) {
         targetBtn.click();
         e.preventDefault();
@@ -369,11 +370,11 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     <div
       ref={containerRef}
       className={cn(
-        buttonGroupSplit ? 'unburn-btn-group-split' : 'unburn-btn-group',
-        buttonGroupTabs && 'unburn-btn-group-tabs',
-        buttonGroupTabs && `unburn-btn-group-tabs-${buttonGroupVariant}`,
-        isDraggingState && 'unburn-btn-group-dragging',
-        'unburn-glass',
+        buttonGroupSplit ? 'unbrn-btn-group-split' : 'unbrn-btn-group',
+        buttonGroupTabs && 'unbrn-btn-group-tabs',
+        buttonGroupTabs && `unbrn-btn-group-tabs-${buttonGroupVariant}`,
+        isDraggingState && 'unbrn-btn-group-dragging',
+        'unbrn-glass',
         buttonGroupClassName
       )}
       style={buttonGroupStyle}
@@ -384,7 +385,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     >
       {buttonGroupTabs && (
         <div
-          className="unburn-btn-group-indicator"
+          className="unbrn-btn-group-indicator"
           style={currentIndicatorStyle}
         />
       )}

@@ -93,11 +93,11 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (sliderDisabled) return;
       const nextValue = parseFloat(e.target.value);
-      
+
       if (controlledValue === undefined) {
         setValueState(nextValue);
       }
-      
+
       sliderOnChange?.(nextValue);
     };
 
@@ -146,7 +146,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
 
     const thumbSize = getThumbSize();
     const thumbWidth = thumbSize * 1.5;
-    
+
     const tooltipPosition = `calc(${percentage}% + ${(0.5 - percentage / 100) * thumbWidth}px)`;
 
     const showTooltipContainer = sliderShowTooltip && !sliderDisabled && (isHovered || isDragging);
@@ -154,18 +154,18 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
     return (
       <div
         className={cn(
-          "unburn-slider-root",
-          sliderDisabled && "unburn-slider-disabled",
+          "unbrn-slider-root",
+          sliderDisabled && "unbrn-slider-disabled",
           classNames?.sliderRoot
         )}
         style={{ ...sliderStyle, ...styles?.sliderRoot, ...accentStyle }}
       >
         {(sliderLabel || sliderDescription) && (
-          <div className={cn("unburn-slider-header", classNames?.sliderHeader)} style={styles?.sliderHeader}>
+          <div className={cn("unbrn-slider-header", classNames?.sliderHeader)} style={styles?.sliderHeader}>
             {sliderLabel && (
               <label
                 htmlFor={sliderId}
-                className={cn("unburn-slider-label", classNames?.sliderLabel)}
+                className={cn("unbrn-slider-label", classNames?.sliderLabel)}
                 style={styles?.sliderLabel}
               >
                 {sliderLabel}
@@ -173,7 +173,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
             )}
             {sliderDescription && (
               <p
-                className={cn("unburn-slider-description", classNames?.sliderDescription)}
+                className={cn("unbrn-slider-description", classNames?.sliderDescription)}
                 style={styles?.sliderDescription}
               >
                 {sliderDescription}
@@ -184,9 +184,9 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
 
         <div
           className={cn(
-            "unburn-slider-container",
-            `unburn-slider-container-${sliderSize}`,
-            isDragging && "unburn-slider-container-active",
+            "unbrn-slider-container",
+            `unbrn-slider-container-${sliderSize}`,
+            isDragging && "unbrn-slider-container-active",
             classNames?.sliderContainer
           )}
           style={styles?.sliderContainer}
@@ -206,8 +206,8 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
             onMouseDown={handleDragStart}
             onTouchStart={handleDragStart}
             className={cn(
-              "unburn-slider-input",
-              `unburn-slider-input-${sliderSize}`,
+              "unbrn-slider-input",
+              `unbrn-slider-input-${sliderSize}`,
               sliderClassName,
               classNames?.sliderTrack
             )}

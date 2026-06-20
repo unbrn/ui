@@ -13,7 +13,7 @@ export const BadgesPage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        code={`import { Badge } from '@unburn/ui/Badge';
+        code={`import { Badge } from '@unbrn/ui/Badge';
 
 export default function Example() {
   return <Badge badgeVariant="filled" badgeChildren="NEW" />;
@@ -26,7 +26,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Badge } from '@unburn/ui/Badge';
+          codeBlockCode={`import { Badge } from '@unbrn/ui/Badge';
 
 export default function Example() {
   return <Badge badgeChildren="Status" />;
@@ -40,7 +40,7 @@ export default function Example() {
         <Showcase
           title="Variants"
           description="Choose from four styles: filled, outlined, duo."
-          code={`import { Badge } from '@unburn/ui/Badge';
+          code={`import { Badge } from '@unbrn/ui/Badge';
 
 export default function Example() {
   return (
@@ -62,7 +62,7 @@ export default function Example() {
         <Showcase
           title="Sizes"
           description="Choose from small, medium, or large sizes."
-          code={`import { Badge } from '@unburn/ui/Badge';
+          code={`import { Badge } from '@unbrn/ui/Badge';
 
 export default function Example() {
   return (
@@ -84,7 +84,7 @@ export default function Example() {
         <Showcase
           title="With Icons"
           description="Add small icons next to the text for extra detail."
-          code={`import { Badge } from '@unburn/ui/Badge';
+          code={`import { Badge } from '@unbrn/ui/Badge';
 import { Shield, Star, Check } from 'lucide-react';
 
 export default function Example() {
@@ -107,7 +107,7 @@ export default function Example() {
         <Showcase
           title="Status Colors"
           description="Change the label colors to match its status."
-          code={`import { Badge } from '@unburn/ui/Badge';
+          code={`import { Badge } from '@unbrn/ui/Badge';
 import { Zap } from 'lucide-react';
 
 export default function Example() {

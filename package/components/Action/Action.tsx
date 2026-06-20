@@ -85,7 +85,7 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
       if (actionPosition !== 'auto' || !visible) return;
 
       const calculatePosition = () => {
-        const trigger = containerRef.current?.querySelector('.unburn-action-trigger') as HTMLElement;
+        const trigger = containerRef.current?.querySelector('.unbrn-action-trigger') as HTMLElement;
         if (!trigger) return;
 
         const rect = trigger.getBoundingClientRect();
@@ -178,12 +178,12 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
     return (
       <div
         ref={containerRef}
-        className={cn('unburn-action-root', actionClassName, classNames?.actionRoot)}
+        className={cn('unbrn-action-root', actionClassName, classNames?.actionRoot)}
         style={{ ...actionStyle, ...styles?.actionRoot, ...accentStyle }}
       >
         <div
           onClick={handleToggle}
-          className={cn('unburn-action-trigger', classNames?.actionTrigger)}
+          className={cn('unbrn-action-trigger', classNames?.actionTrigger)}
           style={styles?.actionTrigger}
         >
           {actionTrigger}
@@ -192,29 +192,29 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
         {visible && (
           <div
             className={cn(
-              'unburn-action-dropdown',
-              `unburn-action-dropdown-${finalPosition}-${actionAlign}`,
+              'unbrn-action-dropdown',
+              `unbrn-action-dropdown-${finalPosition}-${actionAlign}`,
               classNames?.actionDropdown
             )}
             style={styles?.actionDropdown}
           >
             {actionHeader && (
-              <div className="unburn-action-header">
+              <div className="unbrn-action-header">
                 {actionHeader}
               </div>
             )}
 
             {(actionChildren || children) ? (
-              <div className="unburn-action-custom-content">
+              <div className="unbrn-action-custom-content">
                 {actionChildren || children}
               </div>
             ) : (
-              <div className="unburn-action-items-list">
+              <div className="unbrn-action-items-list">
                 {actionItems?.map((item, index) => {
                   const itemClassName = cn(
-                    'unburn-action-item',
-                    `unburn-action-item-${item.variant || 'default'}`,
-                    item.disabled && 'unburn-action-item-disabled',
+                    'unbrn-action-item',
+                    `unbrn-action-item-${item.variant || 'default'}`,
+                    item.disabled && 'unbrn-action-item-disabled',
                     classNames?.actionItem,
                     item.className
                   );
@@ -256,7 +256,7 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
             )}
 
             {actionFooter && (
-              <div className="unburn-action-footer">
+              <div className="unbrn-action-footer">
                 {actionFooter}
               </div>
             )}

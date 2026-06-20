@@ -87,22 +87,22 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     return (
       <div
         className={cn(
-          "unburn-checkbox-root",
-          isAnimating && (isChecked ? "unburn-checkbox-jar-on" : "unburn-checkbox-jar-off"),
+          "unbrn-checkbox-root",
+          isAnimating && (isChecked ? "unbrn-checkbox-jar-on" : "unbrn-checkbox-jar-off"),
           classNames?.checkboxRoot
         )}
         style={{ ...styles?.checkboxRoot, ...accentStyle, ...checkboxStyle }}
       >
         <div
           className={cn(
-            "unburn-checkbox-container",
-            checkboxDescription && "unburn-checkbox-container-with-description",
-            checkboxDisabled && "unburn-checkbox-disabled",
+            "unbrn-checkbox-container",
+            checkboxDescription && "unbrn-checkbox-container-with-description",
+            checkboxDisabled && "unbrn-checkbox-disabled",
             classNames?.checkboxContainer
           )}
           style={styles?.checkboxContainer}
         >
-          <div className={cn("unburn-checkbox-wrapper", `unburn-checkbox-wrapper-${checkboxSize}`)}>
+          <div className={cn("unbrn-checkbox-wrapper", `unbrn-checkbox-wrapper-${checkboxSize}`)}>
             <input
               type="checkbox"
               id={resolvedId}
@@ -111,15 +111,15 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               defaultChecked={checkboxDefaultChecked}
               onChange={handleToggle}
               disabled={checkboxDisabled}
-              className="unburn-checkbox-input"
+              className="unbrn-checkbox-input"
             />
             <div
               className={cn(
-                "unburn-checkbox",
-                `unburn-checkbox-${checkboxVariant}`,
-                `unburn-checkbox-${checkboxSize}`,
-                (checkboxVariant === 'outlined' || checkboxVariant === 'duo') && 'unburn-glass',
-                checkboxError && "unburn-checkbox-error",
+                "unbrn-checkbox",
+                `unbrn-checkbox-${checkboxVariant}`,
+                `unbrn-checkbox-${checkboxSize}`,
+                (checkboxVariant === 'outlined' || checkboxVariant === 'duo') && 'unbrn-glass',
+                checkboxError && "unbrn-checkbox-error",
                 checkboxClassName,
                 classNames?.checkboxCheckbox
               )}
@@ -128,7 +128,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               <svg
                 viewBox="0 0 14 14"
                 fill="none"
-                className={cn("unburn-checkbox-indicator", `unburn-checkbox-indicator-${checkboxSize}`, classNames?.checkboxIndicator)}
+                className={cn("unbrn-checkbox-indicator", `unbrn-checkbox-indicator-${checkboxSize}`, classNames?.checkboxIndicator)}
                 style={styles?.checkboxIndicator}
               >
                 <path
@@ -137,17 +137,17 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="unburn-checkbox-check-path"
+                  className="unbrn-checkbox-check-path"
                 />
               </svg>
             </div>
           </div>
           {(checkboxLabel || checkboxDescription) && (
-            <div className="unburn-checkbox-content">
+            <div className="unbrn-checkbox-content">
               {checkboxLabel && (
                 <label
                   htmlFor={resolvedId}
-                  className={cn("unburn-checkbox-label", classNames?.checkboxLabel)}
+                  className={cn("unbrn-checkbox-label", classNames?.checkboxLabel)}
                   style={styles?.checkboxLabel}
                 >
                   {checkboxLabel}
@@ -155,7 +155,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               )}
               {checkboxDescription && (
                 <p
-                  className={cn("unburn-checkbox-description", classNames?.checkboxDescription)}
+                  className={cn("unbrn-checkbox-description", classNames?.checkboxDescription)}
                   style={styles?.checkboxDescription}
                 >
                   {checkboxDescription}
@@ -166,7 +166,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         </div>
         {checkboxError && (
           <span
-            className={cn("unburn-checkbox-error-message", classNames?.checkboxError)}
+            className={cn("unbrn-checkbox-error-message", classNames?.checkboxError)}
             style={styles?.checkboxError}
           >
             {checkboxError}

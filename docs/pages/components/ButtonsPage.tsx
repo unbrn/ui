@@ -17,7 +17,7 @@ export const ButtonsPage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        code={`import { Button } from '@unburn/ui/Button';
+        code={`import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return <Button buttonVariant="filled" buttonChildren="Get Started" />;
@@ -30,7 +30,7 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           codeBlockLanguage="tsx"
-          codeBlockCode={`import { Button } from '@unburn/ui/Button';
+          codeBlockCode={`import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return <Button buttonChildren="Click me" />;
@@ -44,7 +44,7 @@ export default function Example() {
         <Showcase
           title="Variants"
           description="Choose from four styles: filled, outlined, duo, and ghost."
-          code={`import { Button } from '@unburn/ui/Button';
+          code={`import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return (
@@ -68,7 +68,7 @@ export default function Example() {
         <Showcase
           title="Sizes"
           description="Available in small, medium, and large sizes."
-          code={`import { Button } from '@unburn/ui/Button';
+          code={`import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return (
@@ -90,7 +90,7 @@ export default function Example() {
         <Showcase
           title="Icons"
           description="Add icons on the left or right to make buttons look better."
-          code={`import { Button } from '@unburn/ui/Button';
+          code={`import { Button } from '@unbrn/ui/Button';
 import { ArrowLeft, ArrowRight, Mail } from 'lucide-react';
 
 export default function Example() {
@@ -113,7 +113,7 @@ export default function Example() {
         <Showcase
           title="States"
           description="Use loading animations and disabled states for button actions."
-          code={`import { Button } from '@unburn/ui/Button';
+          code={`import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return (
@@ -133,7 +133,7 @@ export default function Example() {
         <Showcase
           title="Opacity Levels"
           description="Adjust the background opacity for custom designs."
-          code={`import { Button } from '@unburn/ui/Button';
+          code={`import { Button } from '@unbrn/ui/Button';
 
 export default function Example() {
   return (
@@ -155,7 +155,7 @@ export default function Example() {
         <Showcase
           title="Button Group"
           description="Combine multiple buttons into a single cohesive group capsule with dividers."
-          code={`import { Button, ButtonGroup } from '@unburn/ui/Button';
+          code={`import { Button, ButtonGroup } from '@unbrn/ui/Button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export default function Example() {
@@ -186,7 +186,7 @@ export default function Example() {
         <Showcase
           title="Button Split"
           description="A button group with a small visual gap between grouped actions."
-          code={`import { Button, ButtonGroup } from '@unburn/ui/Button';
+          code={`import { Button, ButtonGroup } from '@unbrn/ui/Button';
 import { ChevronDown } from 'lucide-react';
 
 export default function Example() {
@@ -220,7 +220,7 @@ export default function Example() {
           title="Button Tabs"
           description="Transform a button group into a selection tab bar using the tabs, active, and variant props."
           code={`import { useState } from 'react';
-import { Button, ButtonGroup } from '@unburn/ui/Button';
+import { Button, ButtonGroup } from '@unbrn/ui/Button';
 
 export default function Example() {
   const [activeGroupTab, setActiveGroupTab] = useState(0);

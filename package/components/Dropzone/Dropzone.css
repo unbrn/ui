@@ -1,11 +1,11 @@
-.unburn-dropzone-container {
+.unbrn-dropzone-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.unburn-dropzone {
+.unbrn-dropzone {
   position: relative;
   width: 100%;
   min-height: 220px;
@@ -21,7 +21,7 @@
   padding: 3rem;
 }
 
-.unburn-dropzone::before {
+.unbrn-dropzone::before {
   content: '';
   position: absolute;
   inset: -2px;
@@ -43,21 +43,21 @@
   z-index: 1;
 }
 
-.unburn-dropzone:hover {
+.unbrn-dropzone:hover {
   transform: translateY(-4px);
 }
 
-.unburn-dropzone-dragging {
+.unbrn-dropzone-dragging {
   background: color-mix(in srgb, var(--accent-color) 5%, transparent);
   transform: scale(0.98);
 }
 
-.unburn-dropzone-dragging::before {
+.unbrn-dropzone-dragging::before {
   opacity: 1;
-  animation: unburn-rotate 2s linear infinite;
+  animation: unbrn-rotate 2s linear infinite;
 }
 
-@keyframes unburn-rotate {
+@keyframes unbrn-rotate {
   from {
     transform: rotate(0deg);
   }
@@ -67,15 +67,15 @@
   }
 }
 
-.unburn-dropzone-disabled {
+.unbrn-dropzone-disabled {
   cursor: not-allowed;
 }
 
-.unburn-dropzone-input {
+.unbrn-dropzone-input {
   display: none;
 }
 
-.unburn-dropzone-content {
+.unbrn-dropzone-content {
   position: relative;
   z-index: 3;
   display: flex;
@@ -85,7 +85,7 @@
   gap: 1.5rem;
 }
 
-.unburn-dropzone-icon {
+.unbrn-dropzone-icon {
   position: relative;
   width: 56px;
   height: 56px;
@@ -98,7 +98,7 @@
   transition: all 0.5s var(--transition-curve);
 }
 
-.unburn-dropzone-icon::after {
+.unbrn-dropzone-icon::after {
   content: '';
   position: absolute;
   inset: -8px;
@@ -109,26 +109,26 @@
   transition: all 0.5s var(--transition-curve);
 }
 
-.unburn-dropzone:hover .unburn-dropzone-icon {
+.unbrn-dropzone:hover .unbrn-dropzone-icon {
   transform: translateY(-5px);
   background: var(--accent-color);
   color: var(--accent-text);
   box-shadow: 0 10px 20px -5px color-mix(in srgb, var(--accent-color) 40%, transparent);
 }
 
-.unburn-dropzone:hover .unburn-dropzone-icon::after {
+.unbrn-dropzone:hover .unbrn-dropzone-icon::after {
   opacity: 1;
   transform: scale(1);
 }
 
-.unburn-dropzone-text {
+.unbrn-dropzone-text {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
 }
 
-.unburn-dropzone-label {
+.unbrn-dropzone-label {
   font-family: var(--font-sans);
   font-size: 0.8125rem;
   font-weight: 500;
@@ -139,7 +139,7 @@
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
-.unburn-dropzone-description {
+.unbrn-dropzone-description {
   font-size: 0.75rem;
   color: var(--text-muted);
   margin: 0;
@@ -148,7 +148,7 @@
   line-height: 1.6;
 }
 
-.unburn-dropzone-glow {
+.unbrn-dropzone-glow {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -164,11 +164,11 @@
   z-index: 2;
 }
 
-.unburn-dropzone:hover .unburn-dropzone-glow {
+.unbrn-dropzone:hover .unbrn-dropzone-glow {
   opacity: 0.35;
 }
 
-.unburn-dropzone-noise {
+.unbrn-dropzone-noise {
   position: absolute;
   inset: 0;
   opacity: 0.05;
@@ -177,7 +177,7 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-.unburn-dropzone-badges {
+.unbrn-dropzone-badges {
   display: flex;
   gap: 0.5rem;
   margin-top: 0.5rem;
@@ -185,7 +185,7 @@
   justify-content: center;
 }
 
-.unburn-dropzone-badge {
+.unbrn-dropzone-badge {
   background: rgba(255, 255, 255, 0.03) !important;
   border: 1px solid rgba(255, 255, 255, 0.05) !important;
   color: var(--text-muted) !important;
@@ -195,13 +195,13 @@
   letter-spacing: 0.05em !important;
 }
 
-.unburn-dropzone-file-list {
+.unbrn-dropzone-file-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 0.75rem;
 }
 
-.unburn-dropzone-file-item {
+.unbrn-dropzone-file-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -209,17 +209,17 @@
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
-  animation: unburn-token-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: unbrn-token-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
   transition: all 0.3s ease;
 }
 
-.unburn-dropzone-file-item:hover {
+.unbrn-dropzone-file-item:hover {
   background: rgba(255, 255, 255, 0.04);
   border-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
 
-@keyframes unburn-token-enter {
+@keyframes unbrn-token-enter {
   from {
     opacity: 0;
     transform: scale(0.9) translateY(10px);
@@ -231,7 +231,7 @@
   }
 }
 
-.unburn-dropzone-file-info {
+.unbrn-dropzone-file-info {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -239,14 +239,14 @@
   flex: 1;
 }
 
-.unburn-dropzone-file-text {
+.unbrn-dropzone-file-text {
   display: flex;
   flex-direction: column;
   min-width: 0;
   flex: 1;
 }
 
-.unburn-dropzone-file-icon-wrapper {
+.unbrn-dropzone-file-icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -258,16 +258,16 @@
   transition: all 0.3s ease;
 }
 
-.unburn-dropzone-file-item:hover .unburn-dropzone-file-icon-wrapper {
+.unbrn-dropzone-file-item:hover .unbrn-dropzone-file-icon-wrapper {
   background: color-mix(in srgb, var(--accent-color) 20%, transparent);
   transform: scale(1.05);
 }
 
-.unburn-dropzone-file-icon {
+.unbrn-dropzone-file-icon {
   color: var(--accent-color);
 }
 
-.unburn-dropzone-file-name {
+.unbrn-dropzone-file-name {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-main);
@@ -277,7 +277,7 @@
   display: block;
 }
 
-.unburn-dropzone-file-size {
+.unbrn-dropzone-file-size {
   font-size: 0.65rem;
   color: var(--text-muted);
   font-family: var(--font-mono);
@@ -285,7 +285,7 @@
   display: block;
 }
 
-.unburn-dropzone-file-remove {
+.unbrn-dropzone-file-remove {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
   color: var(--text-muted);
@@ -301,7 +301,7 @@
   margin-left: 0.5rem;
 }
 
-.unburn-dropzone-file-remove:hover {
+.unbrn-dropzone-file-remove:hover {
   color: var(--text-main);
   background: var(--border-color);
   border-color: var(--text-muted);
