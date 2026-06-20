@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
 import basicSsl from '@vitejs/plugin-basic-ssl'
+import { vitePluginOg } from './docs/vite-plugin-og'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -17,7 +18,8 @@ export default defineConfig(({ mode }) => {
           insertTypesEntry: true,
         })
       ] : [
-        basicSsl()
+        basicSsl(),
+        vitePluginOg()
       ]),
     ],
     build: isLib ? {

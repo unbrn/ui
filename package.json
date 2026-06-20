@@ -184,7 +184,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --mode lib",
-    "build:docs": "tsc -b && vite build && node docs/index-docs.cjs",
+    "build:docs": "tsc -b && vite build && node docs/index-docs.cjs && node docs/generate-sitemap.cjs && node docs/generate-meta-pages.cjs",
     "lint": "eslint .",
     "preview": "vite preview --outDir dist-docs",
     "prepublishOnly": "npm run build"
@@ -205,6 +205,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@napi-rs/canvas": "^1.0.0",
     "@types/node": "^24.12.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
