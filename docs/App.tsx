@@ -8,6 +8,9 @@ import { Dock } from '../package/components/Dock/Dock';
 import { Button } from '../package/components/Button/Button';
 import { Sun, Moon } from 'lucide-react';
 import { DocsSearchModal } from './components/layout/DocsSearchModal';
+import componentsMeta from './data/components.json';
+import backgroundsMeta from './data/backgrounds.json';
+
 
 
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
@@ -97,6 +100,34 @@ function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: A
       });
     }
   }, [isDocsRoute]);
+
+  useEffect(() => {
+    let title = 'Unbrn UI - Premium Glassmorphic React Components & Shaders';
+    const path = location.pathname;
+
+    if (path === '/') {
+      title = 'Unbrn UI - Premium Glassmorphic React Components & Shaders';
+    } else if (path === '/docs/quick-start' || path.startsWith('/docs/quick-start/')) {
+      title = 'Quick Start - unbrn/ui';
+    } else if (path === '/docs/components') {
+      title = 'Components - unbrn/ui';
+    } else if (path === '/docs/backgrounds') {
+      title = 'Backgrounds - unbrn/ui';
+    } else if (path === '/docs/changelog') {
+      title = 'Changelog - unbrn/ui';
+    } else if (path.startsWith('/docs/components/')) {
+      const cleanPath = path.replace('/docs/components/', '/components/');
+      const comp = componentsMeta.find(c => c.path === cleanPath);
+      title = comp ? `${comp.name} - unbrn/ui` : 'Components - unbrn/ui';
+    } else if (path.startsWith('/docs/backgrounds/')) {
+      const cleanPath = path.replace('/docs/backgrounds/', '/backgrounds/');
+      const bg = backgroundsMeta.find(b => b.path === cleanPath);
+      title = bg ? `${bg.name} - unbrn/ui` : 'Backgrounds - unbrn/ui';
+    }
+
+    document.title = title;
+  }, [location.pathname]);
+
 
   return (
     <div className="unbrn-app">
