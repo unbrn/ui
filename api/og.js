@@ -30,17 +30,17 @@ export default async (req, res) => {
     ctx.fillStyle = '#FFFFFF';
 
     // Draw title text (Regular weight, 400)
-    ctx.font = '400 64px "Bricolage Grotesque"';
+    ctx.font = '400 45px "Bricolage Grotesque"';
     // Align title vertically
-    ctx.fillText(title, 100, 190);
+    ctx.fillText(title, 100, 210);
 
     // Draw description text (Light weight, 300, wrap text dynamically)
     ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-    ctx.font = '300 32px "Bricolage Grotesque"';
+    ctx.font = '300 30px "Bricolage Grotesque"';
 
     const words = description.split(' ');
     let line = '';
-    let y = 270;
+    let y = 260;
     const maxWidth = 1000;
     const lineHeight = 46;
 
