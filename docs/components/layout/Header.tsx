@@ -89,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
             />
           </div>
 
-          <a href="https://discord.unbrn.tech" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+          <a href="https://discord.gg/W8wTjESM3t" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
             <Button
               buttonVariant="filled"
               buttonSize="sm"
