@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/og",
-            "destination": "/api/og.cjs"
+            "destination": "/api/og"
         },
         {
             "source": "/(.*)",

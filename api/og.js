@@ -1,19 +1,22 @@
-const { createCanvas, loadImage, GlobalFonts } = require('@napi-rs/canvas');
-const { join } = require('path');
-const url = require('url');
+import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Register Bricolage Grotesque font weights
 GlobalFonts.registerFromPath(join(__dirname, 'BricolageGrotesque-Regular.ttf'), 'Bricolage Grotesque');
 GlobalFonts.registerFromPath(join(__dirname, 'BricolageGrotesque-Light.ttf'), 'Bricolage Grotesque');
 
-module.exports = async (req, res) => {
-  const parsedUrl = url.parse(req.url || '', true);
-  const title = parsedUrl.query.title || 'unbrn/ui';
-  const description = parsedUrl.query.description || '';
+export default async (req, res) => {
+  const urlParams = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+  const title = urlParams.searchParams.get('title') || 'unbrn/ui';
+  const description = urlParams.searchParams.get('description') || '';
 
   try {
-    // Load background image (traced asset)
-    const bgPath = join(__dirname, 'og_banner.jpg');
+    // Load background image from the public folder
+    const bgPath = join(process.cwd(), 'public/og_banner.jpg');
     const bgImage = await loadImage(bgPath);
 
     // Create canvas 1200x440

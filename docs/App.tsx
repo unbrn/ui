@@ -8,8 +8,8 @@ import { Dock } from '../package/components/Dock/Dock';
 import { Button } from '../package/components/Button/Button';
 import { Sun, Moon } from 'lucide-react';
 import { DocsSearchModal } from './components/layout/DocsSearchModal';
-import componentsMeta from './data/components.json';
-import backgroundsMeta from './data/backgrounds.json';
+import componentsData from './data/components.json';
+import backgroundsData from './data/backgrounds.json';
 
 
 
@@ -101,33 +101,73 @@ function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: A
     }
   }, [isDocsRoute]);
 
+  // Dynamic head and meta tags updates for client-side routing
   useEffect(() => {
-    let title = 'Unbrn UI - Premium Glassmorphic React Components & Shaders';
-    const path = location.pathname;
+    let title = 'Unbrn UI - Minimalist UI Crafted with Precision.';
+    let description = 'A clean, modern React component library built with vanilla CSS. Get beautiful, highly-customizable components that look great out of the box.';
+    const isHome = location.pathname === '/';
 
-    if (path === '/') {
-      title = 'Unbrn UI - Premium Glassmorphic React Components & Shaders';
-    } else if (path === '/docs/quick-start' || path.startsWith('/docs/quick-start/')) {
-      title = 'Quick Start - unbrn/ui';
-    } else if (path === '/docs/components') {
-      title = 'Components - unbrn/ui';
-    } else if (path === '/docs/backgrounds') {
-      title = 'Backgrounds - unbrn/ui';
-    } else if (path === '/docs/changelog') {
-      title = 'Changelog - unbrn/ui';
-    } else if (path.startsWith('/docs/components/')) {
-      const cleanPath = path.replace('/docs/components/', '/components/');
-      const comp = componentsMeta.find(c => c.path === cleanPath);
-      title = comp ? `${comp.name} - unbrn/ui` : 'Components - unbrn/ui';
-    } else if (path.startsWith('/docs/backgrounds/')) {
-      const cleanPath = path.replace('/docs/backgrounds/', '/backgrounds/');
-      const bg = backgroundsMeta.find(b => b.path === cleanPath);
-      title = bg ? `${bg.name} - unbrn/ui` : 'Backgrounds - unbrn/ui';
+    if (!isHome) {
+      if (location.pathname === '/docs/quick-start' || location.pathname.startsWith('/docs/quick-start/')) {
+        title = 'Quick Start - unbrn/ui';
+        description = 'Get started with Unbrn UI. Install the package and set up styling in your React projects.';
+      } else if (location.pathname === '/docs/components') {
+        title = 'Components - unbrn/ui';
+        description = 'Browse the full collection of premium, softly-rounded React components in Unbrn UI.';
+      } else if (location.pathname === '/docs/backgrounds') {
+        title = 'Backgrounds - unbrn/ui';
+        description = 'Interactive background WebGL shaders to elevate your website aesthetics.';
+      } else if (location.pathname === '/docs/changelog') {
+        title = 'Changelog - unbrn/ui';
+        description = 'See all recent releases, features, improvements, and bug fixes for Unbrn UI.';
+      } else {
+        // Search in components
+        const comp = componentsData.find(item => `/docs${item.path}` === location.pathname);
+        if (comp) {
+          title = `${comp.name} - unbrn/ui`;
+          description = comp.description;
+        } else {
+          // Search in backgrounds
+          const bg = backgroundsData.find(item => `/docs${item.path}` === location.pathname);
+          if (bg) {
+            title = `${bg.name} - unbrn/ui`;
+            description = bg.description;
+          }
+        }
+      }
     }
 
+    // Update document title
     document.title = title;
-  }, [location.pathname]);
 
+    const updateMetaTag = (nameAttr: string, valueAttr: string, content: string) => {
+      let el = document.querySelector(`meta[${nameAttr}="${valueAttr}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(nameAttr, valueAttr);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+
+    // Update meta description
+    updateMetaTag('name', 'description', description);
+
+    // Update Open Graph tags
+    updateMetaTag('property', 'og:title', title);
+    updateMetaTag('property', 'og:description', description);
+    updateMetaTag('property', 'og:url', `https://ui.unbrn.tech${location.pathname}`);
+
+    const imageUrl = isHome
+      ? 'https://ui.unbrn.tech/unbrn_ui_banner.jpg'
+      : `https://ui.unbrn.tech/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
+    updateMetaTag('property', 'og:image', imageUrl);
+
+    // Update Twitter Card tags
+    updateMetaTag('name', 'twitter:title', title);
+    updateMetaTag('name', 'twitter:description', description);
+    updateMetaTag('name', 'twitter:image', imageUrl);
+  }, [location.pathname]);
 
   return (
     <div className="unbrn-app">
