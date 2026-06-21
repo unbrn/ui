@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate, useParams, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate, useParams } from 'react-router-dom';
 import './App.css';
 import { Header } from './components/layout/Header';
 import { Menu } from './components/layout/Menu';
@@ -238,59 +238,12 @@ function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: A
         dockClassName={isSidebarOpen ? 'dock-hidden' : ''}
         dockChildren={
           <Button
+            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
             buttonOnClick={toggleTheme}
             buttonIcon={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           />
         }
       />
-
-      {!isDocsRoute && (
-        <footer className="unbrn-footer">
-          <div className="footer-content">
-            <div className="footer-brand">
-              <div className="footer-logo" onClick={() => window.location.href = "/"}>
-                <svg width="20" height="20" viewBox="0 0 526 526" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M0 105.203C0 47.101 47.101 0 105.203 0C163.305 0 210.406 47.101 210.406 105.203V280.533C210.406 385.667 295.636 470.895 400.773 470.895C409.421 470.895 417.935 470.319 426.277 469.202C381.423 504.763 324.695 526 263.008 526C117.753 526 0 408.251 0 263V105.203Z" fill="var(--accent-color)"/>
-                  <path d="M286.977 119.511C286.977 53.507 340.484 0 406.489 0C472.493 0 526 53.507 526 119.511V267.545C526 333.55 472.493 387.057 406.489 387.057C340.484 387.057 286.977 333.55 286.977 267.545V119.511Z" fill="var(--accent-color)"/>
-                </svg>
-                <span>unbrn/ui</span>
-              </div>
-              <p className="footer-description">
-                A clean, modern React component library crafted with precision and vanilla CSS.
-              </p>
-            </div>
-
-            <div className="footer-links-grid">
-              <div className="footer-links-col">
-                <h4>Library</h4>
-                <Link to="/docs/quick-start">Quick Start</Link>
-                <Link to="/docs/components">Components</Link>
-              </div>
-              <div className="footer-links-col">
-                <h4>Resources</h4>
-                <a href="https://github.com/unbrn/ui" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://www.npmjs.com/package/@unbrn/ui" target="_blank" rel="noopener noreferrer">npm</a>
-                <a href="https://github.com/unbrn/ui/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a>
-              </div>
-              <div className="footer-links-col">
-                <h4>Community</h4>
-                <a href="https://x.com/kunalkandepatil" target="_blank" rel="noopener noreferrer">Twitter / X</a>
-                <a href="https://discord.gg/W8wTjESM3t" target="_blank" rel="noopener noreferrer">Discord</a>
-                <a href="https://github.com/unbrn/ui/issues" target="_blank" rel="noopener noreferrer">Support</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="footer-bottom">
-            <span className="footer-copyright">
-              &copy; {new Date().getFullYear()} UNBRN UI. ALL RIGHTS RESERVED.
-            </span>
-            <span className="footer-made-by">
-              Crafted with precision
-            </span>
-          </div>
-        </footer>
-      )}
 
       <DocsSearchModal />
     </div>

@@ -369,6 +369,27 @@ export default function App() {
             codeBlockVariant="filled"
           />
         </div>
+
+        <div className="install-step">
+          <h3 className="install-step-title">4. Customize theme dynamically</h3>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '1.25rem', lineHeight: '1.6' }}>
+            Instead of overriding CSS variables manually, you can use the built-in theming engine to dynamically customize colors, radius, and borders in JavaScript:
+          </p>
+          <CodeBlock
+            codeBlockCode={`import { applyTheme } from '@unbrn/ui/theme';
+
+// Apply a custom theme dynamically on the document root
+applyTheme({
+  bgMain: '#0f172a',
+  bgSecondary: '#1e293b',
+  borderColor: '#334155',
+  accentColor: '#3b82f6',
+  radius: '12px'
+});`}
+            codeBlockLanguage="tsx"
+            codeBlockVariant="filled"
+          />
+        </div>
       </div>
 
       <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '4rem' }}>

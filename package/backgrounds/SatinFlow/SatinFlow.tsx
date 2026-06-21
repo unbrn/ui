@@ -71,7 +71,7 @@ export const SatinFlow: React.FC<SatinFlowProps> = ({
     if (typeof window === 'undefined') return 'high';
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const isLowEndDevice = isMobile || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
-    if (isMobile) return 'low';
+    if (isMobile) return 'high';
     if (isLowEndDevice) return 'medium';
     return 'high';
   }, [qualityProp]);

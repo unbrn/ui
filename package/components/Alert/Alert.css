@@ -37,7 +37,7 @@
   transition: all var(--transition);
   background-color: var(--bg-main);
   border: 1px solid color-mix(in srgb, var(--accent-color, var(--text-main)) 40%, transparent);
-  box-shadow: 0 0 0 3px var(--bg-main);
+  box-shadow: 0 0 0 1px var(--bg-main);
   color: var(--accent-color, var(--text-main));
 }
 

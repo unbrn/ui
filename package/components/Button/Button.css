@@ -8,16 +8,11 @@
   letter-spacing: 0.05em;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: transform 0.2s var(--transition-curve), background-color 0.2s var(--transition-curve), border-color 0.2s var(--transition-curve), opacity 0.2s var(--transition-curve);
   padding: 0.5rem 1rem;
   outline: none;
   line-height: 1;
   border-radius: var(--radius);
   white-space: nowrap;
-}
-
-.unbrn-btn:active:not(:disabled) {
-  transform: scale(0.96);
 }
 
 .unbrn-btn span,
@@ -165,7 +160,6 @@
 .unbrn-btn-group .unbrn-btn {
   margin: 0;
   border-radius: 0 !important;
-  box-shadow: none;
 }
 
 .unbrn-btn-group .unbrn-btn:first-child {
@@ -201,7 +195,6 @@
 .unbrn-btn-group-split .unbrn-btn {
   margin: 0;
   border-radius: var(--radius-xs) !important;
-  box-shadow: none;
 }
 
 .unbrn-btn-group-split .unbrn-btn:first-child {
@@ -244,7 +237,6 @@
   background-color: transparent !important;
   border-color: transparent !important;
   color: var(--text-muted) !important;
-  box-shadow: none !important;
   border-radius: var(--radius-md) !important;
   transition: all 0.2s var(--transition-curve);
   position: relative;
@@ -288,7 +280,6 @@
 
 .unbrn-btn-group-tabs-filled .unbrn-btn-group-indicator {
   background-color: var(--accent-color);
-  box-shadow: none;
   border: none;
 }
 
@@ -309,7 +300,6 @@
 .unbrn-btn-group-tabs-outlined .unbrn-btn-group-indicator {
   background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
   border: 1px solid var(--accent-color);
-  box-shadow: none;
 }
 
 .unbrn-btn-group-tabs-outlined .unbrn-btn.unbrn-btn-active {
@@ -329,7 +319,6 @@
 .unbrn-btn-group-tabs-duo .unbrn-btn-group-indicator {
   background-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
-  box-shadow: none;
 }
 
 .unbrn-btn-group-tabs-duo .unbrn-btn.unbrn-btn-active {

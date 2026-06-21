@@ -121,28 +121,24 @@
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   transition: all 0.4s var(--transition-curve);
   transform-style: preserve-3d;
   transform: translateZ(0);
-  will-change: transform, border-color, box-shadow, background-color;
+  will-change: transform, border-color, background-color;
 }
 
 [data-theme='dark'] .showcase-card {
   background: rgba(10, 10, 10, 0.45);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .showcase-card:hover {
   border-color: var(--accent-color);
   transform: translateZ(28px) scale(1.015);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   background: rgba(255, 255, 255, 0.03);
 }
 
 [data-theme='dark'] .showcase-card:hover {
   background: rgba(255, 255, 255, 0.02);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 0 0 20px color-mix(in srgb, var(--accent-color) 8%, transparent);
 }
 
 .card-header {

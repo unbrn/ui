@@ -9,7 +9,6 @@
   font-weight: 500;
   position: relative;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
   transition: all var(--transition);
   flex-shrink: 0;
 }

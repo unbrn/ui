@@ -206,7 +206,7 @@
   height: 6px;
   border-radius: 100px;
   background-color: var(--border-color);
-  transition: background-color 0.4s var(--transition-curve), box-shadow 0.4s var(--transition-curve);
+  transition: background-color 0.4s var(--transition-curve);
   opacity: 0.3;
 }
 

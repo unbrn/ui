@@ -23,7 +23,7 @@
   flex-direction: column;
   position: relative;
   border-radius: var(--radius);
-  transition: border-color 0.2s var(--transition-curve), box-shadow 0.2s var(--transition-curve);
+  transition: border-color 0.2s var(--transition-curve);
   border: 1px solid var(--border-color);
   background-color: transparent;
   min-height: 120px;
