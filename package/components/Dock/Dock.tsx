@@ -58,7 +58,7 @@ export const Dock: React.FC<DockProps> = ({
   children
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const resolvedVariant = dockButtonVariant ?? 'outlined';
+  const resolvedVariant = dockButtonVariant;
   const accentStyle = getAccentVariables(dockAccentColor);
   return (
     <div
@@ -75,6 +75,7 @@ export const Dock: React.FC<DockProps> = ({
       >
         {dockShowMenuToggle && (
           <Button
+            aria-label={dockIsMenuOpen ? "Close menu" : "Open menu"}
             buttonClassName={cn('unbrn-dock-trigger', dockIsMenuOpen && 'unbrn-open', classNames?.dockTrigger)}
             buttonStyle={styles?.dockTrigger}
             buttonOnClick={dockOnMenuToggle}
@@ -93,6 +94,7 @@ export const Dock: React.FC<DockProps> = ({
         </ButtonContext.Provider>
         {dockShowHideToggle && (
           <Button
+            aria-label="Collapse dock"
             buttonClassName={cn("unbrn-dock-collapse-btn", classNames?.dockCollapseBtn)}
             buttonStyle={styles?.dockCollapseBtn}
             buttonOnClick={() => setIsCollapsed(true)}
@@ -112,6 +114,7 @@ export const Dock: React.FC<DockProps> = ({
       </div>
       {dockShowHideToggle && (
         <Button
+          aria-label="Expand dock"
           buttonClassName={cn("unbrn-dock-expand-btn", classNames?.dockExpandBtn)}
           buttonStyle={styles?.dockExpandBtn}
           buttonOnClick={() => setIsCollapsed(false)}

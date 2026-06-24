@@ -4,8 +4,8 @@ import { join } from 'path';
 import url from 'url';
 
 // Register Bricolage Grotesque font weights
-GlobalFonts.registerFromPath(join(__dirname, 'BricolageGrotesque-Regular.ttf'), 'Bricolage Grotesque');
-GlobalFonts.registerFromPath(join(__dirname, 'BricolageGrotesque-Light.ttf'), 'Bricolage Grotesque');
+GlobalFonts.registerFromPath(join(__dirname, '../fonts/BricolageGrotesque-Regular.ttf'), 'Bricolage Grotesque');
+GlobalFonts.registerFromPath(join(__dirname, '../fonts/BricolageGrotesque-Light.ttf'), 'Bricolage Grotesque');
 
 
 export function vitePluginOg(): Plugin {
@@ -20,7 +20,7 @@ export function vitePluginOg(): Plugin {
 
           try {
             // Load background image
-            const bgPath = join(__dirname, '../public/og_banner.jpg');
+            const bgPath = join(__dirname, '../../public/og_banner.jpg');
             const bgImage = await loadImage(bgPath);
 
             // Create canvas 1200x440

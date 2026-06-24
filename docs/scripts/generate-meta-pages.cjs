@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const domain = 'https://ui.unbrn.tech';
-const distDocsDir = path.resolve(__dirname, '../dist-docs');
-const componentsPath = path.join(__dirname, 'data/components.json');
-const backgroundsPath = path.join(__dirname, 'data/backgrounds.json');
+const distDocsDir = path.resolve(__dirname, '../../dist-docs');
+const componentsPath = path.resolve(__dirname, '../data/components.json');
+const backgroundsPath = path.resolve(__dirname, '../data/backgrounds.json');
 
 console.log('=== STARTING SEO META TAG INJECTION AND PRE-RENDERING ===');
 

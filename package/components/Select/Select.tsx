@@ -11,6 +11,8 @@ export interface SelectOption {
   selectOptionLabel: string;
   selectOptionDisabled?: boolean;
   selectOptionIcon?: React.ReactNode;
+  selectOptionClassName?: string;
+  selectOptionStyle?: React.CSSProperties;
 }
 
 export interface SelectProps {
@@ -30,6 +32,7 @@ export interface SelectProps {
   selectStyle?: React.CSSProperties;
   selectIcon?: React.ReactNode;
   selectAccentColor?: string;
+  selectSearchable?: boolean;
   classNames?: {
     selectRoot?: string;
     selectLabel?: string;
@@ -71,12 +74,15 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       selectStyle,
       selectIcon,
       selectAccentColor,
+      selectSearchable = false,
     },
     ref
   ) => {
     const [isOpen, setIsOpen] = useState(false);
     const [internalValue, setInternalValue] = useState(selectDefaultValue || "");
     const [dropdownPosition, setDropdownPosition] = useState<'bottom' | 'top'>('bottom');
+    const [searchQuery, setSearchQuery] = useState("");
+    const [isFocused, setIsFocused] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
     useImperativeHandle(ref, () => containerRef.current!);
@@ -85,6 +91,14 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
     const value = controlledValue !== undefined ? controlledValue : internalValue;
     const selectedOption = selectOptions.find(opt => opt.selectOptionValue === value);
     const accentStyle = getAccentVariables(selectAccentColor);
+
+    const filteredOptions = selectSearchable
+      ? selectOptions.filter(opt => opt.selectOptionLabel.toLowerCase().includes(searchQuery.toLowerCase()))
+      : selectOptions;
+
+    const displayValue = isFocused || isOpen
+      ? searchQuery
+      : (selectedOption ? selectedOption.selectOptionLabel : "");
 
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -117,6 +131,8 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       if (isEffectivelyDisabled) return;
       setInternalValue(optionValue);
       setIsOpen(false);
+      setSearchQuery("");
+      setIsFocused(false);
       selectOnChange?.(optionValue);
     };
 
@@ -132,46 +148,110 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
           </label>
         )}
         <div className="unbrn-select-container">
-          <button
-            type="button"
-            onClick={() => !isEffectivelyDisabled && setIsOpen(!isOpen)}
-            className={cn(
-              "unbrn-select-trigger",
-              `unbrn-select-trigger-${selectVariant}`,
-              `unbrn-select-trigger-${selectSize}`,
-              (selectVariant === 'outlined' || selectVariant === 'duo') && 'unbrn-glass',
-              isOpen && "unbrn-select-trigger-open",
-              isEffectivelyDisabled && "unbrn-select-trigger-disabled",
-              selectLoading && "unbrn-select-trigger-loading",
-              selectError && "unbrn-select-trigger-error",
-              selectClassName,
-              classNames?.selectTrigger
-            )}
-            style={styles?.selectTrigger}
-            disabled={isEffectivelyDisabled}
-            aria-haspopup="listbox"
-            aria-expanded={isOpen}
-            aria-busy={selectLoading}
-          >
-            <span className="unbrn-select-trigger-content" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexGrow: 1, textAlign: 'left', minWidth: 0 }}>
-              {selectedOption?.selectOptionIcon ? (
-                <span className="unbrn-select-trigger-icon">{selectedOption.selectOptionIcon}</span>
-              ) : selectIcon ? (
-                <span className="unbrn-select-trigger-icon">{selectIcon}</span>
-              ) : null}
-              <span className={cn("unbrn-select-value", !selectedOption && "unbrn-select-placeholder")}>
-                {selectedOption ? selectedOption.selectOptionLabel : selectPlaceholder}
+          {selectSearchable ? (
+            <div
+              className={cn(
+                "unbrn-select-trigger",
+                "unbrn-select-trigger-searchable",
+                `unbrn-select-trigger-${selectVariant}`,
+                `unbrn-select-trigger-${selectSize}`,
+                (selectVariant === 'outlined' || selectVariant === 'duo') && 'unbrn-glass',
+                isOpen && "unbrn-select-trigger-open",
+                isEffectivelyDisabled && "unbrn-select-trigger-disabled",
+                selectLoading && "unbrn-select-trigger-loading",
+                selectError && "unbrn-select-trigger-error",
+                selectClassName,
+                classNames?.selectTrigger
+              )}
+              style={styles?.selectTrigger}
+            >
+              <span className="unbrn-select-trigger-content" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexGrow: 1, textAlign: 'left', minWidth: 0, height: '100%' }}>
+                {selectedOption?.selectOptionIcon ? (
+                  <span className="unbrn-select-trigger-icon">{selectedOption.selectOptionIcon}</span>
+                ) : selectIcon ? (
+                  <span className="unbrn-select-trigger-icon">{selectIcon}</span>
+                ) : null}
+                <input
+                  type="text"
+                  disabled={isEffectivelyDisabled}
+                  value={displayValue}
+                  placeholder={selectPlaceholder}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    if (!isOpen) setIsOpen(true);
+                  }}
+                  onFocus={() => {
+                    setIsFocused(true);
+                    setIsOpen(true);
+                  }}
+                  onBlur={() => {
+                    setIsFocused(false);
+                    // Close if focus moves outside the container entirely (e.g. Tab)
+                    setTimeout(() => {
+                      if (!containerRef.current?.contains(document.activeElement)) {
+                        setIsOpen(false);
+                      }
+                      setSearchQuery("");
+                    }, 200);
+                  }}
+                  className="unbrn-select-trigger-input"
+                />
               </span>
-            </span>
-            {selectLoading ? (
-              <span className="unbrn-select-spinner" aria-hidden="true" />
-            ) : (
-              <ChevronDown
-                className={cn("unbrn-select-chevron", isOpen && "unbrn-select-chevron-open")}
-                size={16}
-              />
-            )}
-          </button>
+              {selectLoading ? (
+                <span className="unbrn-select-spinner" aria-hidden="true" />
+              ) : (
+                <ChevronDown
+                  className={cn("unbrn-select-chevron", isOpen && "unbrn-select-chevron-open")}
+                  size={16}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isEffectivelyDisabled) setIsOpen(!isOpen);
+                  }}
+                />
+              )}
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => !isEffectivelyDisabled && setIsOpen(!isOpen)}
+              className={cn(
+                "unbrn-select-trigger",
+                `unbrn-select-trigger-${selectVariant}`,
+                `unbrn-select-trigger-${selectSize}`,
+                (selectVariant === 'outlined' || selectVariant === 'duo') && 'unbrn-glass',
+                isOpen && "unbrn-select-trigger-open",
+                isEffectivelyDisabled && "unbrn-select-trigger-disabled",
+                selectLoading && "unbrn-select-trigger-loading",
+                selectError && "unbrn-select-trigger-error",
+                selectClassName,
+                classNames?.selectTrigger
+              )}
+              style={styles?.selectTrigger}
+              disabled={isEffectivelyDisabled}
+              aria-haspopup="listbox"
+              aria-expanded={isOpen}
+              aria-busy={selectLoading}
+            >
+              <span className="unbrn-select-trigger-content" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexGrow: 1, textAlign: 'left', minWidth: 0 }}>
+                {selectedOption?.selectOptionIcon ? (
+                  <span className="unbrn-select-trigger-icon">{selectedOption.selectOptionIcon}</span>
+                ) : selectIcon ? (
+                  <span className="unbrn-select-trigger-icon">{selectIcon}</span>
+                ) : null}
+                <span className={cn("unbrn-select-value", !selectedOption && "unbrn-select-placeholder")}>
+                  {selectedOption ? selectedOption.selectOptionLabel : selectPlaceholder}
+                </span>
+              </span>
+              {selectLoading ? (
+                <span className="unbrn-select-spinner" aria-hidden="true" />
+              ) : (
+                <ChevronDown
+                  className={cn("unbrn-select-chevron", isOpen && "unbrn-select-chevron-open")}
+                  size={16}
+                />
+              )}
+            </button>
+          )}
 
           {isOpen && (
             <div
@@ -185,31 +265,42 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
               role="listbox"
             >
               <div className="unbrn-select-viewport">
-                {selectOptions.map((option) => (
-                  <div
-                    key={option.selectOptionValue}
-                    role="option"
-                    aria-selected={option.selectOptionValue === value}
-                    onClick={() => !option.selectOptionDisabled && handleSelect(option.selectOptionValue)}
-                    className={cn(
-                      "unbrn-select-item",
-                      option.selectOptionValue === value && "unbrn-select-item-selected",
-                      option.selectOptionDisabled && "unbrn-select-item-disabled",
-                      classNames?.selectItem
-                    )}
-                    style={styles?.selectItem}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexGrow: 1, minWidth: 0 }}>
-                      {option.selectOptionIcon && (
-                        <span className="unbrn-select-item-icon">{option.selectOptionIcon}</span>
+                {filteredOptions.length > 0 ? (
+                  filteredOptions.map((option) => (
+                    <div
+                      key={option.selectOptionValue}
+                      role="option"
+                      aria-selected={option.selectOptionValue === value}
+                      onClick={() => !option.selectOptionDisabled && handleSelect(option.selectOptionValue)}
+                      className={cn(
+                        "unbrn-select-item",
+                        `unbrn-select-item-size-${selectSize}`,
+                        option.selectOptionValue === value && "unbrn-select-item-selected",
+                        option.selectOptionDisabled && "unbrn-select-item-disabled",
+                        classNames?.selectItem,
+                        option.selectOptionClassName
                       )}
-                      <span className="unbrn-select-item-label">{option.selectOptionLabel}</span>
+                      style={{ ...styles?.selectItem, ...option.selectOptionStyle }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexGrow: 1, minWidth: 0 }}>
+                        {option.selectOptionIcon && (
+                          <span className="unbrn-select-item-icon">{option.selectOptionIcon}</span>
+                        )}
+                        <span className="unbrn-select-item-label">{option.selectOptionLabel}</span>
+                      </div>
+                      {option.selectOptionValue === value && (
+                        <Check 
+                          size={selectSize === 'sm' ? 12 : selectSize === 'lg' ? 16 : 14} 
+                          className="unbrn-select-item-check" 
+                        />
+                      )}
                     </div>
-                    {option.selectOptionValue === value && (
-                      <Check size={14} className="unbrn-select-item-check" />
-                    )}
+                  ))
+                ) : (
+                  <div className={cn("unbrn-select-item-empty", `unbrn-select-item-size-${selectSize}`)}>
+                    No results found
                   </div>
-                ))}
+                )}
               </div>
             </div>
           )}

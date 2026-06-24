@@ -38,7 +38,7 @@ export const ColorPickerPage: React.FC = () => {
 
       <Showcase
         title="Preview"
-        description="A premium color picker with presets, hex/rgb/hsl manual text entry, and custom interactive sliders."
+        description="A premium color picker with hex/rgb/hsl manual text entry and custom interactive sliders."
         code={`import { useState } from 'react';
 import { ColorPicker } from '@unbrn/ui/ColorPicker';
 
@@ -118,28 +118,9 @@ export default function Example() {
             <ColorPicker colorPickerSize="lg" />
           </div>
         </Showcase>
-
-        <Showcase
-          title="Custom Presets"
-          description="Override default color palette presets with a custom list."
-          code={`import { ColorPicker } from '@unbrn/ui/ColorPicker';
-
-export default function Example() {
-  return (
-    <ColorPicker
-      colorPickerPresets={['#000000', '#555555', '#AAAAAA', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF']}
-    />
-  );
-}`}
-        >
-          <ColorPicker
-            colorPickerPresets={['#000000', '#555555', '#AAAAAA', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF']}
-          />
-        </Showcase>
-
         <Showcase
           title="Visibility Toggles"
-          description="Hide the eyedropper button, opacity/alpha slider, and presets grid using showEyeDropper, showAlpha, and showPresets toggles."
+          description="Hide the eyedropper button or opacity/alpha slider using showEyeDropper and showAlpha toggles."
           code={`import { ColorPicker } from '@unbrn/ui/ColorPicker';
 
 export default function Example() {
@@ -147,7 +128,6 @@ export default function Example() {
     <ColorPicker
       colorPickerLabel="Minimal Color Picker"
       colorPickerShowAlpha={false}
-      colorPickerShowPresets={false}
       colorPickerShowEyeDropper={false}
     />
   );
@@ -155,7 +135,6 @@ export default function Example() {
         >
           <ColorPicker
             colorPickerShowAlpha={false}
-            colorPickerShowPresets={false}
             colorPickerShowEyeDropper={false}
           />
         </Showcase>
@@ -211,7 +190,6 @@ export default function Example() {
           { name: 'colorPickerOnChange', type: '(color: string) => void', description: 'Callback triggered when the color changes.' },
           { name: 'colorPickerDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable picker popover and inputs.' },
           { name: 'colorPickerLabel', type: 'ReactNode', description: 'Label element shown above the picker.' },
-          { name: 'colorPickerPresets', type: 'string[]', description: 'List of preset color hex strings.' },
           { name: 'colorPickerVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The visual variant of the button trigger.' },
           { name: 'colorPickerSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the button trigger.' },
           { name: 'colorPickerAlign', type: "'left' | 'center' | 'right'", defaultValue: "'left'", description: 'The horizontal alignment of the popover relative to the trigger button.' },
@@ -221,7 +199,6 @@ export default function Example() {
           { name: 'colorPickerAccentColor', type: 'string', description: 'Optional theme accent color override.' },
           { name: 'colorPickerShowEyeDropper', type: 'boolean', defaultValue: 'true', description: 'Whether to show the screen color eyedropper tool icon (supported in Chromium browsers).' },
           { name: 'colorPickerShowAlpha', type: 'boolean', defaultValue: 'true', description: 'Whether to show the alpha transparency slider.' },
-          { name: 'colorPickerShowPresets', type: 'boolean', defaultValue: 'true', description: 'Whether to show the preset swatches list.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for individual sub-elements.' },
           { name: 'styles', type: 'object', description: 'Custom inline styles for individual sub-elements.' }
         ]}
@@ -229,17 +206,13 @@ export default function Example() {
           { name: 'colorPickerRoot', description: 'Styles the wrapper container.' },
           { name: 'colorPickerTrigger', description: 'Styles the button trigger element.' },
           { name: 'colorPickerPopover', description: 'Styles the popup dialog box.' },
-          { name: 'colorPickerGrid', description: 'Styles the presets grid container.' },
-          { name: 'colorPickerSwatch', description: 'Styles each preset color button.' },
-          { name: 'colorPickerInputContainer', description: 'Styles the bottom row (hex input & custom picker button).' }
+          { name: 'colorPickerInputContainer', description: 'Styles the bottom row (format button & input field).' }
         ]}
         stylingStructure={`colorPickerRoot
  ├── colorPickerLabel
  └── colorPickerWrapper
       ├── colorPickerTrigger
       └── colorPickerPopover
-           ├── colorPickerGrid
-           │    └── colorPickerSwatch
            └── colorPickerInputContainer`}
       />
     </>

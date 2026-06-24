@@ -14,7 +14,6 @@ export interface ColorPickerProps {
   colorPickerOnChange?: (color: string) => void;
   colorPickerDisabled?: boolean;
   colorPickerLabel?: React.ReactNode;
-  colorPickerPresets?: string[];
   colorPickerVariant?: 'filled' | 'outlined' | 'duo';
   colorPickerSize?: 'sm' | 'default' | 'lg';
   colorPickerAlign?: 'left' | 'center' | 'right';
@@ -24,36 +23,19 @@ export interface ColorPickerProps {
   colorPickerAccentColor?: string;
   colorPickerShowEyeDropper?: boolean;
   colorPickerShowAlpha?: boolean;
-  colorPickerShowPresets?: boolean;
   classNames?: {
     colorPickerRoot?: string;
     colorPickerTrigger?: string;
     colorPickerPopover?: string;
-    colorPickerGrid?: string;
-    colorPickerSwatch?: string;
     colorPickerInputContainer?: string;
   };
   styles?: {
     colorPickerRoot?: React.CSSProperties;
     colorPickerTrigger?: React.CSSProperties;
     colorPickerPopover?: React.CSSProperties;
-    colorPickerGrid?: React.CSSProperties;
-    colorPickerSwatch?: React.CSSProperties;
     colorPickerInputContainer?: React.CSSProperties;
   };
 }
-
-const DEFAULT_PRESETS = [
-  '#3B82F6', // Blue
-  '#10B981', // Emerald
-  '#F59E0B', // Amber
-  '#EF4444', // Red
-  '#EC4899', // Pink
-  '#8B5CF6', // Purple
-  '#14B8A6', // Teal
-  '#F97316', // Orange
-  '#FFFFFF', // White
-];
 
 // HSV color structure interface
 interface HSV {
@@ -298,7 +280,6 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
       colorPickerOnChange,
       colorPickerDisabled = false,
       colorPickerLabel,
-      colorPickerPresets = DEFAULT_PRESETS,
       colorPickerVariant = 'filled',
       colorPickerSize = 'default',
       colorPickerAlign = 'left',
@@ -306,7 +287,6 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
       colorPickerAccentColor,
       colorPickerShowEyeDropper = true,
       colorPickerShowAlpha = true,
-      colorPickerShowPresets = true,
       classNames,
       styles
     },
@@ -364,6 +344,39 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
     const popoverRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLButtonElement>(null);
     const svPanelRef = useRef<HTMLDivElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    // Redraw Saturation-Value Canvas when Hue changes
+    useEffect(() => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const width = canvas.width;
+      const height = canvas.height;
+
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
+
+      // Fill base HSL color
+      ctx.fillStyle = `hsl(${hsv.h}, 100%, 50%)`;
+      ctx.fillRect(0, 0, width, height);
+
+      // Horizontal white gradient
+      const whiteGrad = ctx.createLinearGradient(0, 0, width, 0);
+      whiteGrad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+      whiteGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = whiteGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // Vertical black gradient
+      const blackGrad = ctx.createLinearGradient(0, height, 0, 0);
+      blackGrad.addColorStop(0, 'rgba(0, 0, 0, 1)');
+      blackGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = blackGrad;
+      ctx.fillRect(0, 0, width, height);
+    }, [hsv.h, isOpen]);
 
     const getCombinedHex = (h: number, s: number, v: number, a: number) => {
       const { r, g, b } = hsvToRgb(h, s, v);
@@ -401,33 +414,20 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
     }, [isOpen]);
 
     useEffect(() => {
-      const updatePosition = () => {
-        if (triggerRef.current) {
-          const rect = triggerRef.current.getBoundingClientRect();
-          const viewportHeight = window.innerHeight;
-          const popoverHeight = 320;
+      if (isOpen && triggerRef.current) {
+        const rect = triggerRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const popoverHeight = 320;
 
-          const spaceBelow = viewportHeight - rect.bottom;
-          const spaceAbove = rect.top;
+        const spaceBelow = viewportHeight - rect.bottom;
+        const spaceAbove = rect.top;
 
-          if (spaceBelow < popoverHeight && spaceAbove > spaceBelow) {
-            setPopoverPosition('top');
-          } else {
-            setPopoverPosition('bottom');
-          }
+        if (spaceBelow < popoverHeight && spaceAbove > spaceBelow) {
+          setPopoverPosition('top');
+        } else {
+          setPopoverPosition('bottom');
         }
-      };
-
-      if (isOpen) {
-        updatePosition();
-        window.addEventListener('scroll', updatePosition, true);
-        window.addEventListener('resize', updatePosition);
       }
-
-      return () => {
-        window.removeEventListener('scroll', updatePosition, true);
-        window.removeEventListener('resize', updatePosition);
-      };
     }, [isOpen]);
 
     const updateColor = (newColor: string) => {
@@ -618,115 +618,96 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
               <div
                 ref={svPanelRef}
                 className="unbrn-color-picker-sv-panel"
-                style={{ backgroundColor: `hsl(${hsv.h}, 100%, 50%)` }}
                 onMouseDown={handleSvStart}
                 onTouchStart={handleSvStart}
               >
-                <div className="unbrn-color-picker-sv-white" />
-                <div className="unbrn-color-picker-sv-black" />
+                <canvas
+                  ref={canvasRef}
+                  className="unbrn-color-picker-sv-canvas"
+                  width={256}
+                  height={140}
+                />
                 <div
                   className="unbrn-color-picker-sv-thumb"
                   style={{
                     left: `${hsv.s}%`,
                     top: `${100 - hsv.v}%`,
+                    backgroundColor: color,
                   }}
                 />
               </div>
 
-              {/* Hue Rainbow Slider Selector */}
-              <div className="unbrn-color-picker-hue-container">
-                <Slider
-                  sliderMin={0}
-                  sliderMax={360}
-                  sliderStep={1}
-                  sliderValue={hsv.h}
-                  sliderOnChange={(val) => {
-                    const newHex = getCombinedHex(val, hsv.s, hsv.v, alpha);
-                    setHsv(prev => ({ ...prev, h: val }));
-                    if (controlledValue === undefined) {
-                      setColor(newHex);
-                    }
-                    setTextInputValue(formatColorString(newHex, inputFormat, alpha));
-                    colorPickerOnChange?.(newHex);
-                  }}
-                  sliderClassName="unbrn-color-picker-hue-slider"
-                  sliderSize="sm"
-                  sliderDisabled={colorPickerDisabled}
-                />
-              </div>
-
-              {/* Alpha Transparency Slider Selector */}
-              {colorPickerShowAlpha && (
-                <div className="unbrn-color-picker-alpha-container">
-                  <Slider
-                    sliderMin={0}
-                    sliderMax={1}
-                    sliderStep={0.01}
-                    sliderValue={alpha}
-                    sliderOnChange={(val) => {
-                      const newHex = getCombinedHex(hsv.h, hsv.s, hsv.v, val);
-                      setAlpha(val);
-                      if (controlledValue === undefined) {
-                        setColor(newHex);
-                      }
-                      setTextInputValue(formatColorString(newHex, inputFormat, val));
-                      colorPickerOnChange?.(newHex);
-                    }}
-                    sliderClassName="unbrn-color-picker-alpha-slider"
-                    sliderSize="sm"
-                    sliderDisabled={colorPickerDisabled}
-                    styles={{
-                      sliderTrack: {
-                        '--alpha-gradient': `linear-gradient(to right, transparent, ${hsvToHex(hsv.h, hsv.s, hsv.v)})`,
-                      } as React.CSSProperties
-                    }}
-                  />
-                </div>
-              )}
-
-              {/* Preset swatches grid */}
-              {colorPickerShowPresets && (
-                <div className={cn("unbrn-color-picker-presets-grid", classNames?.colorPickerGrid)} style={styles?.colorPickerGrid}>
-                  {colorPickerPresets.map((preset, idx) => (
-                    <button
-                      key={`${preset}-${idx}`}
-                      type="button"
-                      title={preset}
-                      onClick={() => updateColor(preset)}
-                      className={cn(
-                        "unbrn-color-picker-swatch-item",
-                        color === preset && "unbrn-color-picker-swatch-item-selected",
-                        classNames?.colorPickerSwatch
-                      )}
-                      style={{
-                        backgroundColor: preset,
-                        ...styles?.colorPickerSwatch
+              {/* Sliders and Eyedropper Row */}
+              <div className="unbrn-color-picker-sliders-row">
+                {isEyeDropperSupported && colorPickerShowEyeDropper && (
+                  <button
+                    type="button"
+                    onClick={handleEyeDropper}
+                    className="unbrn-color-picker-eyedropper-btn"
+                    title="Pick color from screen"
+                  >
+                    <Pipette size={18} />
+                  </button>
+                )}
+                <div className="unbrn-color-picker-sliders-stack">
+                  {/* Hue Rainbow Slider Selector */}
+                  <div className="unbrn-color-picker-hue-container">
+                    <Slider
+                      sliderMin={0}
+                      sliderMax={360}
+                      sliderStep={1}
+                      sliderValue={hsv.h}
+                      sliderOnChange={(val) => {
+                        const newHex = getCombinedHex(val, hsv.s, hsv.v, alpha);
+                        setHsv(prev => ({ ...prev, h: val }));
+                        if (controlledValue === undefined) {
+                          setColor(newHex);
+                        }
+                        setTextInputValue(formatColorString(newHex, inputFormat, alpha));
+                        colorPickerOnChange?.(newHex);
                       }}
+                      sliderClassName="unbrn-color-picker-hue-slider"
+                      sliderSize="sm"
+                      sliderDisabled={colorPickerDisabled}
                     />
-                  ))}
-                </div>
-              )}
+                  </div>
 
-              {/* Format input and toggle */}
+                  {/* Alpha Transparency Slider Selector */}
+                  {colorPickerShowAlpha && (
+                    <div className="unbrn-color-picker-alpha-container">
+                      <Slider
+                        sliderMin={0}
+                        sliderMax={1}
+                        sliderStep={0.01}
+                        sliderValue={alpha}
+                        sliderOnChange={(val) => {
+                          const newHex = getCombinedHex(hsv.h, hsv.s, hsv.v, val);
+                          setAlpha(val);
+                          if (controlledValue === undefined) {
+                            setColor(newHex);
+                          }
+                          setTextInputValue(formatColorString(newHex, inputFormat, val));
+                          colorPickerOnChange?.(newHex);
+                        }}
+                        sliderClassName="unbrn-color-picker-alpha-slider"
+                        sliderSize="sm"
+                        sliderDisabled={colorPickerDisabled}
+                        styles={{
+                          sliderTrack: {
+                            '--alpha-gradient': `linear-gradient(to right, transparent, ${hsvToHex(hsv.h, hsv.s, hsv.v)})`,
+                          } as React.CSSProperties
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Format input and toggle Row */}
               <div
-                className={cn("unbrn-color-picker-input-container", classNames?.colorPickerInputContainer)}
+                className={cn("unbrn-color-picker-input-row", classNames?.colorPickerInputContainer)}
                 style={styles?.colorPickerInputContainer}
               >
-                <div style={{ flex: 1 }}>
-                  <Input
-                    inputValue={textInputValue}
-                    inputOnChange={handleTextInputChange}
-                    inputPlaceholder={
-                      inputFormat === 'hex' ? '#FFFFFF' :
-                        inputFormat === 'rgb' ? 'rgb(255, 255, 255)' :
-                          'hsl(0, 0%, 100%)'
-                    }
-                    inputSize="sm"
-                    inputVariant="outlined"
-                    inputFullWidth
-                  />
-                </div>
-
                 <button
                   type="button"
                   onClick={cycleInputFormat}
@@ -736,16 +717,20 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
                   {inputFormat.toUpperCase()}
                 </button>
 
-                {isEyeDropperSupported && colorPickerShowEyeDropper && (
-                  <button
-                    type="button"
-                    onClick={handleEyeDropper}
-                    className="unbrn-color-picker-eyedropper-btn"
-                    title="Pick color from screen"
-                  >
-                    <Pipette size={14} />
-                  </button>
-                )}
+                <div className="unbrn-color-picker-input-wrapper">
+                  <Input
+                    inputValue={textInputValue}
+                    inputOnChange={handleTextInputChange}
+                    inputPlaceholder={
+                      inputFormat === 'hex' ? '#FFFFFF' :
+                        inputFormat === 'rgb' ? 'rgb(255, 255, 255)' :
+                          'hsl(0, 0%, 100%)'
+                    }
+                    inputSize="sm"
+                    inputVariant="filled"
+                    inputFullWidth
+                  />
+                </div>
               </div>
             </div>
           )}

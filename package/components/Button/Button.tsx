@@ -6,9 +6,10 @@ import React, { forwardRef, useState, useLayoutEffect, useRef } from 'react';
 import { Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import './Button.css';
+import '../../base.css';
 import { getAccentVariables } from '../../lib/colors';
 
-export interface ButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   buttonVariant?: 'filled' | 'outlined' | 'duo' | 'ghost';
   buttonSize?: 'sm' | 'default' | 'lg';
   buttonLoading?: boolean;
@@ -65,7 +66,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       buttonActive = false,
       buttonOnClick,
       buttonType = 'button',
-      buttonId
+      buttonId,
+      ...props
     },
     ref
   ) => {
@@ -98,6 +100,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           buttonClassName,
           classNames?.buttonRoot
         )}
+        {...props}
       >
         {buttonLoading && (
           <Loader2

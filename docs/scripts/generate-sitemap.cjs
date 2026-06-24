@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const domain = 'https://ui.unbrn.tech';
-const docsComponentsDir = path.join(__dirname, 'pages/components');
-const docsBackgroundsDir = path.join(__dirname, 'pages/backgrounds');
-const distDocsDir = path.resolve(__dirname, '../dist-docs');
+const docsComponentsDir = path.resolve(__dirname, '../pages/components');
+const docsBackgroundsDir = path.resolve(__dirname, '../pages/backgrounds');
+const distDocsDir = path.resolve(__dirname, '../../dist-docs');
 
 function toKebabCase(str) {
   return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();

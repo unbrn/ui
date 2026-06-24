@@ -147,6 +147,21 @@
   outline: none;
 }
 
+.unbrn-action-item-size-sm {
+  padding: 0.375rem 0.625rem !important;
+  font-size: 0.75rem !important;
+}
+
+.unbrn-action-item-size-default {
+  padding: 0.5rem 0.875rem !important;
+  font-size: 0.875rem !important;
+}
+
+.unbrn-action-item-size-lg {
+  padding: 0.625rem 1.125rem !important;
+  font-size: 1rem !important;
+}
+
 /* Hover style adapting perfectly to dark/light theme */
 .unbrn-action-item:hover:not(.unbrn-action-item-disabled) {
   background-color: color-mix(in srgb, var(--border-color) 25%, transparent) !important;

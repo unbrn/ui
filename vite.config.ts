@@ -2,8 +2,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
-import basicSsl from '@vitejs/plugin-basic-ssl'
-import { vitePluginOg } from './docs/vite-plugin-og'
+import { vitePluginOg } from './docs/scripts/vite-plugin-og'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -18,7 +17,6 @@ export default defineConfig(({ mode }) => {
           insertTypesEntry: true,
         })
       ] : [
-        basicSsl(),
         vitePluginOg()
       ]),
     ],
@@ -48,8 +46,9 @@ export default defineConfig(({ mode }) => {
           'backgrounds/LumenBeam/LumenBeam': resolve(__dirname, 'package/backgrounds/LumenBeam/LumenBeam.tsx'),
           'backgrounds/SatinFlow/SatinFlow': resolve(__dirname, 'package/backgrounds/SatinFlow/SatinFlow.tsx'),
           'backgrounds/LiquidChrome/LiquidChrome': resolve(__dirname, 'package/backgrounds/LiquidChrome/LiquidChrome.tsx'),
-          'lib/utils': resolve(__dirname, 'package/lib/utils.ts'),
+           'lib/utils': resolve(__dirname, 'package/lib/utils.ts'),
           'lib/colors': resolve(__dirname, 'package/lib/colors.ts'),
+          'lib/theme': resolve(__dirname, 'package/lib/theme.ts'),
         },
         name: 'UnbrnUI',
         formats: ['es', 'cjs'],
@@ -79,25 +78,35 @@ export default defineConfig(({ mode }) => {
           },
           preserveModules: true,
           preserveModulesRoot: 'package',
+          assetFileNames: 'styles.css',
         },
       },
       sourcemap: true,
       minify: true,
+      cssMinify: 'esbuild',
       copyPublicDir: false,
+      target: ['chrome90', 'firefox90', 'safari15', 'edge90'],
     } : {
       // Standard App build for the documentation site
       outDir: 'dist-docs',
       target: ['chrome90', 'firefox90', 'safari15', 'edge90'],
-      cssMinify: false, // Disabling minification temporarily to preserve prefixes or use a better minifier
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              if (id.includes('react-syntax-highlighter')) return 'vendor-highlighter';
+              if (
+                id.includes('react-syntax-highlighter') ||
+                id.includes('prismjs') ||
+                id.includes('refractor') ||
+                id.includes('hast-')
+              ) {
+                return 'vendor-highlighter';
+              }
               if (id.includes('lucide-react')) return 'vendor-icons';
-              if (id.includes('react-dom') || id.includes('react-router-dom')) return 'vendor-react-core';
-              return 'vendor';
+              if (id.includes('react-dom') || id.includes('react-router-dom') || id.includes('react/')) {
+                return 'vendor-react-core';
+              }
             }
           },
         },

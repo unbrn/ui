@@ -1,12 +1,13 @@
+
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const tempDir = path.join(__dirname, 'dist-docs-temp');
-const docsComponentsDir = path.join(__dirname, 'pages/components');
-const docsBackgroundsDir = path.join(__dirname, 'pages/backgrounds');
-const docsPagesDir = path.join(__dirname, 'pages');
-const outputDir = path.resolve(__dirname, '../dist-docs/pagefind');
+const tempDir = path.resolve(__dirname, '../dist-docs-temp');
+const docsComponentsDir = path.resolve(__dirname, '../pages/components');
+const docsBackgroundsDir = path.resolve(__dirname, '../pages/backgrounds');
+const docsPagesDir = path.resolve(__dirname, '../pages');
+const outputDir = path.resolve(__dirname, '../../dist-docs/pagefind');
 
 function toKebabCase(str) {
   return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
@@ -103,10 +104,9 @@ if (fs.existsSync(docsBackgroundsDir)) {
 
 console.log('\n=== RUNNING PAGEFIND STATIC INDEXER ===');
 try {
-
   execSync(`npx -y pagefind --site "${tempDir}" --output-path "${outputDir}"`, {
     stdio: 'inherit',
-    cwd: path.resolve(__dirname, '..')
+    cwd: path.resolve(__dirname, '../..')
   });
   console.log('\n[SUCCESS] Pagefind index successfully created!');
 } catch (err) {

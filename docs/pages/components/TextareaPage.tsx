@@ -127,6 +127,28 @@ export default function Example() {
             />
           </div>
         </Showcase>
+
+        <Showcase
+          title="Accent Color"
+          description="Apply a custom accent color to the border, focus ring, drag indicator, and character count using textareaAccentColor."
+          code={`import { Textarea } from '@unbrn/ui/Textarea';
+
+export default function Example() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '500px' }}>
+      <Textarea textareaVariant="duo" textareaAccentColor="#10b981" textareaPlaceholder="Purple duo textarea..." textareaShowCount />
+      <Textarea textareaVariant="outlined" textareaAccentColor="#10b981" textareaPlaceholder="Sky Blue outlined textarea..." textareaShowCount />
+      <Textarea textareaVariant="filled" textareaAccentColor="#10b981" textareaPlaceholder="Emerald filled textarea..." textareaShowCount />
+    </div>
+  );
+}`}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '500px' }}>
+            <Textarea textareaVariant="duo" textareaAccentColor="#10b981" textareaPlaceholder="Purple duo textarea..." textareaShowCount />
+            <Textarea textareaVariant="outlined" textareaAccentColor="#10b981" textareaPlaceholder="Sky Blue outlined textarea..." textareaShowCount />
+            <Textarea textareaVariant="filled" textareaAccentColor="#10b981" textareaPlaceholder="Emerald filled textarea..." textareaShowCount />
+          </div>
+        </Showcase>
       </div>
 
       <Props
@@ -146,6 +168,7 @@ export default function Example() {
           { name: 'textareaPlaceholder', type: 'string', description: 'Placeholder text.' },
           { name: 'textareaClassName', type: 'string', description: 'Custom CSS class for the root container.' },
           { name: 'textareaStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'textareaAccentColor', type: 'string', description: 'Custom primary accent color for active highlight styling overrides (hex, rgb, etc.).' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the textarea.' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
         ]}

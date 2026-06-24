@@ -76,7 +76,6 @@
   height: var(--track-height);
   border-radius: var(--radius-full);
   background: linear-gradient(to right, var(--accent-color) var(--slider-progress), var(--bg-track) var(--slider-progress));
-  border: 1px solid var(--border-track);
   transition: border-color 0.25s var(--transition-curve), background 0.1s linear;
   background-clip: padding-box;
 }

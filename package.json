@@ -1,6 +1,6 @@
 {
   "name": "@unbrn/ui",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": false,
   "description": "Minimalist UI Crafted with Precision",
   "author": "Unbrn",
@@ -15,7 +15,7 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/ui.css",
+    "./styles.css": "./dist/styles.css",
     "./Accordion": {
       "types": "./dist/components/Accordion/Accordion.d.ts",
       "import": "./dist/components/Accordion/Accordion.mjs",
@@ -150,6 +150,11 @@
       "types": "./dist/lib/colors.d.ts",
       "import": "./dist/lib/colors.mjs",
       "require": "./dist/lib/colors.cjs"
+    },
+    "./theme": {
+      "types": "./dist/lib/theme.d.ts",
+      "import": "./dist/lib/theme.mjs",
+      "require": "./dist/lib/theme.cjs"
     }
   },
   "files": [
@@ -184,7 +189,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --mode lib",
-    "build:docs": "tsc -b && vite build && node docs/index-docs.cjs && node docs/generate-sitemap.cjs && node docs/generate-meta-pages.cjs",
+    "build:docs": "tsc -b && vite build && node docs/scripts/index-docs.cjs && node docs/scripts/generate-sitemap.cjs && node docs/scripts/generate-meta-pages.cjs",
     "lint": "eslint .",
     "preview": "vite preview --outDir dist-docs",
     "prepublishOnly": "npm run build"
@@ -210,7 +215,6 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/react-syntax-highlighter": "^15.5.13",
-    "@vitejs/plugin-basic-ssl": "^2.3.0",
     "@vitejs/plugin-react": "^6.0.1",
     "esbuild": "^0.28.0",
     "eslint": "^10.3.0",

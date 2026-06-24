@@ -251,6 +251,28 @@ export default function Example() {
             />
           </div>
         </Showcase>
+
+        <Showcase
+          title="Accent Color"
+          description="Apply a custom accent color to the border, focus ring, icons, and keyboard shortcuts using inputAccentColor."
+          code={`import { Input } from '@unbrn/ui/Input';
+
+export default function Example() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
+      <Input inputVariant="duo" inputAccentColor="#10b981" inputPlaceholder="Purple duo input" />
+      <Input inputVariant="outlined" inputAccentColor="#10b981" inputPlaceholder="Sky Blue outlined input" />
+      <Input inputVariant="filled" inputAccentColor="#10b981" inputPlaceholder="Emerald filled input" />
+    </div>
+  );
+}`}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
+            <Input inputVariant="duo" inputAccentColor="#10b981" inputPlaceholder="Purple duo input" />
+            <Input inputVariant="outlined" inputAccentColor="#10b981" inputPlaceholder="Sky Blue outlined input" />
+            <Input inputVariant="filled" inputAccentColor="#10b981" inputPlaceholder="Emerald filled input" />
+          </div>
+        </Showcase>
       </div>
 
       <Props
@@ -275,6 +297,7 @@ export default function Example() {
           { name: 'inputPlaceholder', type: 'string', description: 'Placeholder text.' },
           { name: 'inputType', type: 'string', defaultValue: "'text'", description: 'HTML input type attribute.' },
           { name: 'inputReadOnly', type: 'boolean', defaultValue: 'false', description: 'Prevent changing the value of the input.' },
+          { name: 'inputAccentColor', type: 'string', description: 'Custom primary accent color for active highlight styling overrides (hex, rgb, etc.).' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the input (prefixed with input).' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with input).' },
         ]}

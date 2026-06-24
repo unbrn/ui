@@ -227,6 +227,27 @@ export const ChangelogPage: React.FC = () => {
   useEffect(() => {
     let active = true;
 
+    const CACHE_KEY = 'unbrn_gh_releases_v1';
+    const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+
+    // Serve from cache immediately (no layout shift)
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const { data, ts } = JSON.parse(cached) as { data: Release[]; ts: number };
+        if (Date.now() - ts < CACHE_TTL) {
+          queueMicrotask(() => {
+            if (active) {
+              setReleases(data);
+            }
+          });
+          return; // still fresh — skip network fetch entirely
+        }
+      }
+    } catch {
+      // malformed cache entry — continue to fetch
+    }
+
     fetch('https://api.github.com/repos/unbrn/ui/releases')
       .then(res => {
         if (!res.ok) throw new Error('GitHub API response not OK');
@@ -268,6 +289,12 @@ export const ChangelogPage: React.FC = () => {
 
         if (active) {
           setReleases(parsed);
+          // Persist to cache
+          try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({ data: parsed, ts: Date.now() }));
+          } catch {
+            // storage quota — non-fatal
+          }
           // Notify TOC component that we have loaded the GitHub releases
           setTimeout(() => {
             window.dispatchEvent(new CustomEvent('changelog-loaded'));

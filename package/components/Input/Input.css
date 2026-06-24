@@ -206,7 +206,7 @@
   height: 6px;
   border-radius: 100px;
   background-color: var(--border-color);
-  transition: background-color 0.4s var(--transition-curve), box-shadow 0.4s var(--transition-curve);
+  transition: background-color 0.4s var(--transition-curve);
   opacity: 0.3;
 }
 
@@ -253,4 +253,71 @@
 
 .unbrn-input-container:has(.unbrn-input-right-section) .unbrn-input {
   padding-right: 4.5rem;
+}
+
+/* ===== Custom Accent Color Overrides ===== */
+
+/* container focus-within when custom accent color is present */
+[style*='--accent-color'] .unbrn-input-container:focus-within,
+[style*="--accent-color"] .unbrn-input-container:focus-within {
+  border-color: var(--accent-color);
+}
+
+/* filled + accent: solid filled background */
+[style*='--accent-color'] .unbrn-input-container-filled,
+[style*="--accent-color"] .unbrn-input-container-filled {
+  background-color: var(--accent-color);
+  background-image: linear-gradient(135deg, var(--accent-color) 0%, color-mix(in srgb, var(--accent-color) 80%, #000) 100%);
+  border-color: transparent;
+}
+
+[style*='--accent-color'] .unbrn-input-container-filled .unbrn-input,
+[style*="--accent-color"] .unbrn-input-container-filled .unbrn-input {
+  color: var(--accent-text, #fff);
+}
+
+[style*='--accent-color'] .unbrn-input-container-filled .unbrn-input::placeholder,
+[style*="--accent-color"] .unbrn-input-container-filled .unbrn-input::placeholder {
+  color: color-mix(in srgb, var(--accent-text, #fff) 60%, transparent);
+}
+
+[style*='--accent-color'] .unbrn-input-container-filled .unbrn-input-icon,
+[style*="--accent-color"] .unbrn-input-container-filled .unbrn-input-icon {
+  color: color-mix(in srgb, var(--accent-text, #fff) 70%, transparent);
+}
+
+[style*='--accent-color'] .unbrn-input-container-filled .unbrn-input-kbd,
+[style*="--accent-color"] .unbrn-input-container-filled .unbrn-input-kbd {
+  background-color: color-mix(in srgb, var(--accent-color) 80%, #000);
+  border-color: color-mix(in srgb, var(--accent-text, #fff) 20%, transparent);
+  color: color-mix(in srgb, var(--accent-text, #fff) 80%, transparent);
+}
+
+/* outlined + accent: just accent border, subtle tint */
+[style*='--accent-color'] .unbrn-input-container-outlined,
+[style*="--accent-color"] .unbrn-input-container-outlined {
+  border-color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--bg-secondary) 30%, transparent);
+}
+
+/* duo + accent: text color becomes accent color */
+[style*='--accent-color'] .unbrn-input-container-duo .unbrn-input,
+[style*="--accent-color"] .unbrn-input-container-duo .unbrn-input {
+  color: var(--accent-color);
+}
+
+[style*='--accent-color'] .unbrn-input-container-duo .unbrn-input::placeholder,
+[style*="--accent-color"] .unbrn-input-container-duo .unbrn-input::placeholder {
+  color: color-mix(in srgb, var(--accent-color) 60%, transparent);
+}
+
+[style*='--accent-color'] .unbrn-input-container-duo .unbrn-input-icon,
+[style*="--accent-color"] .unbrn-input-container-duo .unbrn-input-icon {
+  color: var(--accent-color);
+}
+
+[style*='--accent-color'] .unbrn-input-container-duo:focus-within,
+[style*="--accent-color"] .unbrn-input-container-duo:focus-within {
+  background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
 }

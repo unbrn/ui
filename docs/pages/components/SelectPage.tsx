@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Select } from '../../../package/components/Select/Select';
+import { Button } from '../../../package/components/Button/Button';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
@@ -44,21 +45,16 @@ const LoadingToggleExample = () => {
         selectOptions={fruitOptions}
         selectPlaceholder="Fetching options..."
         selectLoading={loading}
+        selectAccentColor='white'
       />
-      <button
-        onClick={simulate}
-        style={{
-          padding: '8px 16px',
-          borderRadius: '8px',
-          border: '1px solid rgba(255,255,255,0.15)',
-          background: 'rgba(255,255,255,0.08)',
-          color: 'white',
-          cursor: 'pointer',
-          fontSize: '0.85rem',
-        }}
+      <Button
+        buttonOnClick={simulate}
+        buttonVariant="filled"
+        buttonSize="default"
+        buttonDisabled={loading}
       >
-        {loading ? 'Loading...' : 'Simulate Load'}
-      </button>
+        Simulate Load
+      </Button>
     </div>
   );
 };
@@ -163,17 +159,17 @@ const fruitOptions = [
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '300px' }}>
-      <Select selectVariant='duo' selectAccentColor="#7c3aed" selectLabel="Purple" selectOptions={fruitOptions} selectDefaultValue="apple" />
-      <Select selectVariant='duo' selectAccentColor="#0ea5e9" selectLabel="Sky Blue" selectOptions={fruitOptions} selectDefaultValue="banana" />
-      <Select selectVariant='duo' selectAccentColor="#f5a623" selectLabel="Amber" selectOptions={fruitOptions} selectDefaultValue="blueberry" />
+      <Select selectVariant='duo' selectAccentColor="#10b981" selectLabel="Purple" selectOptions={fruitOptions} selectDefaultValue="apple" />
+      <Select selectVariant='duo' selectAccentColor="#10b981" selectLabel="Sky Blue" selectOptions={fruitOptions} selectDefaultValue="banana" />
+      <Select selectVariant='duo' selectAccentColor="#10b981" selectLabel="Amber" selectOptions={fruitOptions} selectDefaultValue="blueberry" />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '300px', paddingBottom: '200px' }}>
-            <Select selectVariant='duo' selectAccentColor="#7c3aed" selectLabel="Purple" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="apple" />
-            <Select selectVariant='duo' selectAccentColor="#0ea5e9" selectLabel="Sky Blue" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="banana" />
-            <Select selectVariant='duo' selectAccentColor="#f5a623" selectLabel="Amber" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="blueberry" />
+            <Select selectVariant='duo' selectAccentColor="#10b981" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="apple" />
+            <Select selectVariant='outlined' selectAccentColor="#10b981" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="banana" />
+            <Select selectVariant='filled' selectAccentColor="#10b981" selectOptions={fruitOptions.slice(0, 3)} selectDefaultValue="blueberry" />
           </div>
         </Showcase>
 
@@ -320,6 +316,42 @@ export default function Example() {
             <ControlledSelectExample />
           </div>
         </Showcase>
+
+        <Showcase
+          title="Searchable / Autocomplete"
+          description="Type in the select trigger to search and filter options instantly."
+          code={`import { Select } from '@unbrn/ui/Select';
+
+const fruitOptions = [
+  { selectOptionValue: 'apple', selectOptionLabel: 'Apple' },
+  { selectOptionValue: 'banana', selectOptionLabel: 'Banana' },
+  { selectOptionValue: 'blueberry', selectOptionLabel: 'Blueberry' },
+  { selectOptionValue: 'grapes', selectOptionLabel: 'Grapes' },
+  { selectOptionValue: 'pineapple', selectOptionLabel: 'Pineapple' },
+];
+
+export default function Example() {
+  return (
+    <div style={{ width: '300px' }}>
+      <Select
+        selectLabel="Searchable Select"
+        selectOptions={fruitOptions}
+        selectPlaceholder="Type to filter..."
+        selectSearchable
+      />
+    </div>
+  );
+}`}
+        >
+          <div style={{ width: '300px', paddingBottom: '200px' }}>
+            <Select
+              selectLabel="Searchable Select"
+              selectOptions={fruitOptions}
+              selectPlaceholder="Type to filter..."
+              selectSearchable
+            />
+          </div>
+        </Showcase>
       </div>
 
       <Props
@@ -331,8 +363,9 @@ export default function Example() {
           { name: 'selectOnChange', type: '(value: string) => void', description: 'Callback fired when a new option is chosen.' },
           { name: 'selectPlaceholder', type: 'string', defaultValue: "'Select an option'", description: 'Text shown when no option is selected.' },
           { name: 'selectVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The visual style variant of the dropdown.' },
-          { name: 'selectSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the select trigger.' },
+          { name: 'selectSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the select trigger and dropdown items.' },
           { name: 'selectAccentColor', type: 'string', description: 'Custom accent color applied to the focus ring, open border, and loading spinner. Accepts any CSS color value.' },
+          { name: 'selectSearchable', type: 'boolean', defaultValue: 'false', description: 'Turns the trigger into a text input allowing users to search and filter dropdown options in real-time.' },
           { name: 'selectLoading', type: 'boolean', defaultValue: 'false', description: 'Shows a spinning indicator and disables interaction. Use when fetching options asynchronously.' },
           { name: 'selectLabel', type: 'string', description: 'Label text displayed above the dropdown.' },
           { name: 'selectDescription', type: 'string', description: 'Helper text shown below the dropdown.' },

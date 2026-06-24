@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { cn } from '../../lib/utils';
 import { getAccentVariables } from '../../lib/colors';
-import { Button } from '../Button/Button';
+import { Button, ButtonContext } from '../Button/Button';
 import './Action.css';
 
 export interface ActionItem {
@@ -32,6 +32,7 @@ export interface ActionProps {
   actionDisabled?: boolean;
   actionAccentColor?: string;
   actionCloseOnSelect?: boolean;
+  actionSize?: 'sm' | 'default' | 'lg';
   actionClassName?: string;
   actionStyle?: React.CSSProperties;
   classNames?: {
@@ -57,13 +58,14 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
       children,
       actionHeader,
       actionFooter,
-      actionPosition = 'bottom',
+      actionPosition = 'auto',
       actionAlign = 'center',
       actionVisible,
       actionOnVisibleChange,
       actionDisabled = false,
       actionAccentColor,
       actionCloseOnSelect = true,
+      actionSize,
       actionClassName,
       actionStyle,
       classNames,
@@ -84,45 +86,33 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
     useEffect(() => {
       if (actionPosition !== 'auto' || !visible) return;
 
-      const calculatePosition = () => {
-        const trigger = containerRef.current?.querySelector('.unbrn-action-trigger') as HTMLElement;
-        if (!trigger) return;
+      const trigger = containerRef.current?.querySelector('.unbrn-action-trigger') as HTMLElement;
+      if (!trigger) return;
 
-        const rect = trigger.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const viewportWidth = window.innerWidth;
+      const rect = trigger.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const viewportWidth = window.innerWidth;
 
-        const spaceBottom = viewportHeight - rect.bottom;
-        const spaceTop = rect.top;
-        const spaceRight = viewportWidth - rect.right;
-        const spaceLeft = rect.left;
+      const spaceBottom = viewportHeight - rect.bottom;
+      const spaceTop = rect.top;
+      const spaceRight = viewportWidth - rect.right;
+      const spaceLeft = rect.left;
 
-        const dropdownHeight = 220;
+      const dropdownHeight = 220;
 
-        let bestPosition: 'top' | 'bottom' | 'left' | 'right';
+      let bestPosition: 'top' | 'bottom' | 'left' | 'right';
 
-        if (spaceBottom >= dropdownHeight) {
-          bestPosition = 'bottom';
-        } else if (spaceTop >= dropdownHeight) {
-          bestPosition = 'top';
-        } else if (spaceRight > spaceLeft) {
-          bestPosition = 'right';
-        } else {
-          bestPosition = 'left';
-        }
+      if (spaceBottom >= dropdownHeight) {
+        bestPosition = 'bottom';
+      } else if (spaceTop >= dropdownHeight) {
+        bestPosition = 'top';
+      } else if (spaceRight > spaceLeft) {
+        bestPosition = 'right';
+      } else {
+        bestPosition = 'left';
+      }
 
-        setCalculatedPosition(bestPosition);
-      };
-
-      calculatePosition();
-
-      window.addEventListener('resize', calculatePosition);
-      window.addEventListener('scroll', calculatePosition, { capture: true });
-
-      return () => {
-        window.removeEventListener('resize', calculatePosition);
-        window.removeEventListener('scroll', calculatePosition, { capture: true });
-      };
+      setCalculatedPosition(bestPosition);
     }, [visible, actionPosition]);
 
     useEffect(() => {
@@ -181,13 +171,15 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
         className={cn('unbrn-action-root', actionClassName, classNames?.actionRoot)}
         style={{ ...actionStyle, ...styles?.actionRoot, ...accentStyle }}
       >
-        <div
-          onClick={handleToggle}
-          className={cn('unbrn-action-trigger', classNames?.actionTrigger)}
-          style={styles?.actionTrigger}
-        >
-          {actionTrigger}
-        </div>
+        <ButtonContext.Provider value={actionSize ? { buttonSize: actionSize } : {}}>
+          <div
+            onClick={handleToggle}
+            className={cn('unbrn-action-trigger', classNames?.actionTrigger)}
+            style={styles?.actionTrigger}
+          >
+            {actionTrigger}
+          </div>
+        </ButtonContext.Provider>
 
         {visible && (
           <div
@@ -211,8 +203,10 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
             ) : (
               <div className="unbrn-action-items-list">
                 {actionItems?.map((item, index) => {
+                  const resolvedItemSize = actionSize || 'sm';
                   const itemClassName = cn(
                     'unbrn-action-item',
+                    `unbrn-action-item-size-${resolvedItemSize}`,
                     `unbrn-action-item-${item.variant || 'default'}`,
                     item.disabled && 'unbrn-action-item-disabled',
                     classNames?.actionItem,
@@ -224,7 +218,7 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
                   const buttonElement = (
                     <Button
                       buttonVariant="ghost"
-                      buttonSize='sm'
+                      buttonSize={resolvedItemSize}
                       buttonDisabled={item.disabled}
                       buttonOnClick={(e) => handleItemClick(e, item)}
                       buttonClassName={itemClassName}

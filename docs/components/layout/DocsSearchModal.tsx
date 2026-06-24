@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, X, BookOpen, Sparkles, FileText, ArrowRight } from 'lucide-react';
+import { Search, X, BookOpen, FileText, ArrowRight } from 'lucide-react';
 import { Input } from '../../../package/components/Input/Input';
 import componentsData from '../../data/components.json';
 import backgroundsData from '../../data/backgrounds.json';
@@ -19,15 +19,50 @@ interface SearchResult {
   isFallback?: boolean;
 }
 
+const SUGGESTED_SEARCHES = ['Button', 'Dock', 'Color Picker', 'Satin Flow', 'Accordion'];
+
 export const DocsSearchModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [pagefindError, setPagefindError] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
+  const resultsContainerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
+  const handleSelect = React.useCallback((url: string) => {
+    setIsOpen(false);
+
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      const cleanUrl = url.replace(/\.html$/, '').replace(/\/index$/, '');
+      navigate(cleanUrl);
+    }
+  }, [navigate]);
+
+  // Reset active index when query or results change
+  useEffect(() => {
+    queueMicrotask(() => {
+      setActiveIndex(results.length > 0 ? 0 : -1);
+    });
+  }, [results, query]);
+
+  // Lock body scroll when search is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  // Global Ctrl/Cmd+K to open
   useEffect(() => {
     const handleOpen = () => {
       setIsOpen(true);
@@ -35,26 +70,71 @@ export const DocsSearchModal: React.FC = () => {
       setResults([]);
     };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleGlobalKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         setIsOpen(prev => !prev);
         setQuery('');
         setResults([]);
-      } else if (e.key === 'Escape') {
-        setIsOpen(false);
       }
     };
 
     window.addEventListener('open-docs-search', handleOpen);
-    window.addEventListener('keydown', handleKeyDown);
-
+    window.addEventListener('keydown', handleGlobalKey);
     return () => {
       window.removeEventListener('open-docs-search', handleOpen);
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', handleGlobalKey);
     };
   }, []);
 
+  // Keyboard navigation when modal is open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleModalKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      } else if (results.length > 0) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          setActiveIndex(prev => (prev === results.length - 1 ? 0 : prev + 1));
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          setActiveIndex(prev => (prev <= 0 ? results.length - 1 : prev - 1));
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (activeIndex >= 0 && activeIndex < results.length) {
+            handleSelect(results[activeIndex].url);
+          }
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleModalKey);
+    return () => window.removeEventListener('keydown', handleModalKey);
+  }, [isOpen, results, activeIndex, handleSelect]);
+
+  // Auto-scroll active item into view
+  useEffect(() => {
+    if (activeIndex >= 0 && resultsContainerRef.current) {
+      const container = resultsContainerRef.current;
+      const activeEl = container.children[activeIndex + 1] as HTMLElement; // +1 to skip results-header
+      if (activeEl) {
+        const containerTop = container.scrollTop;
+        const containerBottom = containerTop + container.clientHeight;
+        const elemTop = activeEl.offsetTop;
+        const elemBottom = elemTop + activeEl.clientHeight;
+
+        if (elemTop < containerTop) {
+          container.scrollTop = elemTop - 10;
+        } else if (elemBottom > containerBottom) {
+          container.scrollTop = elemBottom - container.clientHeight + 10;
+        }
+      }
+    }
+  }, [activeIndex]);
+
+  // Auto-focus input when opened
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
@@ -66,11 +146,15 @@ export const DocsSearchModal: React.FC = () => {
   interface PagefindResultItem {
     data: () => Promise<{
       url: string;
-      meta?: { title?: string };
+      meta?: { 
+        title?: string;
+        url?: string;
+      };
       excerpt?: string;
     }>;
   }
 
+  // Pagefind search logic
   useEffect(() => {
     let isMounted = true;
 
@@ -107,7 +191,7 @@ export const DocsSearchModal: React.FC = () => {
           topResults.map(async (r: PagefindResultItem) => {
             const data = await r.data();
             return {
-              url: data.url,
+              url: data.meta?.url || data.url,
               title: data.meta?.title || 'Documentation',
               excerpt: data.excerpt || '',
             };
@@ -172,17 +256,6 @@ export const DocsSearchModal: React.FC = () => {
 
   if (!isOpen) return null;
 
-  const handleSelect = (url: string) => {
-    setIsOpen(false);
-
-    if (url.startsWith('http://') || url.startsWith('https://')) {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    } else {
-      const cleanUrl = url.replace(/\.html$/, '').replace(/\/index$/, '');
-      navigate(cleanUrl);
-    }
-  };
-
   return (
     <div className="search-backdrop" onClick={() => setIsOpen(false)}>
       <div className="search-modal" onClick={e => e.stopPropagation()}>
@@ -227,11 +300,24 @@ export const DocsSearchModal: React.FC = () => {
 
           {!isLoading && !query && (
             <div className="search-empty-state">
-              <div className="empty-icon-wrapper">
-                <Sparkles size={24} />
+              <h3 className="empty-title">Search Unbrn UI</h3>
+              <p className="empty-subtitle">Type keywords to search components, layouts, custom themes, and configurations.</p>
+              
+              <div className="search-suggestions">
+                <span className="suggestion-label font-mono">SUGGESTED</span>
+                <div className="suggestion-pills">
+                  {SUGGESTED_SEARCHES.map(term => (
+                    <button
+                      key={term}
+                      onClick={() => setQuery(term)}
+                      className="suggestion-pill"
+                    >
+                      {term}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <h3>Search Unbrn UI</h3>
-              <p>Type keywords to search components, layouts, custom themes, and configurations.</p>
+
               <div className="search-shortcuts-tips">
                 <div className="tip-item">
                   <kbd className="font-mono">⌘K</kbd> <span>to toggle search overlay</span>
@@ -254,7 +340,7 @@ export const DocsSearchModal: React.FC = () => {
           )}
 
           {!isLoading && results.length > 0 && (
-            <div className="search-results-list">
+            <div className="search-results-list" ref={resultsContainerRef}>
               <div className="results-header font-mono">
                 <span>{results.length} MATCHING RESULTS {pagefindError && '(DEV MODE FALLBACK)'}</span>
               </div>
@@ -262,8 +348,9 @@ export const DocsSearchModal: React.FC = () => {
               {results.map((result, idx) => (
                 <div
                   key={idx}
-                  className="search-result-item"
+                  className={`search-result-item ${idx === activeIndex ? 'search-result-item-active' : ''}`}
                   onClick={() => handleSelect(result.url)}
+                  onMouseEnter={() => setActiveIndex(idx)}
                 >
                   <div className="result-icon-area">
                     {result.url.includes('/components/') ? <BookOpen size={16} /> : <FileText size={16} />}

@@ -20,7 +20,7 @@
 [data-theme="light"] .unbrn-voice-agent {
   --voice-accent: #000000;
   --voice-dot-inactive: rgba(0, 0, 0, 0.07);
-  --border-color: #cbd5e1;
+  --voice-border-color: #cbd5e1;
 }
 
 .unbrn-voice-agent.unbrn-variant-grid {
@@ -32,7 +32,7 @@
   width: fit-content;
   height: fit-content;
   border-radius: var(--radius-xl);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--voice-border-color, var(--border-color));
   padding: var(--voice-grid-padding);
   display: flex;
   justify-content: center;

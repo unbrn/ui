@@ -76,8 +76,7 @@ export const LumenBeam: React.FC<LumenBeamProps> = ({
     if (typeof window === 'undefined') return 'high';
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const isLowEndDevice = isMobile || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
-    if (isMobile) return 'low';
-    if (isLowEndDevice) return 'medium';
+    if (isMobile || isLowEndDevice) return 'medium';
     return 'high';
   }, [qualityProp]);
 
