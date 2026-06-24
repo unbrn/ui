@@ -2,6 +2,15 @@
 
 All notable changes to @unbrn/ui will be documented in this file.
 
+## [2.0.1] - 2026-06-24
+### Features
+- **Added Custom Accent Colors**: Added custom accent colors for `Input`, `Select`, and `Textarea` components.
+- **Select Autocomplete**: Added autocomplete support to `Select`.
+- **Sizing Support**: Added sizes to select items and `Action` components.
+
+### Bug Fixes & Adjustments
+- **Mobile Backgrounds**: Optimized background animations/shaders for mobile viewports.
+
 ## [2.0.0] - 2026-06-20
 ### Features
 - **Added new Component (`ColorPicker`)**: Introduced a highly-interactive, premium color picker component with support for custom formats, visual spectrum selection, presets, and alpha channel configuration.

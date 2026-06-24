@@ -32,9 +32,22 @@ export const DocsSearchModal: React.FC = () => {
   const resultsContainerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
+  const handleSelect = React.useCallback((url: string) => {
+    setIsOpen(false);
+
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      const cleanUrl = url.replace(/\.html$/, '').replace(/\/index$/, '');
+      navigate(cleanUrl);
+    }
+  }, [navigate]);
+
   // Reset active index when query or results change
   useEffect(() => {
-    setActiveIndex(results.length > 0 ? 0 : -1);
+    queueMicrotask(() => {
+      setActiveIndex(results.length > 0 ? 0 : -1);
+    });
   }, [results, query]);
 
   // Lock body scroll when search is open
@@ -99,7 +112,7 @@ export const DocsSearchModal: React.FC = () => {
 
     window.addEventListener('keydown', handleModalKey);
     return () => window.removeEventListener('keydown', handleModalKey);
-  }, [isOpen, results, activeIndex]);
+  }, [isOpen, results, activeIndex, handleSelect]);
 
   // Auto-scroll active item into view
   useEffect(() => {
@@ -177,7 +190,6 @@ export const DocsSearchModal: React.FC = () => {
         const detailedResults = await Promise.all(
           topResults.map(async (r: PagefindResultItem) => {
             const data = await r.data();
-            console.log('PAGEFIND DATA ITEM:', data);
             return {
               url: data.meta?.url || data.url,
               title: data.meta?.title || 'Documentation',
@@ -243,17 +255,6 @@ export const DocsSearchModal: React.FC = () => {
   }, [query]);
 
   if (!isOpen) return null;
-
-  const handleSelect = (url: string) => {
-    setIsOpen(false);
-
-    if (url.startsWith('http://') || url.startsWith('https://')) {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    } else {
-      const cleanUrl = url.replace(/\.html$/, '').replace(/\/index$/, '');
-      navigate(cleanUrl);
-    }
-  };
 
   return (
     <div className="search-backdrop" onClick={() => setIsOpen(false)}>

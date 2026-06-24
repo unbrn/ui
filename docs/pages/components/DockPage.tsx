@@ -248,7 +248,7 @@ export default function Example() {
           { name: 'dockAccentColor', type: 'string', description: 'Custom accent color for the dock container.' },
           { name: 'dockShowHideToggle', type: 'boolean', defaultValue: 'true', description: 'Show the arrow button to hide the dock.' },
           { name: 'dockButtonSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'Default size for all buttons inside the dock.' },
-          { name: 'dockButtonVariant', type: "'filled' | 'outlined' | 'duo' | 'ghost'", defaultValue: "'outlined'", description: 'Default variant for all buttons inside the dock.' },
+          { name: 'dockButtonVariant', type: "'filled' | 'outlined' | 'duo' | 'ghost'", defaultValue: "'duo'", description: 'Default variant for all buttons inside the dock.' },
           { name: 'dockButtonAccentColor', type: 'string', description: 'Default accent color for all buttons inside the dock.' },
           { name: 'dockClassName', type: 'string', description: 'Custom CSS class for the root container.' },
           { name: 'dockStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },

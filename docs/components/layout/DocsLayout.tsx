@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Search } from 'lucide-react';
 import { DocsSidebar } from './DocsSidebar';
@@ -23,31 +23,23 @@ export const DocsLayout: React.FC = () => {
   const navigate = useNavigate();
   const currentPath = location.pathname.toLowerCase().replace(/\/$/, '');
 
-  const sortedComponents = [...componentsMeta].sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
-
-  const sortedBackgrounds = [...backgroundsMeta].sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
-
-  const docsRoutes = [
+  const docsRoutes = useMemo(() => [
     { path: '/docs/quick-start', name: 'Quick Start' },
     ...frameworks.map(fw => ({
       path: `/docs/quick-start/${fw.id}`,
       name: `Quick Start - ${fw.name}`
     })),
     { path: '/docs/components', name: 'Components Overview' },
-    ...sortedComponents.map(c => ({
+    ...[...componentsMeta].sort((a, b) => a.name.localeCompare(b.name)).map(c => ({
       path: c.path.replace(/^\/components/, '/docs/components'),
       name: c.name
     })),
     { path: '/docs/backgrounds', name: 'Backgrounds Overview' },
-    ...sortedBackgrounds.map(b => ({
+    ...[...backgroundsMeta].sort((a, b) => a.name.localeCompare(b.name)).map(b => ({
       path: b.path.replace(/^\/backgrounds/, '/docs/backgrounds'),
       name: b.name
     }))
-  ];
+  ], []);
 
   const currentIndex = docsRoutes.findIndex(r => r.path === currentPath);
   const prevRoute = currentIndex > 0 ? docsRoutes[currentIndex - 1] : null;

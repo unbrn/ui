@@ -2,6 +2,7 @@
 
 import React, { forwardRef, useId } from 'react';
 import { cn } from '../../lib/utils';
+import { getAccentVariables } from '../../lib/colors';
 import './Textarea.css';
 
 export interface TextareaProps {
@@ -20,6 +21,7 @@ export interface TextareaProps {
   textareaPlaceholder?: string;
   textareaClassName?: string;
   textareaStyle?: React.CSSProperties;
+  textareaAccentColor?: string;
   classNames?: {
     textareaRoot?: string;
     textareaContainer?: string;
@@ -64,12 +66,14 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       textareaPlaceholder,
       classNames,
       styles,
+      textareaAccentColor,
     },
     ref
   ) => {
     const generatedId = useId();
     const textareaId = customId || generatedId;
     const containerRef = React.useRef<HTMLDivElement>(null);
+    const accentStyle = getAccentVariables(textareaAccentColor);
 
     const [currentLength, setCurrentLength] = React.useState(
       (textareaValue?.toString() || textareaDefaultValue?.toString() || "").length
@@ -122,7 +126,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           textareaFullWidth && "unbrn-textarea-full-width",
           classNames?.textareaRoot
         )}
-        style={{ ...textareaStyle, ...styles?.textareaRoot }}
+        style={{ ...textareaStyle, ...styles?.textareaRoot, ...accentStyle }}
       >
         {textareaLabel && (
           <label

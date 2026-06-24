@@ -58,7 +58,7 @@ export const Dock: React.FC<DockProps> = ({
   children
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const resolvedVariant = dockButtonVariant ?? 'outlined';
+  const resolvedVariant = dockButtonVariant;
   const accentStyle = getAccentVariables(dockAccentColor);
   return (
     <div

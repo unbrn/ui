@@ -23,7 +23,6 @@
   flex-direction: column;
   position: relative;
   border-radius: var(--radius);
-  transition: border-color 0.2s var(--transition-curve);
   border: 1px solid var(--border-color);
   background-color: transparent;
   min-height: 120px;
@@ -142,4 +141,68 @@
 
 .unbrn-textarea-container-disabled .unbrn-textarea {
   cursor: not-allowed;
+}
+
+/* ===== Custom Accent Color Overrides ===== */
+
+/* container focus-within when custom accent color is present */
+[style*='--accent-color'] .unbrn-textarea-container:focus-within,
+[style*="--accent-color"] .unbrn-textarea-container:focus-within {
+  border-color: var(--accent-color);
+}
+
+/* filled + accent: solid filled background */
+[style*='--accent-color'] .unbrn-textarea-container-filled,
+[style*="--accent-color"] .unbrn-textarea-container-filled {
+  background-color: var(--accent-color);
+  background-image: linear-gradient(135deg, var(--accent-color) 0%, color-mix(in srgb, var(--accent-color) 80%, #000) 100%);
+  border-color: transparent;
+}
+
+[style*='--accent-color'] .unbrn-textarea-container-filled .unbrn-textarea,
+[style*="--accent-color"] .unbrn-textarea-container-filled .unbrn-textarea {
+  color: var(--accent-text, #fff);
+}
+
+[style*='--accent-color'] .unbrn-textarea-container-filled .unbrn-textarea::placeholder,
+[style*="--accent-color"] .unbrn-textarea-container-filled .unbrn-textarea::placeholder {
+  color: color-mix(in srgb, var(--accent-text, #fff) 60%, transparent);
+}
+
+[style*='--accent-color'] .unbrn-textarea-container-filled .unbrn-textarea-count,
+[style*="--accent-color"] .unbrn-textarea-container-filled .unbrn-textarea-count,
+[style*='--accent-color'] .unbrn-textarea-container-filled .unbrn-textarea-drag,
+[style*="--accent-color"] .unbrn-textarea-container-filled .unbrn-textarea-drag {
+  color: color-mix(in srgb, var(--accent-text, #fff) 70%, transparent);
+}
+
+/* outlined + accent: just accent border, subtle tint */
+[style*='--accent-color'] .unbrn-textarea-container-outlined,
+[style*="--accent-color"] .unbrn-textarea-container-outlined {
+  border-color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--bg-secondary) 30%, transparent);
+}
+
+/* duo + accent: text color becomes accent color */
+[style*='--accent-color'] .unbrn-textarea-container-duo .unbrn-textarea,
+[style*="--accent-color"] .unbrn-textarea-container-duo .unbrn-textarea {
+  color: var(--accent-color);
+}
+
+[style*='--accent-color'] .unbrn-textarea-container-duo .unbrn-textarea::placeholder,
+[style*="--accent-color"] .unbrn-textarea-container-duo .unbrn-textarea::placeholder {
+  color: color-mix(in srgb, var(--accent-color) 60%, transparent);
+}
+
+[style*='--accent-color'] .unbrn-textarea-container-duo .unbrn-textarea-count,
+[style*="--accent-color"] .unbrn-textarea-container-duo .unbrn-textarea-count,
+[style*='--accent-color'] .unbrn-textarea-container-duo .unbrn-textarea-drag,
+[style*="--accent-color"] .unbrn-textarea-container-duo .unbrn-textarea-drag {
+  color: var(--accent-color);
+}
+
+[style*='--accent-color'] .unbrn-textarea-container-duo:focus-within,
+[style*="--accent-color"] .unbrn-textarea-container-duo:focus-within {
+  background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
 }

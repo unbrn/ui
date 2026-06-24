@@ -113,8 +113,8 @@
 
 .showcase-card {
   background: rgba(255, 255, 255, 0.01);
-  backdrop-filter: blur(14px) saturate(110%);
   -webkit-backdrop-filter: blur(14px) saturate(110%);
+  backdrop-filter: blur(14px) saturate(110%);
   border: 1px solid var(--border-color);
   border-radius: 18px;
   padding: 1.25rem;

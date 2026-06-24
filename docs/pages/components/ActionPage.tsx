@@ -246,6 +246,58 @@ export default function Example() {
         </Showcase>
 
         <Showcase
+          title="Sizes"
+          description="Supports three visual sizes for dropdown items: sm, default, and lg."
+          code={`import { Action } from '@unbrn/ui/Action';
+import { Button } from '@unbrn/ui/Button';
+
+export default function Example() {
+  const items = [
+    { label: 'Settings', icon: <Settings size={14} /> },
+    { label: 'Sign Out', variant: 'destructive', icon: <LogOut size={14} /> }
+  ];
+
+  return (
+    <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+      <Action
+        actionSize="sm"
+        actionTrigger={<Button buttonVariant="outlined" buttonChildren="Small Items" />}
+        actionItems={items}
+      />
+      <Action
+        actionSize="default"
+        actionTrigger={<Button buttonVariant="outlined" buttonChildren="Default Items" />}
+        actionItems={items}
+      />
+      <Action
+        actionSize="lg"
+        actionTrigger={<Button buttonVariant="outlined" buttonChildren="Large Items" />}
+        actionItems={items}
+      />
+    </div>
+  );
+}`}
+        >
+          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', alignItems: 'center', padding: '2rem' }}>
+            <Action
+              actionSize="sm"
+              actionTrigger={<Button buttonVariant="outlined" buttonChildren="Small Items" />}
+              actionItems={baseItems}
+            />
+            <Action
+              actionSize="default"
+              actionTrigger={<Button buttonVariant="outlined" buttonChildren="Default Items" />}
+              actionItems={baseItems}
+            />
+            <Action
+              actionSize="lg"
+              actionTrigger={<Button buttonVariant="outlined" buttonChildren="Large Items" />}
+              actionItems={baseItems}
+            />
+          </div>
+        </Showcase>
+
+        <Showcase
           title="Dropdown Header & Footer"
           description="Supports built-in header and footer sections separated from action items with premium borders, ideal for user profile cards and settings actions."
           code={`import { Action } from '@unbrn/ui/Action';
@@ -363,8 +415,9 @@ export default function Example() {
           { name: 'children', type: 'ReactNode', description: 'Alternative to actionChildren for passing custom dropdown popover overlay content.' },
           { name: 'actionHeader', type: 'ReactNode', description: 'Optional header content rendered at the top of the dropdown, separated by a dividing line.' },
           { name: 'actionFooter', type: 'ReactNode', description: 'Optional footer content rendered at the bottom of the dropdown, separated by a dividing line.' },
-          { name: 'actionPosition', type: "'top' | 'bottom' | 'left' | 'right' | 'auto'", defaultValue: "'bottom'", description: 'Placement of the dropdown content relative to the trigger element.' },
+          { name: 'actionPosition', type: "'top' | 'bottom' | 'left' | 'right' | 'auto'", defaultValue: "'auto'", description: 'Placement of the dropdown content relative to the trigger element.' },
           { name: 'actionAlign', type: "'start' | 'center' | 'end'", defaultValue: "'center'", description: 'Alignment of the dropdown content relative to the trigger element.' },
+          { name: 'actionSize', type: "'sm' | 'default' | 'lg'", description: 'The visual size of the trigger button and dropdown items (dropdown items default to sm).' },
           { name: 'actionVisible', type: 'boolean', description: 'Explicit control visibility override (controlled mode).' },
           { name: 'actionOnVisibleChange', type: '(visible: boolean) => void', description: 'Callback triggered when dropdown visibility toggles.' },
           { name: 'actionDisabled', type: 'boolean', defaultValue: 'false', description: 'Disables triggering the dropdown menu.' },

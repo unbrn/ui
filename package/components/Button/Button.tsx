@@ -6,6 +6,7 @@ import React, { forwardRef, useState, useLayoutEffect, useRef } from 'react';
 import { Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import './Button.css';
+import '../../base.css';
 import { getAccentVariables } from '../../lib/colors';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

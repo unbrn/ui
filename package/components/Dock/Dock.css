@@ -163,6 +163,7 @@
   opacity: 0 !important;
   pointer-events: none !important;
   transition: all 0.5s var(--transition-curve);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   padding: 0;
   min-height: unset;

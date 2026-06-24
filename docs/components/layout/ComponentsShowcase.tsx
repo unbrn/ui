@@ -5,9 +5,6 @@ import { Button } from '../../../package/components/Button/Button';
 import { Avatar } from '../../../package/components/Avatar/Avatar';
 import { Badge } from '../../../package/components/Badge/Badge';
 import { VoiceAgent } from '../../../package/components/VoiceAgent/VoiceAgent';
-import { LumenBeam } from '../../../package/backgrounds/LumenBeam/LumenBeam';
-import { SatinFlow } from '../../../package/backgrounds/SatinFlow/SatinFlow';
-import { LiquidChrome } from '../../../package/backgrounds/LiquidChrome/LiquidChrome';
 import { CheckCircle2, ChevronDown } from 'lucide-react';
 
 export const ComponentCard = ({
@@ -478,19 +475,8 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       width: '100%',
       height: '100%',
       overflow: 'hidden',
-      background: '#000000'
-    }}>
-      <LumenBeam
-        topColor="#FFFFFF"
-        bottomColor="#000000"
-        intensity={1}
-        rotationSpeed={0.15}
-        beamRotation={60}
-        interactive={false}
-        beamWidth={6}
-        quality="high"
-      />
-    </div>
+      background: 'radial-gradient(ellipse 80% 60% at 50% 110%, #ffffff 0%, #555555 40%, #000000 100%)',
+    }} />
   ),
   "Satin Flow": (
     <div style={{
@@ -500,20 +486,9 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       width: '100%',
       height: '100%',
       overflow: 'hidden',
-      background: '#000000'
-    }}>
-      <SatinFlow
-        primaryColor="#FFFFFF"
-        secondaryColor="#000000"
-        speed={0.5}
-        scale={1.2}
-        density={1.0}
-        noiseIntensity={0.5}
-        rotation={0}
-        interactive={false}
-        quality="high"
-      />
-    </div>
+      background: 'repeating-linear-gradient(135deg, #ffffff 0%, #888888 25%, #000000 50%, #888888 75%, #ffffff 100%)',
+      backgroundSize: '200% 200%',
+    }} />
   ),
   "Liquid Chrome": (
     <div style={{
@@ -523,16 +498,7 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       width: '100%',
       height: '100%',
       overflow: 'hidden',
-    }}>
-      <LiquidChrome
-        speed={0.4}
-        amplitude={0.3}
-        frequency={0.2}
-        chromaticShift={0.25}
-        noiseIntensity={0.12}
-        interactive={false}
-        quality="high"
-      />
-    </div>
+      background: 'conic-gradient(from 180deg at 50% 50%, #ffffff 0deg, #888888 90deg, #111111 180deg, #888888 270deg, #ffffff 360deg)',
+    }} />
   )
 };

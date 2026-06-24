@@ -2,6 +2,7 @@
 
 import React, { forwardRef, useId } from 'react';
 import { cn } from '../../lib/utils';
+import { getAccentVariables } from '../../lib/colors';
 import './Input.css';
 
 export interface InputProps {
@@ -25,6 +26,7 @@ export interface InputProps {
   inputPlaceholder?: string;
   inputType?: string;
   inputReadOnly?: boolean;
+  inputAccentColor?: string;
   classNames?: {
     inputRoot?: string;
     inputContainer?: string;
@@ -73,12 +75,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       inputReadOnly,
       classNames,
       styles,
-      inputStyle
+      inputStyle,
+      inputAccentColor,
     },
     ref
   ) => {
     const generatedId = useId();
     const resolvedId = inputId || generatedId;
+    const accentStyle = getAccentVariables(inputAccentColor);
 
     return (
       <div
@@ -87,7 +91,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           inputFullWidth && "unbrn-input-full-width",
           classNames?.inputRoot
         )}
-        style={{ ...inputStyle, ...styles?.inputRoot }}
+        style={{ ...inputStyle, ...styles?.inputRoot, ...accentStyle }}
       >
         {inputLabel && (
           <label

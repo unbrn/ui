@@ -78,11 +78,14 @@ export default defineConfig(({ mode }) => {
           },
           preserveModules: true,
           preserveModulesRoot: 'package',
+          assetFileNames: 'styles.css',
         },
       },
       sourcemap: true,
       minify: true,
+      cssMinify: 'esbuild',
       copyPublicDir: false,
+      target: ['chrome90', 'firefox90', 'safari15', 'edge90'],
     } : {
       // Standard App build for the documentation site
       outDir: 'dist-docs',

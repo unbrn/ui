@@ -68,6 +68,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
             <img
               src={avatarSrc}
               alt={avatarAlt || 'Avatar'}
+              loading="lazy"
               className={cn("unbrn-avatar-img", classNames?.avatarImage)}
               style={styles?.avatarImage}
               onError={() => setHasError(true)}

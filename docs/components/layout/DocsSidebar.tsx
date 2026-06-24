@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import componentsMeta from '../../data/components.json';
 import backgroundsMeta from '../../data/backgrounds.json';
+import { isItemNew } from '../../lib/utils';
 
 const frameworks = [
   { id: 'nextjs', name: 'Next.js' },
@@ -43,13 +44,6 @@ export const DocsSidebar: React.FC = () => {
     a.name.localeCompare(b.name)
   );
 
-  const isComponentNew = (addedAtString: string) => {
-    const addedDate = new Date(addedAtString);
-    const currentDate = new Date();
-    const diffTime = currentDate.getTime() - addedDate.getTime();
-    const diffDays = diffTime / (1000 * 60 * 60 * 24);
-    return diffDays >= 0 && diffDays <= 5;
-  };
 
   return (
     <>
@@ -128,7 +122,7 @@ export const DocsSidebar: React.FC = () => {
                     }
                   >
                     {comp.name}
-                    {isComponentNew(comp.addedAt) && (
+                    {isItemNew(comp.addedAt) && (
                       <span className="sidebar-new-badge">NEW</span>
                     )}
                   </NavLink>
@@ -163,7 +157,7 @@ export const DocsSidebar: React.FC = () => {
                     }
                   >
                     {bg.name}
-                    {isComponentNew(bg.addedAt) && (
+                    {isItemNew(bg.addedAt) && (
                       <span className="sidebar-new-badge">NEW</span>
                     )}
                   </NavLink>

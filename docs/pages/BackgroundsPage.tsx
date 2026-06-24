@@ -1,17 +1,10 @@
 import React from 'react';
 import backgroundsMeta from '../data/backgrounds.json';
 import { ComponentCard, PREVIEWS } from '../components/layout/ComponentsShowcase';
+import { isItemNew } from '../lib/utils';
 
 export const BackgroundsPage: React.FC = () => {
   const sortedBackgrounds = [...backgroundsMeta].sort((a, b) => a.name.localeCompare(b.name));
-
-  const isBackgroundNew = (addedAtString: string) => {
-    const addedDate = new Date(addedAtString);
-    const currentDate = new Date();
-    const diffTime = currentDate.getTime() - addedDate.getTime();
-    const diffDays = diffTime / (1000 * 60 * 60 * 24);
-    return diffDays >= 0 && diffDays <= 5;
-  };
 
   return (
     <div className="components-page">
@@ -30,7 +23,7 @@ export const BackgroundsPage: React.FC = () => {
             description={bg.description}
             path={bg.path}
             preview={PREVIEWS[bg.name]}
-            isNew={isBackgroundNew(bg.addedAt)}
+            isNew={isItemNew(bg.addedAt)}
           />
         ))}
       </div>

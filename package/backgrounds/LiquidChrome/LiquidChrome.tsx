@@ -73,8 +73,7 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
     if (typeof window === 'undefined') return 'high';
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const isLowEndDevice = isMobile || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
-    if (isMobile) return 'high';
-    if (isLowEndDevice) return 'medium';
+    if (isMobile || isLowEndDevice) return 'medium';
     return 'high';
   }, [qualityProp]);
 

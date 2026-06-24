@@ -6,7 +6,7 @@
   border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   background-color: var(--bg-glass);
 }
 

@@ -414,33 +414,20 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
     }, [isOpen]);
 
     useEffect(() => {
-      const updatePosition = () => {
-        if (triggerRef.current) {
-          const rect = triggerRef.current.getBoundingClientRect();
-          const viewportHeight = window.innerHeight;
-          const popoverHeight = 320;
+      if (isOpen && triggerRef.current) {
+        const rect = triggerRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const popoverHeight = 320;
 
-          const spaceBelow = viewportHeight - rect.bottom;
-          const spaceAbove = rect.top;
+        const spaceBelow = viewportHeight - rect.bottom;
+        const spaceAbove = rect.top;
 
-          if (spaceBelow < popoverHeight && spaceAbove > spaceBelow) {
-            setPopoverPosition('top');
-          } else {
-            setPopoverPosition('bottom');
-          }
+        if (spaceBelow < popoverHeight && spaceAbove > spaceBelow) {
+          setPopoverPosition('top');
+        } else {
+          setPopoverPosition('bottom');
         }
-      };
-
-      if (isOpen) {
-        updatePosition();
-        window.addEventListener('scroll', updatePosition, true);
-        window.addEventListener('resize', updatePosition);
       }
-
-      return () => {
-        window.removeEventListener('scroll', updatePosition, true);
-        window.removeEventListener('resize', updatePosition);
-      };
     }, [isOpen]);
 
     const updateColor = (newColor: string) => {

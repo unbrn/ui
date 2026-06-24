@@ -7,8 +7,8 @@
   border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
   background-color: color-mix(in srgb, var(--bg-secondary) 30%, transparent);
   font-family: var(--font-sans);
-  margin-bottom: 1rem;
-  border-radius: var(--radius-xxl);
+  margin-top: 1rem;
+  border-radius: var(--radius-xl);
   transition: all var(--transition);
 }
 
@@ -53,6 +53,9 @@
 }
 
 .unbrn-alert-description {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   color: var(--text-muted);
   font-size: 0.85rem;
   line-height: 1.6;

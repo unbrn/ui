@@ -15,7 +15,7 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/ui.css",
+    "./styles.css": "./dist/styles.css",
     "./Accordion": {
       "types": "./dist/components/Accordion/Accordion.d.ts",
       "import": "./dist/components/Accordion/Accordion.mjs",

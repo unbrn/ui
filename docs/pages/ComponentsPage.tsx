@@ -1,23 +1,11 @@
 import React from 'react';
 import componentsMeta from '../data/components.json';
 import { ComponentCard, PREVIEWS } from '../components/layout/ComponentsShowcase';
+import { isItemNew } from '../lib/utils';
 
 export const ComponentsPage: React.FC = () => {
   
   const sortedComponents = [...componentsMeta].sort((a, b) => a.name.localeCompare(b.name));
-
-  const isComponentNew = (addedAtString: string) => {
-    const addedDate = new Date(addedAtString);
-    const currentDate = new Date();
-
-    
-    const diffTime = currentDate.getTime() - addedDate.getTime();
-    
-    const diffDays = diffTime / (1000 * 60 * 60 * 24);
-
-    
-    return diffDays >= 0 && diffDays <= 5;
-  };
 
   return (
     <div className="components-page">
@@ -36,7 +24,7 @@ export const ComponentsPage: React.FC = () => {
             description={comp.description}
             path={comp.path}
             preview={PREVIEWS[comp.name]}
-            isNew={isComponentNew(comp.addedAt)}
+            isNew={isItemNew(comp.addedAt)}
           />
         ))}
       </div>
