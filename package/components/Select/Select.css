@@ -31,6 +31,7 @@
   transition: all var(--transition);
   outline: none;
   border: 1px solid transparent;
+  gap: 0.75rem;
 }
 
 .unbrn-select-trigger:focus,
@@ -109,7 +110,7 @@
 .unbrn-select-trigger-lg {
   height: var(--height-lg);
   padding: 0 1.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   border-radius: var(--radius-lg);
 }
 
@@ -128,6 +129,8 @@
   text-overflow: ellipsis;
   min-width: 0;
   flex-grow: 1;
+  mask-image: linear-gradient(to right, black calc(100% - 1.5rem), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 1.5rem), transparent 100%);
 }
 
 .unbrn-select-chevron {
@@ -243,6 +246,7 @@
   color: var(--text-main);
   transition: all 0.2s var(--transition-curve);
   user-select: none;
+  gap: 0.75rem;
 }
 
 .unbrn-select-item-label {
@@ -250,6 +254,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
+  flex-grow: 1;
+  mask-image: linear-gradient(to right, black calc(100% - 1rem), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 1rem), transparent 100%);
 }
 
 .unbrn-select-item:hover:not(.unbrn-select-item-disabled) {
@@ -384,6 +391,16 @@
   font-size: inherit;
   color: inherit;
   outline: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, black calc(100% - 1.5rem), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 1.5rem), transparent 100%);
+}
+
+.unbrn-select-trigger-input:focus {
+  mask-image: none;
+  -webkit-mask-image: none;
 }
 
 .unbrn-select-trigger-input::placeholder {
