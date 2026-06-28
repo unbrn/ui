@@ -325,9 +325,6 @@
   transition: filter 0.3s var(--transition-curve);
 }
 
-.footer-logo:hover svg {
-  filter: drop-shadow(0 0 12px var(--accent-color));
-}
 
 .footer-description {
   font-size: 0.875rem;

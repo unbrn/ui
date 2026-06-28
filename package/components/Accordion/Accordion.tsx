@@ -93,14 +93,6 @@ export const Accordion: React.FC<AccordionProps> = ({
             style={styles?.accordionItem}
             data-state={isOpen ? 'open' : 'closed'}
           >
-            {item.accordionItemIcon && (
-              <span
-                className={cn("unbrn-accordion-leading-icon", classNames?.accordionLeadingIcon)}
-                style={styles?.accordionLeadingIcon}
-              >
-                {item.accordionItemIcon}
-              </span>
-            )}
             <button
               className={cn("unbrn-accordion-header", classNames?.accordionHeader)}
               style={styles?.accordionHeader}
@@ -108,8 +100,16 @@ export const Accordion: React.FC<AccordionProps> = ({
               aria-expanded={isOpen}
             >
               <div className="unbrn-accordion-header-content">
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                  <span className={cn(classNames?.accordionTitle)} style={styles?.accordionTitle}>
+                {item.accordionItemIcon && (
+                  <span
+                    className={cn("unbrn-accordion-leading-icon", classNames?.accordionLeadingIcon)}
+                    style={styles?.accordionLeadingIcon}
+                  >
+                    {item.accordionItemIcon}
+                  </span>
+                )}
+                <div className="unbrn-accordion-header-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                  <span className={cn("unbrn-accordion-title", classNames?.accordionTitle)} style={styles?.accordionTitle}>
                     {item.accordionItemTitle}
                   </span>
                   {item.accordionItemSubtitle && (
@@ -122,11 +122,13 @@ export const Accordion: React.FC<AccordionProps> = ({
                   )}
                 </div>
               </div>
-              <ChevronDown
-                className={cn("unbrn-accordion-icon", classNames?.accordionIcon)}
-                size={16}
-                style={styles?.accordionIcon}
-              />
+              <span className="unbrn-accordion-icon-container">
+                <ChevronDown
+                  className={cn("unbrn-accordion-icon", classNames?.accordionIcon)}
+                  size={16}
+                  style={styles?.accordionIcon}
+                />
+              </span>
             </button>
             <div
               className={cn("unbrn-accordion-content-wrapper", classNames?.accordionContent)}
