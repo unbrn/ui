@@ -1,4 +1,27 @@
+# AI Crawler Instructions: See https://ui.unbrn.tech/llms.txt for library details
 User-agent: *
+Allow: /
+
+# Explicitly allow AI search & training bots to read our site info
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
 Allow: /
 
 Sitemap: https://ui.unbrn.tech/sitemap.xml

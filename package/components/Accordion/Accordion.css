@@ -1,100 +1,96 @@
 .unbrn-accordion {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .unbrn-accordion-item {
   position: relative;
-  overflow: visible;
+  overflow: hidden;
+  transition: border-color var(--transition), background-color var(--transition);
 }
 
-.unbrn-accordion-outlined {
-  border-top: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
+/* ==========================================================================
+   Outlined Variant (Matches reference design)
+   ========================================================================== */
 .unbrn-accordion-outlined .unbrn-accordion-item {
-  border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
-  border-radius: var(--radius-xxl);
-  padding: 0 1.25rem;
-  background-color: color-mix(in srgb, var(--bg-secondary) 40%, transparent);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  background-color: color-mix(in srgb, var(--bg-secondary) 30%, var(--bg-glass));
 }
 
-.unbrn-accordion-outlined .unbrn-accordion-item:last-child {
-  border-bottom: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
+/* ==========================================================================
+   Duo Variant
+   ========================================================================== */
+.unbrn-accordion-duo .unbrn-accordion-item {
+  background-color: color-mix(in srgb, var(--accent-color) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 12%, transparent);
+  border-radius: var(--radius-xl);
 }
 
-.unbrn-accordion-outlined .unbrn-accordion-item[data-state="open"] {
-  border-color: var(--accent-color);
-  background-color: color-mix(in srgb, var(--accent-color) 4%, color-mix(in srgb, var(--bg-secondary) 40%, transparent));
+.unbrn-accordion-duo .unbrn-accordion-item[data-state="open"] {
+  background-color: color-mix(in srgb, var(--accent-color) 8%, transparent);
 }
 
-.unbrn-accordion-outlined .unbrn-accordion-item[data-state="open"] .unbrn-accordion-header {
-  color: var(--accent-color);
+/* ==========================================================================
+   Filled Variant
+   ========================================================================== */
+.unbrn-accordion-filled .unbrn-accordion-item {
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: var(--radius-xl);
+  color: var(--accent-text);
 }
 
+.unbrn-accordion-filled .unbrn-accordion-item[data-state="open"] {
+  background-color: color-mix(in srgb, var(--accent-color) 90%, black);
+}
+
+/* ==========================================================================
+   Header Elements & Layout
+   ========================================================================== */
 .unbrn-accordion-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 1.25rem 0;
+  padding: 1.5rem; /* Horizontal & vertical padding inside the card */
   background: transparent;
   border: none;
+  border-radius: 0;
   color: var(--text-main);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 700;
   text-align: left;
   cursor: pointer;
   outline: none;
-  transition: color 0.2s var(--transition-curve), transform 0.2s var(--transition-curve);
+  transition: border-color var(--transition), transform 0.2s var(--transition-curve);
   user-select: none;
+  position: relative;
 }
 
 .unbrn-accordion-header:active {
-  transform: scale(0.99);
+  transform: scale(0.995);
 }
 
 .unbrn-accordion-header-content {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
-.unbrn-accordion-leading-icon {
-  position: absolute;
-  left: 2.5rem;
-  top: 0;
-  transform: translate(-50%, -50%);
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+.unbrn-accordion-header-text {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  z-index: 2;
-  transition: all var(--transition);
-  background-color: var(--bg-main);
-  border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
-  box-shadow: 0 0 0 1px var(--bg-main);
-  color: var(--accent-color);
-  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.unbrn-accordion-leading-icon svg {
-  width: 20px !important;
-  height: 20px !important;
-}
-
-.unbrn-accordion-item[data-state="open"] .unbrn-accordion-leading-icon {
-  border-color: var(--accent-color);
-}
-
-.unbrn-accordion-header:hover {
-  color: var(--accent-color);
+.unbrn-accordion-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.4;
+  transition: color var(--transition);
 }
 
 .unbrn-accordion-subtitle {
@@ -102,19 +98,145 @@
   color: var(--text-muted);
   font-weight: 400;
   margin-top: 0.25rem;
+  line-height: 1.4;
   display: block;
 }
 
-.unbrn-accordion-icon {
+/* Filled Variant Text Adjustments */
+.unbrn-accordion-filled .unbrn-accordion-header {
+  color: var(--accent-text);
+}
+.unbrn-accordion-filled .unbrn-accordion-title {
+  color: var(--accent-text);
+}
+.unbrn-accordion-filled .unbrn-accordion-subtitle {
+  color: var(--accent-text);
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   Leading Icon
+   ========================================================================== */
+.unbrn-accordion-leading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 5px;
+  color: var(--text-main);
+  flex-shrink: 0;
+  transition: color var(--transition);
+}
+
+.unbrn-accordion-leading-icon svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* Variant Specific Leading Icon Colors */
+.unbrn-accordion-filled .unbrn-accordion-leading-icon {
+  color: var(--accent-text);
+}
+
+/* ==========================================================================
+   Chevron / Icon Container (Matches reference design)
+   ========================================================================== */
+.unbrn-accordion-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+  
+  /* Collapsed State: Dark transparent background with thin border */
+  background-color: color-mix(in srgb, var(--bg-secondary) 50%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
   color: var(--text-muted);
-  transition: transform 0.4s var(--transition-curve), color 0.2s var(--transition-curve);
+}
+
+.unbrn-accordion-icon {
+  transition: transform 0.4s var(--transition-curve), color var(--transition);
+}
+
+/* Expanded State for Chevron Button */
+.unbrn-accordion-item[data-state="open"] .unbrn-accordion-icon-container {
+  background-color: var(--text-main);
+  border-color: var(--text-main);
+  color: var(--bg-main);
 }
 
 .unbrn-accordion-item[data-state="open"] .unbrn-accordion-icon {
   transform: rotate(180deg);
+}
+
+/* Hover States for Interactive Feel */
+.unbrn-accordion-header:hover .unbrn-accordion-icon-container {
+  border-color: var(--text-main);
+  color: var(--text-main);
+  background-color: color-mix(in srgb, var(--text-main) 8%, transparent);
+}
+
+.unbrn-accordion-item[data-state="open"] .unbrn-accordion-header:hover .unbrn-accordion-icon-container {
+  background-color: var(--text-main);
+  border-color: var(--text-main);
+  opacity: 0.9;
+  color: var(--bg-main);
+}
+
+/* Filled Variant Chevron Adjustments */
+.unbrn-accordion-filled .unbrn-accordion-icon-container {
+  background-color: color-mix(in srgb, var(--accent-text) 15%, transparent);
+  border-color: color-mix(in srgb, var(--accent-text) 25%, transparent);
+  color: var(--accent-text);
+}
+
+.unbrn-accordion-filled .unbrn-accordion-header:hover .unbrn-accordion-icon-container {
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+  background-color: color-mix(in srgb, var(--accent-text) 25%, transparent);
+}
+
+.unbrn-accordion-filled .unbrn-accordion-item[data-state="open"] .unbrn-accordion-icon-container {
+  background-color: var(--accent-text);
+  border-color: var(--accent-text);
   color: var(--accent-color);
 }
 
+.unbrn-accordion-filled .unbrn-accordion-item[data-state="open"] .unbrn-accordion-header:hover .unbrn-accordion-icon-container {
+  background-color: var(--accent-text);
+  border-color: var(--accent-text);
+  opacity: 0.9;
+  color: var(--accent-color);
+}
+
+/* ==========================================================================
+   Divider Line (Expanded State)
+   ========================================================================== */
+.unbrn-accordion-item[data-state="open"] .unbrn-accordion-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background-color: color-mix(in srgb, var(--border-color) 60%, transparent);
+}
+
+.unbrn-accordion-duo .unbrn-accordion-item[data-state="open"] .unbrn-accordion-header::after {
+  background-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
+}
+
+.unbrn-accordion-filled .unbrn-accordion-item[data-state="open"] .unbrn-accordion-header::after {
+  background-color: color-mix(in srgb, var(--accent-text) 20%, transparent);
+}
+
+/* ==========================================================================
+   Content Transitions & Spacing
+   ========================================================================== */
 .unbrn-accordion-content-wrapper {
   display: grid;
   grid-template-rows: 0fr;
@@ -131,92 +253,14 @@
   font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--text-muted);
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
-.unbrn-accordion-content-inner {
-  padding-bottom: 1.5rem;
-}
-
-.unbrn-accordion-duo {
-  border-top: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.unbrn-accordion-duo .unbrn-accordion-item {
-  background-color: color-mix(in srgb, var(--accent-color) 8%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent-color) 15%, transparent);
-  border-radius: var(--radius-xxl);
-  padding: 0 1.25rem;
-}
-
-.unbrn-accordion-duo .unbrn-accordion-item[data-state="open"] {
-  border-color: var(--accent-color);
-  background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
-}
-
-.unbrn-accordion-duo .unbrn-accordion-item[data-state="open"] .unbrn-accordion-header {
-  color: var(--accent-color);
-}
-
-.unbrn-accordion-filled {
-  border-top: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.unbrn-accordion-filled .unbrn-accordion-item {
-  background-color: var(--accent-color);
-  border: 1px solid var(--accent-color);
-  border-radius: var(--radius-xxl);
-  padding: 0 1.25rem;
+.unbrn-accordion-filled .unbrn-accordion-content {
   color: var(--accent-text);
-}
-
-.unbrn-accordion-filled .unbrn-accordion-header {
-  color: var(--accent-text);
-}
-
-.unbrn-accordion-filled .unbrn-accordion-icon,
-.unbrn-accordion-filled .unbrn-accordion-subtitle,
-.unbrn-accordion-filled .unbrn-accordion-content,
-.unbrn-accordion-filled .unbrn-accordion-leading-icon {
-  color: var(--accent-text);
-}
-
-.unbrn-accordion-filled .unbrn-accordion-content,
-.unbrn-accordion-filled .unbrn-accordion-subtitle {
   opacity: 0.8;
 }
 
-.unbrn-accordion-filled .unbrn-accordion-item[data-state="open"] {
-  background-color: color-mix(in srgb, var(--accent-color) 90%, black);
-}
-
-.unbrn-accordion-item-has-icon .unbrn-accordion-header {
-  padding-top: 2.25rem;
-}
-
-.unbrn-accordion-duo .unbrn-accordion-leading-icon {
-  background-color: color-mix(in srgb, var(--accent-color) 8%, var(--bg-main));
-  border-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
-}
-
-.unbrn-accordion-duo .unbrn-accordion-item[data-state="open"] .unbrn-accordion-leading-icon {
-  background-color: color-mix(in srgb, var(--accent-color) 12%, var(--bg-main));
-  border-color: var(--accent-color);
-}
-
-.unbrn-accordion-filled .unbrn-accordion-leading-icon {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
-  color: var(--accent-text) !important;
-}
-
-.unbrn-accordion-filled .unbrn-accordion-item[data-state="open"] .unbrn-accordion-leading-icon {
-  background-color: color-mix(in srgb, var(--accent-color) 90%, black);
-  border-color: color-mix(in srgb, var(--accent-color) 90%, black);
+.unbrn-accordion-content-inner {
+  padding: 1.25rem 1.5rem 1.5rem 1.5rem; /* Matches header horizontal padding */
 }

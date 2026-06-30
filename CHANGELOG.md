@@ -2,6 +2,10 @@
 
 All notable changes to @unbrn/ui will be documented in this file.
 
+## [2.0.3] - 2026-06-30
+### Features & Refinements
+- **Redesigned Alert and Accordion Components**: Overhauled the visual design and layouts of `Alert` and `Accordion` components for improved aesthetics and usability.
+
 ## [2.0.2] - 2026-06-25
 ### Features & Refinements
 - **Select Menu Overflow Handling**: Implemented horizontal fading masks (`mask-image`) for long text option labels, input text, and trigger values.

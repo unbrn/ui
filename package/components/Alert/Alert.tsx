@@ -64,7 +64,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
           classNames?.alertRoot
         )}
       >
-        <div className="unbrn-alert-header">
+        <div className="unbrn-alert-content-wrapper">
           {alertIcon && (
             <div
               className={cn("unbrn-alert-icon", classNames?.alertIcon)}
@@ -73,21 +73,23 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
               {alertIcon}
             </div>
           )}
-          <div
-            className={cn("unbrn-alert-title", classNames?.alertTitle)}
-            style={styles?.alertTitle}
-          >
-            {alertTitle}
+          <div className="unbrn-alert-text-wrapper">
+            <div
+              className={cn("unbrn-alert-title", classNames?.alertTitle)}
+              style={styles?.alertTitle}
+            >
+              {alertTitle}
+            </div>
+            {alertDescription && (
+              <div
+                className={cn("unbrn-alert-description", classNames?.alertDescription)}
+                style={styles?.alertDescription}
+              >
+                {alertDescription}
+              </div>
+            )}
           </div>
         </div>
-        {alertDescription && (
-          <div
-            className={cn("unbrn-alert-description", classNames?.alertDescription)}
-            style={styles?.alertDescription}
-          >
-            {alertDescription}
-          </div>
-        )}
         {alertActions && (
           <div
             className={cn("unbrn-alert-actions", classNames?.alertActions)}
