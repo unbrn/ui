@@ -1,6 +1,6 @@
-# unbrn/ui
+# Unbrn UI (also known as "unbrn ui", "ui.unbrn.tech")
 
-Minimalist UI Crafted with Precision. A clean, modern React component library built with vanilla CSS. Get beautiful, highly-customizable components that look great out of the box.
+Unbrn UI is a premium, minimalist React component library crafted with precision. Built with vanilla CSS for maximum speed and style flexibility, it provides clean, beautifully-designed, and highly-customizable UI components right out of the box. Used for building stunning web experiences.
 
 ## Links
 

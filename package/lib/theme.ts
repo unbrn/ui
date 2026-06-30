@@ -38,24 +38,4 @@ export const applyTheme = (theme: ThemeConfig, element?: HTMLElement) => {
   if (theme.accentText) el.style.setProperty('--accent-text', theme.accentText);
 };
 
-/**
- * Reset and remove any dynamically set custom theme variables.
- */
-export const resetTheme = (element?: HTMLElement) => {
-  if (typeof window === 'undefined') return;
-  const el = element || document.documentElement;
 
-  const vars = [
-    '--bg-main',
-    '--bg-secondary',
-    '--border-color',
-    '--text-main',
-    '--text-muted',
-    '--bg-glass',
-    '--radius',
-    '--accent-color',
-    '--accent-text',
-  ];
-
-  vars.forEach(v => el.style.removeProperty(v));
-};

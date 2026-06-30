@@ -72,7 +72,30 @@ fs.writeFileSync(path.join(distDocsDir, 'sitemap.xml'), sitemapXml, 'utf-8');
 console.log(`- Generated sitemap.xml with ${urls.length} URLs in: ${path.join(distDocsDir, 'sitemap.xml')}`);
 
 // Generate robots.txt
-const robotsTxt = `User-agent: *
+const robotsTxt = `# AI Crawler Instructions: See ${domain}/llms.txt for library details
+User-agent: *
+Allow: /
+
+# Explicitly allow AI search & training bots to read our site info
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
 Allow: /
 
 Sitemap: ${domain}/sitemap.xml
