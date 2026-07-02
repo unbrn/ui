@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, GitBranch } from 'lucide-react';
 import { Button } from '../../package/components/Button/Button';
-import { Footer } from '../../../unbrn/src/components/Footer';
+import { Footer } from '../components/layout/Footer';
 import './HomePage.css';
 
 export const HomePage: React.FC = () => {

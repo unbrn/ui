@@ -1,7 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate, useParams, useNavigate } from 'react-router-dom';
 import './App.css';
-import { Header } from '../../unbrn/src/components/Header';
+import { Header } from './components/layout/Header';
 import { DocsLayout } from './components/layout/DocsLayout';
 import { Button } from '../package/components/Button/Button';
 import { Input } from '../package/components/Input/Input';
