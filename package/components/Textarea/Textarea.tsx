@@ -6,86 +6,86 @@ import { getAccentVariables } from '../../lib/colors';
 import './Textarea.css';
 
 export interface TextareaProps {
-  textareaLabel?: React.ReactNode;
-  textareaDescription?: React.ReactNode;
-  textareaError?: string;
-  textareaVariant?: 'filled' | 'outlined' | 'duo';
-  textareaFullWidth?: boolean;
-  textareaShowCount?: boolean;
-  textareaDisabled?: boolean;
-  textareaId?: string;
-  textareaMaxLength?: number;
-  textareaValue?: string;
-  textareaDefaultValue?: string;
-  textareaOnChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  textareaPlaceholder?: string;
-  textareaClassName?: string;
-  textareaStyle?: React.CSSProperties;
-  textareaAccentColor?: string;
+  label?: React.ReactNode;
+  description?: React.ReactNode;
+  error?: string;
+  variant?: 'filled' | 'outlined' | 'duo';
+  fullWidth?: boolean;
+  showCount?: boolean;
+  disabled?: boolean;
+  id?: string;
+  maxLength?: number;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  placeholder?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  accentColor?: string;
   classNames?: {
-    textareaRoot?: string;
-    textareaContainer?: string;
-    textareaElement?: string;
-    textareaLabel?: string;
-    textareaDescription?: string;
-    textareaError?: string;
-    textareaFooter?: string;
-    textareaCount?: string;
-    textareaDragIndicator?: string;
+    root?: string;
+    container?: string;
+    element?: string;
+    label?: string;
+    description?: string;
+    error?: string;
+    footer?: string;
+    count?: string;
+    dragIndicator?: string;
   };
   styles?: {
-    textareaRoot?: React.CSSProperties;
-    textareaContainer?: React.CSSProperties;
-    textareaElement?: React.CSSProperties;
-    textareaLabel?: React.CSSProperties;
-    textareaDescription?: React.CSSProperties;
-    textareaError?: React.CSSProperties;
-    textareaFooter?: React.CSSProperties;
-    textareaCount?: React.CSSProperties;
-    textareaDragIndicator?: React.CSSProperties;
+    root?: React.CSSProperties;
+    container?: React.CSSProperties;
+    element?: React.CSSProperties;
+    label?: React.CSSProperties;
+    description?: React.CSSProperties;
+    error?: React.CSSProperties;
+    footer?: React.CSSProperties;
+    count?: React.CSSProperties;
+    dragIndicator?: React.CSSProperties;
   };
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
-      textareaClassName,
-      textareaStyle,
-      textareaLabel,
-      textareaDescription,
-      textareaError,
-      textareaVariant = 'filled',
-      textareaFullWidth = false,
-      textareaShowCount = false,
-      textareaDisabled,
-      textareaId: customId,
-      textareaMaxLength,
-      textareaValue,
-      textareaDefaultValue,
-      textareaOnChange,
-      textareaPlaceholder,
+      className,
+      style,
+      label,
+      description,
+      error,
+      variant = 'filled',
+      fullWidth = false,
+      showCount = false,
+      disabled,
+      id: customId,
+      maxLength,
+      value,
+      defaultValue,
+      onChange,
+      placeholder,
       classNames,
       styles,
-      textareaAccentColor,
+      accentColor,
     },
     ref
   ) => {
     const generatedId = useId();
-    const textareaId = customId || generatedId;
+    const id = customId || generatedId;
     const containerRef = React.useRef<HTMLDivElement>(null);
-    const accentStyle = getAccentVariables(textareaAccentColor);
+    const accentStyle = getAccentVariables(accentColor);
 
     const [currentLength, setCurrentLength] = React.useState(
-      (textareaValue?.toString() || textareaDefaultValue?.toString() || "").length
+      (value?.toString() || defaultValue?.toString() || "").length
     );
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       setCurrentLength(e.target.value.length);
-      textareaOnChange?.(e);
+      onChange?.(e);
     };
 
     const handleResizeStart = (e: React.MouseEvent | React.TouchEvent) => {
-      if (textareaDisabled) return;
+      if (disabled) return;
 
       const isTouch = 'touches' in e;
       const startY = isTouch ? e.touches[0].pageY : e.pageY;
@@ -123,18 +123,18 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       <div
         className={cn(
           "unbrn-textarea-root",
-          textareaFullWidth && "unbrn-textarea-full-width",
-          classNames?.textareaRoot
+          fullWidth && "unbrn-textarea-full-width",
+          classNames?.root
         )}
-        style={{ ...textareaStyle, ...styles?.textareaRoot, ...accentStyle }}
+        style={{ ...style, ...styles?.root, ...accentStyle }}
       >
-        {textareaLabel && (
+        {label && (
           <label
-            htmlFor={textareaId}
-            className={cn("unbrn-textarea-label", classNames?.textareaLabel)}
-            style={styles?.textareaLabel}
+            htmlFor={id}
+            className={cn("unbrn-textarea-label", classNames?.label)}
+            style={styles?.label}
           >
-            {textareaLabel}
+            {label}
           </label>
         )}
 
@@ -142,43 +142,43 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={containerRef}
           className={cn(
             "unbrn-textarea-container",
-            `unbrn-textarea-container-${textareaVariant}`,
-            (textareaVariant === 'outlined' || textareaVariant === 'duo') && 'unbrn-glass',
-            textareaError && "unbrn-textarea-container-error",
-            textareaDisabled && "unbrn-textarea-container-disabled",
-            classNames?.textareaContainer
+            `unbrn-textarea-container-${variant}`,
+            (variant === 'outlined' || variant === 'duo') && 'unbrn-glass',
+            error && "unbrn-textarea-container-error",
+            disabled && "unbrn-textarea-container-disabled",
+            classNames?.container
           )}
-          style={styles?.textareaContainer}
+          style={styles?.container}
         >
           <textarea
             ref={ref}
-            id={textareaId}
-            disabled={textareaDisabled}
-            maxLength={textareaMaxLength}
+            id={id}
+            disabled={disabled}
+            maxLength={maxLength}
             onChange={handleChange}
-            value={textareaValue}
-            defaultValue={textareaDefaultValue}
-            placeholder={textareaPlaceholder}
+            value={value}
+            defaultValue={defaultValue}
+            placeholder={placeholder}
             className={cn(
               "unbrn-textarea",
-              textareaClassName,
-              classNames?.textareaElement
+              className,
+              classNames?.element
             )}
-            style={styles?.textareaElement}
+            style={styles?.element}
           />
 
-          <div className={cn("unbrn-textarea-footer", classNames?.textareaFooter)} style={styles?.textareaFooter}>
-            <div className={cn("unbrn-textarea-count", classNames?.textareaCount)} style={styles?.textareaCount}>
-              {textareaShowCount && (
+          <div className={cn("unbrn-textarea-footer", classNames?.footer)} style={styles?.footer}>
+            <div className={cn("unbrn-textarea-count", classNames?.count)} style={styles?.count}>
+              {showCount && (
                 <>
-                  {currentLength}{textareaMaxLength ? `/${textareaMaxLength}` : ''}
+                  {currentLength}{maxLength ? `/${maxLength}` : ''}
                 </>
               )}
             </div>
 
             <div
-              className={cn("unbrn-textarea-drag", classNames?.textareaDragIndicator)}
-              style={styles?.textareaDragIndicator}
+              className={cn("unbrn-textarea-drag", classNames?.dragIndicator)}
+              style={styles?.dragIndicator}
               onMouseDown={handleResizeStart}
               onTouchStart={handleResizeStart}
             >
@@ -188,21 +188,21 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           </div>
         </div>
 
-        {textareaDescription && !textareaError && (
+        {description && !error && (
           <p
-            className={cn("unbrn-textarea-description", classNames?.textareaDescription)}
-            style={styles?.textareaDescription}
+            className={cn("unbrn-textarea-description", classNames?.description)}
+            style={styles?.description}
           >
-            {textareaDescription}
+            {description}
           </p>
         )}
 
-        {textareaError && (
+        {error && (
           <span
-            className={cn("unbrn-textarea-error-message", classNames?.textareaError)}
-            style={styles?.textareaError}
+            className={cn("unbrn-textarea-error-message", classNames?.error)}
+            style={styles?.error}
           >
-            {textareaError}
+            {error}
           </span>
         )}
       </div>

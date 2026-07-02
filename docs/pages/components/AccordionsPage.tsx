@@ -18,31 +18,31 @@ import { Settings } from 'lucide-react';
 
 const items = [
   {
-    accordionItemId: '1',
-    accordionItemTitle: 'General Settings',
-    accordionItemSubtitle: 'Core application preferences',
-    accordionItemContent: 'Configure your themes, notifications, and language settings here.',
-    accordionItemIcon: <Settings size={16} />
+    id: '1',
+    title: 'General Settings',
+    subtitle: 'Core application preferences',
+    content: 'Configure your themes, notifications, and language settings here.',
+    icon: <Settings size={16} />
   }
 ];
 
 export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
-      <Accordion accordionItems={items} />
+      <Accordion items={items} />
     </div>
   );
 }`}
       >
         <div style={{ width: '100%', maxWidth: '600px' }}>
           <Accordion
-            accordionItems={[
+            items={[
               {
-                accordionItemId: '1',
-                accordionItemTitle: 'General Settings',
-                accordionItemSubtitle: 'Core application preferences',
-                accordionItemContent: 'Configure your themes, notifications, and language settings here.',
-                accordionItemIcon: <Settings size={16} />
+                id: '1',
+                title: 'General Settings',
+                subtitle: 'Core application preferences',
+                content: 'Configure your themes, notifications, and language settings here.',
+                icon: <Settings size={16} />
               }
             ]}
           />
@@ -52,15 +52,15 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { Accordion } from '@unbrn/ui/Accordion';
+          language="tsx"
+          code={`import { Accordion } from '@unbrn/ui/Accordion';
 
 const items = [
-  { accordionItemId: '1', accordionItemTitle: 'Section 1', accordionItemContent: 'Content 1' },
+  { id: '1', title: 'Section 1', content: 'Content 1' },
 ];
 
 export default function Example() {
-  return <Accordion accordionItems={items} />;
+  return <Accordion items={items} />;
 }`}
         />
       </div>
@@ -77,16 +77,16 @@ export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '600px' }}>
       <Accordion
-        accordionVariant="outlined"
-        accordionItems={[{ accordionItemId: 'v2', accordionItemTitle: 'Outlined Variant', accordionItemContent: 'Each item has a distinct border and bezel.' }]}
+        variant="outlined"
+        items={[{ id: 'v2', title: 'Outlined Variant', content: 'Each item has a distinct border and bezel.' }]}
       />
       <Accordion
-        accordionVariant="duo"
-        accordionItems={[{ accordionItemId: 'v3', accordionItemTitle: 'Duo Variant', accordionItemContent: 'A softer, tinted look using system colors.' }]}
+        variant="duo"
+        items={[{ id: 'v3', title: 'Duo Variant', content: 'A softer, tinted look using system colors.' }]}
       />
       <Accordion
-        accordionVariant="filled"
-        accordionItems={[{ accordionItemId: 'v4', accordionItemTitle: 'Filled Variant', accordionItemContent: 'A bold, solid background look with tactile bezel.' }]}
+        variant="filled"
+        items={[{ id: 'v4', title: 'Filled Variant', content: 'A bold, solid background look with tactile bezel.' }]}
       />
     </div>
   );
@@ -94,16 +94,16 @@ export default function Example() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '600px' }}>
             <Accordion
-              accordionVariant="outlined"
-              accordionItems={[{ accordionItemId: 'v2', accordionItemTitle: 'Outlined Variant', accordionItemContent: 'Each item has a distinct border and bezel.' }]}
+              variant="outlined"
+              items={[{ id: 'v2', title: 'Outlined Variant', content: 'Each item has a distinct border and bezel.' }]}
             />
             <Accordion
-              accordionVariant="duo"
-              accordionItems={[{ accordionItemId: 'v3', accordionItemTitle: 'Duo Variant', accordionItemContent: 'A softer, tinted look using system colors.' }]}
+              variant="duo"
+              items={[{ id: 'v3', title: 'Duo Variant', content: 'A softer, tinted look using system colors.' }]}
             />
             <Accordion
-              accordionVariant="filled"
-              accordionItems={[{ accordionItemId: 'v4', accordionItemTitle: 'Filled Variant', accordionItemContent: 'A bold, solid background look with tactile bezel.' }]}
+              variant="filled"
+              items={[{ id: 'v4', title: 'Filled Variant', content: 'A bold, solid background look with tactile bezel.' }]}
             />
           </div>
         </Showcase>
@@ -116,45 +116,45 @@ import { Shield, Zap } from 'lucide-react';
 
 const items = [
   {
-    accordionItemId: 's1',
-    accordionItemTitle: 'Security & Privacy',
-    accordionItemSubtitle: 'Manage encryption and data sharing',
-    accordionItemContent: 'Configure how your data is handled across the platform.',
-    accordionItemIcon: <Shield size={16} />
+    id: 's1',
+    title: 'Security & Privacy',
+    subtitle: 'Manage encryption and data sharing',
+    content: 'Configure how your data is handled across the platform.',
+    icon: <Shield size={16} />
   },
   {
-    accordionItemId: 's2',
-    accordionItemTitle: 'Messages',
-    accordionItemSubtitle: 'Recent conversations',
-    accordionItemContent: 'Your inbox is empty.',
-    accordionItemIcon: <Zap size={16} />
+    id: 's2',
+    title: 'Messages',
+    subtitle: 'Recent conversations',
+    content: 'Your inbox is empty.',
+    icon: <Zap size={16} />
   }
 ];
 
 export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
-      <Accordion accordionItems={items} />
+      <Accordion items={items} />
     </div>
   );
 }`}
         >
           <div style={{ width: '100%', maxWidth: '600px' }}>
             <Accordion
-              accordionItems={[
+              items={[
                 {
-                  accordionItemId: 's1',
-                  accordionItemTitle: 'Security & Privacy',
-                  accordionItemSubtitle: 'Manage encryption and data sharing',
-                  accordionItemContent: 'Configure how your data is handled across the platform.',
-                  accordionItemIcon: <Shield size={16} />
+                  id: 's1',
+                  title: 'Security & Privacy',
+                  subtitle: 'Manage encryption and data sharing',
+                  content: 'Configure how your data is handled across the platform.',
+                  icon: <Shield size={16} />
                 },
                 {
-                  accordionItemId: 's2',
-                  accordionItemTitle: 'Messages',
-                  accordionItemSubtitle: 'Recent conversations',
-                  accordionItemContent: 'Your inbox is empty.',
-                  accordionItemIcon: <Zap size={16} />
+                  id: 's2',
+                  title: 'Messages',
+                  subtitle: 'Recent conversations',
+                  content: 'Your inbox is empty.',
+                  icon: <Zap size={16} />
                 }
               ]}
             />
@@ -167,24 +167,24 @@ export default function Example() {
           code={`import { Accordion } from '@unbrn/ui/Accordion';
 
 const items = [
-  { accordionItemId: 'm1', accordionItemTitle: 'Independent Item A', accordionItemContent: 'You can open this...' },
-  { accordionItemId: 'm2', accordionItemTitle: 'Independent Item B', accordionItemContent: '...and this at the same time.' }
+  { id: 'm1', title: 'Independent Item A', content: 'You can open this...' },
+  { id: 'm2', title: 'Independent Item B', content: '...and this at the same time.' }
 ];
 
 export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
-      <Accordion accordionAllowMultiple accordionItems={items} />
+      <Accordion allowMultiple items={items} />
     </div>
   );
 }`}
         >
           <div style={{ width: '100%', maxWidth: '600px' }}>
             <Accordion
-              accordionAllowMultiple
-              accordionItems={[
-                { accordionItemId: 'm1', accordionItemTitle: 'Independent Item A', accordionItemContent: 'You can open this...' },
-                { accordionItemId: 'm2', accordionItemTitle: 'Independent Item B', accordionItemContent: '...and this at the same time.' }
+              allowMultiple
+              items={[
+                { id: 'm1', title: 'Independent Item A', content: 'You can open this...' },
+                { id: 'm2', title: 'Independent Item B', content: '...and this at the same time.' }
               ]}
             />
           </div>
@@ -194,43 +194,43 @@ export default function Example() {
       <Props
         title="Accordion Props"
         props={[
-          { name: 'accordionItems', type: 'AccordionItemProps[]', required: true, description: 'List of accordion items with text, subtitle, and icons.' },
-          { name: 'accordionAllowMultiple', type: 'boolean', defaultValue: 'false', description: 'Allow opening more than one item at once.' },
-          { name: 'accordionVariant', type: "'outlined' | 'duo' | 'filled'", defaultValue: "'outlined'", description: 'The style of the accordion.' },
-          { name: 'accordionAccentColor', type: 'string', description: 'Custom color for borders and highlights.' },
-          { name: 'accordionClassName', type: 'string', description: 'Custom CSS class for the root container.' },
-          { name: 'accordionStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'items', type: 'AccordionItemProps[]', required: true, description: 'List of accordion items with text, subtitle, and icons.' },
+          { name: 'allowMultiple', type: 'boolean', defaultValue: 'false', description: 'Allow opening more than one item at once.' },
+          { name: 'variant', type: "'outlined' | 'duo' | 'filled'", defaultValue: "'outlined'", description: 'The style of the accordion.' },
+          { name: 'accentColor', type: 'string', description: 'Custom color for borders and highlights.' },
+          { name: 'className', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'style', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the accordion (prefixed with accordion).' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with accordion).' },
         ]}
         stylingTargets={[
-          { name: 'accordionRoot', description: 'Styles the outer wrapper of the entire accordion group.' },
-          { name: 'accordionItem', description: 'Styles the container of a single accordion item.' },
-          { name: 'accordionHeader', description: 'Styles the header button containing the title, subtitle, and chevron.' },
-          { name: 'accordionLeadingIcon', description: 'Styles the optional icon on the left of the title.' },
-          { name: 'accordionTitle', description: 'Styles the main title text.' },
-          { name: 'accordionSubtitle', description: 'Styles the subtitle text.' },
-          { name: 'accordionIcon', description: 'Styles the wrapper containing the expand/collapse chevron.' },
-          { name: 'accordionContent', description: 'Styles the expandable content panel.' },
+          { name: 'root', description: 'Styles the outer wrapper of the entire accordion group.' },
+          { name: 'item', description: 'Styles the container of a single accordion item.' },
+          { name: 'header', description: 'Styles the header button containing the title, subtitle, and chevron.' },
+          { name: 'leadingIcon', description: 'Styles the optional icon on the left of the title.' },
+          { name: 'title', description: 'Styles the main title text.' },
+          { name: 'subtitle', description: 'Styles the subtitle text.' },
+          { name: 'icon', description: 'Styles the wrapper containing the expand/collapse chevron.' },
+          { name: 'content', description: 'Styles the expandable content panel.' },
         ]}
-        stylingStructure={`accordionRoot
- ├── accordionItem
-      ├── accordionHeader
-      │    ├── accordionLeadingIcon
-      │    ├── accordionTitle
-      │    ├── accordionSubtitle
-      │    └── accordionIcon
-      └── accordionContent`}
+        stylingStructure={`root
+ ├── item
+      ├── header
+      │    ├── leadingIcon
+      │    ├── title
+      │    ├── subtitle
+      │    └── icon
+      └── content`}
       />
 
       <Props
         title="AccordionItem Props"
         props={[
-          { name: 'accordionItemId', type: 'string', required: true, description: 'Unique identifier for the item (used to control state).' },
-          { name: 'accordionItemTitle', type: 'string', required: true, description: 'Main text heading of the item.' },
-          { name: 'accordionItemSubtitle', type: 'string', description: 'Helper subtitle text shown below title.' },
-          { name: 'accordionItemIcon', type: 'ReactNode', description: 'An optional leading icon shown to the left of the title.' },
-          { name: 'accordionItemContent', type: 'ReactNode', required: true, description: 'The content rendered inside the expanded panel.' },
+          { name: 'id', type: 'string', required: true, description: 'Unique identifier for the item (used to control state).' },
+          { name: 'title', type: 'string', required: true, description: 'Main text heading of the item.' },
+          { name: 'subtitle', type: 'string', description: 'Helper subtitle text shown below title.' },
+          { name: 'icon', type: 'ReactNode', description: 'An optional leading icon shown to the left of the title.' },
+          { name: 'content', type: 'ReactNode', required: true, description: 'The content rendered inside the expanded panel.' },
         ]}
       />
     </>

@@ -1,34 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Input } from '../../../package/components/Input/Input';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
 import { Mail, Lock, User, Search } from 'lucide-react';
 import { ComponentHeader } from '../../components/layout/ComponentHeader';
-
-const InteractiveProgressiveInput = () => {
-  const [password, setPassword] = useState('');
-
-  const getProgress = (val: string): 0 | 1 | 2 | 3 => {
-    if (!val) return 0;
-    if (val.length < 5) return 1;
-    if (val.length < 8) return 2;
-    return 3;
-  };
-
-  return (
-    <div style={{ width: '100%', maxWidth: '400px' }}>
-      <Input
-        inputLabel="Interactive Password"
-        inputType="password"
-        inputValue={password}
-        inputOnChange={(e) => setPassword(e.target.value)}
-        inputProgressLevel={getProgress(password)}
-        inputPlaceholder="Type to see progress..."
-      />
-    </div>
-  );
-};
 
 export const InputsPage: React.FC = () => {
   return (
@@ -42,24 +18,24 @@ export const InputsPage: React.FC = () => {
 export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '400px' }}>
-      <Input inputLabel="Email" inputPlaceholder="you@example.com" />
+      <Input label="Email" placeholder="you@example.com" />
     </div>
   );
 }`}
       >
-        <div style={{ width: '100%', maxWidth: '400px' }}>
-          <Input inputLabel="Email" inputPlaceholder="you@example.com" />
+        <div style={{ width: '100%', maxWidth: '300px' }}>
+          <Input label="Email" placeholder="you@example.com" />
         </div>
       </Showcase>
 
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { Input } from '@unbrn/ui/Input';
+          language="tsx"
+          code={`import { Input } from '@unbrn/ui/Input';
 
 export default function Example() {
-  return <Input inputLabel="Username" inputPlaceholder="Enter your name" />;
+  return <Input label="Username" placeholder="Enter your name" />;
 }`}
         />
       </div>
@@ -74,40 +50,38 @@ export default function Example() {
 
 export default function Example() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
-      <Input inputVariant="filled" inputPlaceholder="Filled (Default)" />
-      <Input inputVariant="outlined" inputPlaceholder="Outlined variant" />
-      <Input inputVariant="duo" inputPlaceholder="Duo variant" />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
+      <Input variant="filled" placeholder="Filled (Default)" />
+      <Input variant="outlined" placeholder="Outlined variant" />
+      <Input variant="duo" placeholder="Duo variant" />
     </div>
   );
 }`}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
-            <Input inputVariant="filled" inputPlaceholder="Filled (Default)" />
-            <Input inputVariant="outlined" inputPlaceholder="Outlined variant" />
-            <Input inputVariant="duo" inputPlaceholder="Duo variant" />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '300px' }}>
+            <Input variant="filled" placeholder="Filled (Default)" />
+            <Input variant="outlined" placeholder="Outlined variant" />
+            <Input variant="duo" placeholder="Duo variant" />
           </div>
         </Showcase>
 
         <Showcase
           title="Sizes"
-          description="Choose from small, medium, or large sizes."
+          description="Choose from default or large sizes."
           code={`import { Input } from '@unbrn/ui/Input';
 
 export default function Example() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '400px' }}>
-      <Input inputSize="sm" inputPlaceholder="Small input" />
-      <Input inputSize="default" inputPlaceholder="Default input" />
-      <Input inputSize="lg" inputPlaceholder="Large input" />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}>
+      <Input size={2} placeholder="Default input" />
+      <Input size={3} placeholder="Large input" />
     </div>
   );
 }`}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '400px' }}>
-            <Input inputSize="sm" inputPlaceholder="Small input" />
-            <Input inputSize="default" inputPlaceholder="Default input" />
-            <Input inputSize="lg" inputPlaceholder="Large input" />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '300px' }}>
+            <Input size={2} placeholder="Default input" />
+            <Input size={3} placeholder="Large input" />
           </div>
         </Showcase>
 
@@ -119,29 +93,29 @@ import { User, Mail, Lock } from 'lucide-react';
 
 export default function Example() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
       <Input
-        inputLeftIcon={<User size={16} />}
-        inputPlaceholder="Username"
+        leftIcon={<User size={16} />}
+        placeholder="Username"
       />
       <Input
-        inputLeftIcon={<Mail size={16} />}
-        inputRightIcon={<Lock size={16} />}
-        inputPlaceholder="Email with dual icons"
+        leftIcon={<Mail size={16} />}
+        rightIcon={<Lock size={16} />}
+        placeholder="Email with dual icons"
       />
     </div>
   );
 }`}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '300px' }}>
             <Input
-              inputLeftIcon={<User size={16} />}
-              inputPlaceholder="Username"
+              leftIcon={<User size={16} />}
+              placeholder="Username"
             />
             <Input
-              inputLeftIcon={<Mail size={16} />}
-              inputRightIcon={<Lock size={16} />}
-              inputPlaceholder="Email with dual icons"
+              leftIcon={<Mail size={16} />}
+              rightIcon={<Lock size={16} />}
+              placeholder="Email with dual icons"
             />
           </div>
         </Showcase>
@@ -154,65 +128,33 @@ import { Search } from 'lucide-react';
 
 export default function Example() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
       <Input
-        inputLeftIcon={<Search size={16} />}
-        inputKbd="⌘K"
-        inputPlaceholder="Search documentation..."
+        leftIcon={<Search size={16} />}
+        kbd="✱ K"
+        placeholder="Search documentation..."
       />
       <Input
-        inputKbd="Ctrl+/"
-        inputPlaceholder="Open command menu"
+        kbd="Ctrl+/"
+        placeholder="Open command menu"
       />
     </div>
   );
 }`}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '300px' }}>
             <Input
-              inputLeftIcon={<Search size={16} />}
-              inputKbd="⌘K"
-              inputPlaceholder="Search documentation..."
+              leftIcon={<Search size={16} />}
+              kbd="✱ K"
+              placeholder="Search documentation..."
             />
             <Input
-              inputKbd="Ctrl+/"
-              inputPlaceholder="Open command menu"
+              kbd="Ctrl+/"
+              placeholder="Open command menu"
             />
           </div>
         </Showcase>
 
-        <Showcase
-          title="Progressive Input"
-          description="Show a password strength bar under the field."
-          code={`import { Input } from '@unbrn/ui/Input';
-import { useState } from 'react';
-
-export default function Example() {
-  const [password, setPassword] = useState('');
-  
-  const getProgress = (val: string) => {
-    if (!val) return 0;
-    if (val.length < 5) return 1;
-    if (val.length < 8) return 2;
-    return 3;
-  };
-
-  return (
-    <div style={{ width: '100%', maxWidth: '400px' }}>
-      <Input 
-        inputLabel="Interactive Password" 
-        inputType="password" 
-        inputValue={password}
-        inputOnChange={(e) => setPassword(e.target.value)}
-        inputProgressLevel={getProgress(password)}
-        inputPlaceholder="Type to see progress..."
-      />
-    </div>
-  );
-}`}
-        >
-          <InteractiveProgressiveInput />
-        </Showcase>
 
         <Showcase
           title="States"
@@ -221,106 +163,101 @@ export default function Example() {
 
 export default function Example() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
       <Input
-        inputLabel="Error State"
-        inputError="Password must be at least 8 characters."
-        inputPlaceholder="Enter your password"
-        inputType="password"
+        label="Error State"
+        error="Password must be at least 8 characters."
+        placeholder="Enter your password"
+        type="password"
       />
       <Input
-        inputLabel="Disabled"
-        inputDisabled
-        inputPlaceholder="Disabled input"
+        label="Disabled"
+        disabled
+        placeholder="Disabled input"
       />
     </div>
   );
 }`}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '300px' }}>
             <Input
-              inputLabel="Error State"
-              inputError="Password must be at least 8 characters."
-              inputPlaceholder="Enter your password"
-              inputType="password"
+              label="Error State"
+              error="Password must be at least 8 characters."
+              placeholder="Enter your password"
+              type="password"
             />
             <Input
-              inputLabel="Disabled"
-              inputDisabled
-              inputPlaceholder="Disabled input"
+              label="Disabled"
+              disabled
+              placeholder="Disabled input"
             />
           </div>
         </Showcase>
 
         <Showcase
           title="Accent Color"
-          description="Apply a custom accent color to the border, focus ring, icons, and keyboard shortcuts using inputAccentColor."
+          description="Apply a custom accent color to the border, focus ring, icons, and keyboard shortcuts using accentColor."
           code={`import { Input } from '@unbrn/ui/Input';
 
 export default function Example() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
-      <Input inputVariant="duo" inputAccentColor="#10b981" inputPlaceholder="Purple duo input" />
-      <Input inputVariant="outlined" inputAccentColor="#10b981" inputPlaceholder="Sky Blue outlined input" />
-      <Input inputVariant="filled" inputAccentColor="#10b981" inputPlaceholder="Emerald filled input" />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
+      <Input variant="duo" accentColor="#10b981" placeholder="Purple duo input" />
+      <Input variant="outlined" accentColor="#10b981" placeholder="Sky Blue outlined input" />
+      <Input variant="filled" accentColor="#10b981" placeholder="Emerald filled input" />
     </div>
   );
 }`}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '400px' }}>
-            <Input inputVariant="duo" inputAccentColor="#10b981" inputPlaceholder="Purple duo input" />
-            <Input inputVariant="outlined" inputAccentColor="#10b981" inputPlaceholder="Sky Blue outlined input" />
-            <Input inputVariant="filled" inputAccentColor="#10b981" inputPlaceholder="Emerald filled input" />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '300px' }}>
+            <Input variant="duo" accentColor="#10b981" placeholder="Purple duo input" />
+            <Input variant="outlined" accentColor="#10b981" placeholder="Sky Blue outlined input" />
+            <Input variant="filled" accentColor="#10b981" placeholder="Emerald filled input" />
           </div>
         </Showcase>
       </div>
 
       <Props
         props={[
-          { name: 'inputLabel', type: 'ReactNode', description: 'Text label shown above the input box.' },
-          { name: 'inputDescription', type: 'ReactNode', description: 'Helpful detail text shown below the input.' },
-          { name: 'inputError', type: 'string', description: 'Error message to show under the input field.' },
-          { name: 'inputVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the input.' },
-          { name: 'inputSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the input field.' },
-          { name: 'inputLeftIcon', type: 'ReactNode', description: 'An icon shown on the left side.' },
-          { name: 'inputRightIcon', type: 'ReactNode', description: 'An icon shown on the right side.' },
-          { name: 'inputKbd', type: 'string', description: 'Keyboard shortcut indicator shown inside the right edge of the input.' },
-          { name: 'inputFullWidth', type: 'boolean', defaultValue: 'false', description: 'Make the input fill the full width of its box.' },
-          { name: 'inputProgressLevel', type: '0 | 1 | 2 | 3', description: 'Strength bar level (from 0 to 3).' },
-          { name: 'inputClassName', type: 'string', description: 'Custom CSS class for the root container.' },
-          { name: 'inputStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
-          { name: 'inputDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks and inputs.' },
-          { name: 'inputId', type: 'string', description: 'Custom id attribute.' },
-          { name: 'inputValue', type: 'string', description: 'Controlled value.' },
-          { name: 'inputDefaultValue', type: 'string', description: 'Uncontrolled default value.' },
-          { name: 'inputOnChange', type: 'function', description: 'Change event handler.' },
-          { name: 'inputPlaceholder', type: 'string', description: 'Placeholder text.' },
-          { name: 'inputType', type: 'string', defaultValue: "'text'", description: 'HTML input type attribute.' },
-          { name: 'inputReadOnly', type: 'boolean', defaultValue: 'false', description: 'Prevent changing the value of the input.' },
-          { name: 'inputAccentColor', type: 'string', description: 'Custom primary accent color for active highlight styling overrides (hex, rgb, etc.).' },
+          { name: 'label', type: 'ReactNode', description: 'Text label shown above the input box.' },
+          { name: 'description', type: 'ReactNode', description: 'Helpful detail text shown below the input.' },
+          { name: 'error', type: 'string', description: 'Error message to show under the input field.' },
+          { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the input.' },
+          { name: 'size', type: '1 | 2 | 3', defaultValue: '2', description: 'The size of the input field.' },
+          { name: 'leftIcon', type: 'ReactNode', description: 'An icon shown on the left side.' },
+          { name: 'rightIcon', type: 'ReactNode', description: 'An icon shown on the right side.' },
+          { name: 'kbd', type: 'string', description: 'Keyboard shortcut indicator shown inside the right edge of the input.' },
+          { name: 'fullWidth', type: 'boolean', defaultValue: 'false', description: 'Make the input fill the full width of its box.' },
+          { name: 'className', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'style', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks and inputs.' },
+          { name: 'id', type: 'string', description: 'Custom id attribute.' },
+          { name: 'value', type: 'string', description: 'Controlled value.' },
+          { name: 'defaultValue', type: 'string', description: 'Uncontrolled default value.' },
+          { name: 'onChange', type: 'function', description: 'Change event handler.' },
+          { name: 'placeholder', type: 'string', description: 'Placeholder text.' },
+          { name: 'type', type: 'string', defaultValue: "'text'", description: 'HTML input type attribute.' },
+          { name: 'readOnly', type: 'boolean', defaultValue: 'false', description: 'Prevent changing the value of the input.' },
+          { name: 'accentColor', type: 'string', description: 'Custom primary accent color for active highlight styling overrides (hex, rgb, etc.).' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the input (prefixed with input).' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with input).' },
         ]}
         stylingTargets={[
-          { name: 'inputRoot', description: 'Styles the outer input wrapper container.' },
-          { name: 'inputContainer', description: 'Styles the input field outer container box.' },
-          { name: 'inputElement', description: 'Styles the actual HTML input element.' },
-          { name: 'inputLabel', description: 'Styles the label text element.' },
-          { name: 'inputDescription', description: 'Styles the description text element.' },
-          { name: 'inputError', description: 'Styles the error message text element.' },
-          { name: 'inputIcon', description: 'Styles the icon wrapper elements (left or right).' },
-          { name: 'inputProgressContainer', description: 'Styles the password strength bar container.' },
-          { name: 'inputProgressBar', description: 'Styles the password strength indicator line.' },
+          { name: 'root', description: 'Styles the outer input wrapper container.' },
+          { name: 'container', description: 'Styles the input field outer container box.' },
+          { name: 'element', description: 'Styles the actual HTML input element.' },
+          { name: 'label', description: 'Styles the label text element.' },
+          { name: 'description', description: 'Styles the description text element.' },
+          { name: 'error', description: 'Styles the error message text element.' },
+          { name: 'icon', description: 'Styles the icon wrapper elements (left or right).' },
         ]}
-        stylingStructure={`inputRoot
- ├── inputLabel
- ├── inputContainer
- │    ├── inputIcon
- │    └── inputElement
- ├── inputProgressContainer
- │    └── inputProgressBar
- ├── inputDescription
- └── inputError`}
+        stylingStructure={`root
+ ├── label
+ ├── container
+ │    ├── icon
+ │    └── element
+ ├── description
+ └── error`}
       />
     </>
   );

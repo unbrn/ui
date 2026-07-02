@@ -29,7 +29,7 @@
 }
 
 .unbrn-textarea-container:focus-within {
-  border-color: var(--accent-color);
+  border-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
 }
 
 .unbrn-textarea-container-filled {

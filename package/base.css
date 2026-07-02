@@ -3,15 +3,18 @@
     --font-sans: "Bricolage Grotesque", sans-serif;
     --font-mono: "JetBrains Mono", monospace;
 
+    /* Base theme colors */
     --bg-main: #ffffff;
-    --bg-secondary: #f4f4f5;
-    --border-color: #c8c8c8ce;
     --text-main: #000000;
-    --text-muted: #71717a;
 
-    --accent-color: #000000;
-    --accent-text: #ffffff;
-    --bg-glass: rgba(255, 255, 255, 0.45);
+    /* Smart dynamically computed theme variables */
+    --bg-secondary: color-mix(in srgb, var(--bg-main), var(--text-main) 6%);
+    --border-color: color-mix(in srgb, var(--bg-main), var(--text-main) 12%);
+    --text-muted: color-mix(in srgb, var(--bg-main), var(--text-main) 50%);
+    --bg-glass: color-mix(in srgb, var(--bg-main) 45%, transparent);
+
+    --accent-color: var(--text-main);
+    --accent-text: var(--bg-main);
 
     --color-white: #ffffff;
     --color-black: #000000;
@@ -41,15 +44,7 @@
 
 :root[data-theme="dark"] {
     --bg-main: #0a0a0a;
-    --bg-secondary: #161616;
-    --border-color: #222222;
     --text-main: #ffffff;
-    --text-muted: #888888;
-
-    --accent-color: #ffffff;
-    --accent-text: #000000;
-    --bg-glass: rgba(10, 10, 10, 0.5);
-
 }
 
 * {

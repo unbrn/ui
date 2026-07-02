@@ -9,6 +9,13 @@ export default defineConfig(({ mode }) => {
   const isLib = mode === 'lib';
 
   return {
+    resolve: {
+      alias: {
+        react: resolve(__dirname, 'node_modules/react'),
+        'react-dom': resolve(__dirname, 'node_modules/react-dom'),
+        'lucide-react': resolve(__dirname, 'node_modules/lucide-react'),
+      }
+    },
     plugins: [
       react(),
       ...(isLib ? [
@@ -42,7 +49,6 @@ export default defineConfig(({ mode }) => {
           'components/Tooltip/Tooltip': resolve(__dirname, 'package/components/Tooltip/Tooltip.tsx'),
           'components/Textarea/Textarea': resolve(__dirname, 'package/components/Textarea/Textarea.tsx'),
           'components/Steps/Steps': resolve(__dirname, 'package/components/Steps/Steps.tsx'),
-          'components/VoiceAgent/VoiceAgent': resolve(__dirname, 'package/components/VoiceAgent/VoiceAgent.tsx'),
           'backgrounds/LumenBeam/LumenBeam': resolve(__dirname, 'package/backgrounds/LumenBeam/LumenBeam.tsx'),
           'backgrounds/SatinFlow/SatinFlow': resolve(__dirname, 'package/backgrounds/SatinFlow/SatinFlow.tsx'),
           'backgrounds/LiquidChrome/LiquidChrome': resolve(__dirname, 'package/backgrounds/LiquidChrome/LiquidChrome.tsx'),
@@ -91,26 +97,6 @@ export default defineConfig(({ mode }) => {
       outDir: 'dist-docs',
       target: ['chrome90', 'firefox90', 'safari15', 'edge90'],
       chunkSizeWarningLimit: 1000,
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (
-                id.includes('react-syntax-highlighter') ||
-                id.includes('prismjs') ||
-                id.includes('refractor') ||
-                id.includes('hast-')
-              ) {
-                return 'vendor-highlighter';
-              }
-              if (id.includes('lucide-react')) return 'vendor-icons';
-              if (id.includes('react-dom') || id.includes('react-router-dom') || id.includes('react/')) {
-                return 'vendor-react-core';
-              }
-            }
-          },
-        },
-      },
     },
   };
 });

@@ -262,20 +262,20 @@ export const DocsSearchModal: React.FC = () => {
         <div className="search-header" style={{ padding: '1rem 1.25rem' }}>
           <Input
             ref={inputRef}
-            inputVariant="duo"
-            inputSize="default"
-            inputLeftIcon={<Search size={18} />}
-            inputKbd="ESC"
-            inputPlaceholder="Search documentation..."
-            inputValue={query}
-            inputOnChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
-            inputFullWidth
+            variant="duo"
+            size={2}
+            leftIcon={<Search size={18} />}
+            kbd="ESC"
+            placeholder="Search documentation..."
+            value={query}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
+            fullWidth
             classNames={{
-              inputRoot: 'search-modal-input-root',
-              inputContainer: 'search-modal-input-container',
-              inputElement: 'search-modal-input-field'
+              root: 'search-modal-input-root',
+              container: 'search-modal-input-container',
+              element: 'search-modal-input-field'
             }}
-            inputRightIcon={query ? (
+            rightIcon={query ? (
               <button
                 className="search-clear-btn"
                 onClick={(e) => {
@@ -320,7 +320,7 @@ export const DocsSearchModal: React.FC = () => {
 
               <div className="search-shortcuts-tips">
                 <div className="tip-item">
-                  <kbd className="font-mono">⌘K</kbd> <span>to toggle search overlay</span>
+                  <kbd className="font-mono">✱ K</kbd> <span>to toggle search overlay</span>
                 </div>
                 <div className="tip-item">
                   <kbd className="font-mono">↑↓</kbd> <span>to navigate results</span>

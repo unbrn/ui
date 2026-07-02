@@ -7,75 +7,75 @@ import { getAccentVariables } from '../../lib/colors';
 import { Tooltip } from '../Tooltip/Tooltip';
 
 export interface SliderProps {
-  sliderValue?: number;
-  sliderDefaultValue?: number;
-  sliderMin?: number;
-  sliderMax?: number;
-  sliderStep?: number;
-  sliderOnChange?: (value: number) => void;
-  sliderOnChangeEnd?: (value: number) => void;
-  sliderLabel?: React.ReactNode;
-  sliderDescription?: React.ReactNode;
-  sliderSize?: 'sm' | 'default' | 'lg';
-  sliderAccentColor?: string;
-  sliderShowTooltip?: boolean;
-  sliderDisabled?: boolean;
-  sliderId?: string;
-  sliderClassName?: string;
-  sliderStyle?: React.CSSProperties;
+  value?: number;
+  defaultValue?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  onChange?: (value: number) => void;
+  onChangeEnd?: (value: number) => void;
+  label?: React.ReactNode;
+  description?: React.ReactNode;
+  size?: 1 | 2 | 3;
+  accentColor?: string;
+  showTooltip?: boolean;
+  disabled?: boolean;
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
   classNames?: {
-    sliderRoot?: string;
-    sliderHeader?: string;
-    sliderLabel?: string;
-    sliderDescription?: string;
-    sliderContainer?: string;
-    sliderTrack?: string;
-    sliderThumb?: string;
-    sliderTooltip?: string;
+    root?: string;
+    header?: string;
+    label?: string;
+    description?: string;
+    container?: string;
+    track?: string;
+    thumb?: string;
+    tooltip?: string;
   };
   styles?: {
-    sliderRoot?: React.CSSProperties;
-    sliderHeader?: React.CSSProperties;
-    sliderLabel?: React.CSSProperties;
-    sliderDescription?: React.CSSProperties;
-    sliderContainer?: React.CSSProperties;
-    sliderTrack?: React.CSSProperties;
-    sliderThumb?: React.CSSProperties;
-    sliderTooltip?: React.CSSProperties;
+    root?: React.CSSProperties;
+    header?: React.CSSProperties;
+    label?: React.CSSProperties;
+    description?: React.CSSProperties;
+    container?: React.CSSProperties;
+    track?: React.CSSProperties;
+    thumb?: React.CSSProperties;
+    tooltip?: React.CSSProperties;
   };
 }
 
 export const Slider = forwardRef<HTMLInputElement, SliderProps>(
   (
     {
-      sliderClassName,
-      sliderStyle,
-      sliderValue: controlledValue,
-      sliderDefaultValue,
-      sliderMin = 0,
-      sliderMax = 100,
-      sliderStep = 1,
-      sliderOnChange,
-      sliderOnChangeEnd,
-      sliderDisabled = false,
-      sliderLabel,
-      sliderDescription,
-      sliderSize = 'default',
-      sliderAccentColor,
-      sliderShowTooltip = false,
+      className,
+      style,
+      value: controlledValue,
+      defaultValue,
+      min = 0,
+      max = 100,
+      step = 1,
+      onChange,
+      onChangeEnd,
+      disabled = false,
+      label,
+      description,
+      size = 2,
+      accentColor,
+      showTooltip = false,
       classNames,
       styles,
-      sliderId: customId,
+      id: customId,
     },
     ref
   ) => {
     const generatedId = useId();
-    const sliderId = customId || generatedId;
+    const id = customId || generatedId;
 
     const [valueState, setValueState] = useState<number>(() => {
       if (controlledValue !== undefined) return controlledValue;
-      if (sliderDefaultValue !== undefined) return sliderDefaultValue;
-      return sliderMin;
+      if (defaultValue !== undefined) return defaultValue;
+      return min;
     });
 
     const [isDragging, setIsDragging] = useState(false);
@@ -88,33 +88,33 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
       }
     }, [controlledValue]);
 
-    const percentage = Math.min(Math.max(((valueState - sliderMin) / (sliderMax - sliderMin)) * 100, 0), 100);
+    const percentage = Math.min(Math.max(((valueState - min) / (max - min)) * 100, 0), 100);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (sliderDisabled) return;
+      if (disabled) return;
       const nextValue = parseFloat(e.target.value);
 
       if (controlledValue === undefined) {
         setValueState(nextValue);
       }
 
-      sliderOnChange?.(nextValue);
+      onChange?.(nextValue);
     };
 
     const handleDragStart = () => {
-      if (sliderDisabled) return;
+      if (disabled) return;
       setIsDragging(true);
       isChangingRef.current = true;
     };
 
     const handleDragEnd = useCallback(() => {
-      if (sliderDisabled) return;
+      if (disabled) return;
       setIsDragging(false);
       if (isChangingRef.current) {
-        sliderOnChangeEnd?.(valueState);
+        onChangeEnd?.(valueState);
         isChangingRef.current = false;
       }
-    }, [sliderDisabled, sliderOnChangeEnd, valueState]);
+    }, [disabled, onChangeEnd, valueState]);
 
     useEffect(() => {
       const handleGlobalMouseUp = () => {
@@ -134,12 +134,13 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
       };
     }, [isDragging, handleDragEnd]);
 
-    const accentStyle = getAccentVariables(sliderAccentColor);
+    const resolvedSize = size === 1 ? 'sm' : size === 3 ? 'lg' : 'default';
+    const accentStyle = getAccentVariables(accentColor);
 
     const getThumbSize = () => {
-      switch (sliderSize) {
-        case 'sm': return 14;
-        case 'lg': return 24;
+      switch (size) {
+        case 1: return 14;
+        case 3: return 24;
         default: return 18;
       }
     };
@@ -147,36 +148,36 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
     const thumbSize = getThumbSize();
     const thumbWidth = thumbSize * 1.5;
 
-    const tooltipPosition = `calc(${percentage}% + ${(0.5 - percentage / 100) * thumbWidth}px)`;
+    const position = `calc(${percentage}% + ${(0.5 - percentage / 100) * thumbWidth}px)`;
 
-    const showTooltipContainer = sliderShowTooltip && !sliderDisabled && (isHovered || isDragging);
+    const showTooltipContainer = showTooltip && !disabled && (isHovered || isDragging);
 
     return (
       <div
         className={cn(
           "unbrn-slider-root",
-          sliderDisabled && "unbrn-slider-disabled",
-          classNames?.sliderRoot
+          disabled && "unbrn-slider-disabled",
+          classNames?.root
         )}
-        style={{ ...sliderStyle, ...styles?.sliderRoot, ...accentStyle }}
+        style={{ ...style, ...styles?.root, ...accentStyle }}
       >
-        {(sliderLabel || sliderDescription) && (
-          <div className={cn("unbrn-slider-header", classNames?.sliderHeader)} style={styles?.sliderHeader}>
-            {sliderLabel && (
+        {(label || description) && (
+          <div className={cn("unbrn-slider-header", classNames?.header)} style={styles?.header}>
+            {label && (
               <label
-                htmlFor={sliderId}
-                className={cn("unbrn-slider-label", classNames?.sliderLabel)}
-                style={styles?.sliderLabel}
+                htmlFor={id}
+                className={cn("unbrn-slider-label", classNames?.label)}
+                style={styles?.label}
               >
-                {sliderLabel}
+                {label}
               </label>
             )}
-            {sliderDescription && (
+            {description && (
               <p
-                className={cn("unbrn-slider-description", classNames?.sliderDescription)}
-                style={styles?.sliderDescription}
+                className={cn("unbrn-slider-description", classNames?.description)}
+                style={styles?.description}
               >
-                {sliderDescription}
+                {description}
               </p>
             )}
           </div>
@@ -185,46 +186,46 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
         <div
           className={cn(
             "unbrn-slider-container",
-            `unbrn-slider-container-${sliderSize}`,
+            `unbrn-slider-container-${resolvedSize}`,
             isDragging && "unbrn-slider-container-active",
-            classNames?.sliderContainer
+            classNames?.container
           )}
-          style={styles?.sliderContainer}
+          style={styles?.container}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           <input
             ref={ref}
             type="range"
-            id={sliderId}
-            min={sliderMin}
-            max={sliderMax}
-            step={sliderStep}
+            id={id}
+            min={min}
+            max={max}
+            step={step}
             value={valueState}
-            disabled={sliderDisabled}
+            disabled={disabled}
             onChange={handleChange}
             onMouseDown={handleDragStart}
             onTouchStart={handleDragStart}
             className={cn(
               "unbrn-slider-input",
-              `unbrn-slider-input-${sliderSize}`,
-              sliderClassName,
-              classNames?.sliderTrack
+              `unbrn-slider-input-${size}`,
+              className,
+              classNames?.track
             )}
             style={{
-              ...styles?.sliderTrack,
+              ...styles?.track,
               '--slider-progress': `${percentage}%`
             } as React.CSSProperties}
           />
 
           <Tooltip
-            tooltipContent={valueState}
-            tooltipVisible={showTooltipContainer}
-            tooltipPosition="top"
-            tooltipAccentColor={sliderAccentColor}
-            tooltipClassName={classNames?.sliderTooltip}
-            styles={{ tooltipBubble: styles?.sliderTooltip }}
-            tooltipStyle={{ left: tooltipPosition }}
+            content={valueState}
+            visible={showTooltipContainer}
+            position="top"
+            accentColor={accentColor}
+            className={classNames?.tooltip}
+            styles={{ bubble: styles?.tooltip }}
+            style={{ left: position }}
           />
         </div>
       </div>

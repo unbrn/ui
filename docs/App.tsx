@@ -1,12 +1,11 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate, useParams, useNavigate } from 'react-router-dom';
 import './App.css';
 import { Header } from './components/layout/Header';
-import { Menu } from './components/layout/Menu';
 import { DocsLayout } from './components/layout/DocsLayout';
-import { Dock } from '../package/components/Dock/Dock';
 import { Button } from '../package/components/Button/Button';
-import { Sun, Moon } from 'lucide-react';
+import { Input } from '../package/components/Input/Input';
+import { Sun, Moon, Search } from 'lucide-react';
 import { DocsSearchModal } from './components/layout/DocsSearchModal';
 import componentsData from './data/components.json';
 import backgroundsData from './data/backgrounds.json';
@@ -35,7 +34,6 @@ const SliderPage = lazy(() => import('./pages/components/SliderPage').then(m => 
 const TooltipPage = lazy(() => import('./pages/components/TooltipPage').then(m => ({ default: m.TooltipPage })));
 const StepsPage = lazy(() => import('./pages/components/StepsPage').then(m => ({ default: m.StepsPage })));
 const ColorPickerPage = lazy(() => import('./pages/components/ColorPickerPage').then(m => ({ default: m.ColorPickerPage })));
-const VoiceAgentPage = lazy(() => import('./pages/components/VoiceAgentPage').then(m => ({ default: m.VoiceAgentPage })));
 const LumenBeamPage = lazy(() => import('./pages/backgrounds/LumenBeamPage').then(m => ({ default: m.LumenBeamPage })));
 const SatinFlowPage = lazy(() => import('./pages/backgrounds/SatinFlowPage').then(m => ({ default: m.SatinFlowPage })));
 const LiquidChromePage = lazy(() => import('./pages/backgrounds/LiquidChromePage').then(m => ({ default: m.LiquidChromePage })));
@@ -74,13 +72,12 @@ function BackgroundRedirect() {
 interface AppContentProps {
   theme: Theme;
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
-  isMenuOpen: boolean;
-  setMenuOpen: (open: boolean) => void;
   toggleTheme: () => void;
 }
 
-function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: AppContentProps) {
+function AppContent({ theme, setTheme, toggleTheme }: AppContentProps) {
   const location = useLocation();
+  const navigate = useNavigate();
   const isDocsRoute = location.pathname.startsWith('/docs');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -169,17 +166,111 @@ function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: A
     updateMetaTag('name', 'twitter:image', imageUrl);
   }, [location.pathname]);
 
+  const activeHeaderId =
+    location.pathname.startsWith('/docs/quick-start') ? 'quick-start'
+      : location.pathname.startsWith('/docs/changelog') ? 'changelog'
+        : location.pathname.startsWith('/docs/components') ? 'components'
+          : location.pathname.startsWith('/docs/backgrounds') ? 'backgrounds'
+            : '';
+
   return (
     <div className="unbrn-app">
       <Header
-        className="unbrn-glass"
+        activeId={activeHeaderId}
+        logo={
+          <svg width="20" height="20" viewBox="0 0 526 526" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block', flexShrink: 0 }}>
+            <path fillRule="evenodd" clipRule="evenodd" d="M0 105.203C0 47.101 47.101 0 105.203 0C163.305 0 210.406 47.101 210.406 105.203V280.533C210.406 385.667 295.636 470.895 400.773 470.895C409.421 470.895 417.935 470.319 426.277 469.202C381.423 504.763 324.695 526 263.008 526C117.753 526 0 408.251 0 263V105.203Z" fill="var(--accent-color)" />
+            <path d="M286.977 119.511C286.977 53.507 340.484 0 406.489 0C472.493 0 526 53.507 526 119.511V267.545C526 333.55 472.493 387.057 406.489 387.057C340.484 387.057 286.977 333.55 286.977 267.545V119.511Z" fill="var(--accent-color)" />
+          </svg>
+        }
+        hamburger={
+          isDocsRoute ? (
+            <button
+              className={`docs-sidebar-mobile-hamburger ${isSidebarOpen ? 'is-open' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.dispatchEvent(new CustomEvent('toggle-docs-sidebar'));
+              }}
+              aria-label="Toggle sidebar navigation"
+            >
+              <div className="hamburger-box">
+                <div className="hamburger-inner line-top" />
+                <div className="hamburger-inner line-bottom" />
+              </div>
+            </button>
+          ) : undefined
+        }
+        brandName="unbrn/ui"
+        brandHref="/"
+        accentColor={theme === 'dark' ? '#ffffff' : '#000000'}
+        links={[
+          {
+            label: 'Quick Start',
+            targetId: 'quick-start',
+            onClick: () => navigate('/docs/quick-start')
+          },
+          {
+            label: 'Changelog',
+            targetId: 'changelog',
+            onClick: () => navigate('/docs/changelog')
+          },
+          {
+            label: 'Components',
+            targetId: 'components',
+            onClick: () => navigate('/docs/components')
+          },
+          {
+            label: 'Backgrounds',
+            targetId: 'backgrounds',
+            onClick: () => navigate('/docs/backgrounds')
+          },
+        ]}
+        actions={
+          <>
+            <div
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.dispatchEvent(new CustomEvent('open-docs-search'));
+              }}
+              style={{ width: '100%', cursor: 'pointer' }}
+            >
+              <Input
+                readOnly
+                variant="duo"
+                size={2}
+                leftIcon={<Search size={14} />}
+                kbd="✱ K"
+                placeholder="Search..."
+                style={{ cursor: 'pointer' }}
+                fullWidth
+              />
+            </div>
+            <div style={{ display: 'flex', gap: '8px', width: '100%' }}>
+              <a href="https://discord.gg/W8wTjESM3t" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', flex: 1 }}>
+                <Button
+                  variant="filled"
+                  size={2}
+                  accentColor="#8F98FF"
+                  fullWidth
+                >
+                  Discord
+                </Button>
+              </a>
+              <Button
+                variant="duo"
+                size={2}
+                onClick={toggleTheme}
+                icon={theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+                aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              />
+            </div>
+          </>
+        }
       />
 
       <div className="unbrn-layout">
-        <Menu
-          isMenuOpen={isMenuOpen}
-          setMenuOpen={setMenuOpen}
-        />
 
         <main className="unbrn-main">
           <Suspense fallback={<div className="loading-state">LOADING...</div>}>
@@ -211,7 +302,6 @@ function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: A
                 <Route path="components/tooltip" element={<TooltipPage />} />
                 <Route path="components/steps" element={<StepsPage />} />
                 <Route path="components/color-picker" element={<ColorPickerPage />} />
-                <Route path="components/voice-agent" element={<VoiceAgentPage />} />
 
                 <Route path="backgrounds" element={<BackgroundsPage />} />
                 <Route path="backgrounds/lumen-beam" element={<LumenBeamPage />} />
@@ -231,19 +321,7 @@ function AppContent({ theme, setTheme, isMenuOpen, setMenuOpen, toggleTheme }: A
         </main>
       </div>
 
-      <Dock
-        dockIsMenuOpen={isMenuOpen}
-        dockOnMenuToggle={() => setMenuOpen(!isMenuOpen)}
-        dockPosition='bottom'
-        dockClassName={isSidebarOpen ? 'dock-hidden' : ''}
-        dockChildren={
-          <Button
-            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-            buttonOnClick={toggleTheme}
-            buttonIcon={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          />
-        }
-      />
+
 
       <DocsSearchModal />
     </div>
@@ -256,7 +334,6 @@ function App() {
     return (saved as Theme) || 'dark';
   });
 
-  const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleTheme = () => {
     setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
@@ -273,8 +350,6 @@ function App() {
       <AppContent
         theme={theme}
         setTheme={setTheme}
-        isMenuOpen={isMenuOpen}
-        setMenuOpen={setMenuOpen}
         toggleTheme={toggleTheme}
       />
     </Router>

@@ -5,85 +5,82 @@ import { cn } from '../../lib/utils';
 import './Steps.css';
 
 export interface StepItem {
-  stepTitle: string;
-  stepDescription?: string;
-  stepChildren?: React.ReactNode;
+  title: string;
+  description?: string;
   children?: React.ReactNode;
 }
 
 export interface StepsProps {
-  stepsItems?: StepItem[];
-  stepsChildren?: React.ReactNode;
+  items?: StepItem[];
   children?: React.ReactNode;
-  stepsClassName?: string;
-  stepsStyle?: React.CSSProperties;
+  className?: string;
+  style?: React.CSSProperties;
   classNames?: {
-    stepsRoot?: string;
-    stepsStep?: string;
-    stepsMarker?: string;
-    stepsConnector?: string;
-    stepsTitle?: string;
-    stepsDescription?: string;
+    root?: string;
+    step?: string;
+    marker?: string;
+    connector?: string;
+    title?: string;
+    description?: string;
   };
   styles?: {
-    stepsRoot?: React.CSSProperties;
-    stepsStep?: React.CSSProperties;
-    stepsMarker?: React.CSSProperties;
-    stepsConnector?: React.CSSProperties;
-    stepsTitle?: React.CSSProperties;
-    stepsDescription?: React.CSSProperties;
+    root?: React.CSSProperties;
+    step?: React.CSSProperties;
+    marker?: React.CSSProperties;
+    connector?: React.CSSProperties;
+    title?: React.CSSProperties;
+    description?: React.CSSProperties;
   };
 }
 
 export const Steps = forwardRef<HTMLDivElement, StepsProps>(
   (
     {
-      stepsItems,
-      stepsChildren,
+      items,
       children,
-      stepsClassName,
-      stepsStyle,
+      className,
+      style,
       classNames,
       styles,
     },
     ref
   ) => {
-    const childArray = stepsItems
-      ? stepsItems.map((item, i) => {
-        const displayStepChildren = item.children ?? item.stepChildren;
+    const childArray = items
+      ? items.map((item, i) => {
+        const displayStepChildren = item.children;
         return (
           <div
             key={i}
-            className={cn('unbrn-step', classNames?.stepsStep)}
-            style={styles?.stepsStep}
+            className={cn('unbrn-step', classNames?.step)}
+            style={styles?.step}
           >
             <div className="unbrn-step-left">
               <div
-                className={cn('unbrn-step-marker', classNames?.stepsMarker)}
-                style={styles?.stepsMarker}
+                className={cn('unbrn-step-marker', classNames?.marker)}
+                style={styles?.marker}
               >
                 {i + 1}
               </div>
-              {i < stepsItems.length - 1 && (
+              {i < items.length - 1 && (
                 <div
-                  className={cn('unbrn-step-connector', classNames?.stepsConnector)}
-                  style={styles?.stepsConnector}
+                  className={cn('unbrn-step-connector', classNames?.connector)}
+                  style={styles?.connector}
                 />
               )}
             </div>
             <div className="unbrn-step-content">
               <div
-                className={cn('unbrn-step-title', classNames?.stepsTitle)}
-                style={styles?.stepsTitle}
+                className={cn('unbrn-step-title', classNames?.title)}
+                style={styles?.title}
               >
-                {item.stepTitle}
+                {item.title}
               </div>
-              {item.stepDescription && (
+              {item.description && (
                 <div
-                  className={cn('unbrn-step-description', classNames?.stepsDescription)}
-                  style={styles?.stepsDescription}
+                  className={cn('unbrn-step-description', classNames?.description)}
+                  style={styles?.description}
                 >
-                  {item.stepDescription}
+                  {item.description}
                 </div>
               )}
               {displayStepChildren && (
@@ -93,13 +90,13 @@ export const Steps = forwardRef<HTMLDivElement, StepsProps>(
           </div>
         );
       })
-      : (children ?? stepsChildren);
+      : (children);
 
     return (
       <div
         ref={ref}
-        style={{ ...stepsStyle, ...styles?.stepsRoot }}
-        className={cn('unbrn-steps', stepsClassName, classNames?.stepsRoot)}
+        style={{ ...style, ...styles?.root }}
+        className={cn('unbrn-steps', className, classNames?.root)}
       >
         {childArray}
       </div>

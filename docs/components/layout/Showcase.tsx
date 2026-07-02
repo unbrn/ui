@@ -29,11 +29,11 @@ export const Showcase: React.FC<ShowcaseProps> = ({ title, description, code, ch
         {code && (
           <div className={`showcase-code-wrapper ${showCode ? 'open' : ''}`}>
             <CodeBlock
-              codeBlockCode={code}
-              codeBlockLanguage="tsx"
-              codeBlockVariant="outlined"
-              codeBlockClassName="showcase-code-inner"
-              codeBlockStyle={{
+              code={code}
+              language="tsx"
+              variant="outlined"
+              className="showcase-code-inner"
+              style={{
                 borderRadius: 0,
                 border: "0px"
               }}

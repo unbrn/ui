@@ -33,9 +33,9 @@ export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
       <CodeBlock
-        codeBlockCode={code}
-        codeBlockLanguage="tsx"
-        codeBlockTitle="App.tsx"
+        code={code}
+        language="tsx"
+        title="App.tsx"
       />
     </div>
   );
@@ -43,9 +43,9 @@ export default function Example() {
       >
         <div style={{ width: '100%', maxWidth: '600px' }}>
           <CodeBlock
-            codeBlockCode={code}
-            codeBlockLanguage="tsx"
-            codeBlockTitle="App.tsx"
+            code={code}
+            language="tsx"
+            title="App.tsx"
           />
         </div>
       </Showcase>
@@ -53,14 +53,14 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { CodeBlock } from '@unbrn/ui/CodeBlock';
+          language="tsx"
+          code={`import { CodeBlock } from '@unbrn/ui/CodeBlock';
 
 export default function Example() {
   return (
     <CodeBlock 
-      codeBlockCode="const x = 10;" 
-      codeBlockLanguage="javascript" 
+      code="const x = 10;" 
+      language="javascript" 
     />
   );
 }`}
@@ -79,16 +79,16 @@ export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', maxWidth: '600px' }}>
       <CodeBlock
-        codeBlockCode="npm install @unbrn/ui"
-        codeBlockLanguage="bash"
-        codeBlockVariant="filled"
-        codeBlockTitle="Filled (Default)"
+        code="npm install @unbrn/ui"
+        language="bash"
+        variant="filled"
+        title="Filled (Default)"
       />
       <CodeBlock
-        codeBlockCode="npm install @unbrn/ui"
-        codeBlockLanguage="bash"
-        codeBlockVariant="outlined"
-        codeBlockTitle="Outlined Variant"
+        code="npm install @unbrn/ui"
+        language="bash"
+        variant="outlined"
+        title="Outlined Variant"
       />
     </div>
   );
@@ -96,16 +96,16 @@ export default function Example() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', maxWidth: '600px' }}>
             <CodeBlock
-              codeBlockCode="npm install @unbrn/ui"
-              codeBlockLanguage="bash"
-              codeBlockVariant="filled"
-              codeBlockTitle="Filled (Default)"
+              code="npm install @unbrn/ui"
+              language="bash"
+              variant="filled"
+              title="Filled (Default)"
             />
             <CodeBlock
-              codeBlockCode="npm install @unbrn/ui"
-              codeBlockLanguage="bash"
-              codeBlockVariant="outlined"
-              codeBlockTitle="Outlined Variant"
+              code="npm install @unbrn/ui"
+              language="bash"
+              variant="outlined"
+              title="Outlined Variant"
             />
           </div>
         </Showcase>
@@ -119,13 +119,13 @@ export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
       <CodeBlock
-        codeBlockTabs={{
+        tabs={{
           npm: 'npm install @unbrn/ui',
           pnpm: 'pnpm add @unbrn/ui',
           yarn: 'yarn add @unbrn/ui',
           bun: 'bun add @unbrn/ui'
         }}
-        codeBlockDefaultTab="pnpm"
+        defaultTab="pnpm"
       />
     </div>
   );
@@ -133,13 +133,13 @@ export default function Example() {
         >
           <div style={{ width: '100%', maxWidth: '600px' }}>
             <CodeBlock
-              codeBlockTabs={{
+              tabs={{
                 npm: 'npm install @unbrn/ui',
                 pnpm: 'pnpm add @unbrn/ui',
                 yarn: 'yarn add @unbrn/ui',
                 bun: 'bun add @unbrn/ui'
               }}
-              codeBlockDefaultTab="pnpm"
+              defaultTab="pnpm"
             />
           </div>
         </Showcase>
@@ -153,9 +153,9 @@ export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '600px' }}>
       <CodeBlock
-        codeBlockCode={\`export const add = (a: number, b: number) => a + b;\`}
-        codeBlockTitle="utils.ts"
-        codeBlockShowLineNumbers={false}
+        code={\`export const add = (a: number, b: number) => a + b;\`}
+        title="utils.ts"
+        showLineNumbers={false}
       />
     </div>
   );
@@ -163,9 +163,9 @@ export default function Example() {
         >
           <div style={{ width: '100%', maxWidth: '600px' }}>
             <CodeBlock
-              codeBlockCode={`export const add = (a: number, b: number) => a + b;`}
-              codeBlockTitle="utils.ts"
-              codeBlockShowLineNumbers={false}
+              code={`export const add = (a: number, b: number) => a + b;`}
+              title="utils.ts"
+              showLineNumbers={false}
             />
           </div>
         </Showcase>
@@ -173,36 +173,36 @@ export default function Example() {
 
       <Props
         props={[
-          { name: 'codeBlockCode', type: 'string', description: 'The code text to display in the block.' },
-          { name: 'codeBlockTabs', type: 'Record<string, string>', description: 'A list of tabs with their respective code snippets.' },
-          { name: 'codeBlockDefaultTab', type: 'string', description: 'The tab that starts active.' },
-          { name: 'codeBlockLanguage', type: 'string', defaultValue: "'tsx'", description: 'The code language (e.g., tsx, javascript, css).' },
-          { name: 'codeBlockTitle', type: 'string', description: 'A file name or label to show in the code block header.' },
-          { name: 'codeBlockVariant', type: "'filled' | 'outlined'", defaultValue: "'filled'", description: 'The style of the code block.' },
-          { name: 'codeBlockShowLineNumbers', type: 'boolean', defaultValue: 'true', description: 'Show or hide line numbers.' },
-          { name: 'codeBlockClassName', type: 'string', description: 'Custom CSS class for the root container.' },
-          { name: 'codeBlockStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'code', type: 'string', description: 'The code text to display in the block.' },
+          { name: 'tabs', type: 'Record<string, string>', description: 'A list of tabs with their respective code snippets.' },
+          { name: 'defaultTab', type: 'string', description: 'The tab that starts active.' },
+          { name: 'language', type: 'string', defaultValue: "'tsx'", description: 'The code language (e.g., tsx, javascript, css).' },
+          { name: 'title', type: 'string', description: 'A file name or label to show in the code block header.' },
+          { name: 'variant', type: "'filled' | 'outlined'", defaultValue: "'filled'", description: 'The style of the code block.' },
+          { name: 'showLineNumbers', type: 'boolean', defaultValue: 'true', description: 'Show or hide line numbers.' },
+          { name: 'className', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'style', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the block (prefixed with codeBlock).' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with codeBlock).' },
         ]}
         stylingTargets={[
-          { name: 'codeBlockRoot', description: 'Styles the outer code block wrapper container.' },
-          { name: 'codeBlockHeader', description: 'Styles the top header bar.' },
-          { name: 'codeBlockContent', description: 'Styles the pre/code container area.' },
-          { name: 'codeBlockCopyButton', description: 'Styles the action copy button in the header.' },
-          { name: 'codeBlockTitle', description: 'Styles the title text in the header.' },
-          { name: 'codeBlockLang', description: 'Styles the language indicator tag in the header.' },
-          { name: 'codeBlockTabs', description: 'Styles the tab bar wrapper (tab variant).' },
-          { name: 'codeBlockTab', description: 'Styles individual tab buttons.' },
+          { name: 'root', description: 'Styles the outer code block wrapper container.' },
+          { name: 'header', description: 'Styles the top header bar.' },
+          { name: 'content', description: 'Styles the pre/code container area.' },
+          { name: 'copyButton', description: 'Styles the action copy button in the header.' },
+          { name: 'title', description: 'Styles the title text in the header.' },
+          { name: 'lang', description: 'Styles the language indicator tag in the header.' },
+          { name: 'tabs', description: 'Styles the tab bar wrapper (tab variant).' },
+          { name: 'tab', description: 'Styles individual tab buttons.' },
         ]}
-        stylingStructure={`codeBlockRoot
- ├── codeBlockHeader
- │    ├── codeBlockTitle
- │    ├── codeBlockTabs
- │    │    └── codeBlockTab
- │    ├── codeBlockLang
- │    └── codeBlockCopyButton
- └── codeBlockContent`}
+        stylingStructure={`root
+ ├── header
+ │    ├── title
+ │    ├── tabs
+ │    │    └── tab
+ │    ├── lang
+ │    └── copyButton
+ └── content`}
       />
     </>
   );

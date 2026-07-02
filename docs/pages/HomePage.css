@@ -2,10 +2,8 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  margin-top: -64px;
-  padding-top: 64px;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,10 +68,8 @@
 
 /* Adjust layout on mobile */
 @media (max-width: 768px) {
-  .hero-section {
-    max-width: 100%;
-    align-items: center;
-    text-align: center;
+  .home-page {
+    padding: 0 20px;
   }
 
   .home-page .hero-title {
@@ -96,4 +92,16 @@
   .home-page .hero-actions>* {
     width: 100%;
   }
+}
+
+.hero-background-img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 0;
 }

@@ -1,110 +1,227 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Search } from 'lucide-react';
-import { Button } from '../../../package/components/Button/Button';
-import { cn } from '../../../package/lib/utils';
-import './Header.css';
-import { Input } from '../../../package/components/Input/Input';
+import React, { useState, useEffect, useRef } from 'react'
+import { ChevronDown } from 'lucide-react'
+import './Header.css'
+
+export const UnbrnLogo = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 526 526" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fillRule="evenodd" clipRule="evenodd" d="M0 105.203C0 47.101 47.101 0 105.203 0C163.305 0 210.406 47.101 210.406 105.203V280.533C210.406 385.667 295.636 470.895 400.773 470.895C409.421 470.895 417.935 470.319 426.277 469.202C381.423 504.763 324.695 526 263.008 526C117.753 526 0 408.251 0 263V105.203Z" fill="var(--accent-color)" />
+    <path d="M286.977 119.511C286.977 53.507 340.484 0 406.489 0C472.493 0 526 53.507 526 119.511V267.545C526 333.55 472.493 387.057 406.489 387.057C340.484 387.057 286.977 333.55 286.977 267.545V119.511Z" fill="var(--accent-color)" />
+  </svg>
+)
+
+export interface HeaderLink {
+  label: string
+  href?: string
+  onClick?: () => void
+  targetId?: string
+}
 
 export interface HeaderProps {
-  className?: string;
+  logo?: React.ReactNode
+  brandName?: string
+  brandHref?: string
+  links?: HeaderLink[]
+  actions?: React.ReactNode
+  onLinkClick?: (href: string) => void
+  accentColor?: string
+  activeId?: string
+  hamburger?: React.ReactNode
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  className
+  logo,
+  brandName,
+  brandHref,
+  links,
+  actions,
+  onLinkClick,
+  accentColor,
+  activeId: activeIdProp,
+  hamburger
 }) => {
-  const location = useLocation();
-  const isDocsRoute = location.pathname.startsWith('/docs');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const capsuleRef = useRef<HTMLDivElement>(null)
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true)
+  const lastScrollY = useRef(0)
+  const [activeId, setActiveId] = useState(activeIdProp || '')
 
   useEffect(() => {
-    const handleState = (e: Event) => {
-      const customEvent = e as CustomEvent;
-      setIsSidebarOpen(customEvent.detail.isOpen);
-    };
-    window.addEventListener('docs-sidebar-state', handleState);
-    return () => window.removeEventListener('docs-sidebar-state', handleState);
-  }, []);
-
-  useEffect(() => {
-    if (!isDocsRoute) {
-      const timer = setTimeout(() => {
-        setIsSidebarOpen(false);
-      }, 0);
-      return () => clearTimeout(timer);
+    if (activeIdProp !== undefined) {
+      setActiveId(activeIdProp)
     }
-  }, [isDocsRoute]);
+  }, [activeIdProp])
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (capsuleRef.current && !capsuleRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      // Always show header at the very top and reset active target (hero section)
+      if (currentScrollY <= 50) {
+        setIsHeaderVisible(true)
+        if (activeIdProp === undefined) {
+          setActiveId('')
+        }
+        return
+      }
+
+      // Do not hide the header on scroll in mobile view
+      if (window.innerWidth <= 768) {
+        setIsHeaderVisible(true)
+        lastScrollY.current = currentScrollY
+        return
+      }
+
+      // Check scroll direction
+      if (currentScrollY > lastScrollY.current) {
+        // Scrolling Down -> Hide header (only if menu is collapsed)
+        if (!isMenuOpen) {
+          setIsHeaderVisible(false)
+        }
+      } else {
+        // Scrolling Up -> Show header
+        setIsHeaderVisible(true)
+      }
+
+      lastScrollY.current = currentScrollY
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [isMenuOpen, activeIdProp])
+
+  useEffect(() => {
+    // 1. Initial active element state check
+    if (activeIdProp === undefined && window.scrollY <= 50) {
+      setActiveId('')
+    }
+
+    // 2. ScrollSpy logic using IntersectionObserver
+    if (!links || links.length === 0) return
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -50% 0px', // Target focus viewport area
+      threshold: 0
+    }
+
+    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+      if (activeIdProp !== undefined) return
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id')
+          if (id) {
+            setActiveId(id)
+          }
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions)
+
+    links.forEach((link) => {
+      const id = link.targetId || (link.href?.startsWith('#') ? link.href.slice(1) : null)
+      if (id) {
+        const el = document.getElementById(id)
+        if (el) {
+          observer.observe(el)
+        }
+      }
+    })
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [links, activeIdProp])
 
   return (
-    <header className={cn("unbrn-header", className)}>
-      <div className="header-container">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            {isDocsRoute && (
+    <>
+      <div 
+        className={`unbrn-menu-backdrop ${isMenuOpen ? 'is-open' : ''}`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+      <header 
+        className={`unbrn-header-wrapper ${isHeaderVisible ? '' : 'is-hidden'}`}
+        style={accentColor ? { '--accent-color': accentColor } as React.CSSProperties : undefined}
+      >
+        <div className="unbrn-header-container">
+        {/* Floating Left Menu Capsule */}
+        <div ref={capsuleRef} className={`menu-capsule unbrn-glass ${isMenuOpen ? 'is-open' : ''}`}>
+          <div className="capsule-header">
+            <a href={brandHref || '#'} className="unbrn-logo">
+              {logo}
+              {brandName && <span>{brandName}</span>}
+            </a>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {hamburger}
               <button
-                className={cn("docs-sidebar-mobile-hamburger", isSidebarOpen && "is-open")}
-                onClick={() => window.dispatchEvent(new CustomEvent('toggle-docs-sidebar'))}
-                aria-label="Toggle sidebar navigation"
+                className="capsule-toggle-btn"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               >
-                <div className="hamburger-box">
-                  <div className="hamburger-inner line-top" />
-                  <div className="hamburger-inner line-bottom" />
-                </div>
+                <ChevronDown className={`toggle-icon ${isMenuOpen ? 'is-open' : ''}`} size={16} />
               </button>
-            )}
-            <Link to="/" className="unbrn-logo" style={{ cursor: "pointer", textDecoration: 'none', color: 'inherit' }}>
-              <svg width="20" height="20" viewBox="0 0 526 526" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M0 105.203C0 47.101 47.101 0 105.203 0C163.305 0 210.406 47.101 210.406 105.203V280.533C210.406 385.667 295.636 470.895 400.773 470.895C409.421 470.895 417.935 470.319 426.277 469.202C381.423 504.763 324.695 526 263.008 526C117.753 526 0 408.251 0 263V105.203Z" fill="var(--accent-color)"/>
-                <path d="M286.977 119.511C286.977 53.507 340.484 0 406.489 0C472.493 0 526 53.507 526 119.511V267.545C526 333.55 472.493 387.057 406.489 387.057C340.484 387.057 286.977 333.55 286.977 267.545V119.511Z" fill="var(--accent-color)"/>
-              </svg>
-              <span>unbrn/ui</span>
-            </Link>
+            </div>
           </div>
 
-          <nav className="header-nav-links">
-            <Link to="/docs/components" className={cn("header-nav-link", location.pathname.startsWith('/docs/components') && "active")}>
-              Components
-            </Link>
-            <Link to="/docs/changelog" className={cn("header-nav-link", location.pathname.startsWith('/docs/changelog') && "active")}>
-              Changelog
-            </Link>
-          </nav>
-        </div>
-
-        <div className="unbrn-header-actions">
-          <div
-            onClick={() => window.dispatchEvent(new CustomEvent('open-docs-search'))}
-            style={{ width: '220px', cursor: 'pointer' }}
-            className="header-search-wrapper"
-          >
-            <Input
-              inputReadOnly
-              inputVariant="outlined"
-              inputSize="sm"
-              inputLeftIcon={<Search size={14} />}
-              inputKbd="⌘K"
-              inputPlaceholder="Search..."
-              inputStyle={{ cursor: 'pointer' }}
-              inputFullWidth
-            />
+          <div className={`capsule-body-wrapper ${isMenuOpen ? 'is-open' : ''}`}>
+            <div className="capsule-body-inner">
+              <nav className="capsule-nav">
+                {links && links.length > 0 && links.map((link) => {
+                  const linkId = link.targetId || (link.href?.startsWith('#') ? link.href.slice(1) : '')
+                  const isActive = activeId === linkId
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className={`capsule-nav-link ${isActive ? 'is-active' : ''}`}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setIsMenuOpen(false)
+                        if (linkId && activeIdProp === undefined) {
+                          setActiveId(linkId)
+                        }
+                        if (link.onClick) {
+                          link.onClick()
+                        }
+                        if (onLinkClick && link.href) {
+                          onLinkClick(link.href)
+                        }
+                      }}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {link.label}
+                    </a>
+                  )
+                })}
+                
+                {actions && (
+                  <>
+                    <div className="capsule-divider" />
+                    <div className="capsule-action" onClick={() => setIsMenuOpen(false)}>
+                      {actions}
+                    </div>
+                  </>
+                )}
+              </nav>
+            </div>
           </div>
-
-          <a href="https://discord.gg/W8wTjESM3t" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-            <Button
-              buttonVariant="filled"
-              buttonSize="sm"
-              buttonAccentColor="#5865F2"
-              buttonIcon={
-                <svg width="14" height="14" viewBox="0 0 127.14 96.36" fill="currentColor" style={{ display: 'block' }}>
-                  <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.4-5c.9-.66,1.76-1.37,2.58-2.1a75.52,75.52,0,0,0,72.6,0c.82.73,1.68,1.44,2.58,2.1a68.43,68.43,0,0,1-10.4,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.07,48.12,122.57,25.29,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z" />
-                </svg>
-              }
-            >
-              Discord
-            </Button>
-          </a>
         </div>
       </div>
     </header>
-  );
-};
+  </>
+  )
+}

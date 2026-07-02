@@ -6,52 +6,50 @@ import './Tooltip.css';
 import { getAccentVariables } from '../../lib/colors';
 
 export interface TooltipProps {
-  tooltipContent: React.ReactNode;
-  tooltipChildren?: React.ReactNode;
+  content: React.ReactNode;
   children?: React.ReactNode;
-  tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
-  tooltipVisible?: boolean;
-  tooltipAccentColor?: string;
-  tooltipVariant?: 'filled' | 'outlined' | 'duo';
-  tooltipDisabled?: boolean;
-  tooltipClassName?: string;
-  tooltipStyle?: React.CSSProperties;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  visible?: boolean;
+  accentColor?: string;
+  variant?: 'filled' | 'outlined' | 'duo';
+  disabled?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
   classNames?: {
-    tooltipRoot?: string;
-    tooltipTrigger?: string;
-    tooltipBubble?: string;
-    tooltipArrow?: string;
+    root?: string;
+    trigger?: string;
+    bubble?: string;
+    arrow?: string;
   };
   styles?: {
-    tooltipRoot?: React.CSSProperties;
-    tooltipTrigger?: React.CSSProperties;
-    tooltipBubble?: React.CSSProperties;
-    tooltipArrow?: React.CSSProperties;
+    root?: React.CSSProperties;
+    trigger?: React.CSSProperties;
+    bubble?: React.CSSProperties;
+    arrow?: React.CSSProperties;
   };
 }
 
 export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
   (
     {
-      tooltipClassName,
-      tooltipStyle,
-      tooltipContent,
-      tooltipChildren,
+      className,
+      style,
+      content,
       children,
-      tooltipPosition = 'top',
-      tooltipVisible: controlledVisible,
-      tooltipAccentColor,
-      tooltipVariant = 'filled',
-      tooltipDisabled = false,
+      position = 'top',
+      visible: controlledVisible,
+      accentColor,
+      variant = 'filled',
+      disabled = false,
       classNames,
       styles,
     },
     ref
   ) => {
     const [isHovered, setIsHovered] = useState(false);
-    const showTooltip = (controlledVisible !== undefined ? controlledVisible : isHovered) && !tooltipDisabled;
-    const accentStyle = getAccentVariables(tooltipAccentColor);
-    const displayChildren = children ?? tooltipChildren;
+    const showTooltip = (controlledVisible !== undefined ? controlledVisible : isHovered) && !disabled;
+    const accentStyle = getAccentVariables(accentColor);
+    const displayChildren = children;
 
     if (!displayChildren) {
       if (!showTooltip) return null;
@@ -61,16 +59,16 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           className={cn(
             "unbrn-tooltip-bubble",
             "unbrn-tooltip-bubble-standalone",
-            `unbrn-tooltip-bubble-${tooltipPosition}`,
-            `unbrn-tooltip-bubble-${tooltipVariant}`,
-            (tooltipVariant === 'outlined' || tooltipVariant === 'duo') && 'unbrn-glass',
-            tooltipClassName,
-            classNames?.tooltipBubble
+            `unbrn-tooltip-bubble-${position}`,
+            `unbrn-tooltip-bubble-${variant}`,
+            (variant === 'outlined' || variant === 'duo') && 'unbrn-glass',
+            className,
+            classNames?.bubble
           )}
-          style={{ ...tooltipStyle, ...styles?.tooltipBubble, ...accentStyle }}
+          style={{ ...style, ...styles?.bubble, ...accentStyle }}
         >
-          <span className="unbrn-tooltip-content">{tooltipContent}</span>
-          <div className={cn("unbrn-tooltip-arrow", classNames?.tooltipArrow)} style={styles?.tooltipArrow} />
+          <span className="unbrn-tooltip-content">{content}</span>
+          <div className={cn("unbrn-tooltip-arrow", classNames?.arrow)} style={styles?.arrow} />
         </div>
       );
     }
@@ -78,16 +76,16 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     return (
       <div
         ref={ref}
-        className={cn("unbrn-tooltip-root", tooltipClassName, classNames?.tooltipRoot)}
-        style={{ ...tooltipStyle, ...styles?.tooltipRoot }}
+        className={cn("unbrn-tooltip-root", className, classNames?.root)}
+        style={{ ...style, ...styles?.root }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
       >
         <div
-          className={cn("unbrn-tooltip-trigger", classNames?.tooltipTrigger)}
-          style={styles?.tooltipTrigger}
+          className={cn("unbrn-tooltip-trigger", classNames?.trigger)}
+          style={styles?.trigger}
         >
           {displayChildren}
         </div>
@@ -96,15 +94,15 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           <div
             className={cn(
               "unbrn-tooltip-bubble",
-              `unbrn-tooltip-bubble-${tooltipPosition}`,
-              `unbrn-tooltip-bubble-${tooltipVariant}`,
-              (tooltipVariant === 'outlined' || tooltipVariant === 'duo') && 'unbrn-glass',
-              classNames?.tooltipBubble
+              `unbrn-tooltip-bubble-${position}`,
+              `unbrn-tooltip-bubble-${variant}`,
+              (variant === 'outlined' || variant === 'duo') && 'unbrn-glass',
+              classNames?.bubble
             )}
-            style={{ ...styles?.tooltipBubble, ...accentStyle }}
+            style={{ ...styles?.bubble, ...accentStyle }}
           >
-            <span className="unbrn-tooltip-content">{tooltipContent}</span>
-            <div className={cn("unbrn-tooltip-arrow", classNames?.tooltipArrow)} style={styles?.tooltipArrow} />
+            <span className="unbrn-tooltip-content">{content}</span>
+            <div className={cn("unbrn-tooltip-arrow", classNames?.arrow)} style={styles?.arrow} />
           </div>
         )}
       </div>

@@ -47,27 +47,27 @@ export default function Example() {
 
   return (
     <ColorPicker
-      colorPickerValue={color}
-      colorPickerOnChange={setColor}
-      colorPickerLabel="Brand Color"
+      value={color}
+      onChange={setColor}
+      label="Brand Color"
     />
   );
 }`}
       >
         <ColorPicker
-          colorPickerValue={demoColor}
-          colorPickerOnChange={setDemoColor}
+          value={demoColor}
+          onChange={setDemoColor}
         />
       </Showcase>
 
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { ColorPicker } from '@unbrn/ui/ColorPicker';
+          language="tsx"
+          code={`import { ColorPicker } from '@unbrn/ui/ColorPicker';
 
 export default function Example() {
-  return <ColorPicker colorPickerLabel="Brand Color" />;
+  return <ColorPicker label="Brand Color" />;
 }`}
         />
       </div>
@@ -83,17 +83,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <ColorPicker colorPickerVariant="filled" />
-      <ColorPicker colorPickerVariant="outlined" />
-      <ColorPicker colorPickerVariant="duo" />
+      <ColorPicker variant="filled" />
+      <ColorPicker variant="outlined" />
+      <ColorPicker variant="duo" />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            <ColorPicker colorPickerVariant="filled" />
-            <ColorPicker colorPickerVariant="outlined" />
-            <ColorPicker colorPickerVariant="duo" />
+            <ColorPicker variant="filled" />
+            <ColorPicker variant="outlined" />
+            <ColorPicker variant="duo" />
           </div>
         </Showcase>
 
@@ -105,17 +105,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <ColorPicker colorPickerSize="sm" />
-      <ColorPicker colorPickerSize="default" />
-      <ColorPicker colorPickerSize="lg" />
+      <ColorPicker size={1} />
+      <ColorPicker size={2} />
+      <ColorPicker size={3} />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            <ColorPicker colorPickerSize="sm" />
-            <ColorPicker colorPickerSize="default" />
-            <ColorPicker colorPickerSize="lg" />
+            <ColorPicker size={1} />
+            <ColorPicker size={2} />
+            <ColorPicker size={3} />
           </div>
         </Showcase>
         <Showcase
@@ -126,16 +126,16 @@ export default function Example() {
 export default function Example() {
   return (
     <ColorPicker
-      colorPickerLabel="Minimal Color Picker"
-      colorPickerShowAlpha={false}
-      colorPickerShowEyeDropper={false}
+      label="Minimal Color Picker"
+      showAlpha={false}
+      showEyeDropper={false}
     />
   );
 }`}
         >
           <ColorPicker
-            colorPickerShowAlpha={false}
-            colorPickerShowEyeDropper={false}
+            showAlpha={false}
+            showEyeDropper={false}
           />
         </Showcase>
 
@@ -147,17 +147,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <ColorPicker colorPickerAlign="left" colorPickerLabel="Left" />
-      <ColorPicker colorPickerAlign="center" colorPickerLabel="Center" />
-      <ColorPicker colorPickerAlign="right" colorPickerLabel="Right" />
+      <ColorPicker align="left" label="Left" />
+      <ColorPicker align="center" label="Center" />
+      <ColorPicker align="right" label="Right" />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            <ColorPicker colorPickerAlign="left" />
-            <ColorPicker colorPickerAlign="center" />
-            <ColorPicker colorPickerAlign="right" />
+            <ColorPicker align="left" />
+            <ColorPicker align="center" />
+            <ColorPicker align="right" />
           </div>
         </Showcase>
 
@@ -170,50 +170,50 @@ export default function Example() {
   return (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
       <ColorPicker
-        colorPickerDisabled
-        colorPickerLabel="System Accent"
+        disabled
+        label="System Accent"
       />
     </div>
   );
 }`}
         >
           <ColorPicker
-            colorPickerDisabled
+            disabled
           />
         </Showcase>
       </div>
 
       <Props
         props={[
-          { name: 'colorPickerValue', type: 'string', description: 'The controlled color value (hex string).' },
-          { name: 'colorPickerDefaultValue', type: 'string', defaultValue: '"#FFFFFF"', description: 'The default color value.' },
-          { name: 'colorPickerOnChange', type: '(color: string) => void', description: 'Callback triggered when the color changes.' },
-          { name: 'colorPickerDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable picker popover and inputs.' },
-          { name: 'colorPickerLabel', type: 'ReactNode', description: 'Label element shown above the picker.' },
-          { name: 'colorPickerVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The visual variant of the button trigger.' },
-          { name: 'colorPickerSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'The size of the button trigger.' },
-          { name: 'colorPickerAlign', type: "'left' | 'center' | 'right'", defaultValue: "'left'", description: 'The horizontal alignment of the popover relative to the trigger button.' },
-          { name: 'colorPickerClassName', type: 'string', description: 'Additional CSS class for the button trigger.' },
-          { name: 'colorPickerStyle', type: 'CSSProperties', description: 'Additional inline style for the button trigger.' },
-          { name: 'colorPickerId', type: 'string', description: 'Optional unique ID for the button element.' },
-          { name: 'colorPickerAccentColor', type: 'string', description: 'Optional theme accent color override.' },
-          { name: 'colorPickerShowEyeDropper', type: 'boolean', defaultValue: 'true', description: 'Whether to show the screen color eyedropper tool icon (supported in Chromium browsers).' },
-          { name: 'colorPickerShowAlpha', type: 'boolean', defaultValue: 'true', description: 'Whether to show the alpha transparency slider.' },
+          { name: 'value', type: 'string', description: 'The controlled color value (hex string).' },
+          { name: 'defaultValue', type: 'string', defaultValue: '"#FFFFFF"', description: 'The default color value.' },
+          { name: 'onChange', type: '(color: string) => void', description: 'Callback triggered when the color changes.' },
+          { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disable picker popover and inputs.' },
+          { name: 'label', type: 'ReactNode', description: 'Label element shown above the picker.' },
+          { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The visual variant of the button trigger.' },
+          { name: 'size', type: '1 | 2 | 3', defaultValue: '2', description: 'The size of the button trigger.' },
+          { name: 'align', type: "'left' | 'center' | 'right'", defaultValue: "'left'", description: 'The horizontal alignment of the popover relative to the trigger button.' },
+          { name: 'className', type: 'string', description: 'Additional CSS class for the button trigger.' },
+          { name: 'style', type: 'CSSProperties', description: 'Additional inline style for the button trigger.' },
+          { name: 'id', type: 'string', description: 'Optional unique ID for the button element.' },
+          { name: 'accentColor', type: 'string', description: 'Optional theme accent color override.' },
+          { name: 'showEyeDropper', type: 'boolean', defaultValue: 'true', description: 'Whether to show the screen color eyedropper tool icon (supported in Chromium browsers).' },
+          { name: 'showAlpha', type: 'boolean', defaultValue: 'true', description: 'Whether to show the alpha transparency slider.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for individual sub-elements.' },
           { name: 'styles', type: 'object', description: 'Custom inline styles for individual sub-elements.' }
         ]}
         stylingTargets={[
-          { name: 'colorPickerRoot', description: 'Styles the wrapper container.' },
-          { name: 'colorPickerTrigger', description: 'Styles the button trigger element.' },
-          { name: 'colorPickerPopover', description: 'Styles the popup dialog box.' },
-          { name: 'colorPickerInputContainer', description: 'Styles the bottom row (format button & input field).' }
+          { name: 'root', description: 'Styles the wrapper container.' },
+          { name: 'trigger', description: 'Styles the button trigger element.' },
+          { name: 'popover', description: 'Styles the popup dialog box.' },
+          { name: 'container', description: 'Styles the bottom row (format button & input field).' }
         ]}
-        stylingStructure={`colorPickerRoot
- ├── colorPickerLabel
+        stylingStructure={`root
+ ├── label
  └── colorPickerWrapper
-      ├── colorPickerTrigger
-      └── colorPickerPopover
-           └── colorPickerInputContainer`}
+      ├── trigger
+      └── popover
+           └── container`}
       />
     </>
   );

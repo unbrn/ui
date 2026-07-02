@@ -19,55 +19,53 @@ export interface ActionItem {
 }
 
 export interface ActionProps {
-  actionTrigger: React.ReactNode;
-  actionItems?: ActionItem[];
-  actionChildren?: React.ReactNode;
+  trigger: React.ReactNode;
+  items?: ActionItem[];
   children?: React.ReactNode;
-  actionHeader?: React.ReactNode;
-  actionFooter?: React.ReactNode;
-  actionPosition?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
-  actionAlign?: 'start' | 'center' | 'end';
-  actionVisible?: boolean;
-  actionOnVisibleChange?: (visible: boolean) => void;
-  actionDisabled?: boolean;
-  actionAccentColor?: string;
-  actionCloseOnSelect?: boolean;
-  actionSize?: 'sm' | 'default' | 'lg';
-  actionClassName?: string;
-  actionStyle?: React.CSSProperties;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
+  position?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  align?: 'start' | 'center' | 'end';
+  visible?: boolean;
+  onVisibleChange?: (visible: boolean) => void;
+  disabled?: boolean;
+  accentColor?: string;
+  closeOnSelect?: boolean;
+  size?: 1 | 2;
+  className?: string;
+  style?: React.CSSProperties;
   classNames?: {
-    actionRoot?: string;
-    actionTrigger?: string;
-    actionDropdown?: string;
-    actionItem?: string;
+    root?: string;
+    trigger?: string;
+    dropdown?: string;
+    item?: string;
   };
   styles?: {
-    actionRoot?: React.CSSProperties;
-    actionTrigger?: React.CSSProperties;
-    actionDropdown?: React.CSSProperties;
-    actionItem?: React.CSSProperties;
+    root?: React.CSSProperties;
+    trigger?: React.CSSProperties;
+    dropdown?: React.CSSProperties;
+    item?: React.CSSProperties;
   };
 }
 
 export const Action = forwardRef<HTMLDivElement, ActionProps>(
   (
     {
-      actionTrigger,
-      actionItems,
-      actionChildren,
+      trigger,
+      items,
       children,
-      actionHeader,
-      actionFooter,
-      actionPosition = 'auto',
-      actionAlign = 'center',
-      actionVisible,
-      actionOnVisibleChange,
-      actionDisabled = false,
-      actionAccentColor,
-      actionCloseOnSelect = true,
-      actionSize,
-      actionClassName,
-      actionStyle,
+      header,
+      footer,
+      position = 'auto',
+      align = 'center',
+      visible: controlledVisible,
+      onVisibleChange,
+      disabled = false,
+      accentColor,
+      closeOnSelect = true,
+      size,
+      className,
+      style,
       classNames,
       styles,
     },
@@ -79,12 +77,12 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
 
     useImperativeHandle(ref, () => containerRef.current!);
 
-    const visible = actionVisible !== undefined ? actionVisible : isOpen;
-    const finalPosition = actionPosition === 'auto' ? calculatedPosition : actionPosition;
-    const accentStyle = getAccentVariables(actionAccentColor);
+    const isOpenVisible = controlledVisible !== undefined ? controlledVisible : isOpen;
+    const finalPosition = position === 'auto' ? calculatedPosition : position;
+    const accentStyle = getAccentVariables(accentColor);
 
     useEffect(() => {
-      if (actionPosition !== 'auto' || !visible) return;
+      if (position !== 'auto' || !isOpenVisible) return;
 
       const trigger = containerRef.current?.querySelector('.unbrn-action-trigger') as HTMLElement;
       if (!trigger) return;
@@ -113,17 +111,17 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
       }
 
       setCalculatedPosition(bestPosition);
-    }, [visible, actionPosition]);
+    }, [isOpenVisible, position]);
 
     useEffect(() => {
-      if (!visible) return;
+      if (!isOpenVisible) return;
 
       const handleClickOutside = (event: MouseEvent | TouchEvent) => {
         if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-          if (actionVisible === undefined) {
+          if (controlledVisible === undefined) {
             setIsOpen(false);
           }
-          actionOnVisibleChange?.(false);
+          onVisibleChange?.(false);
         }
       };
 
@@ -134,16 +132,16 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
         document.removeEventListener('mousedown', handleClickOutside);
         document.removeEventListener('touchstart', handleClickOutside);
       };
-    }, [visible, actionVisible, actionOnVisibleChange]);
+    }, [isOpenVisible, controlledVisible, onVisibleChange]);
 
     const handleToggle = () => {
-      if (actionDisabled) return;
+      if (disabled) return;
 
-      const nextVisible = !visible;
-      if (actionVisible === undefined) {
+      const nextVisible = !isOpenVisible;
+      if (controlledVisible === undefined) {
         setIsOpen(nextVisible);
       }
-      actionOnVisibleChange?.(nextVisible);
+      onVisibleChange?.(nextVisible);
     };
 
     const handleItemClick = (
@@ -157,74 +155,74 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
 
       item.onClick?.(e);
 
-      if (actionCloseOnSelect) {
-        if (actionVisible === undefined) {
+      if (closeOnSelect) {
+        if (controlledVisible === undefined) {
           setIsOpen(false);
         }
-        actionOnVisibleChange?.(false);
+        onVisibleChange?.(false);
       }
     };
 
     return (
       <div
         ref={containerRef}
-        className={cn('unbrn-action-root', actionClassName, classNames?.actionRoot)}
-        style={{ ...actionStyle, ...styles?.actionRoot, ...accentStyle }}
+        className={cn('unbrn-action-root', className, classNames?.root)}
+        style={{ ...style, ...styles?.root, ...accentStyle }}
       >
-        <ButtonContext.Provider value={actionSize ? { buttonSize: actionSize } : {}}>
+        <ButtonContext.Provider value={size ? { size: size } : {}}>
           <div
             onClick={handleToggle}
-            className={cn('unbrn-action-trigger', classNames?.actionTrigger)}
-            style={styles?.actionTrigger}
+            className={cn('unbrn-action-trigger', classNames?.trigger)}
+            style={styles?.trigger}
           >
-            {actionTrigger}
+            {trigger}
           </div>
         </ButtonContext.Provider>
 
-        {visible && (
+        {isOpenVisible && (
           <div
             className={cn(
               'unbrn-action-dropdown',
-              `unbrn-action-dropdown-${finalPosition}-${actionAlign}`,
-              classNames?.actionDropdown
+              `unbrn-action-dropdown-${finalPosition}-${align}`,
+              classNames?.dropdown
             )}
-            style={styles?.actionDropdown}
+            style={styles?.dropdown}
           >
-            {actionHeader && (
+            {header && (
               <div className="unbrn-action-header">
-                {actionHeader}
+                {header}
               </div>
             )}
 
-            {(actionChildren || children) ? (
+            {(children) ? (
               <div className="unbrn-action-custom-content">
-                {actionChildren || children}
+                {children}
               </div>
             ) : (
               <div className="unbrn-action-items-list">
-                {actionItems?.map((item, index) => {
-                  const resolvedItemSize = actionSize || 'sm';
+                {items?.map((item, index) => {
+                  const resolvedItemSize = size === 1 ? 'sm' : 'default';
                   const itemClassName = cn(
                     'unbrn-action-item',
                     `unbrn-action-item-size-${resolvedItemSize}`,
                     `unbrn-action-item-${item.variant || 'default'}`,
                     item.disabled && 'unbrn-action-item-disabled',
-                    classNames?.actionItem,
+                    classNames?.item,
                     item.className
                   );
 
-                  const itemStyle = { ...styles?.actionItem, ...item.style };
+                  const itemStyle = { ...styles?.item, ...item.style };
 
                   const buttonElement = (
                     <Button
-                      buttonVariant="ghost"
-                      buttonSize={resolvedItemSize}
-                      buttonDisabled={item.disabled}
-                      buttonOnClick={(e) => handleItemClick(e, item)}
-                      buttonClassName={itemClassName}
-                      buttonStyle={itemStyle}
-                      buttonIcon={item.icon}
-                      buttonChildren={item.label}
+                      variant="ghost"
+                      size={size ?? 2}
+                      disabled={item.disabled}
+                      onClick={(e) => handleItemClick(e, item)}
+                      className={itemClassName}
+                      style={itemStyle}
+                      icon={item.icon}
+                      children={item.label}
                     />
                   );
 
@@ -249,9 +247,9 @@ export const Action = forwardRef<HTMLDivElement, ActionProps>(
               </div>
             )}
 
-            {actionFooter && (
+            {footer && (
               <div className="unbrn-action-footer">
-                {actionFooter}
+                {footer}
               </div>
             )}
           </div>
