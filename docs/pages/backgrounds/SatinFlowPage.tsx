@@ -90,12 +90,12 @@ export default function Example() {
             />
 
             <Button
-              buttonOnClick={() => setIsFullscreen(true)}
-              buttonVariant="filled"
-              buttonSize="sm"
-              buttonIcon={<Maximize2 size={14} />}
-              buttonAccentColor='rgba(0, 0, 0, 0.85)'
-              buttonStyle={{
+              onClick={() => setIsFullscreen(true)}
+              variant="filled"
+              size={1}
+              icon={<Maximize2 size={14} />}
+              accentColor='rgba(0, 0, 0, 0.85)'
+              style={{
                 position: 'absolute',
                 top: '1rem',
                 right: '1rem',
@@ -155,43 +155,43 @@ export default function Example() {
                     Appearance
                   </div>
                   <ColorPicker
-                    colorPickerLabel="PRIMARY COLOR"
-                    colorPickerValue={primaryColor}
-                    colorPickerOnChange={setPrimaryColor}
-                    colorPickerVariant="duo"
-                    colorPickerShowAlpha={false}
-                    colorPickerShowEyeDropper={false}
+                    label="PRIMARY COLOR"
+                    value={primaryColor}
+                    onChange={setPrimaryColor}
+                    variant="duo"
+                    showAlpha={false}
+                    showEyeDropper={false}
                   />
                   <ColorPicker
-                    colorPickerLabel="SECONDARY COLOR"
-                    colorPickerValue={secondaryColor}
-                    colorPickerOnChange={setSecondaryColor}
-                    colorPickerVariant="duo"
-                    colorPickerShowAlpha={false}
-                    colorPickerShowEyeDropper={false}
+                    label="SECONDARY COLOR"
+                    value={secondaryColor}
+                    onChange={setSecondaryColor}
+                    variant="duo"
+                    showAlpha={false}
+                    showEyeDropper={false}
                   />
                   <ColorPicker
-                    colorPickerLabel="CANVAS BACKGROUND"
-                    colorPickerValue={backgroundColor}
-                    colorPickerOnChange={setBackgroundColor}
-                    colorPickerVariant="duo"
-                    colorPickerShowAlpha={true}
-                    colorPickerShowEyeDropper={false}
+                    label="CANVAS BACKGROUND"
+                    value={backgroundColor}
+                    onChange={setBackgroundColor}
+                    variant="duo"
+                    showAlpha={true}
+                    showEyeDropper={false}
                   />
                   <Select
-                    selectLabel="MIX BLEND MODE"
-                    selectValue={mixBlendMode}
-                    selectOnChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
-                    selectVariant="outlined"
-                    selectOptions={[
-                      { selectOptionValue: 'normal', selectOptionLabel: 'Normal' },
-                      { selectOptionValue: 'screen', selectOptionLabel: 'Screen' },
-                      { selectOptionValue: 'multiply', selectOptionLabel: 'Multiply' },
-                      { selectOptionValue: 'overlay', selectOptionLabel: 'Overlay' },
-                      { selectOptionValue: 'color-dodge', selectOptionLabel: 'Color Dodge' },
-                      { selectOptionValue: 'difference', selectOptionLabel: 'Difference' },
-                      { selectOptionValue: 'exclusion', selectOptionLabel: 'Exclusion' },
-                      { selectOptionValue: 'lighten', selectOptionLabel: 'Lighten' },
+                    label="MIX BLEND MODE"
+                    value={mixBlendMode}
+                    onChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
+                    variant="outlined"
+                    options={[
+                      { value: 'normal', label: 'Normal' },
+                      { value: 'screen', label: 'Screen' },
+                      { value: 'multiply', label: 'Multiply' },
+                      { value: 'overlay', label: 'Overlay' },
+                      { value: 'color-dodge', label: 'Color Dodge' },
+                      { value: 'difference', label: 'Difference' },
+                      { value: 'exclusion', label: 'Exclusion' },
+                      { value: 'lighten', label: 'Lighten' },
                     ]}
                   />
                 </div>
@@ -210,28 +210,28 @@ export default function Example() {
                     Geometry
                   </div>
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>ZOOM / SCALE</span><span>{scale.toFixed(1)}</span></div>}
-                    sliderMin={0.2}
-                    sliderMax={4.0}
-                    sliderStep={0.1}
-                    sliderValue={scale}
-                    sliderOnChange={setScale}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>ZOOM / SCALE</span><span>{scale.toFixed(1)}</span></div>}
+                    min={0.2}
+                    max={4.0}
+                    step={0.1}
+                    value={scale}
+                    onChange={setScale}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FOLD DENSITY</span><span>{density.toFixed(1)}</span></div>}
-                    sliderMin={0.2}
-                    sliderMax={4.0}
-                    sliderStep={0.1}
-                    sliderValue={density}
-                    sliderOnChange={setDensity}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FOLD DENSITY</span><span>{density.toFixed(1)}</span></div>}
+                    min={0.2}
+                    max={4.0}
+                    step={0.1}
+                    value={density}
+                    onChange={setDensity}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>SWIRL TWIST</span><span>{twist.toFixed(2)}</span></div>}
-                    sliderMin={-2.0}
-                    sliderMax={2.0}
-                    sliderStep={0.05}
-                    sliderValue={twist}
-                    sliderOnChange={setTwist}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>SWIRL TWIST</span><span>{twist.toFixed(2)}</span></div>}
+                    min={-2.0}
+                    max={2.0}
+                    step={0.05}
+                    value={twist}
+                    onChange={setTwist}
                   />
                 </div>
 
@@ -249,37 +249,37 @@ export default function Example() {
                     Dynamics & Motion
                   </div>
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FLOW SPEED</span><span>{speed.toFixed(1)}</span></div>}
-                    sliderMin={0.0}
-                    sliderMax={4.0}
-                    sliderStep={0.1}
-                    sliderValue={speed}
-                    sliderOnChange={setSpeed}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FLOW SPEED</span><span>{speed.toFixed(1)}</span></div>}
+                    min={0.0}
+                    max={4.0}
+                    step={0.1}
+                    value={speed}
+                    onChange={setSpeed}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>INITIAL ROTATION</span><span>{rotation}°</span></div>}
-                    sliderMin={-180}
-                    sliderMax={180}
-                    sliderStep={1}
-                    sliderValue={rotation}
-                    sliderOnChange={setRotation}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>INITIAL ROTATION</span><span>{rotation}°</span></div>}
+                    min={-180}
+                    max={180}
+                    step={1}
+                    value={rotation}
+                    onChange={setRotation}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>NOISE INTENSITY</span><span>{noiseIntensity.toFixed(1)}</span></div>}
-                    sliderMin={0.0}
-                    sliderMax={3.0}
-                    sliderStep={0.1}
-                    sliderValue={noiseIntensity}
-                    sliderOnChange={setNoiseIntensity}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>NOISE INTENSITY</span><span>{noiseIntensity.toFixed(1)}</span></div>}
+                    min={0.0}
+                    max={3.0}
+                    step={0.1}
+                    value={noiseIntensity}
+                    onChange={setNoiseIntensity}
                   />
                   <Switch
-                    switchId="fullscreen-interactive-checkbox"
-                    switchChecked={interactive}
-                    switchOnChange={setInteractive}
-                    switchLabel="MOUSE INTERACTIVE"
+                    id="fullscreen-interactive-checkbox"
+                    checked={interactive}
+                    onChange={setInteractive}
+                    label="MOUSE INTERACTIVE"
                     styles={{
-                      switchLabel: { color: 'var(--text-muted)', fontSize: '0.7rem' },
-                      switchContainer: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
+                      label: { color: 'var(--text-muted)', fontSize: '0.7rem' },
+                      container: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
                     }}
                   />
                 </div>
@@ -318,47 +318,47 @@ export default function Example() {
               </h4>
 
               <ColorPicker
-                colorPickerLabel="PRIMARY SATIN COLOR"
-                colorPickerValue={primaryColor}
-                colorPickerOnChange={setPrimaryColor}
-                colorPickerVariant="duo"
-                colorPickerShowAlpha={false}
-                colorPickerShowEyeDropper={false}
+                label="PRIMARY SATIN COLOR"
+                value={primaryColor}
+                onChange={setPrimaryColor}
+                variant="duo"
+                showAlpha={false}
+                showEyeDropper={false}
               />
 
               <ColorPicker
-                colorPickerLabel="SECONDARY SATIN COLOR"
-                colorPickerValue={secondaryColor}
-                colorPickerOnChange={setSecondaryColor}
-                colorPickerVariant="duo"
-                colorPickerShowAlpha={false}
-                colorPickerShowEyeDropper={false}
+                label="SECONDARY SATIN COLOR"
+                value={secondaryColor}
+                onChange={setSecondaryColor}
+                variant="duo"
+                showAlpha={false}
+                showEyeDropper={false}
               />
 
               <Select
-                selectLabel="MIX BLEND MODE"
-                selectValue={mixBlendMode}
-                selectOnChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
-                selectVariant="outlined"
-                selectOptions={[
-                  { selectOptionValue: 'normal', selectOptionLabel: 'Normal' },
-                  { selectOptionValue: 'screen', selectOptionLabel: 'Screen' },
-                  { selectOptionValue: 'multiply', selectOptionLabel: 'Multiply' },
-                  { selectOptionValue: 'overlay', selectOptionLabel: 'Overlay' },
-                  { selectOptionValue: 'color-dodge', selectOptionLabel: 'Color Dodge' },
-                  { selectOptionValue: 'difference', selectOptionLabel: 'Difference' },
-                  { selectOptionValue: 'exclusion', selectOptionLabel: 'Exclusion' },
-                  { selectOptionValue: 'lighten', selectOptionLabel: 'Lighten' },
+                label="MIX BLEND MODE"
+                value={mixBlendMode}
+                onChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
+                variant="outlined"
+                options={[
+                  { value: 'normal', label: 'Normal' },
+                  { value: 'screen', label: 'Screen' },
+                  { value: 'multiply', label: 'Multiply' },
+                  { value: 'overlay', label: 'Overlay' },
+                  { value: 'color-dodge', label: 'Color Dodge' },
+                  { value: 'difference', label: 'Difference' },
+                  { value: 'exclusion', label: 'Exclusion' },
+                  { value: 'lighten', label: 'Lighten' },
                 ]}
               />
 
               <ColorPicker
-                colorPickerLabel="CANVAS BACKGROUND"
-                colorPickerValue={backgroundColor}
-                colorPickerOnChange={setBackgroundColor}
-                colorPickerVariant="duo"
-                colorPickerShowAlpha={true}
-                colorPickerShowEyeDropper={false}
+                label="CANVAS BACKGROUND"
+                value={backgroundColor}
+                onChange={setBackgroundColor}
+                variant="duo"
+                showAlpha={true}
+                showEyeDropper={false}
               />
             </div>
 
@@ -386,48 +386,48 @@ export default function Example() {
               </h4>
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>ZOOM / SCALE</span>
                     <span>{scale.toFixed(1)}</span>
                   </div>
                 }
-                sliderMin={0.2}
-                sliderMax={4.0}
-                sliderStep={0.1}
-                sliderValue={scale}
-                sliderOnChange={setScale}
-                sliderShowTooltip
+                min={0.2}
+                max={4.0}
+                step={0.1}
+                value={scale}
+                onChange={setScale}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>FOLD DENSITY</span>
                     <span>{density.toFixed(1)}</span>
                   </div>
                 }
-                sliderMin={0.2}
-                sliderMax={4.0}
-                sliderStep={0.1}
-                sliderValue={density}
-                sliderOnChange={setDensity}
-                sliderShowTooltip
+                min={0.2}
+                max={4.0}
+                step={0.1}
+                value={density}
+                onChange={setDensity}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>SWIRL TWIST</span>
                     <span>{twist.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={-2.0}
-                sliderMax={2.0}
-                sliderStep={0.05}
-                sliderValue={twist}
-                sliderOnChange={setTwist}
-                sliderShowTooltip
+                min={-2.0}
+                max={2.0}
+                step={0.05}
+                value={twist}
+                onChange={setTwist}
+                showTooltip
               />
             </div>
 
@@ -455,59 +455,59 @@ export default function Example() {
               </h4>
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>FLOW SPEED</span>
                     <span>{speed.toFixed(1)}</span>
                   </div>
                 }
-                sliderMin={0.0}
-                sliderMax={4.0}
-                sliderStep={0.1}
-                sliderValue={speed}
-                sliderOnChange={setSpeed}
-                sliderShowTooltip
+                min={0.0}
+                max={4.0}
+                step={0.1}
+                value={speed}
+                onChange={setSpeed}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>INITIAL ROTATION</span>
                     <span>{rotation}°</span>
                   </div>
                 }
-                sliderMin={-180}
-                sliderMax={180}
-                sliderStep={1}
-                sliderValue={rotation}
-                sliderOnChange={setRotation}
-                sliderShowTooltip
+                min={-180}
+                max={180}
+                step={1}
+                value={rotation}
+                onChange={setRotation}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>NOISE INTENSITY</span>
                     <span>{noiseIntensity.toFixed(1)}</span>
                   </div>
                 }
-                sliderMin={0.0}
-                sliderMax={3.0}
-                sliderStep={0.1}
-                sliderValue={noiseIntensity}
-                sliderOnChange={setNoiseIntensity}
-                sliderShowTooltip
+                min={0.0}
+                max={3.0}
+                step={0.1}
+                value={noiseIntensity}
+                onChange={setNoiseIntensity}
+                showTooltip
               />
 
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: 'auto', paddingTop: '0.5rem' }}>
                 <Switch
-                  switchId="interactive-checkbox"
-                  switchChecked={interactive}
-                  switchOnChange={setInteractive}
-                  switchLabel="MOUSE INTERACTIVE"
+                  id="interactive-checkbox"
+                  checked={interactive}
+                  onChange={setInteractive}
+                  label="MOUSE INTERACTIVE"
                   styles={{
-                    switchLabel: { color: 'var(--text-muted)', fontSize: '0.75rem', fontWeight: 600 },
-                    switchContainer: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
+                    label: { color: 'var(--text-muted)', fontSize: '0.75rem', fontWeight: 600 },
+                    container: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
                   }}
                 />
               </div>
@@ -519,8 +519,8 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { SatinFlow } from '@unbrn/ui/SatinFlow';
+          language="tsx"
+          code={`import { SatinFlow } from '@unbrn/ui/SatinFlow';
 
 export default function Example() {
   return (

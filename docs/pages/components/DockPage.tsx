@@ -36,10 +36,10 @@ export default function Example() {
 
   return (
     <Dock
-      dockIsMenuOpen={isOpen}
-      dockOnMenuToggle={() => setIsOpen(!isOpen)}
-      dockChildren={
-        <Button buttonOnClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')} buttonChildren={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />} />
+      isMenuOpen={isOpen}
+      onMenuToggle={() => setIsOpen(!isOpen)}
+      children={
+        <Button onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')} children={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />} />
       }
     />
   );
@@ -47,13 +47,13 @@ export default function Example() {
       >
         <div style={{ height: '120px', position: 'relative', width: '100%', overflow: 'hidden' }}>
           <Dock
-            dockIsMenuOpen={demoOpen1}
-            dockOnMenuToggle={() => setDemoOpen1(!demoOpen1)}
-            dockClassName="showcase-dock"
-            dockChildren={
+            isMenuOpen={demoOpen1}
+            onMenuToggle={() => setDemoOpen1(!demoOpen1)}
+            className="showcase-dock"
+            children={
               <Button
-                buttonOnClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
-                buttonIcon={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
+                icon={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
               />
             }
           />
@@ -63,8 +63,8 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { Dock } from '@unbrn/ui/Dock';
+          language="tsx"
+          code={`import { Dock } from '@unbrn/ui/Dock';
 import { Button } from '@unbrn/ui/Button';
 import { Sun, Moon } from 'lucide-react';
 
@@ -75,10 +75,10 @@ export default function Layout({ children }) {
     <>
       {children}
       <Dock 
-        dockIsMenuOpen={isOpen}
-        dockOnMenuToggle={() => setIsOpen(!isOpen)}
-        dockChildren={
-          <Button buttonOnClick={toggleTheme} buttonChildren={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />} />
+        isMenuOpen={isOpen}
+        onMenuToggle={() => setIsOpen(!isOpen)}
+        children={
+          <Button onClick={toggleTheme} children={theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />} />
         }
       />
     </>
@@ -100,13 +100,13 @@ import { Home, Search, Plus } from 'lucide-react';
 export default function Example() {
   return (
     <Dock
-      dockIsMenuOpen={false}
-      dockOnMenuToggle={() => {}}
-      dockChildren={
+      isMenuOpen={false}
+      onMenuToggle={() => {}}
+      children={
         <>
-          <Button buttonIcon={<Home size={20} />} />
-          <Button buttonIcon={<Search size={20} />} />
-          <Button buttonIcon={<Plus size={20} />} />
+          <Button icon={<Home size={20} />} />
+          <Button icon={<Search size={20} />} />
+          <Button icon={<Plus size={20} />} />
         </>
       }
     />
@@ -115,14 +115,14 @@ export default function Example() {
         >
           <div style={{ height: '120px', position: 'relative', width: '100%', overflow: 'hidden' }}>
             <Dock
-              dockIsMenuOpen={demoOpen2}
-              dockOnMenuToggle={() => setDemoOpen2(!demoOpen2)}
-              dockClassName="showcase-dock"
-              dockChildren={
+              isMenuOpen={demoOpen2}
+              onMenuToggle={() => setDemoOpen2(!demoOpen2)}
+              className="showcase-dock"
+              children={
                 <>
-                  <Button buttonIcon={<Home size={20} />} />
-                  <Button buttonIcon={<Search size={20} />} />
-                  <Button buttonIcon={<Plus size={20} />} />
+                  <Button icon={<Home size={20} />} />
+                  <Button icon={<Search size={20} />} />
+                  <Button icon={<Plus size={20} />} />
                 </>
               }
             />
@@ -131,7 +131,7 @@ export default function Example() {
 
         <Showcase
           title="Global Customization"
-          description="Style all dock buttons globally using dockButtonVariant, dockButtonSize, and dockButtonAccentColor."
+          description="Style all dock buttons globally using variant, size, and accentColor."
           code={`import { Dock } from '@unbrn/ui/Dock';
 import { Button } from '@unbrn/ui/Button';
 import { Home, Search, Plus } from 'lucide-react';
@@ -139,14 +139,14 @@ import { Home, Search, Plus } from 'lucide-react';
 export default function Example() {
   return (
     <Dock
-      dockIsMenuOpen={false}
-      dockOnMenuToggle={() => {}}
-      dockButtonAccentColor="#10b981"
-      dockChildren={
+      isMenuOpen={false}
+      onMenuToggle={() => {}}
+      accentColor="#10b981"
+      children={
         <>
-          <Button buttonIcon={<Home size={20} />} />
-          <Button buttonIcon={<Search size={20} />} />
-          <Button buttonIcon={<Plus size={20} />} />
+          <Button icon={<Home size={20} />} />
+          <Button icon={<Search size={20} />} />
+          <Button icon={<Plus size={20} />} />
         </>
       }
     />
@@ -155,16 +155,16 @@ export default function Example() {
         >
           <div style={{ height: '120px', position: 'relative', width: '100%', overflow: 'hidden' }}>
             <Dock
-              dockIsMenuOpen={false}
-              dockOnMenuToggle={() => { }}
-              dockClassName="showcase-dock"
-              dockButtonAccentColor="#10b981"
-              dockShowHideToggle={false}
-              dockChildren={
+              isMenuOpen={false}
+              onMenuToggle={() => { }}
+              className="showcase-dock"
+              accentColor="#10b981"
+              showHideToggle={false}
+              children={
                 <>
-                  <Button buttonIcon={<Home size={20} />} />
-                  <Button buttonIcon={<Search size={20} />} />
-                  <Button buttonIcon={<Plus size={20} />} />
+                  <Button icon={<Home size={20} />} />
+                  <Button icon={<Search size={20} />} />
+                  <Button icon={<Plus size={20} />} />
                 </>
               }
             />
@@ -181,12 +181,12 @@ import { Trash } from 'lucide-react';
 export default function Example() {
   return (
     <Dock
-      dockShowMenuToggle={false}
-      dockShowHideToggle={false}
-      dockChildren={
+      showMenuToggle={false}
+      showHideToggle={false}
+      children={
         <>
           <Button>Save Changes</Button>
-          <Button buttonAccentColor="red" buttonIcon={<Trash size={20} />} />
+          <Button accentColor="red" icon={<Trash size={20} />} />
         </>
       }
     />
@@ -195,15 +195,15 @@ export default function Example() {
         >
           <div style={{ height: '120px', position: 'relative', width: '100%', overflow: 'hidden' }}>
             <Dock
-              dockIsMenuOpen={false}
-              dockOnMenuToggle={() => { }}
-              dockClassName="showcase-dock"
-              dockShowMenuToggle={false}
-              dockShowHideToggle={false}
-              dockChildren={
+              isMenuOpen={false}
+              onMenuToggle={() => { }}
+              className="showcase-dock"
+              showMenuToggle={false}
+              showHideToggle={false}
+              children={
                 <>
                   <Button>Save Changes</Button>
-                  <Button buttonAccentColor="red" buttonIcon={<Trash size={20} />} />
+                  <Button accentColor="red" icon={<Trash size={20} />} />
                 </>
               }
             />
@@ -218,9 +218,9 @@ export default function Example() {
 export default function Example() {
   return (
     <Dock
-      dockShowHideToggle={false}
-      dockIsMenuOpen={false}
-      dockOnMenuToggle={() => {}}
+      showHideToggle={false}
+      isMenuOpen={false}
+      onMenuToggle={() => {}}
     />
   );
 }`}
@@ -228,10 +228,10 @@ export default function Example() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem', width: '100%' }}>
             <div style={{ height: '100px', position: 'relative', overflow: 'hidden' }}>
               <Dock
-                dockShowHideToggle={false}
-                dockIsMenuOpen={false}
-                dockOnMenuToggle={() => { }}
-                dockClassName="showcase-dock"
+                showHideToggle={false}
+                isMenuOpen={false}
+                onMenuToggle={() => { }}
+                className="showcase-dock"
               />
             </div>
           </div>
@@ -240,36 +240,36 @@ export default function Example() {
 
       <Props
         props={[
-          { name: 'dockVariant', type: "'filled' | 'outlined'", defaultValue: "'outlined'", description: 'The visual style variant of the dock bar.' },
-          { name: 'dockIsMenuOpen', type: 'boolean', defaultValue: 'false', description: 'Turn the main menu on or off.' },
-          { name: 'dockOnMenuToggle', type: 'function', description: 'Function called when clicking the menu button.' },
-          { name: 'dockShowMenuToggle', type: 'boolean', defaultValue: 'true', description: 'Show the main menu hamburger/toggle button.' },
-          { name: 'dockPosition', type: "'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'", defaultValue: "'bottom'", description: 'Where the dock attaches on the screen.' },
-          { name: 'dockAccentColor', type: 'string', description: 'Custom accent color for the dock container.' },
-          { name: 'dockShowHideToggle', type: 'boolean', defaultValue: 'true', description: 'Show the arrow button to hide the dock.' },
-          { name: 'dockButtonSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'Default size for all buttons inside the dock.' },
-          { name: 'dockButtonVariant', type: "'filled' | 'outlined' | 'duo' | 'ghost'", defaultValue: "'duo'", description: 'Default variant for all buttons inside the dock.' },
-          { name: 'dockButtonAccentColor', type: 'string', description: 'Default accent color for all buttons inside the dock.' },
-          { name: 'dockClassName', type: 'string', description: 'Custom CSS class for the root container.' },
-          { name: 'dockStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
-          { name: 'dockChildren', type: 'ReactNode', description: 'The buttons or action components inside the dock.' },
+          { name: 'variant', type: "'filled' | 'outlined'", defaultValue: "'outlined'", description: 'The visual style variant of the dock bar.' },
+          { name: 'isMenuOpen', type: 'boolean', defaultValue: 'false', description: 'Turn the main menu on or off.' },
+          { name: 'onMenuToggle', type: 'function', description: 'Function called when clicking the menu button.' },
+          { name: 'showMenuToggle', type: 'boolean', defaultValue: 'true', description: 'Show the main menu hamburger/toggle button.' },
+          { name: 'position', type: "'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'", defaultValue: "'bottom'", description: 'Where the dock attaches on the screen.' },
+          { name: 'accentColor', type: 'string', description: 'Custom accent color for the dock container.' },
+          { name: 'showHideToggle', type: 'boolean', defaultValue: 'true', description: 'Show the arrow button to hide the dock.' },
+          { name: 'buttonSize', type: '1 | 2 | 3', defaultValue: '3', description: 'Default size for all buttons inside the dock.' },
+          { name: 'buttonVariant', type: "'filled' | 'outlined' | 'duo' | 'ghost'", defaultValue: "'duo'", description: 'Default variant for all buttons inside the dock.' },
+          { name: 'buttonAccentColor', type: 'string', description: 'Default accent color for all buttons inside the dock.' },
+          { name: 'className', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'style', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'children', type: 'ReactNode', description: 'The buttons or action components inside the dock.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the dock (prefixed with dock).' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with dock).' },
         ]}
         stylingTargets={[
-          { name: 'dockRoot', description: 'Styles the outer fixed container overlay.' },
-          { name: 'dockContainer', description: 'Styles the main blurred dock bar wrapper.' },
-          { name: 'dockTrigger', description: 'Styles the main hamburger/menu action button.' },
-          { name: 'dockActionBtn', description: 'Styles each action button slot inside the dock.' },
-          { name: 'dockCollapseBtn', description: 'Styles the button to hide the dock.' },
-          { name: 'dockExpandBtn', description: 'Styles the floating indicator to expand the dock.' },
+          { name: 'root', description: 'Styles the outer fixed container overlay.' },
+          { name: 'container', description: 'Styles the main blurred dock bar wrapper.' },
+          { name: 'trigger', description: 'Styles the main hamburger/menu action button.' },
+          { name: 'actionBtn', description: 'Styles each action button slot inside the dock.' },
+          { name: 'collapseBtn', description: 'Styles the button to hide the dock.' },
+          { name: 'expandBtn', description: 'Styles the floating indicator to expand the dock.' },
         ]}
-        stylingStructure={`dockRoot
- └── dockContainer
-      ├── dockTrigger
-      ├── dockActionBtn
-      ├── dockCollapseBtn
-      └── dockExpandBtn`}
+        stylingStructure={`root
+ └── container
+      ├── trigger
+      ├── actionBtn
+      ├── collapseBtn
+      └── expandBtn`}
       />
 
       <style>{`

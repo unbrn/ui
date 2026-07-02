@@ -9,31 +9,31 @@ import { Pipette } from 'lucide-react';
 import './ColorPicker.css';
 
 export interface ColorPickerProps {
-  colorPickerValue?: string;
-  colorPickerDefaultValue?: string;
-  colorPickerOnChange?: (color: string) => void;
-  colorPickerDisabled?: boolean;
-  colorPickerLabel?: React.ReactNode;
-  colorPickerVariant?: 'filled' | 'outlined' | 'duo';
-  colorPickerSize?: 'sm' | 'default' | 'lg';
-  colorPickerAlign?: 'left' | 'center' | 'right';
-  colorPickerClassName?: string;
-  colorPickerStyle?: React.CSSProperties;
-  colorPickerId?: string;
-  colorPickerAccentColor?: string;
-  colorPickerShowEyeDropper?: boolean;
-  colorPickerShowAlpha?: boolean;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (color: string) => void;
+  disabled?: boolean;
+  label?: React.ReactNode;
+  variant?: 'filled' | 'outlined' | 'duo';
+  size?: 1 | 2 | 3;
+  align?: 'left' | 'center' | 'right';
+  className?: string;
+  style?: React.CSSProperties;
+  id?: string;
+  accentColor?: string;
+  showEyeDropper?: boolean;
+  showAlpha?: boolean;
   classNames?: {
-    colorPickerRoot?: string;
-    colorPickerTrigger?: string;
-    colorPickerPopover?: string;
-    colorPickerInputContainer?: string;
+    root?: string;
+    trigger?: string;
+    popover?: string;
+    container?: string;
   };
   styles?: {
-    colorPickerRoot?: React.CSSProperties;
-    colorPickerTrigger?: React.CSSProperties;
-    colorPickerPopover?: React.CSSProperties;
-    colorPickerInputContainer?: React.CSSProperties;
+    root?: React.CSSProperties;
+    trigger?: React.CSSProperties;
+    popover?: React.CSSProperties;
+    container?: React.CSSProperties;
   };
 }
 
@@ -273,31 +273,31 @@ function parseColorInput(value: string, format: 'hex' | 'rgb' | 'hsl'): { hex: s
 export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
   (
     {
-      colorPickerClassName,
-      colorPickerStyle,
-      colorPickerValue: controlledValue,
-      colorPickerDefaultValue,
-      colorPickerOnChange,
-      colorPickerDisabled = false,
-      colorPickerLabel,
-      colorPickerVariant = 'filled',
-      colorPickerSize = 'default',
-      colorPickerAlign = 'left',
-      colorPickerId,
-      colorPickerAccentColor,
-      colorPickerShowEyeDropper = true,
-      colorPickerShowAlpha = true,
+      className,
+      style,
+      value: controlledValue,
+      defaultValue,
+      onChange,
+      disabled = false,
+      label,
+      variant = 'filled',
+      size = 2,
+      align = 'left',
+      id,
+      accentColor,
+      showEyeDropper = true,
+      showAlpha = true,
       classNames,
       styles
     },
     ref
   ) => {
     const generatedId = useId();
-    const resolvedId = colorPickerId || generatedId;
+    const resolvedId = id || generatedId;
 
-    const [color, setColor] = useState<string>(controlledValue ?? colorPickerDefaultValue ?? '#FFFFFF');
+    const [color, setColor] = useState<string>(controlledValue ?? defaultValue ?? '#FFFFFF');
     const [alpha, setAlpha] = useState<number>(() => {
-      const initial = controlledValue ?? colorPickerDefaultValue ?? '#FFFFFF';
+      const initial = controlledValue ?? defaultValue ?? '#FFFFFF';
       return hexToRgb(initial).a;
     });
     const [isOpen, setIsOpen] = useState(false);
@@ -311,7 +311,7 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
       setIsEyeDropperSupported(typeof window !== 'undefined' && 'EyeDropper' in window);
 
       const updateDefaultColor = () => {
-        if (controlledValue === undefined && colorPickerDefaultValue === undefined) {
+        if (controlledValue === undefined && defaultValue === undefined) {
           const isLightTheme = typeof document !== 'undefined' &&
             document.documentElement.getAttribute('data-theme') === 'light';
           const targetColor = isLightTheme ? '#000000' : '#FFFFFF';
@@ -339,7 +339,7 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
       }
 
       return () => observer.disconnect();
-    }, [controlledValue, colorPickerDefaultValue]);
+    }, [controlledValue, defaultValue]);
 
     const popoverRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLButtonElement>(null);
@@ -431,7 +431,7 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
     }, [isOpen]);
 
     const updateColor = (newColor: string) => {
-      if (colorPickerDisabled) return;
+      if (disabled) return;
 
       const parsed = hexToRgb(newColor);
       const newHex = rgbToHex(parsed.r, parsed.g, parsed.b, parsed.a);
@@ -442,7 +442,7 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
       }
       setHsv(rgbToHsv(parsed.r, parsed.g, parsed.b));
       setTextInputValue(formatColorString(newHex, inputFormat, parsed.a));
-      colorPickerOnChange?.(newHex);
+      onChange?.(newHex);
     };
 
     const handleTextInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -462,12 +462,12 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
           setAlpha(parsed.alpha);
         }
         setHsv(hexToHsv(parsed.hex));
-        colorPickerOnChange?.(fullHex);
+        onChange?.(fullHex);
       }
     };
 
     const togglePopover = () => {
-      if (colorPickerDisabled) return;
+      if (disabled) return;
       setIsOpen(prev => !prev);
     };
 
@@ -509,11 +509,11 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
         setColor(newHex);
       }
       setTextInputValue(formatColorString(newHex, inputFormat, alpha));
-      colorPickerOnChange?.(newHex);
+      onChange?.(newHex);
     };
 
     const handleSvStart = (e: React.MouseEvent | React.TouchEvent) => {
-      if (colorPickerDisabled) return;
+      if (disabled) return;
       e.preventDefault();
 
       const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
@@ -541,9 +541,9 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
 
 
 
-    const activeAccentColor = colorPickerVariant === 'duo'
+    const activeAccentColor = variant === 'duo'
       ? color
-      : (colorPickerAccentColor || undefined);
+      : (accentColor || undefined);
 
     const accentStyle = getAccentVariables(activeAccentColor) as React.CSSProperties & Record<string, string>;
     if (activeAccentColor) {
@@ -555,17 +555,17 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
       <div
         className={cn(
           "unbrn-color-picker-root",
-          colorPickerDisabled && "unbrn-color-picker-disabled",
-          classNames?.colorPickerRoot
+          disabled && "unbrn-color-picker-disabled",
+          classNames?.root
         )}
-        style={{ ...colorPickerStyle, ...styles?.colorPickerRoot, ...accentStyle }}
+        style={{ ...style, ...styles?.root, ...accentStyle }}
       >
-        {colorPickerLabel && (
+        {label && (
           <label
             htmlFor={resolvedId}
             className="unbrn-color-picker-label"
           >
-            {colorPickerLabel}
+            {label}
           </label>
         )}
 
@@ -580,18 +580,18 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
               (triggerRef as React.MutableRefObject<HTMLButtonElement | null>).current = node;
             }}
             type="button"
-            disabled={colorPickerDisabled}
+            disabled={disabled}
             onClick={togglePopover}
             className={cn(
               "unbrn-color-picker-trigger",
-              `unbrn-color-picker-trigger-${colorPickerSize}`,
-              `unbrn-color-picker-trigger-${colorPickerVariant}`,
-              (colorPickerVariant === 'outlined' || colorPickerVariant === 'duo') && 'unbrn-glass',
+              `unbrn-color-picker-trigger-${size === 1 ? 'sm' : size === 3 ? 'lg' : 'default'}`,
+              `unbrn-color-picker-trigger-${variant}`,
+              (variant === 'outlined' || variant === 'duo') && 'unbrn-glass',
               isOpen && "unbrn-color-picker-trigger-active",
-              colorPickerClassName,
-              classNames?.colorPickerTrigger
+              className,
+              classNames?.trigger
             )}
-            style={styles?.colorPickerTrigger}
+            style={styles?.trigger}
           >
             <span
               className="unbrn-color-picker-swatch-preview"
@@ -608,11 +608,11 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
               className={cn(
                 "unbrn-color-picker-popover",
                 `unbrn-color-picker-popover-${popoverPosition}`,
-                `unbrn-color-picker-popover-${colorPickerAlign}`,
+                `unbrn-color-picker-popover-${align}`,
                 "unbrn-glass",
-                classNames?.colorPickerPopover
+                classNames?.popover
               )}
-              style={styles?.colorPickerPopover}
+              style={styles?.popover}
             >
               {/* Custom Saturation-Value Canvas Selector */}
               <div
@@ -639,7 +639,7 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
 
               {/* Sliders and Eyedropper Row */}
               <div className="unbrn-color-picker-sliders-row">
-                {isEyeDropperSupported && colorPickerShowEyeDropper && (
+                {isEyeDropperSupported && showEyeDropper && (
                   <button
                     type="button"
                     onClick={handleEyeDropper}
@@ -653,47 +653,47 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
                   {/* Hue Rainbow Slider Selector */}
                   <div className="unbrn-color-picker-hue-container">
                     <Slider
-                      sliderMin={0}
-                      sliderMax={360}
-                      sliderStep={1}
-                      sliderValue={hsv.h}
-                      sliderOnChange={(val) => {
+                      min={0}
+                      max={360}
+                      step={1}
+                      value={hsv.h}
+                      onChange={(val) => {
                         const newHex = getCombinedHex(val, hsv.s, hsv.v, alpha);
                         setHsv(prev => ({ ...prev, h: val }));
                         if (controlledValue === undefined) {
                           setColor(newHex);
                         }
                         setTextInputValue(formatColorString(newHex, inputFormat, alpha));
-                        colorPickerOnChange?.(newHex);
+                        onChange?.(newHex);
                       }}
-                      sliderClassName="unbrn-color-picker-hue-slider"
-                      sliderSize="sm"
-                      sliderDisabled={colorPickerDisabled}
+                      className="unbrn-color-picker-hue-slider"
+                      size={1}
+                      disabled={disabled}
                     />
                   </div>
 
                   {/* Alpha Transparency Slider Selector */}
-                  {colorPickerShowAlpha && (
+                  {showAlpha && (
                     <div className="unbrn-color-picker-alpha-container">
                       <Slider
-                        sliderMin={0}
-                        sliderMax={1}
-                        sliderStep={0.01}
-                        sliderValue={alpha}
-                        sliderOnChange={(val) => {
+                        min={0}
+                        max={1}
+                        step={0.01}
+                        value={alpha}
+                        onChange={(val) => {
                           const newHex = getCombinedHex(hsv.h, hsv.s, hsv.v, val);
                           setAlpha(val);
                           if (controlledValue === undefined) {
                             setColor(newHex);
                           }
                           setTextInputValue(formatColorString(newHex, inputFormat, val));
-                          colorPickerOnChange?.(newHex);
+                          onChange?.(newHex);
                         }}
-                        sliderClassName="unbrn-color-picker-alpha-slider"
-                        sliderSize="sm"
-                        sliderDisabled={colorPickerDisabled}
+                        className="unbrn-color-picker-alpha-slider"
+                        size={1}
+                        disabled={disabled}
                         styles={{
-                          sliderTrack: {
+                          track: {
                             '--alpha-gradient': `linear-gradient(to right, transparent, ${hsvToHex(hsv.h, hsv.s, hsv.v)})`,
                           } as React.CSSProperties
                         }}
@@ -705,8 +705,8 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
 
               {/* Format input and toggle Row */}
               <div
-                className={cn("unbrn-color-picker-input-row", classNames?.colorPickerInputContainer)}
-                style={styles?.colorPickerInputContainer}
+                className={cn("unbrn-color-picker-input-row", classNames?.container)}
+                style={styles?.container}
               >
                 <button
                   type="button"
@@ -719,16 +719,15 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
 
                 <div className="unbrn-color-picker-input-wrapper">
                   <Input
-                    inputValue={textInputValue}
-                    inputOnChange={handleTextInputChange}
-                    inputPlaceholder={
+                    value={textInputValue}
+                    onChange={handleTextInputChange}
+                    placeholder={
                       inputFormat === 'hex' ? '#FFFFFF' :
                         inputFormat === 'rgb' ? 'rgb(255, 255, 255)' :
                           'hsl(0, 0%, 100%)'
                     }
-                    inputSize="sm"
-                    inputVariant="filled"
-                    inputFullWidth
+                    variant="filled"
+                    fullWidth
                   />
                 </div>
               </div>

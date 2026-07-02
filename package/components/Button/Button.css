@@ -184,28 +184,7 @@
   border-left-color: color-mix(in srgb, var(--accent-text) 30%, transparent);
 }
 
-.unbrn-btn-group-split {
-  display: inline-flex;
-  gap: 6px;
-  border-radius: var(--radius);
-  width: fit-content;
-  position: relative;
-}
 
-.unbrn-btn-group-split .unbrn-btn {
-  margin: 0;
-  border-radius: var(--radius-xs) !important;
-}
-
-.unbrn-btn-group-split .unbrn-btn:first-child {
-  border-top-left-radius: var(--radius) !important;
-  border-bottom-left-radius: var(--radius) !important;
-}
-
-.unbrn-btn-group-split .unbrn-btn:last-child {
-  border-top-right-radius: var(--radius) !important;
-  border-bottom-right-radius: var(--radius) !important;
-}
 
 /* Tabs Button Group */
 .unbrn-btn-group-tabs {
@@ -329,9 +308,7 @@
   color: var(--text-main) !important;
 }
 
-.unbrn-btn-group-split.unbrn-btn-group-tabs {
-  gap: 3px;
-}
+
 
 .unbrn-btn-group-indicator {
   position: absolute;

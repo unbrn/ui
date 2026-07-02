@@ -7,7 +7,7 @@ import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
 import { ComponentHeader } from '../../components/layout/ComponentHeader';
-import { Settings, LogOut, User, HelpCircle } from 'lucide-react';
+import { Settings, LogOut, HelpCircle } from 'lucide-react';
 
 export const ActionPage: React.FC = () => {
   const [lastAction, setLastAction] = useState<string>('None');
@@ -26,29 +26,7 @@ export const ActionPage: React.FC = () => {
     },
   ];
 
-  const showcaseItems: ActionItem[] = [
-    {
-      label: 'Account Details',
-      icon: <User size={14} />,
-      onClick: () => setLastAction('Account Details'),
-    },
-    {
-      label: 'Settings',
-      icon: <Settings size={14} />,
-      onClick: () => setLastAction('Settings'),
-    },
-    {
-      label: 'Help & Support',
-      icon: <HelpCircle size={14} />,
-      onClick: () => setLastAction('Help & Support'),
-    },
-    {
-      label: 'Sign Out',
-      icon: <LogOut size={14} />,
-      variant: 'destructive',
-      onClick: () => setLastAction('Sign Out'),
-    },
-  ];
+
 
   return (
     <>
@@ -78,10 +56,10 @@ export default function Example() {
 
   return (
     <Action
-      actionTrigger={<Button buttonVariant="filled" buttonChildren="Click Me" />}
-      actionItems={items}
-      actionPosition="bottom"
-      actionAlign="center"
+      trigger={<Button variant="filled" children="Click Me" />}
+      items={items}
+      position="bottom"
+      align="center"
     />
   );
 }`}
@@ -91,10 +69,10 @@ export default function Example() {
             Last Action: <strong style={{ color: 'var(--text-main)' }}>{lastAction}</strong>
           </div>
           <Action
-            actionTrigger={<Button buttonVariant="filled" buttonChildren="Click Me" />}
-            actionItems={baseItems}
-            actionPosition="bottom"
-            actionAlign="center"
+            trigger={<Button variant="filled" children="Click Me" />}
+            items={baseItems}
+            position="bottom"
+            align="center"
           />
         </div>
       </Showcase>
@@ -102,8 +80,8 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { Action } from '@unbrn/ui/Action';`}
+          language="tsx"
+          code={`import { Action } from '@unbrn/ui/Action';`}
         />
       </div>
 
@@ -111,143 +89,8 @@ export default function Example() {
         <h3 className="section-subtitle">Examples</h3>
 
         <Showcase
-          title="Implemented to Button & Avatar"
-          description="The Action component can wrap buttons, avatars, or any standard clickable markup."
-          code={`import { Action } from '@unbrn/ui/Action';
-import { Button } from '@unbrn/ui/Button';
-import { Avatar } from '@unbrn/ui/Avatar';
-import { User, Settings, HelpCircle, LogOut } from 'lucide-react';
-
-export default function Example() {
-  const items = [
-    { label: 'Profile', icon: <User size={14} /> },
-    { label: 'Settings', icon: <Settings size={14} /> },
-    { label: 'Sign Out', icon: <LogOut size={14} />, variant: 'destructive' }
-  ];
-
-  return (
-    <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-      {/* Button Trigger */}
-      <Action
-        actionTrigger={<Button buttonVariant="outlined" buttonChildren="Open Options" />}
-        actionItems={items}
-      />
-
-      {/* Avatar Trigger */}
-      <Action
-        actionTrigger={
-          <Avatar
-            avatarSrc="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
-            avatarFallback="JD"
-            avatarShowStatus
-            avatarSize="md"
-            avatarClassName="cursor-pointer"
-          />
-        }
-        actionItems={items}
-        actionAlign="start"
-      />
-    </div>
-  );
-}`}
-        >
-          <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', alignItems: 'center', padding: '2rem' }}>
-            <Action
-              actionTrigger={<Button buttonVariant="outlined" buttonChildren="Open Options" />}
-              actionItems={showcaseItems}
-              actionPosition="bottom"
-              actionAlign="center"
-            />
-
-            <Action
-              actionTrigger={
-                <Avatar
-                  avatarSrc="https://avatars.githubusercontent.com/u/197804266"
-                  avatarFallback="KP"
-                  avatarSize="md"
-                  avatarStyle={{ cursor: 'pointer' }}
-                />
-              }
-              actionItems={showcaseItems}
-              actionPosition="bottom"
-              actionAlign="start"
-            />
-          </div>
-        </Showcase>
-
-        <Showcase
-          title="Positions & Alignments"
-          description="Supports placement in four directions (top, bottom, left, right) and alignment options (start, center, end)."
-          code={`import { Action } from '@unbrn/ui/Action';
-import { Button } from '@unbrn/ui/Button';
-
-export default function Example() {
-  const items = [
-    { label: 'Settings', onClick: () => console.log('Settings') },
-    { label: 'Sign Out', variant: 'destructive', onClick: () => console.log('Sign Out') }
-  ];
-
-  return (
-    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-      <Action
-        actionPosition="top"
-        actionAlign="center"
-        actionTrigger={<Button buttonVariant="duo" buttonChildren="Top (Center)" />}
-        actionItems={items}
-      />
-      <Action
-        actionPosition="bottom"
-        actionAlign="end"
-        actionTrigger={<Button buttonVariant="duo" buttonChildren="Bottom (End)" />}
-        actionItems={items}
-      />
-      <Action
-        actionPosition="left"
-        actionAlign="center"
-        actionTrigger={<Button buttonVariant="duo" buttonChildren="Left (Center)" />}
-        actionItems={items}
-      />
-      <Action
-        actionPosition="right"
-        actionAlign="start"
-        actionTrigger={<Button buttonVariant="duo" buttonChildren="Right (Start)" />}
-        actionItems={items}
-      />
-    </div>
-  );
-}`}
-        >
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center', padding: '2rem' }}>
-            <Action
-              actionPosition="top"
-              actionAlign="center"
-              actionTrigger={<Button buttonVariant="duo" buttonChildren="Top (Center)" />}
-              actionItems={baseItems}
-            />
-            <Action
-              actionPosition="bottom"
-              actionAlign="end"
-              actionTrigger={<Button buttonVariant="duo" buttonChildren="Bottom (End)" />}
-              actionItems={baseItems}
-            />
-            <Action
-              actionPosition="left"
-              actionAlign="center"
-              actionTrigger={<Button buttonVariant="duo" buttonChildren="Left (Center)" />}
-              actionItems={baseItems}
-            />
-            <Action
-              actionPosition="right"
-              actionAlign="start"
-              actionTrigger={<Button buttonVariant="duo" buttonChildren="Right (Start)" />}
-              actionItems={baseItems}
-            />
-          </div>
-        </Showcase>
-
-        <Showcase
           title="Sizes"
-          description="Supports three visual sizes for dropdown items: sm, default, and lg."
+          description="Supports two visual sizes for dropdown items: 1 and 2."
           code={`import { Action } from '@unbrn/ui/Action';
 import { Button } from '@unbrn/ui/Button';
 
@@ -260,39 +103,29 @@ export default function Example() {
   return (
     <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
       <Action
-        actionSize="sm"
-        actionTrigger={<Button buttonVariant="outlined" buttonChildren="Small Items" />}
-        actionItems={items}
+        size={1}
+        trigger={<Button variant="outlined" children="Small Items" />}
+        items={items}
       />
       <Action
-        actionSize="default"
-        actionTrigger={<Button buttonVariant="outlined" buttonChildren="Default Items" />}
-        actionItems={items}
-      />
-      <Action
-        actionSize="lg"
-        actionTrigger={<Button buttonVariant="outlined" buttonChildren="Large Items" />}
-        actionItems={items}
+        size={2}
+        trigger={<Button variant="outlined" children="Default Items" />}
+        items={items}
       />
     </div>
   );
 }`}
         >
-          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', alignItems: 'center', padding: '2rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center', alignItems: 'center', padding: '2rem', flexDirection: "column" }}>
             <Action
-              actionSize="sm"
-              actionTrigger={<Button buttonVariant="outlined" buttonChildren="Small Items" />}
-              actionItems={baseItems}
+              size={1}
+              trigger={<Button variant="outlined" children="Small Items" />}
+              items={baseItems}
             />
             <Action
-              actionSize="default"
-              actionTrigger={<Button buttonVariant="outlined" buttonChildren="Default Items" />}
-              actionItems={baseItems}
-            />
-            <Action
-              actionSize="lg"
-              actionTrigger={<Button buttonVariant="outlined" buttonChildren="Large Items" />}
-              actionItems={baseItems}
+              size={2}
+              trigger={<Button variant="outlined" children="Default Items" />}
+              items={baseItems}
             />
           </div>
         </Showcase>
@@ -313,37 +146,37 @@ export default function Example() {
 
   return (
     <Action
-      actionTrigger={<Avatar avatarSrc="..." avatarSize="md" />}
-      actionHeader={
+      trigger={<Avatar src="..." size={3} />}
+      header={
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', width: '200px' }}>
-          <Avatar avatarSrc="..." avatarSize="sm" />
+          <Avatar src="..." size={2} />
           <div>
             <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>Kunal KandePatil</div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>kunal@unbrn.tech</div>
           </div>
         </div>
       }
-      actionItems={items}
+      items={items}
     />
   );
 }`}
         >
           <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
             <Action
-              actionTrigger={
+              trigger={
                 <Avatar
-                  avatarSrc="https://avatars.githubusercontent.com/u/197804266"
-                  avatarFallback="KP"
-                  avatarSize="md"
-                  avatarStyle={{ cursor: 'pointer' }}
+                  src="https://avatars.githubusercontent.com/u/197804266"
+                  fallback="KP"
+                  size={3}
+                  style={{ cursor: 'pointer' }}
                 />
               }
-              actionHeader={
+              header={
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', width: '200px' }}>
                   <Avatar
-                    avatarSrc="https://avatars.githubusercontent.com/u/197804266"
-                    avatarFallback="KP"
-                    avatarSize="sm"
+                    src="https://avatars.githubusercontent.com/u/197804266"
+                    fallback="KP"
+                    size={2}
                   />
                   <div>
                     <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-main)' }}>Kunal KandePatil</div>
@@ -351,7 +184,7 @@ export default function Example() {
                   </div>
                 </div>
               }
-              actionItems={[
+              items={[
                 {
                   label: 'Settings',
                   icon: <Settings size={14} />,
@@ -369,15 +202,15 @@ export default function Example() {
                   onClick: () => setLastAction('Clicked Sign Out'),
                 },
               ]}
-              actionPosition="bottom"
-              actionAlign="center"
+              position="bottom"
+              align="center"
             />
           </div>
         </Showcase>
 
         <Showcase
           title="Auto Positioning"
-          description="Setting actionPosition to 'auto' dynamically calculates the best orientation based on the viewport layout boundaries and available space."
+          description="Setting position to 'auto' dynamically calculates the best orientation based on the viewport layout boundaries and available space."
           code={`import { Action } from '@unbrn/ui/Action';
 import { Button } from '@unbrn/ui/Button';
 
@@ -389,18 +222,18 @@ export default function Example() {
 
   return (
     <Action
-      actionPosition="auto"
-      actionTrigger={<Button buttonVariant="outlined" buttonChildren="Auto Placement" />}
-      actionItems={items}
+      position="auto"
+      trigger={<Button variant="outlined" children="Auto Placement" />}
+      items={items}
     />
   );
 }`}
         >
           <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', padding: '2rem' }}>
             <Action
-              actionPosition="auto"
-              actionTrigger={<Button buttonVariant="outlined" buttonChildren="Auto Placement" />}
-              actionItems={baseItems}
+              position="auto"
+              trigger={<Button variant="outlined" children="Auto Placement" />}
+              items={baseItems}
             />
           </div>
         </Showcase>
@@ -409,35 +242,35 @@ export default function Example() {
       <Props
         title="Action Props"
         props={[
-          { name: 'actionTrigger', type: 'ReactNode', required: true, description: 'The element (e.g. Button or Avatar) that toggles the dropdown on click.' },
-          { name: 'actionItems', type: 'ActionItem[]', description: 'Array of dropdown options (label, icon, onClick, href, variant, disabled).' },
-          { name: 'actionChildren', type: 'ReactNode', description: 'Alternatively pass React children inside the dropdown popover overlay for custom layouts.' },
-          { name: 'children', type: 'ReactNode', description: 'Alternative to actionChildren for passing custom dropdown popover overlay content.' },
-          { name: 'actionHeader', type: 'ReactNode', description: 'Optional header content rendered at the top of the dropdown, separated by a dividing line.' },
-          { name: 'actionFooter', type: 'ReactNode', description: 'Optional footer content rendered at the bottom of the dropdown, separated by a dividing line.' },
-          { name: 'actionPosition', type: "'top' | 'bottom' | 'left' | 'right' | 'auto'", defaultValue: "'auto'", description: 'Placement of the dropdown content relative to the trigger element.' },
-          { name: 'actionAlign', type: "'start' | 'center' | 'end'", defaultValue: "'center'", description: 'Alignment of the dropdown content relative to the trigger element.' },
-          { name: 'actionSize', type: "'sm' | 'default' | 'lg'", description: 'The visual size of the trigger button and dropdown items (dropdown items default to sm).' },
-          { name: 'actionVisible', type: 'boolean', description: 'Explicit control visibility override (controlled mode).' },
-          { name: 'actionOnVisibleChange', type: '(visible: boolean) => void', description: 'Callback triggered when dropdown visibility toggles.' },
-          { name: 'actionDisabled', type: 'boolean', defaultValue: 'false', description: 'Disables triggering the dropdown menu.' },
-          { name: 'actionAccentColor', type: 'string', description: 'Custom primary accent color for active item styling overrides (hex, rgb, etc.).' },
-          { name: 'actionCloseOnSelect', type: 'boolean', defaultValue: 'true', description: 'Automatically close the dropdown overlay when an item is selected.' },
-          { name: 'actionClassName', type: 'string', description: 'Custom CSS class for the root wrapper.' },
-          { name: 'actionStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root wrapper.' },
-          { name: 'classNames', type: 'object', description: 'Custom CSS class configuration mapping (actionRoot, actionTrigger, actionDropdown, actionItem).' },
+          { name: 'trigger', type: 'ReactNode', required: true, description: 'The element (e.g. Button or Avatar) that toggles the dropdown on click.' },
+          { name: 'items', type: 'ActionItem[]', description: 'Array of dropdown options (label, icon, onClick, href, variant, disabled).' },
+          { name: '', type: 'ReactNode', description: 'Alternatively pass React children inside the dropdown popover overlay for custom layouts.' },
+          { name: 'children', type: 'ReactNode', description: 'Alternative to for passing custom dropdown popover overlay content.' },
+          { name: 'header', type: 'ReactNode', description: 'Optional header content rendered at the top of the dropdown, separated by a dividing line.' },
+          { name: 'footer', type: 'ReactNode', description: 'Optional footer content rendered at the bottom of the dropdown, separated by a dividing line.' },
+          { name: 'position', type: "'top' | 'bottom' | 'left' | 'right' | 'auto'", defaultValue: "'auto'", description: 'Placement of the dropdown content relative to the trigger element.' },
+          { name: 'align', type: "'start' | 'center' | 'end'", defaultValue: "'center'", description: 'Alignment of the dropdown content relative to the trigger element.' },
+          { name: 'size', type: '1 | 2', defaultValue: '2', description: 'The visual size of the trigger button and dropdown items.' },
+          { name: 'visible', type: 'boolean', description: 'Explicit control visibility override (controlled mode).' },
+          { name: 'onVisibleChange', type: '(visible: boolean) => void', description: 'Callback triggered when dropdown visibility toggles.' },
+          { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disables triggering the dropdown menu.' },
+          { name: 'accentColor', type: 'string', description: 'Custom primary accent color for active item styling overrides (hex, rgb, etc.).' },
+          { name: 'closeOnSelect', type: 'boolean', defaultValue: 'true', description: 'Automatically close the dropdown overlay when an item is selected.' },
+          { name: 'className', type: 'string', description: 'Custom CSS class for the root wrapper.' },
+          { name: 'style', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root wrapper.' },
+          { name: 'classNames', type: 'object', description: 'Custom CSS class configuration mapping (root, trigger, dropdown, item).' },
           { name: 'styles', type: 'object', description: 'Inline style configuration mapping.' },
         ]}
         stylingTargets={[
-          { name: 'actionRoot', description: 'Styles the outer Action wrapper container.' },
-          { name: 'actionTrigger', description: 'Styles the wrapper around the trigger element.' },
-          { name: 'actionDropdown', description: 'Styles the absolute positioned dropdown card popover.' },
-          { name: 'actionItem', description: 'Styles the individual action button or anchor items.' },
+          { name: 'root', description: 'Styles the outer Action wrapper container.' },
+          { name: 'trigger', description: 'Styles the wrapper around the trigger element.' },
+          { name: 'dropdown', description: 'Styles the absolute positioned dropdown card popover.' },
+          { name: 'item', description: 'Styles the individual action button or anchor items.' },
         ]}
-        stylingStructure={`actionRoot
- ├── actionTrigger
- └── actionDropdown
-      └── actionItem`}
+        stylingStructure={`root
+ ├── trigger
+ └── dropdown
+      └── item`}
       />
 
       <Props

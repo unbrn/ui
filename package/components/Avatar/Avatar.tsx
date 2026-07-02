@@ -5,41 +5,41 @@ import { getAccentVariables, resolveColor } from '../../lib/colors';
 import './Avatar.css';
 
 export interface AvatarProps {
-  avatarSrc?: string;
-  avatarAlt?: string;
-  avatarFallback?: React.ReactNode;
-  avatarShowStatus?: boolean;
-  avatarStatusColor?: string;
-  avatarSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  avatarAccentColor?: string;
-  avatarClassName?: string;
-  avatarStyle?: React.CSSProperties;
+  src?: string;
+  alt?: string;
+  fallback?: React.ReactNode;
+  showStatus?: boolean;
+  statusColor?: string;
+  size?: 1 | 2 | 3 | 4 | 5;
+  accentColor?: string;
+  className?: string;
+  style?: React.CSSProperties;
   classNames?: {
-    avatarRoot?: string;
-    avatarImage?: string;
-    avatarStatus?: string;
-    avatarFallback?: string;
+    root?: string;
+    image?: string;
+    status?: string;
+    fallback?: string;
   };
   styles?: {
-    avatarRoot?: React.CSSProperties;
-    avatarImage?: React.CSSProperties;
-    avatarStatus?: React.CSSProperties;
-    avatarFallback?: React.CSSProperties;
+    root?: React.CSSProperties;
+    image?: React.CSSProperties;
+    status?: React.CSSProperties;
+    fallback?: React.CSSProperties;
   };
 }
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   (
     {
-      avatarClassName,
-      avatarSrc,
-      avatarAlt,
-      avatarFallback,
-      avatarShowStatus = false,
-      avatarStatusColor,
-      avatarSize = 'md',
-      avatarAccentColor,
-      avatarStyle,
+      className,
+      src,
+      alt,
+      fallback,
+      showStatus = false,
+      statusColor,
+      size = 3,
+      accentColor,
+      style,
       classNames,
       styles
     },
@@ -47,45 +47,46 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   ) => {
     const [hasError, setHasError] = React.useState(false);
 
-    const accentStyle = getAccentVariables(avatarAccentColor);
-    const statusVars = avatarStatusColor ? {
-      '--status-color': resolveColor(avatarStatusColor)
+    const resolvedSize = size === 1 ? 'xs' : size === 2 ? 'sm' : size === 4 ? 'lg' : size === 5 ? 'xl' : 'md';
+    const accentStyle = getAccentVariables(accentColor);
+    const statusVars = statusColor ? {
+      '--status-color': resolveColor(statusColor)
     } as React.CSSProperties : {};
 
     return (
       <div
         ref={ref}
-        style={{ ...avatarStyle, ...accentStyle, ...styles?.avatarRoot }}
+        style={{ ...style, ...accentStyle, ...styles?.root }}
         className={cn(
           'unbrn-avatar',
-          `size-${avatarSize}`,
-          avatarClassName,
-          classNames?.avatarRoot
+          `size-${resolvedSize}`,
+          className,
+          classNames?.root
         )}
       >
         <div className="unbrn-avatar-inner">
-          {avatarSrc && !hasError ? (
+          {src && !hasError ? (
             <img
-              src={avatarSrc}
-              alt={avatarAlt || 'Avatar'}
+              src={src}
+              alt={alt || 'Avatar'}
               loading="lazy"
-              className={cn("unbrn-avatar-img", classNames?.avatarImage)}
-              style={styles?.avatarImage}
+              className={cn("unbrn-avatar-img", classNames?.image)}
+              style={styles?.image}
               onError={() => setHasError(true)}
             />
           ) : (
             <div
-              className={cn("unbrn-avatar-fallback", classNames?.avatarFallback)}
-              style={styles?.avatarFallback}
+              className={cn("unbrn-avatar-fallback", classNames?.fallback)}
+              style={styles?.fallback}
             >
-              {avatarFallback || <User size={20} />}
+              {fallback || <User size={20} />}
             </div>
           )}
         </div>
-        {avatarShowStatus && (
+        {showStatus && (
           <span
-            className={cn('unbrn-avatar-status', classNames?.avatarStatus)}
-            style={{ ...statusVars, ...styles?.avatarStatus }}
+            className={cn('unbrn-avatar-status', classNames?.status)}
+            style={{ ...statusVars, ...styles?.status }}
           />
         )}
       </div>

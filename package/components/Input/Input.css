@@ -24,8 +24,8 @@
   position: relative;
   border-radius: var(--radius);
   transition: all 0.2s var(--transition-curve);
-  border: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
-  background-color: color-mix(in srgb, var(--bg-secondary) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 30%, transparent);
+  background-color: color-mix(in srgb, var(--bg-secondary) 8%, transparent);
   overflow: hidden;
 }
 
@@ -40,14 +40,34 @@
 }
 
 .unbrn-input-container-duo {
-  background-color: color-mix(in srgb, var(--accent-color) 8%, transparent);
-  border-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
+  background-color: color-mix(in srgb, var(--accent-color) 5%, transparent);
+  border-color: color-mix(in srgb, var(--accent-color) 5%, transparent);
 }
-
 .unbrn-input-container-sm {
   height: var(--height-sm);
   border-radius: var(--radius-sm);
 }
+
+.unbrn-input-container-sm .unbrn-input-icon {
+  padding: 0 0.625rem;
+  width: 2.25rem;
+}
+
+.unbrn-input-container-sm .unbrn-input {
+  font-size: 0.75rem;
+  padding: 0 0.75rem;
+}
+
+.unbrn-input-container-sm:has(.unbrn-input-icon-left) .unbrn-input {
+  padding-left: 2.25rem;
+}
+
+.unbrn-input-container-sm:has(.unbrn-input-icon-right) .unbrn-input {
+  padding-right: 2.25rem;
+}
+
+
+
 
 .unbrn-input-container-default {
   height: var(--height-default);
@@ -67,9 +87,7 @@
   pointer-events: none;
 }
 
-.unbrn-input-container-sm .unbrn-input-icon {
-  padding: 0 0.625rem;
-}
+
 
 .unbrn-input-container-default .unbrn-input-icon {
   padding: 0 0.875rem;
@@ -109,10 +127,7 @@
   opacity: 0.5;
 }
 
-.unbrn-input-container-sm .unbrn-input {
-  font-size: 0.75rem;
-  padding: 0 0.75rem;
-}
+
 
 .unbrn-input-container-lg .unbrn-input {
   font-size: 1rem;
@@ -123,9 +138,7 @@
   padding-left: 3rem;
 }
 
-.unbrn-input-container-sm:has(.unbrn-input-icon-left) .unbrn-input {
-  padding-left: 2.25rem;
-}
+
 
 .unbrn-input-container-lg:has(.unbrn-input-icon-left) .unbrn-input {
   padding-left: 3.5rem;
@@ -135,9 +148,7 @@
   padding-right: 3rem;
 }
 
-.unbrn-input-container-sm:has(.unbrn-input-icon-right) .unbrn-input {
-  padding-right: 2.25rem;
-}
+
 
 .unbrn-input-container-lg:has(.unbrn-input-icon-right) .unbrn-input {
   padding-right: 3.5rem;
@@ -155,9 +166,7 @@
   height: 100%;
 }
 
-.unbrn-input-container-sm .unbrn-input-icon {
-  width: 2.25rem;
-}
+
 
 .unbrn-input-container-lg .unbrn-input-icon {
   width: 3.5rem;
@@ -194,11 +203,10 @@
 }
 
 .unbrn-input-progress-container {
-  display: flex;
+  display: none;
   gap: 0.5rem;
   padding: 0 1rem;
   margin-top: 5px;
-
 }
 
 .unbrn-input-progress-bar {

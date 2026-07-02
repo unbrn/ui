@@ -10,120 +10,119 @@ import '../../base.css';
 import { getAccentVariables } from '../../lib/colors';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  buttonVariant?: 'filled' | 'outlined' | 'duo' | 'ghost';
-  buttonSize?: 'sm' | 'default' | 'lg';
-  buttonLoading?: boolean;
-  buttonFullWidth?: boolean;
-  buttonOpacityLevel?: '25' | '50' | '75' | '100';
-  buttonIcon?: React.ReactNode;
-  buttonIconPosition?: 'left' | 'right';
-  buttonAccentColor?: string;
-  buttonActive?: boolean;
-  buttonClassName?: string;
-  buttonStyle?: React.CSSProperties;
-  buttonDisabled?: boolean;
-  buttonOnClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  buttonType?: 'button' | 'submit' | 'reset';
-  buttonChildren?: React.ReactNode;
+  variant?: 'filled' | 'outlined' | 'duo' | 'ghost';
+  size?: 1 | 2 | 3;
+  loading?: boolean;
+  fullWidth?: boolean;
+  opacityLevel?: '25' | '50' | '75' | '100';
+  icon?: React.ReactNode;
+  iconPosition?: 'left' | 'right';
+  accentColor?: string;
+  active?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  disabled?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: 'button' | 'submit' | 'reset';
   children?: React.ReactNode;
-  buttonId?: string;
+  id?: string;
   classNames?: {
-    buttonRoot?: string;
-    buttonIcon?: string;
-    buttonLoader?: string;
+    root?: string;
+    icon?: string;
+    loader?: string;
   };
   styles?: {
-    buttonRoot?: React.CSSProperties;
-    buttonIcon?: React.CSSProperties;
-    buttonLoader?: React.CSSProperties;
+    root?: React.CSSProperties;
+    icon?: React.CSSProperties;
+    loader?: React.CSSProperties;
   };
 }
 
 export const ButtonContext = React.createContext<{
-  buttonSize?: 'sm' | 'default' | 'lg';
-  buttonVariant?: 'filled' | 'outlined' | 'duo' | 'ghost';
-  buttonAccentColor?: string;
+  size?: 1 | 2 | 3;
+  variant?: 'filled' | 'outlined' | 'duo' | 'ghost';
+  accentColor?: string;
 }>({});
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      buttonClassName,
-      buttonVariant,
-      buttonSize,
-      buttonLoading = false,
-      buttonFullWidth = false,
-      buttonOpacityLevel = '100',
-      buttonIcon,
-      buttonIconPosition = 'left',
-      buttonChildren,
+      className,
+      variant,
+      size,
+      loading = false,
+      fullWidth = false,
+      opacityLevel = '100',
+      icon,
+      iconPosition = 'left',
       children,
-      buttonDisabled,
-      buttonStyle,
+      disabled,
+      style,
       classNames,
       styles,
-      buttonAccentColor,
-      buttonActive = false,
-      buttonOnClick,
-      buttonType = 'button',
-      buttonId,
+      accentColor,
+      active = false,
+      onClick,
+      type = 'button',
+      id,
       ...props
     },
     ref
   ) => {
     const context = React.useContext(ButtonContext);
-    const resolvedVariant = buttonVariant ?? context.buttonVariant ?? 'filled';
-    const resolvedSize = buttonSize ?? context.buttonSize ?? 'default';
-    const resolvedAccentColor = buttonAccentColor ?? context.buttonAccentColor;
+    const resolvedVariant = variant ?? context.variant ?? 'filled';
+    const resolvedSizeVal = size ?? context.size ?? 2;
+    const resolvedSize = resolvedSizeVal === 1 ? 'sm' : resolvedSizeVal === 3 ? 'lg' : 'default';
+    const resolvedAccentColor = accentColor ?? context.accentColor;
 
-    const resolvedChildren = buttonChildren ?? children;
-    const isIconOnly = (buttonIcon || buttonLoading) && !resolvedChildren;
+    const resolvedChildren = children;
+    const isIconOnly = (icon || loading) && !resolvedChildren;
     const accentStyle = getAccentVariables(resolvedAccentColor);
 
     return (
       <button
         ref={ref}
-        id={buttonId}
-        type={buttonType}
-        onClick={buttonOnClick}
-        disabled={buttonDisabled || buttonLoading}
-        style={{ ...buttonStyle, ...styles?.buttonRoot, ...accentStyle }}
+        id={id}
+        type={type}
+        onClick={onClick}
+        disabled={disabled || loading}
+        style={{ ...style, ...styles?.root, ...accentStyle }}
         className={cn(
           'unbrn-btn',
           `unbrn-btn-${resolvedVariant}`,
           `unbrn-btn-${resolvedSize}`,
-          `unbrn-btn-opacity-${buttonOpacityLevel}`,
+          `unbrn-btn-opacity-${opacityLevel}`,
           (resolvedVariant === 'outlined' || resolvedVariant === 'duo') && 'unbrn-glass',
           isIconOnly && 'unbrn-btn-icon-only',
-          buttonFullWidth && 'unbrn-btn-full-width',
-          buttonActive && 'unbrn-btn-active',
-          buttonClassName,
-          classNames?.buttonRoot
+          fullWidth && 'unbrn-btn-full-width',
+          active && 'unbrn-btn-active',
+          className,
+          classNames?.root
         )}
         {...props}
       >
-        {buttonLoading && (
+        {loading && (
           <Loader2
-            className={cn("unbrn-btn-loading-icon", !isIconOnly && "unbrn-btn-icon-left", classNames?.buttonLoader)}
+            className={cn("unbrn-btn-loading-icon", !isIconOnly && "unbrn-btn-icon-left", classNames?.loader)}
             size={16}
-            style={styles?.buttonLoader}
+            style={styles?.loader}
           />
         )}
-        {!buttonLoading && buttonIcon && buttonIconPosition === 'left' && (
+        {!loading && icon && iconPosition === 'left' && (
           <span
-            className={cn(!isIconOnly && "unbrn-btn-icon-left", classNames?.buttonIcon)}
-            style={styles?.buttonIcon}
+            className={cn(!isIconOnly && "unbrn-btn-icon-left", classNames?.icon)}
+            style={styles?.icon}
           >
-            {buttonIcon}
+            {icon}
           </span>
         )}
         {resolvedChildren}
-        {!buttonLoading && buttonIcon && buttonIconPosition === 'right' && (
+        {!loading && icon && iconPosition === 'right' && (
           <span
-            className={cn(!isIconOnly && "unbrn-btn-icon-right", classNames?.buttonIcon)}
-            style={styles?.buttonIcon}
+            className={cn(!isIconOnly && "unbrn-btn-icon-right", classNames?.icon)}
+            style={styles?.icon}
           >
-            {buttonIcon}
+            {icon}
           </span>
         )}
       </button>
@@ -134,21 +133,19 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button';
 
 export interface ButtonGroupProps {
-  buttonGroupChildren: React.ReactNode;
-  buttonGroupClassName?: string;
-  buttonGroupStyle?: React.CSSProperties;
-  buttonGroupSplit?: boolean;
-  buttonGroupTabs?: boolean;
-  buttonGroupVariant?: 'filled' | 'outlined' | 'duo';
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  tabs?: boolean;
+  variant?: 'filled' | 'outlined' | 'duo';
 }
 
 export const ButtonGroup: React.FC<ButtonGroupProps> = ({
-  buttonGroupChildren,
-  buttonGroupClassName,
-  buttonGroupStyle,
-  buttonGroupSplit = false,
-  buttonGroupTabs = false,
-  buttonGroupVariant = 'filled'
+  children,
+  className,
+  style,
+  tabs = false,
+  variant = 'filled'
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [indicatorStyle, setIndicatorStyle] = useState<React.CSSProperties>({
@@ -169,7 +166,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   const lastClosestIndexRef = useRef<number | null>(null);
 
   useLayoutEffect(() => {
-    if (!buttonGroupTabs) return;
+    if (!tabs) return;
 
     const updateIndicator = () => {
       const container = containerRef.current;
@@ -195,10 +192,10 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     return () => {
       window.removeEventListener('resize', updateIndicator);
     };
-  }, [buttonGroupChildren, buttonGroupTabs]);
+  }, [children, tabs]);
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!buttonGroupTabs) return;
+    if (!tabs) return;
     if (e.button !== 0) return; // Only left-click / main touch
 
     if (snapTimeoutRef.current !== null) {
@@ -223,7 +220,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isPointerDownRef.current || !buttonGroupTabs) return;
+    if (!isPointerDownRef.current || !tabs) return;
 
     const container = containerRef.current;
     if (!container) return;
@@ -284,7 +281,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     const wasPointerDown = isPointerDownRef.current;
     isPointerDownRef.current = false;
 
-    if (!buttonGroupTabs) return;
+    if (!tabs) return;
 
     const container = containerRef.current;
     if (!container) return;
@@ -373,26 +370,26 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     <div
       ref={containerRef}
       className={cn(
-        buttonGroupSplit ? 'unbrn-btn-group-split' : 'unbrn-btn-group',
-        buttonGroupTabs && 'unbrn-btn-group-tabs',
-        buttonGroupTabs && `unbrn-btn-group-tabs-${buttonGroupVariant}`,
+        'unbrn-btn-group',
+        tabs && 'unbrn-btn-group-tabs',
+        tabs && `unbrn-btn-group-tabs-${variant}`,
         isDraggingState && 'unbrn-btn-group-dragging',
         'unbrn-glass',
-        buttonGroupClassName
+        className
       )}
-      style={buttonGroupStyle}
+      style={style}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
     >
-      {buttonGroupTabs && (
+      {tabs && (
         <div
           className="unbrn-btn-group-indicator"
           style={currentIndicatorStyle}
         />
       )}
-      {buttonGroupChildren}
+      {children}
     </div>
   );
 };

@@ -17,24 +17,24 @@ export const TextareaPage: React.FC = () => {
 export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '500px' }}>
-      <Textarea textareaLabel="Bio" textareaPlaceholder="Write something about yourself..." textareaShowCount />
+      <Textarea label="Bio" placeholder="Write something about yourself..." showCount />
     </div>
   );
 }`}
       >
         <div style={{ width: '100%', maxWidth: '500px' }}>
-          <Textarea textareaLabel="Bio" textareaPlaceholder="Write something about yourself..." textareaShowCount />
+          <Textarea label="Bio" placeholder="Write something about yourself..." showCount />
         </div>
       </Showcase>
 
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { Textarea } from '@unbrn/ui/Textarea';
+          language="tsx"
+          code={`import { Textarea } from '@unbrn/ui/Textarea';
 
 export default function Example() {
-  return <Textarea textareaLabel="Biography" textareaPlaceholder="Tell your story..." />;
+  return <Textarea label="Biography" placeholder="Tell your story..." />;
 }`}
         />
       </div>
@@ -50,17 +50,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '500px' }}>
-      <Textarea textareaVariant="filled" textareaPlaceholder="Filled (Default)" />
-      <Textarea textareaVariant="outlined" textareaPlaceholder="Outlined variant" />
-      <Textarea textareaVariant="duo" textareaPlaceholder="Duo variant" />
+      <Textarea variant="filled" placeholder="Filled (Default)" />
+      <Textarea variant="outlined" placeholder="Outlined variant" />
+      <Textarea variant="duo" placeholder="Duo variant" />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '500px' }}>
-            <Textarea textareaVariant="filled" textareaPlaceholder="Filled (Default)" />
-            <Textarea textareaVariant="outlined" textareaPlaceholder="Outlined variant" />
-            <Textarea textareaVariant="duo" textareaPlaceholder="Duo variant" />
+            <Textarea variant="filled" placeholder="Filled (Default)" />
+            <Textarea variant="outlined" placeholder="Outlined variant" />
+            <Textarea variant="duo" placeholder="Duo variant" />
           </div>
         </Showcase>
 
@@ -73,10 +73,10 @@ export default function Example() {
   return (
     <div style={{ width: '100%', maxWidth: '500px' }}>
       <Textarea 
-        textareaLabel="Post Content" 
-        textareaShowCount 
-        textareaMaxLength={280} 
-        textareaPlaceholder="What's on your mind?" 
+        label="Post Content" 
+        showCount 
+        maxLength={280} 
+        placeholder="What's on your mind?" 
       />
     </div>
   );
@@ -84,10 +84,10 @@ export default function Example() {
         >
           <div style={{ width: '100%', maxWidth: '500px' }}>
             <Textarea
-              textareaLabel="Post Content"
-              textareaShowCount
-              textareaMaxLength={280}
-              textareaPlaceholder="What's on your mind?"
+              label="Post Content"
+              showCount
+              maxLength={280}
+              placeholder="What's on your mind?"
             />
           </div>
         </Showcase>
@@ -101,14 +101,14 @@ export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '500px' }}>
       <Textarea 
-        textareaLabel="Feedback" 
-        textareaPlaceholder="What can we improve?" 
-        textareaError="This field is required."
+        label="Feedback" 
+        placeholder="What can we improve?" 
+        error="This field is required."
       />
       <Textarea 
-        textareaLabel="Locked" 
-        textareaDisabled 
-        textareaPlaceholder="You cannot edit this."
+        label="Locked" 
+        disabled 
+        placeholder="You cannot edit this."
       />
     </div>
   );
@@ -116,82 +116,82 @@ export default function Example() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '500px' }}>
             <Textarea
-              textareaLabel="Feedback"
-              textareaPlaceholder="What can we improve?"
-              textareaError="This field is required."
+              label="Feedback"
+              placeholder="What can we improve?"
+              error="This field is required."
             />
             <Textarea
-              textareaLabel="Locked"
-              textareaDisabled
-              textareaPlaceholder="You cannot edit this."
+              label="Locked"
+              disabled
+              placeholder="You cannot edit this."
             />
           </div>
         </Showcase>
 
         <Showcase
           title="Accent Color"
-          description="Apply a custom accent color to the border, focus ring, drag indicator, and character count using textareaAccentColor."
+          description="Apply a custom accent color to the border, focus ring, drag indicator, and character count using accentColor."
           code={`import { Textarea } from '@unbrn/ui/Textarea';
 
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '500px' }}>
-      <Textarea textareaVariant="duo" textareaAccentColor="#10b981" textareaPlaceholder="Purple duo textarea..." textareaShowCount />
-      <Textarea textareaVariant="outlined" textareaAccentColor="#10b981" textareaPlaceholder="Sky Blue outlined textarea..." textareaShowCount />
-      <Textarea textareaVariant="filled" textareaAccentColor="#10b981" textareaPlaceholder="Emerald filled textarea..." textareaShowCount />
+      <Textarea variant="duo" accentColor="#10b981" placeholder="Purple duo textarea..." showCount />
+      <Textarea variant="outlined" accentColor="#10b981" placeholder="Sky Blue outlined textarea..." showCount />
+      <Textarea variant="filled" accentColor="#10b981" placeholder="Emerald filled textarea..." showCount />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '500px' }}>
-            <Textarea textareaVariant="duo" textareaAccentColor="#10b981" textareaPlaceholder="Purple duo textarea..." textareaShowCount />
-            <Textarea textareaVariant="outlined" textareaAccentColor="#10b981" textareaPlaceholder="Sky Blue outlined textarea..." textareaShowCount />
-            <Textarea textareaVariant="filled" textareaAccentColor="#10b981" textareaPlaceholder="Emerald filled textarea..." textareaShowCount />
+            <Textarea variant="duo" accentColor="#10b981" placeholder="Purple duo textarea..." showCount />
+            <Textarea variant="outlined" accentColor="#10b981" placeholder="Sky Blue outlined textarea..." showCount />
+            <Textarea variant="filled" accentColor="#10b981" placeholder="Emerald filled textarea..." showCount />
           </div>
         </Showcase>
       </div>
 
       <Props
         props={[
-          { name: 'textareaLabel', type: 'ReactNode', description: 'Text label shown above the textarea.' },
-          { name: 'textareaDescription', type: 'ReactNode', description: 'Helpful detail text shown below the textarea.' },
-          { name: 'textareaError', type: 'string', description: 'Error message to show under the textarea.' },
-          { name: 'textareaVariant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the textarea.' },
-          { name: 'textareaFullWidth', type: 'boolean', defaultValue: 'false', description: 'Make the textarea fill the full width of its box.' },
-          { name: 'textareaShowCount', type: 'boolean', defaultValue: 'false', description: 'Show the character counter below the field.' },
-          { name: 'textareaDisabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks and inputs.' },
-          { name: 'textareaId', type: 'string', description: 'Custom id attribute.' },
-          { name: 'textareaMaxLength', type: 'number', description: 'Maximum character length limit.' },
-          { name: 'textareaValue', type: 'string', description: 'Controlled value.' },
-          { name: 'textareaDefaultValue', type: 'string', description: 'Uncontrolled default value.' },
-          { name: 'textareaOnChange', type: 'function', description: 'Change event handler.' },
-          { name: 'textareaPlaceholder', type: 'string', description: 'Placeholder text.' },
-          { name: 'textareaClassName', type: 'string', description: 'Custom CSS class for the root container.' },
-          { name: 'textareaStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
-          { name: 'textareaAccentColor', type: 'string', description: 'Custom primary accent color for active highlight styling overrides (hex, rgb, etc.).' },
+          { name: 'label', type: 'ReactNode', description: 'Text label shown above the textarea.' },
+          { name: 'description', type: 'ReactNode', description: 'Helpful detail text shown below the textarea.' },
+          { name: 'error', type: 'string', description: 'Error message to show under the textarea.' },
+          { name: 'variant', type: "'filled' | 'outlined' | 'duo'", defaultValue: "'filled'", description: 'The style variant of the textarea.' },
+          { name: 'fullWidth', type: 'boolean', defaultValue: 'false', description: 'Make the textarea fill the full width of its box.' },
+          { name: 'showCount', type: 'boolean', defaultValue: 'false', description: 'Show the character counter below the field.' },
+          { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks and inputs.' },
+          { name: 'id', type: 'string', description: 'Custom id attribute.' },
+          { name: 'maxLength', type: 'number', description: 'Maximum character length limit.' },
+          { name: 'value', type: 'string', description: 'Controlled value.' },
+          { name: 'defaultValue', type: 'string', description: 'Uncontrolled default value.' },
+          { name: 'onChange', type: 'function', description: 'Change event handler.' },
+          { name: 'placeholder', type: 'string', description: 'Placeholder text.' },
+          { name: 'className', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'style', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'accentColor', type: 'string', description: 'Custom primary accent color for active highlight styling overrides (hex, rgb, etc.).' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the textarea.' },
           { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part.' },
         ]}
         stylingTargets={[
-          { name: 'textareaRoot', description: 'Styles the outer textarea wrapper container.' },
-          { name: 'textareaContainer', description: 'Styles the input field container box.' },
-          { name: 'textareaElement', description: 'Styles the actual HTML textarea element.' },
-          { name: 'textareaLabel', description: 'Styles the label text element.' },
-          { name: 'textareaDescription', description: 'Styles the description helper text element.' },
-          { name: 'textareaError', description: 'Styles the error message text element.' },
-          { name: 'textareaFooter', description: 'Styles the footer layout container (below input).' },
-          { name: 'textareaCount', description: 'Styles the character counter indicator.' },
-          { name: 'textareaDragIndicator', description: 'Styles the resize drag handler indicator.' },
+          { name: 'root', description: 'Styles the outer textarea wrapper container.' },
+          { name: 'container', description: 'Styles the input field container box.' },
+          { name: 'element', description: 'Styles the actual HTML textarea element.' },
+          { name: 'label', description: 'Styles the label text element.' },
+          { name: 'description', description: 'Styles the description helper text element.' },
+          { name: 'error', description: 'Styles the error message text element.' },
+          { name: 'footer', description: 'Styles the footer layout container (below input).' },
+          { name: 'count', description: 'Styles the character counter indicator.' },
+          { name: 'dragIndicator', description: 'Styles the resize drag handler indicator.' },
         ]}
-        stylingStructure={`textareaRoot
- ├── textareaLabel
- ├── textareaContainer
- │    ├── textareaElement
- │    └── textareaDragIndicator
- ├── textareaFooter
- │    ├── textareaDescription
- │    ├── textareaError
- │    └── textareaCount`}
+        stylingStructure={`root
+ ├── label
+ ├── container
+ │    ├── element
+ │    └── dragIndicator
+ ├── footer
+ │    ├── description
+ │    ├── error
+ │    └── count`}
       />
     </>
   );

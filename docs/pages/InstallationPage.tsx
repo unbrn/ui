@@ -47,9 +47,9 @@ import { Badge } from '@unbrn/ui/Badge';
 export default function Home() {
   return (
     <div style={{ display: 'flex', gap: '1rem', padding: '2rem' }}>
-      <Button buttonVariant="filled" buttonChildren="Get Started" />
-      <Button buttonVariant="outlined" buttonChildren="Learn More" />
-      <Badge badgeVariant="duo" badgeChildren="NEW" />
+      <Button variant="filled" children="Get Started" />
+      <Button variant="outlined" children="Learn More" />
+      <Badge variant="duo" children="NEW" />
     </div>
   );
 }`,
@@ -90,8 +90,8 @@ import { Alert } from '@unbrn/ui/Alert';
 function App() {
   return (
     <div style={{ padding: '2rem' }}>
-      <Button buttonVariant="filled" buttonChildren="Click Me" />
-      <Alert alertAccentColor="green" alertTitle="Success!" alertDescription="Everything is working." />
+      <Button variant="filled" children="Click Me" />
+      <Alert accentColor="green" title="Success!" description="Everything is working." />
     </div>
   );
 }
@@ -137,8 +137,8 @@ import { Badge } from '@unbrn/ui/Badge';
 export default function Index() {
   return (
     <div style={{ padding: '2rem' }}>
-      <Button buttonVariant="duo" buttonChildren="Remix + Unbrn" />
-      <Badge badgeChildren="v0.1.0" />
+      <Button variant="duo" children="Remix + Unbrn" />
+      <Badge children="v0.1.0" />
     </div>
   );
 }`,
@@ -187,7 +187,7 @@ import { Button } from '@unbrn/ui/Button';
 
 <Layout>
   <div style="padding: 2rem;">
-    <Button client:load buttonVariant="filled" buttonChildren="Interactive Button" />
+    <Button client:load variant="filled" children="Interactive Button" />
   </div>
 </Layout>`,
         language: 'astro',
@@ -217,7 +217,7 @@ import { Button } from '@unbrn/ui/Button';
 export default function Home() {
   return (
     <div style={{ padding: '2rem' }}>
-      <Button buttonVariant="filled" buttonAccentColor="green" buttonChildren="Gatsby + Unbrn" />
+      <Button variant="filled" accentColor="green" children="Gatsby + Unbrn" />
     </div>
   );
 }`,
@@ -290,8 +290,8 @@ export const InstallationPage: React.FC = () => {
               </div>
               {step.language === 'bash' && step.code.includes('@unbrn/ui') ? (
                 <CodeBlock
-                  codeBlockDefaultTab="npm"
-                  codeBlockTabs={{
+                  defaultTab="npm"
+                  tabs={{
                     npm: step.code,
                     pnpm: step.code.replace('npm install', 'pnpm add').replace('npx', 'pnpm dlx'),
                     yarn: step.code.replace('npm install', 'yarn add').replace('npx', 'yarn dlx'),
@@ -300,9 +300,9 @@ export const InstallationPage: React.FC = () => {
                 />
               ) : (
                 <CodeBlock
-                  codeBlockCode={step.code}
-                  codeBlockLanguage={step.language}
-                  codeBlockVariant="filled"
+                  code={step.code}
+                  language={step.language}
+                  variant="filled"
                 />
               )}
               {step.note && (
@@ -326,8 +326,8 @@ export const InstallationPage: React.FC = () => {
         <div className="install-step">
           <h3 className="install-step-title">1. Install package</h3>
           <CodeBlock
-            codeBlockDefaultTab="npm"
-            codeBlockTabs={{
+            defaultTab="npm"
+            tabs={{
               npm: 'npm install @unbrn/ui',
               pnpm: 'pnpm add @unbrn/ui',
               yarn: 'yarn add @unbrn/ui',
@@ -342,9 +342,9 @@ export const InstallationPage: React.FC = () => {
             Import Unbrn UI's main stylesheet at the top of your root or entry file (e.g., <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>main.tsx</code>, <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>index.js</code>, or <code style={{ color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>layout.tsx</code>):
           </p>
           <CodeBlock
-            codeBlockCode="import '@unbrn/ui/styles.css';"
-            codeBlockLanguage="tsx"
-            codeBlockVariant="filled"
+            code="import '@unbrn/ui/styles.css';"
+            language="tsx"
+            variant="filled"
           />
         </div>
 
@@ -354,19 +354,19 @@ export const InstallationPage: React.FC = () => {
             Now you can import and render any components in your application:
           </p>
           <CodeBlock
-            codeBlockCode={`import { Button } from '@unbrn/ui/Button';
+            code={`import { Button } from '@unbrn/ui/Button';
 import { Badge } from '@unbrn/ui/Badge';
 
 export default function App() {
   return (
     <div style={{ display: 'flex', gap: '1rem', padding: '2rem' }}>
-      <Button buttonVariant="filled" buttonChildren="Get Started" />
-      <Badge badgeVariant="duo" badgeChildren="NEW" />
+      <Button variant="filled" children="Get Started" />
+      <Badge variant="duo" children="NEW" />
     </div>
   );
 }`}
-            codeBlockLanguage="tsx"
-            codeBlockVariant="filled"
+            language="tsx"
+            variant="filled"
           />
         </div>
 
@@ -376,7 +376,7 @@ export default function App() {
             Instead of overriding CSS variables manually, you can use the built-in theming engine to dynamically customize colors, radius, and borders in JavaScript:
           </p>
           <CodeBlock
-            codeBlockCode={`import { applyTheme } from '@unbrn/ui/theme';
+            code={`import { applyTheme } from '@unbrn/ui/theme';
 
 // Apply a custom theme dynamically on the document root
 applyTheme({
@@ -386,8 +386,8 @@ applyTheme({
   accentColor: '#3b82f6',
   radius: '12px'
 });`}
-            codeBlockLanguage="tsx"
-            codeBlockVariant="filled"
+            language="tsx"
+            variant="filled"
           />
         </div>
       </div>

@@ -58,11 +58,11 @@ const AudioMixerExample = () => {
           <Music size={18} style={{ color: '#ec4899', flexShrink: 0 }} />
           <div style={{ flex: 1 }}>
             <Slider
-              sliderAccentColor="#ec4899"
-              sliderValue={musicVol}
-              sliderOnChange={setMusicVol}
-              sliderSize="sm"
-              sliderShowTooltip
+              accentColor="#ec4899"
+              value={musicVol}
+              onChange={setMusicVol}
+              size={1}
+              showTooltip
             />
           </div>
         </div>
@@ -71,11 +71,11 @@ const AudioMixerExample = () => {
           <Wind size={18} style={{ color: '#06b6d4', flexShrink: 0 }} />
           <div style={{ flex: 1 }}>
             <Slider
-              sliderAccentColor="#06b6d4"
-              sliderValue={ambientVol}
-              sliderOnChange={setAmbientVol}
-              sliderSize="sm"
-              sliderShowTooltip
+              accentColor="#06b6d4"
+              value={ambientVol}
+              onChange={setAmbientVol}
+              size={1}
+              showTooltip
             />
           </div>
         </div>
@@ -84,11 +84,11 @@ const AudioMixerExample = () => {
           <Mic size={18} style={{ color: '#a855f7', flexShrink: 0 }} />
           <div style={{ flex: 1 }}>
             <Slider
-              sliderAccentColor="#a855f7"
-              sliderValue={voiceVol}
-              sliderOnChange={setVoiceVol}
-              sliderSize="sm"
-              sliderShowTooltip
+              accentColor="#a855f7"
+              value={voiceVol}
+              onChange={setVoiceVol}
+              size={1}
+              showTooltip
             />
           </div>
         </div>
@@ -134,7 +134,7 @@ export default function Example() {
               <Volume2 size={16} /> Speaker Volume
             </span>
           </div>
-          <Slider sliderDefaultValue={75} sliderShowTooltip />
+          <Slider defaultValue={75} showTooltip />
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -143,7 +143,7 @@ export default function Example() {
               <Sun size={16} /> Screen Brightness
             </span>
           </div>
-          <Slider sliderDefaultValue={45} sliderShowTooltip sliderAccentColor="#facc15" />
+          <Slider defaultValue={45} showTooltip accentColor="#facc15" />
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -152,7 +152,7 @@ export default function Example() {
               <Keyboard size={16} /> Keyboard Backlight
             </span>
           </div>
-          <Slider sliderDefaultValue={30} sliderShowTooltip sliderAccentColor="#a855f7" />
+          <Slider defaultValue={30} showTooltip accentColor="#a855f7" />
         </div>
       </div>
     </div>
@@ -187,7 +187,7 @@ export default function Example() {
                   <Volume2 size={16} /> Speaker Volume
                 </span>
               </div>
-              <Slider sliderDefaultValue={75} sliderShowTooltip />
+              <Slider defaultValue={75} showTooltip />
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -196,7 +196,7 @@ export default function Example() {
                   <Sun size={16} /> Screen Brightness
                 </span>
               </div>
-              <Slider sliderDefaultValue={45} sliderShowTooltip sliderAccentColor="#facc15" />
+              <Slider defaultValue={45} showTooltip accentColor="#facc15" />
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -205,7 +205,7 @@ export default function Example() {
                   <Keyboard size={16} /> Keyboard Backlight
                 </span>
               </div>
-              <Slider sliderDefaultValue={30} sliderShowTooltip sliderAccentColor="#a855f7" />
+              <Slider defaultValue={30} showTooltip accentColor="#a855f7" />
             </div>
           </div>
         </div>
@@ -214,11 +214,11 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { Slider } from '@unbrn/ui/Slider';
+          language="tsx"
+          code={`import { Slider } from '@unbrn/ui/Slider';
 
 export default function Example() {
-  return <Slider sliderLabel="Volume Level" sliderDefaultValue={50} sliderShowTooltip />;
+  return <Slider label="Volume Level" defaultValue={50} showTooltip />;
 }`}
         />
       </div>
@@ -234,17 +234,17 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', width: '100%', maxWidth: '400px' }}>
-      <Slider sliderSize="sm" sliderLabel="Small Size" sliderDefaultValue={25} />
-      <Slider sliderSize="default" sliderLabel="Default Size" sliderDefaultValue={50} />
-      <Slider sliderSize="lg" sliderLabel="Large Size" sliderDefaultValue={75} />
+      <Slider size={1} label="Small Size" defaultValue={25} />
+      <Slider size={2} label="Default Size" defaultValue={50} />
+      <Slider size={3} label="Large Size" defaultValue={75} />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', width: '100%', maxWidth: '400px' }}>
-            <Slider sliderSize="sm" sliderLabel="Small Size" sliderDefaultValue={25} />
-            <Slider sliderSize="default" sliderLabel="Default Size" sliderDefaultValue={50} />
-            <Slider sliderSize="lg" sliderLabel="Large Size" sliderDefaultValue={75} />
+            <Slider size={1} label="Small Size" defaultValue={25} />
+            <Slider size={2} label="Default Size" defaultValue={50} />
+            <Slider size={3} label="Large Size" defaultValue={75} />
           </div>
         </Showcase>
 
@@ -256,26 +256,26 @@ export default function Example() {
 export default function Example() {
   return (
     <Slider
-      sliderLabel="Frame Rate Limiter"
-      sliderDescription="Lock background render updates to save system thermal capacity."
-      sliderDefaultValue={60}
-      sliderMin={30}
-      sliderMax={120}
-      sliderStep={5}
-      sliderShowTooltip
+      label="Frame Rate Limiter"
+      description="Lock background render updates to save system thermal capacity."
+      defaultValue={60}
+      min={30}
+      max={120}
+      step={5}
+      showTooltip
     />
   );
 }`}
         >
           <div style={{ width: '100%', maxWidth: '400px' }}>
             <Slider
-              sliderLabel="Frame Rate Limiter"
-              sliderDescription="Lock background render updates to save system thermal capacity."
-              sliderDefaultValue={60}
-              sliderMin={30}
-              sliderMax={120}
-              sliderStep={5}
-              sliderShowTooltip
+              label="Frame Rate Limiter"
+              description="Lock background render updates to save system thermal capacity."
+              defaultValue={60}
+              min={30}
+              max={120}
+              step={5}
+              showTooltip
             />
           </div>
         </Showcase>
@@ -288,15 +288,15 @@ export default function Example() {
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', width: '100%', maxWidth: '400px' }}>
-      <Slider sliderDisabled sliderLabel="Disabled Range" sliderDefaultValue={20} />
-      <Slider sliderDisabled sliderLabel="Disabled Large" sliderSize="lg" sliderDefaultValue={70} />
+      <Slider disabled label="Disabled Range" defaultValue={20} />
+      <Slider disabled label="Disabled Large" size={3} defaultValue={70} />
     </div>
   );
 }`}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', width: '100%', maxWidth: '400px' }}>
-            <Slider sliderDisabled sliderLabel="Disabled Range" sliderDefaultValue={20} />
-            <Slider sliderDisabled sliderLabel="Disabled Large" sliderSize="lg" sliderDefaultValue={70} />
+            <Slider disabled label="Disabled Range" defaultValue={20} />
+            <Slider disabled label="Disabled Large" size={3} defaultValue={70} />
           </div>
         </Showcase>
 
@@ -332,17 +332,17 @@ export default function Example() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Music size={18} style={{ color: '#ec4899' }} />
-          <Slider sliderAccentColor="#ec4899" sliderValue={musicVol} sliderOnChange={setMusicVol} sliderSize="sm" sliderShowTooltip />
+          <Slider accentColor="#ec4899" value={musicVol} onChange={setMusicVol} size={1} showTooltip />
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Wind size={18} style={{ color: '#06b6d4' }} />
-          <Slider sliderAccentColor="#06b6d4" sliderValue={ambientVol} sliderOnChange={setAmbientVol} sliderSize="sm" sliderShowTooltip />
+          <Slider accentColor="#06b6d4" value={ambientVol} onChange={setAmbientVol} size={1} showTooltip />
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Mic size={18} style={{ color: '#a855f7' }} />
-          <Slider sliderAccentColor="#a855f7" sliderValue={voiceVol} sliderOnChange={setVoiceVol} sliderSize="sm" sliderShowTooltip />
+          <Slider accentColor="#a855f7" value={voiceVol} onChange={setVoiceVol} size={1} showTooltip />
         </div>
       </div>
     </div>
@@ -355,43 +355,43 @@ export default function Example() {
 
       <Props
         props={[
-          { name: 'sliderLabel', type: 'ReactNode', description: 'Text label shown above the slider.' },
-          { name: 'sliderDescription', type: 'ReactNode', description: 'Helper text shown below the label.' },
-          { name: 'sliderValue', type: 'number', description: 'Controlled value of the slider.' },
-          { name: 'sliderDefaultValue', type: 'number', description: 'Default value for uncontrolled usage.' },
-          { name: 'sliderMin', type: 'number', defaultValue: '0', description: 'The minimum selectable value.' },
-          { name: 'sliderMax', type: 'number', defaultValue: '100', description: 'The maximum selectable value.' },
-          { name: 'sliderStep', type: 'number', defaultValue: '1', description: 'The granularity of slider increments.' },
-          { name: 'sliderOnChange', type: '(value: number) => void', description: 'Callback function triggered as value changes.' },
-          { name: 'sliderOnChangeEnd', type: '(value: number) => void', description: 'Callback function triggered upon drag release.' },
-          { name: 'sliderSize', type: "'sm' | 'default' | 'lg'", defaultValue: "'default'", description: 'Sizing scale adjusting track heights and thumbs.' },
-          { name: 'sliderDisabled', type: 'boolean', defaultValue: 'false', description: 'Disables slider interaction.' },
-          { name: 'sliderAccentColor', type: 'string', description: 'Custom primary accent override color (hex, rgb, etc.).' },
-          { name: 'sliderShowTooltip', type: 'boolean', defaultValue: 'false', description: 'Enables floating value bubble indicator.' },
-          { name: 'sliderId', type: 'string', description: 'Custom ID attribute for the input element.' },
-          { name: 'sliderClassName', type: 'string', description: 'Custom CSS class for the root container.' },
-          { name: 'sliderStyle', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          { name: 'label', type: 'ReactNode', description: 'Text label shown above the slider.' },
+          { name: 'description', type: 'ReactNode', description: 'Helper text shown below the label.' },
+          { name: 'value', type: 'number', description: 'Controlled value of the slider.' },
+          { name: 'defaultValue', type: 'number', description: 'Default value for uncontrolled usage.' },
+          { name: 'min', type: 'number', defaultValue: '0', description: 'The minimum selectable value.' },
+          { name: 'max', type: 'number', defaultValue: '100', description: 'The maximum selectable value.' },
+          { name: 'step', type: 'number', defaultValue: '1', description: 'The granularity of slider increments.' },
+          { name: 'onChange', type: '(value: number) => void', description: 'Callback function triggered as value changes.' },
+          { name: 'onChangeEnd', type: '(value: number) => void', description: 'Callback function triggered upon drag release.' },
+          { name: 'size', type: '1 | 2 | 3', defaultValue: '2', description: 'Sizing scale adjusting track heights and thumbs.' },
+          { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disables slider interaction.' },
+          { name: 'accentColor', type: 'string', description: 'Custom primary accent override color (hex, rgb, etc.).' },
+          { name: 'showTooltip', type: 'boolean', defaultValue: 'false', description: 'Enables floating value bubble indicator.' },
+          { name: 'id', type: 'string', description: 'Custom ID attribute for the input element.' },
+          { name: 'className', type: 'string', description: 'Custom CSS class for the root container.' },
+          { name: 'style', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
           { name: 'classNames', type: 'object', description: 'Custom CSS classes targeting key elements.' },
           { name: 'styles', type: 'object', description: 'Inline style configuration mapping.' },
         ]}
         stylingTargets={[
-          { name: 'sliderRoot', description: 'Styles the outer slider wrapper container.' },
-          { name: 'sliderHeader', description: 'Styles the wrapper containing the label and current value.' },
-          { name: 'sliderLabel', description: 'Styles the label text element.' },
-          { name: 'sliderDescription', description: 'Styles the description text below the label.' },
-          { name: 'sliderContainer', description: 'Styles the track and range wrapper container.' },
-          { name: 'sliderTrack', description: 'Styles the base track background line.' },
-          { name: 'sliderThumb', description: 'Styles the draggable slider thumb element.' },
-          { name: 'sliderTooltip', description: 'Styles the floating tooltip box.' },
+          { name: 'root', description: 'Styles the outer slider wrapper container.' },
+          { name: 'header', description: 'Styles the wrapper containing the label and current value.' },
+          { name: 'label', description: 'Styles the label text element.' },
+          { name: 'description', description: 'Styles the description text below the label.' },
+          { name: 'container', description: 'Styles the track and range wrapper container.' },
+          { name: 'track', description: 'Styles the base track background line.' },
+          { name: 'thumb', description: 'Styles the draggable slider thumb element.' },
+          { name: 'tooltip', description: 'Styles the floating tooltip box.' },
         ]}
-        stylingStructure={`sliderRoot
- ├── sliderHeader
- │    ├── sliderLabel
- │    └── sliderTooltip
- ├── sliderContainer
- │    ├── sliderTrack
- │    └── sliderThumb
- └── sliderDescription`}
+        stylingStructure={`root
+ ├── header
+ │    ├── label
+ │    └── tooltip
+ ├── container
+ │    ├── track
+ │    └── thumb
+ └── description`}
       />
     </>
   );

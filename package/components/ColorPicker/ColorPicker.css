@@ -94,6 +94,24 @@
   background-position: 0 0, 0 3px, 3px -3px, -3px 0px;
 }
 
+.unbrn-color-picker-trigger-sm .unbrn-color-picker-swatch-preview {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.unbrn-color-picker-trigger-default .unbrn-color-picker-swatch-preview {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+}
+
+.unbrn-color-picker-trigger-lg .unbrn-color-picker-swatch-preview {
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
+}
+
 .unbrn-color-picker-value-text {
   font-family: var(--font-mono, monospace);
   letter-spacing: 0.02em;

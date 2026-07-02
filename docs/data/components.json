@@ -106,11 +106,5 @@
     "description": "Vertical visual guide indicators for progressive walkthroughs and sequences.",
     "path": "/components/steps",
     "addedAt": "2026-06-05"
-  },
-  {
-    "name": "Voice Agent",
-    "description": "Interactive grid-based voice assistant interface with multiple state visualizers.",
-    "path": "/components/voice-agent",
-    "addedAt": "2026-06-05"
   }
 ]

@@ -4,75 +4,74 @@ import './Badge.css';
 import { getAccentVariables } from '../../lib/colors';
 
 export interface BadgeProps {
-  badgeVariant?: 'filled' | 'outlined' | 'duo';
-  badgeSize?: 'sm' | 'md' | 'lg';
-  badgeIcon?: React.ReactNode;
-  badgeIconPosition?: 'left' | 'right';
-  badgeAccentColor?: string;
-  badgeClassName?: string;
-  badgeStyle?: React.CSSProperties;
-  badgeChildren?: React.ReactNode;
+  variant?: 'filled' | 'outlined' | 'duo';
+  size?: 1 | 2;
+  icon?: React.ReactNode;
+  iconPosition?: 'left' | 'right';
+  accentColor?: string;
+  className?: string;
+  style?: React.CSSProperties;
   children?: React.ReactNode;
   classNames?: {
-    badgeRoot?: string;
-    badgeIcon?: string;
-    badgeText?: string;
+    root?: string;
+    icon?: string;
+    text?: string;
   };
   styles?: {
-    badgeRoot?: React.CSSProperties;
-    badgeIcon?: React.CSSProperties;
-    badgeText?: React.CSSProperties;
+    root?: React.CSSProperties;
+    icon?: React.CSSProperties;
+    text?: React.CSSProperties;
   };
 }
 
 export const Badge: React.FC<BadgeProps> = ({
-  badgeChildren,
   children,
-  badgeVariant = 'filled',
-  badgeSize = 'md',
-  badgeIcon,
-  badgeIconPosition = 'left',
-  badgeAccentColor,
-  badgeClassName,
+  variant = 'filled',
+  size = 2,
+  icon,
+  iconPosition = 'left',
+  accentColor,
+  className,
   classNames,
   styles,
-  badgeStyle
+  style
 }) => {
-  const accentStyle = getAccentVariables(badgeAccentColor);
-  const displayChildren = children ?? badgeChildren;
+  const resolvedSize = size === 1 ? 'sm' : 'md';
+  const accentStyle = getAccentVariables(accentColor);
+  const displayChildren = children;
 
   return (
     <div
       className={cn(
         'unbrn-badge',
-        `unbrn-badge-${badgeVariant}`,
-        `unbrn-badge-${badgeSize}`,
-        (badgeVariant === 'outlined' || badgeVariant === 'duo') && 'unbrn-glass',
-        badgeClassName,
-        classNames?.badgeRoot
+        `unbrn-badge-${variant}`,
+        `unbrn-badge-${resolvedSize}`,
+        (variant === 'outlined' || variant === 'duo') && 'unbrn-glass',
+        className,
+        classNames?.root
       )}
-      style={{ ...badgeStyle, ...accentStyle, ...styles?.badgeRoot }}
+      style={{ ...style, ...accentStyle, ...styles?.root }}
     >
-      {badgeIcon && badgeIconPosition === 'left' && (
+      {icon && iconPosition === 'left' && (
         <span
-          className={cn('unbrn-badge-icon-left', classNames?.badgeIcon)}
-          style={styles?.badgeIcon}
+          className={cn('unbrn-badge-icon-left', classNames?.icon)}
+          style={styles?.icon}
         >
-          {badgeIcon}
+          {icon}
         </span>
       )}
       <span
-        className={cn('unbrn-badge-text', classNames?.badgeText)}
-        style={styles?.badgeText}
+        className={cn('unbrn-badge-text', classNames?.text)}
+        style={styles?.text}
       >
         {displayChildren}
       </span>
-      {badgeIcon && badgeIconPosition === 'right' && (
+      {icon && iconPosition === 'right' && (
         <span
-          className={cn('unbrn-badge-icon-right', classNames?.badgeIcon)}
-          style={styles?.badgeIcon}
+          className={cn('unbrn-badge-icon-right', classNames?.icon)}
+          style={styles?.icon}
         >
-          {badgeIcon}
+          {icon}
         </span>
       )}
     </div>

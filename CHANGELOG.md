@@ -2,6 +2,24 @@
 
 All notable changes to @unbrn/ui will be documented in this file.
 
+## [2.1.0] - 2026-07-02
+### Features & Refinements
+- **Numeric Sizing System Overhaul**: Converted all size properties across all UI components from string literals (`"sm"`, `"default"`, `"lg"`) to numeric values (`1 | 2 | 3` or `1 | 2 | 3 | 4 | 5` for Avatar) to simplify layouts and standardize theming:
+  - 3-tier components (`Button`, `Input`, `Select`, `Checkbox`, `ColorPicker`, `Dock`, `Slider`, `Switch`) now support `size={1} | {2} | {3}`.
+  - Sizing classes resolved correctly via local helper functions mapping numeric props to their responsive CSS values (e.g. `.size-sm`, `.unbrn-badge-sm`, etc.).
+- **Smart Theme Variables (`base.css`)**: Enhanced core design system variables to dynamically calculate secondary backgrounds, borders, muted text, and translucent glass backdrop elements using CSS `color-mix()` relative to the base `--bg-main` and `--text-main` values. Custom accents default to match main text/bg automatically.
+- **Cleaned Component Props**: Standardized the properties across all 18 UI components, docs site examples, consumer app, and Next.js arcade app to use clean, unprefixed props (e.g., refactoring `SelectOption` properties from `optionLabel`/`optionIcon` to `label`/`icon`).
+- **Responsive ColorPicker Swatches**: Sized the ColorPicker preview swatch responsive to trigger button sizing (e.g., `14px` for size 1, `18px` for size 2, `22px` for size 3).
+- **Removed Size 3 from Action & Badge Components**: Restricted size props of `Action` and `Badge` components to `1 | 2`, cleaning up large item showcases and API documentation.
+- **Removed Button Split Feature**: Deleted the `split` prop, related conditional group CSS rules, and showcase sections from `ButtonGroup` and `Button` components.
+
+### Bug Fixes & Bundling Optimization
+- **Vite Production Bundler & Duplicate React Fix**: Configured module resolution aliases (`react`, `react-dom`, `lucide-react`) and path normalization inside Vite's config. This deduplicates React/Lucide React instances during production builds in monorepo workspaces, completely resolving the blank page (`TypeError: Cannot read properties of null (reading 'useState')`) rendering issue on `npm run preview`.
+- **Mobile Header Visibility Fix**: Prevented the header from hiding on scroll down on mobile viewports (`window.innerWidth <= 768`), ensuring consistent navigation visibility.
+- **Mobile Spacing & Padding Adjustments**: 
+  - Aligned `.home-page` mobile margins with the rest of the documentation layout by setting padding to `0 20px`.
+  - Added `flexWrap: 'wrap'` to flex containers in component showcases to prevent horizontal scrolling/clipping on small viewports.
+
 ## [2.0.3] - 2026-06-30
 ### Features & Refinements
 - **Redesigned Alert and Accordion Components**: Overhauled the visual design and layouts of `Alert` and `Accordion` components for improved aesthetics and usability.

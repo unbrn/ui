@@ -93,12 +93,12 @@ export default function Example() {
             />
 
             <Button
-              buttonOnClick={() => setIsFullscreen(true)}
-              buttonVariant="filled"
-              buttonSize="sm"
-              buttonIcon={<Maximize2 size={14} />}
-              buttonAccentColor='rgba(0, 0, 0, 0.85)'
-              buttonStyle={{
+              onClick={() => setIsFullscreen(true)}
+              variant="filled"
+              size={1}
+              icon={<Maximize2 size={14} />}
+              accentColor='rgba(0, 0, 0, 0.85)'
+              style={{
                 position: 'absolute',
                 top: '1rem',
                 right: '1rem',
@@ -159,43 +159,43 @@ export default function Example() {
                     Appearance
                   </div>
                   <ColorPicker
-                    colorPickerLabel="PRIMARY CHROME COLOR"
-                    colorPickerValue={primaryColor}
-                    colorPickerOnChange={setPrimaryColor}
-                    colorPickerVariant="duo"
-                    colorPickerShowAlpha={false}
-                    colorPickerShowEyeDropper={false}
+                    label="PRIMARY CHROME COLOR"
+                    value={primaryColor}
+                    onChange={setPrimaryColor}
+                    variant="duo"
+                    showAlpha={false}
+                    showEyeDropper={false}
                   />
                   <ColorPicker
-                    colorPickerLabel="SECONDARY CHROME COLOR"
-                    colorPickerValue={secondaryColor}
-                    colorPickerOnChange={setSecondaryColor}
-                    colorPickerVariant="duo"
-                    colorPickerShowAlpha={false}
-                    colorPickerShowEyeDropper={false}
+                    label="SECONDARY CHROME COLOR"
+                    value={secondaryColor}
+                    onChange={setSecondaryColor}
+                    variant="duo"
+                    showAlpha={false}
+                    showEyeDropper={false}
                   />
                   <ColorPicker
-                    colorPickerLabel="CANVAS BACKGROUND"
-                    colorPickerValue={backgroundColor}
-                    colorPickerOnChange={setBackgroundColor}
-                    colorPickerVariant="duo"
-                    colorPickerShowAlpha={true}
-                    colorPickerShowEyeDropper={false}
+                    label="CANVAS BACKGROUND"
+                    value={backgroundColor}
+                    onChange={setBackgroundColor}
+                    variant="duo"
+                    showAlpha={true}
+                    showEyeDropper={false}
                   />
                   <Select
-                    selectLabel="MIX BLEND MODE"
-                    selectValue={mixBlendMode}
-                    selectOnChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
-                    selectVariant="outlined"
-                    selectOptions={[
-                      { selectOptionValue: 'normal', selectOptionLabel: 'Normal' },
-                      { selectOptionValue: 'screen', selectOptionLabel: 'Screen' },
-                      { selectOptionValue: 'multiply', selectOptionLabel: 'Multiply' },
-                      { selectOptionValue: 'overlay', selectOptionLabel: 'Overlay' },
-                      { selectOptionValue: 'color-dodge', selectOptionLabel: 'Color Dodge' },
-                      { selectOptionValue: 'difference', selectOptionLabel: 'Difference' },
-                      { selectOptionValue: 'exclusion', selectOptionLabel: 'Exclusion' },
-                      { selectOptionValue: 'lighten', selectOptionLabel: 'Lighten' },
+                    label="MIX BLEND MODE"
+                    value={mixBlendMode}
+                    onChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
+                    variant="outlined"
+                    options={[
+                      { value: 'normal', label: 'Normal' },
+                      { value: 'screen', label: 'Screen' },
+                      { value: 'multiply', label: 'Multiply' },
+                      { value: 'overlay', label: 'Overlay' },
+                      { value: 'color-dodge', label: 'Color Dodge' },
+                      { value: 'difference', label: 'Difference' },
+                      { value: 'exclusion', label: 'Exclusion' },
+                      { value: 'lighten', label: 'Lighten' },
                     ]}
                   />
                 </div>
@@ -214,36 +214,36 @@ export default function Example() {
                     Shading & Surface
                   </div>
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>CHROMATIC SHIFT</span><span>{chromaticShift.toFixed(2)}</span></div>}
-                    sliderMin={0.0}
-                    sliderMax={1.0}
-                    sliderStep={0.01}
-                    sliderValue={chromaticShift}
-                    sliderOnChange={setChromaticShift}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>CHROMATIC SHIFT</span><span>{chromaticShift.toFixed(2)}</span></div>}
+                    min={0.0}
+                    max={1.0}
+                    step={0.01}
+                    value={chromaticShift}
+                    onChange={setChromaticShift}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>NOISE INTENSITY</span><span>{noiseIntensity.toFixed(2)}</span></div>}
-                    sliderMin={0.0}
-                    sliderMax={1.0}
-                    sliderStep={0.01}
-                    sliderValue={noiseIntensity}
-                    sliderOnChange={setNoiseIntensity}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>NOISE INTENSITY</span><span>{noiseIntensity.toFixed(2)}</span></div>}
+                    min={0.0}
+                    max={1.0}
+                    step={0.01}
+                    value={noiseIntensity}
+                    onChange={setNoiseIntensity}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FLATNESS</span><span>{flatness.toFixed(1)}</span></div>}
-                    sliderMin={0.0}
-                    sliderMax={10.0}
-                    sliderStep={0.1}
-                    sliderValue={flatness}
-                    sliderOnChange={setFlatness}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FLATNESS</span><span>{flatness.toFixed(1)}</span></div>}
+                    min={0.0}
+                    max={10.0}
+                    step={0.1}
+                    value={flatness}
+                    onChange={setFlatness}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>DISTORTION</span><span>{distortion.toFixed(2)}</span></div>}
-                    sliderMin={0.0}
-                    sliderMax={2.0}
-                    sliderStep={0.05}
-                    sliderValue={distortion}
-                    sliderOnChange={setDistortion}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>DISTORTION</span><span>{distortion.toFixed(2)}</span></div>}
+                    min={0.0}
+                    max={2.0}
+                    step={0.05}
+                    value={distortion}
+                    onChange={setDistortion}
                   />
                 </div>
 
@@ -261,37 +261,37 @@ export default function Example() {
                     Waves & Motion
                   </div>
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FLOW SPEED</span><span>{speed.toFixed(2)}</span></div>}
-                    sliderMin={0.0}
-                    sliderMax={2.0}
-                    sliderStep={0.05}
-                    sliderValue={speed}
-                    sliderOnChange={setSpeed}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FLOW SPEED</span><span>{speed.toFixed(2)}</span></div>}
+                    min={0.0}
+                    max={2.0}
+                    step={0.05}
+                    value={speed}
+                    onChange={setSpeed}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>WAVE AMPLITUDE</span><span>{amplitude.toFixed(2)}</span></div>}
-                    sliderMin={0.05}
-                    sliderMax={2.0}
-                    sliderStep={0.05}
-                    sliderValue={amplitude}
-                    sliderOnChange={setAmplitude}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>WAVE AMPLITUDE</span><span>{amplitude.toFixed(2)}</span></div>}
+                    min={0.05}
+                    max={2.0}
+                    step={0.05}
+                    value={amplitude}
+                    onChange={setAmplitude}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>WAVE FREQUENCY</span><span>{frequency.toFixed(3)}</span></div>}
-                    sliderMin={0.02}
-                    sliderMax={1.0}
-                    sliderStep={0.01}
-                    sliderValue={frequency}
-                    sliderOnChange={setFrequency}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>WAVE FREQUENCY</span><span>{frequency.toFixed(3)}</span></div>}
+                    min={0.02}
+                    max={1.0}
+                    step={0.01}
+                    value={frequency}
+                    onChange={setFrequency}
                   />
                   <Switch
-                    switchId="fullscreen-interactive-checkbox"
-                    switchChecked={interactive}
-                    switchOnChange={setInteractive}
-                    switchLabel="MOUSE INTERACTIVE"
+                    id="fullscreen-interactive-checkbox"
+                    checked={interactive}
+                    onChange={setInteractive}
+                    label="MOUSE INTERACTIVE"
                     styles={{
-                      switchLabel: { color: 'var(--text-muted)', fontSize: '0.7rem' },
-                      switchContainer: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
+                      label: { color: 'var(--text-muted)', fontSize: '0.7rem' },
+                      container: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
                     }}
                   />
                 </div>
@@ -330,47 +330,47 @@ export default function Example() {
               </h4>
 
               <ColorPicker
-                colorPickerLabel="PRIMARY CHROME COLOR"
-                colorPickerValue={primaryColor}
-                colorPickerOnChange={setPrimaryColor}
-                colorPickerVariant="duo"
-                colorPickerShowAlpha={false}
-                colorPickerShowEyeDropper={false}
+                label="PRIMARY CHROME COLOR"
+                value={primaryColor}
+                onChange={setPrimaryColor}
+                variant="duo"
+                showAlpha={false}
+                showEyeDropper={false}
               />
 
               <ColorPicker
-                colorPickerLabel="SECONDARY CHROME COLOR"
-                colorPickerValue={secondaryColor}
-                colorPickerOnChange={setSecondaryColor}
-                colorPickerVariant="duo"
-                colorPickerShowAlpha={false}
-                colorPickerShowEyeDropper={false}
+                label="SECONDARY CHROME COLOR"
+                value={secondaryColor}
+                onChange={setSecondaryColor}
+                variant="duo"
+                showAlpha={false}
+                showEyeDropper={false}
               />
 
               <Select
-                selectLabel="MIX BLEND MODE"
-                selectValue={mixBlendMode}
-                selectOnChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
-                selectVariant="outlined"
-                selectOptions={[
-                  { selectOptionValue: 'normal', selectOptionLabel: 'Normal' },
-                  { selectOptionValue: 'screen', selectOptionLabel: 'Screen' },
-                  { selectOptionValue: 'multiply', selectOptionLabel: 'Multiply' },
-                  { selectOptionValue: 'overlay', selectOptionLabel: 'Overlay' },
-                  { selectOptionValue: 'color-dodge', selectOptionLabel: 'Color Dodge' },
-                  { selectOptionValue: 'difference', selectOptionLabel: 'Difference' },
-                  { selectOptionValue: 'exclusion', selectOptionLabel: 'Exclusion' },
-                  { selectOptionValue: 'lighten', selectOptionLabel: 'Lighten' },
+                label="MIX BLEND MODE"
+                value={mixBlendMode}
+                onChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
+                variant="outlined"
+                options={[
+                  { value: 'normal', label: 'Normal' },
+                  { value: 'screen', label: 'Screen' },
+                  { value: 'multiply', label: 'Multiply' },
+                  { value: 'overlay', label: 'Overlay' },
+                  { value: 'color-dodge', label: 'Color Dodge' },
+                  { value: 'difference', label: 'Difference' },
+                  { value: 'exclusion', label: 'Exclusion' },
+                  { value: 'lighten', label: 'Lighten' },
                 ]}
               />
 
               <ColorPicker
-                colorPickerLabel="CANVAS BACKGROUND"
-                colorPickerValue={backgroundColor}
-                colorPickerOnChange={setBackgroundColor}
-                colorPickerVariant="duo"
-                colorPickerShowAlpha={true}
-                colorPickerShowEyeDropper={false}
+                label="CANVAS BACKGROUND"
+                value={backgroundColor}
+                onChange={setBackgroundColor}
+                variant="duo"
+                showAlpha={true}
+                showEyeDropper={false}
               />
             </div>
 
@@ -398,63 +398,63 @@ export default function Example() {
               </h4>
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>CHROMATIC SHIFT</span>
                     <span>{chromaticShift.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={0.0}
-                sliderMax={1.0}
-                sliderStep={0.01}
-                sliderValue={chromaticShift}
-                sliderOnChange={setChromaticShift}
-                sliderShowTooltip
+                min={0.0}
+                max={1.0}
+                step={0.01}
+                value={chromaticShift}
+                onChange={setChromaticShift}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>NOISE INTENSITY</span>
                     <span>{noiseIntensity.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={0.0}
-                sliderMax={1.0}
-                sliderStep={0.01}
-                sliderValue={noiseIntensity}
-                sliderOnChange={setNoiseIntensity}
-                sliderShowTooltip
+                min={0.0}
+                max={1.0}
+                step={0.01}
+                value={noiseIntensity}
+                onChange={setNoiseIntensity}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>FLATNESS</span>
                     <span>{flatness.toFixed(1)}</span>
                   </div>
                 }
-                sliderMin={0.0}
-                sliderMax={10.0}
-                sliderStep={0.1}
-                sliderValue={flatness}
-                sliderOnChange={setFlatness}
-                sliderShowTooltip
+                min={0.0}
+                max={10.0}
+                step={0.1}
+                value={flatness}
+                onChange={setFlatness}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>DISTORTION</span>
                     <span>{distortion.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={0.0}
-                sliderMax={2.0}
-                sliderStep={0.05}
-                sliderValue={distortion}
-                sliderOnChange={setDistortion}
-                sliderShowTooltip
+                min={0.0}
+                max={2.0}
+                step={0.05}
+                value={distortion}
+                onChange={setDistortion}
+                showTooltip
               />
             </div>
 
@@ -482,59 +482,59 @@ export default function Example() {
               </h4>
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>FLOW SPEED</span>
                     <span>{speed.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={0.0}
-                sliderMax={2.0}
-                sliderStep={0.05}
-                sliderValue={speed}
-                sliderOnChange={setSpeed}
-                sliderShowTooltip
+                min={0.0}
+                max={2.0}
+                step={0.05}
+                value={speed}
+                onChange={setSpeed}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>WAVE AMPLITUDE</span>
                     <span>{amplitude.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={0.05}
-                sliderMax={2.0}
-                sliderStep={0.05}
-                sliderValue={amplitude}
-                sliderOnChange={setAmplitude}
-                sliderShowTooltip
+                min={0.05}
+                max={2.0}
+                step={0.05}
+                value={amplitude}
+                onChange={setAmplitude}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>WAVE FREQUENCY</span>
                     <span>{frequency.toFixed(3)}</span>
                   </div>
                 }
-                sliderMin={0.02}
-                sliderMax={1.0}
-                sliderStep={0.01}
-                sliderValue={frequency}
-                sliderOnChange={setFrequency}
-                sliderShowTooltip
+                min={0.02}
+                max={1.0}
+                step={0.01}
+                value={frequency}
+                onChange={setFrequency}
+                showTooltip
               />
 
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: 'auto', paddingTop: '0.5rem' }}>
                 <Switch
-                  switchId="interactive-checkbox"
-                  switchChecked={interactive}
-                  switchOnChange={setInteractive}
-                  switchLabel="MOUSE INTERACTIVE"
+                  id="interactive-checkbox"
+                  checked={interactive}
+                  onChange={setInteractive}
+                  label="MOUSE INTERACTIVE"
                   styles={{
-                    switchLabel: { color: 'var(--text-muted)', fontSize: '0.75rem', fontWeight: 600 },
-                    switchContainer: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
+                    label: { color: 'var(--text-muted)', fontSize: '0.75rem', fontWeight: 600 },
+                    container: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
                   }}
                 />
               </div>
@@ -546,8 +546,8 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { LiquidChrome } from '@unbrn/ui/LiquidChrome';
+          language="tsx"
+          code={`import { LiquidChrome } from '@unbrn/ui/LiquidChrome';
 
 export default function Example() {
   return (

@@ -7,79 +7,79 @@ import { getAccentVariables } from '../../lib/colors';
 import './Select.css';
 
 export interface SelectOption {
-  selectOptionValue: string;
-  selectOptionLabel: string;
-  selectOptionDisabled?: boolean;
-  selectOptionIcon?: React.ReactNode;
-  selectOptionClassName?: string;
-  selectOptionStyle?: React.CSSProperties;
+  value: string;
+  label: string;
+  disabled?: boolean;
+  icon?: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface SelectProps {
-  selectOptions: SelectOption[];
-  selectValue?: string;
-  selectDefaultValue?: string;
-  selectOnChange?: (value: string) => void;
-  selectPlaceholder?: string;
-  selectLabel?: string;
-  selectDescription?: string;
-  selectError?: string;
-  selectDisabled?: boolean;
-  selectLoading?: boolean;
-  selectVariant?: 'filled' | 'outlined' | 'duo';
-  selectSize?: 'sm' | 'default' | 'lg';
-  selectClassName?: string;
-  selectStyle?: React.CSSProperties;
-  selectIcon?: React.ReactNode;
-  selectAccentColor?: string;
-  selectSearchable?: boolean;
+  options: SelectOption[];
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+  label?: string;
+  description?: string;
+  error?: string;
+  disabled?: boolean;
+  loading?: boolean;
+  variant?: 'filled' | 'outlined' | 'duo';
+  size?: 1 | 2 | 3;
+  className?: string;
+  style?: React.CSSProperties;
+  icon?: React.ReactNode;
+  accentColor?: string;
+  searchable?: boolean;
   classNames?: {
-    selectRoot?: string;
-    selectLabel?: string;
-    selectTrigger?: string;
-    selectContent?: string;
-    selectItem?: string;
-    selectDescription?: string;
-    selectError?: string;
+    root?: string;
+    label?: string;
+    trigger?: string;
+    content?: string;
+    item?: string;
+    description?: string;
+    error?: string;
   };
   styles?: {
-    selectRoot?: React.CSSProperties;
-    selectLabel?: React.CSSProperties;
-    selectTrigger?: React.CSSProperties;
-    selectContent?: React.CSSProperties;
-    selectItem?: React.CSSProperties;
-    selectDescription?: React.CSSProperties;
-    selectError?: React.CSSProperties;
+    root?: React.CSSProperties;
+    label?: React.CSSProperties;
+    trigger?: React.CSSProperties;
+    content?: React.CSSProperties;
+    item?: React.CSSProperties;
+    description?: React.CSSProperties;
+    error?: React.CSSProperties;
   };
 }
 
 export const Select = forwardRef<HTMLDivElement, SelectProps>(
   (
     {
-      selectOptions,
-      selectValue: controlledValue,
-      selectDefaultValue,
-      selectOnChange,
-      selectPlaceholder = "Select an option",
-      selectLabel,
-      selectDescription,
-      selectError,
-      selectDisabled,
-      selectLoading,
-      selectVariant = 'filled',
-      selectSize = 'default',
-      selectClassName,
+      options,
+      value: controlledValue,
+      defaultValue,
+      onChange,
+      placeholder = "Select an option",
+      label,
+      description,
+      error,
+      disabled,
+      loading,
+      variant = 'filled',
+      size = 2,
+      className,
       classNames,
       styles,
-      selectStyle,
-      selectIcon,
-      selectAccentColor,
-      selectSearchable = false,
+      style,
+      icon,
+      accentColor,
+      searchable = false,
     },
     ref
   ) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [internalValue, setInternalValue] = useState(selectDefaultValue || "");
+    const [internalValue, setInternalValue] = useState(defaultValue || "");
     const [dropdownPosition, setDropdownPosition] = useState<'bottom' | 'top'>('bottom');
     const [searchQuery, setSearchQuery] = useState("");
     const [isFocused, setIsFocused] = useState(false);
@@ -87,18 +87,19 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 
     useImperativeHandle(ref, () => containerRef.current!);
 
-    const isEffectivelyDisabled = selectDisabled || selectLoading;
+    const isEffectivelyDisabled = disabled || loading;
     const value = controlledValue !== undefined ? controlledValue : internalValue;
-    const selectedOption = selectOptions.find(opt => opt.selectOptionValue === value);
-    const accentStyle = getAccentVariables(selectAccentColor);
+    const selectedOption = options.find(opt => opt.value === value);
+    const resolvedSize = size === 1 ? 'sm' : size === 3 ? 'lg' : 'default';
+    const accentStyle = getAccentVariables(accentColor);
 
-    const filteredOptions = selectSearchable
-      ? selectOptions.filter(opt => opt.selectOptionLabel.toLowerCase().includes(searchQuery.toLowerCase()))
-      : selectOptions;
+    const filteredOptions = searchable
+      ? options.filter(opt => opt.label.toLowerCase().includes(searchQuery.toLowerCase()))
+      : options;
 
     const displayValue = isFocused || isOpen
       ? searchQuery
-      : (selectedOption ? selectedOption.selectOptionLabel : "");
+      : (selectedOption ? selectedOption.label : "");
 
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -133,49 +134,49 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       setIsOpen(false);
       setSearchQuery("");
       setIsFocused(false);
-      selectOnChange?.(optionValue);
+      onChange?.(optionValue);
     };
 
     return (
       <div
-        className={cn("unbrn-select-root", classNames?.selectRoot)}
-        style={{ ...selectStyle, ...styles?.selectRoot, ...accentStyle }}
+        className={cn("unbrn-select-root", classNames?.root)}
+        style={{ ...style, ...styles?.root, ...accentStyle }}
         ref={containerRef}
       >
-        {selectLabel && (
-          <label className={cn("unbrn-select-label", classNames?.selectLabel)} style={styles?.selectLabel}>
-            {selectLabel}
+        {label && (
+          <label className={cn("unbrn-select-label", classNames?.label)} style={styles?.label}>
+            {label}
           </label>
         )}
         <div className="unbrn-select-container">
-          {selectSearchable ? (
+          {searchable ? (
             <div
               className={cn(
                 "unbrn-select-trigger",
                 "unbrn-select-trigger-searchable",
-                `unbrn-select-trigger-${selectVariant}`,
-                `unbrn-select-trigger-${selectSize}`,
-                (selectVariant === 'outlined' || selectVariant === 'duo') && 'unbrn-glass',
+                `unbrn-select-trigger-${variant}`,
+                `unbrn-select-trigger-${resolvedSize}`,
+                (variant === 'outlined' || variant === 'duo') && 'unbrn-glass',
                 isOpen && "unbrn-select-trigger-open",
                 isEffectivelyDisabled && "unbrn-select-trigger-disabled",
-                selectLoading && "unbrn-select-trigger-loading",
-                selectError && "unbrn-select-trigger-error",
-                selectClassName,
-                classNames?.selectTrigger
+                loading && "unbrn-select-trigger-loading",
+                error && "unbrn-select-trigger-error",
+                className,
+                classNames?.trigger
               )}
-              style={styles?.selectTrigger}
+              style={styles?.trigger}
             >
               <span className="unbrn-select-trigger-content" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexGrow: 1, textAlign: 'left', minWidth: 0, height: '100%' }}>
-                {selectedOption?.selectOptionIcon ? (
-                  <span className="unbrn-select-trigger-icon">{selectedOption.selectOptionIcon}</span>
-                ) : selectIcon ? (
-                  <span className="unbrn-select-trigger-icon">{selectIcon}</span>
+                {selectedOption?.icon ? (
+                  <span className="unbrn-select-trigger-icon">{selectedOption.icon}</span>
+                ) : icon ? (
+                  <span className="unbrn-select-trigger-icon">{icon}</span>
                 ) : null}
                 <input
                   type="text"
                   disabled={isEffectivelyDisabled}
                   value={displayValue}
-                  placeholder={selectPlaceholder}
+                  placeholder={placeholder}
                   onChange={(e) => {
                     setSearchQuery(e.target.value);
                     if (!isOpen) setIsOpen(true);
@@ -197,7 +198,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
                   className="unbrn-select-trigger-input"
                 />
               </span>
-              {selectLoading ? (
+              {loading ? (
                 <span className="unbrn-select-spinner" aria-hidden="true" />
               ) : (
                 <ChevronDown
@@ -216,33 +217,33 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
               onClick={() => !isEffectivelyDisabled && setIsOpen(!isOpen)}
               className={cn(
                 "unbrn-select-trigger",
-                `unbrn-select-trigger-${selectVariant}`,
-                `unbrn-select-trigger-${selectSize}`,
-                (selectVariant === 'outlined' || selectVariant === 'duo') && 'unbrn-glass',
+                `unbrn-select-trigger-${variant}`,
+                `unbrn-select-trigger-${resolvedSize}`,
+                (variant === 'outlined' || variant === 'duo') && 'unbrn-glass',
                 isOpen && "unbrn-select-trigger-open",
                 isEffectivelyDisabled && "unbrn-select-trigger-disabled",
-                selectLoading && "unbrn-select-trigger-loading",
-                selectError && "unbrn-select-trigger-error",
-                selectClassName,
-                classNames?.selectTrigger
+                loading && "unbrn-select-trigger-loading",
+                error && "unbrn-select-trigger-error",
+                className,
+                classNames?.trigger
               )}
-              style={styles?.selectTrigger}
+              style={styles?.trigger}
               disabled={isEffectivelyDisabled}
               aria-haspopup="listbox"
               aria-expanded={isOpen}
-              aria-busy={selectLoading}
+              aria-busy={loading}
             >
               <span className="unbrn-select-trigger-content" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexGrow: 1, textAlign: 'left', minWidth: 0 }}>
-                {selectedOption?.selectOptionIcon ? (
-                  <span className="unbrn-select-trigger-icon">{selectedOption.selectOptionIcon}</span>
-                ) : selectIcon ? (
-                  <span className="unbrn-select-trigger-icon">{selectIcon}</span>
+                {selectedOption?.icon ? (
+                  <span className="unbrn-select-trigger-icon">{selectedOption.icon}</span>
+                ) : icon ? (
+                  <span className="unbrn-select-trigger-icon">{icon}</span>
                 ) : null}
                 <span className={cn("unbrn-select-value", !selectedOption && "unbrn-select-placeholder")}>
-                  {selectedOption ? selectedOption.selectOptionLabel : selectPlaceholder}
+                  {selectedOption ? selectedOption.label : placeholder}
                 </span>
               </span>
-              {selectLoading ? (
+              {loading ? (
                 <span className="unbrn-select-spinner" aria-hidden="true" />
               ) : (
                 <ChevronDown
@@ -259,45 +260,45 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
                 "unbrn-select-content",
                 `unbrn-select-content-${dropdownPosition}`,
                 "unbrn-glass",
-                classNames?.selectContent
+                classNames?.content
               )}
-              style={styles?.selectContent}
+              style={styles?.content}
               role="listbox"
             >
               <div className="unbrn-select-viewport">
                 {filteredOptions.length > 0 ? (
                   filteredOptions.map((option) => (
                     <div
-                      key={option.selectOptionValue}
+                      key={option.value}
                       role="option"
-                      aria-selected={option.selectOptionValue === value}
-                      onClick={() => !option.selectOptionDisabled && handleSelect(option.selectOptionValue)}
+                      aria-selected={option.value === value}
+                      onClick={() => !option.disabled && handleSelect(option.value)}
                       className={cn(
                         "unbrn-select-item",
-                        `unbrn-select-item-size-${selectSize}`,
-                        option.selectOptionValue === value && "unbrn-select-item-selected",
-                        option.selectOptionDisabled && "unbrn-select-item-disabled",
-                        classNames?.selectItem,
-                        option.selectOptionClassName
+                        `unbrn-select-item-size-${resolvedSize}`,
+                        option.value === value && "unbrn-select-item-selected",
+                        option.disabled && "unbrn-select-item-disabled",
+                        classNames?.item,
+                        option.className
                       )}
-                      style={{ ...styles?.selectItem, ...option.selectOptionStyle }}
+                      style={{ ...styles?.item, ...option.style }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexGrow: 1, minWidth: 0 }}>
-                        {option.selectOptionIcon && (
-                          <span className="unbrn-select-item-icon">{option.selectOptionIcon}</span>
+                        {option.icon && (
+                          <span className="unbrn-select-item-icon">{option.icon}</span>
                         )}
-                        <span className="unbrn-select-item-label">{option.selectOptionLabel}</span>
+                        <span className="unbrn-select-item-label">{option.label}</span>
                       </div>
-                      {option.selectOptionValue === value && (
+                      {option.value === value && (
                         <Check 
-                          size={selectSize === 'sm' ? 12 : selectSize === 'lg' ? 16 : 14} 
+                          size={size === 3 ? 16 : 14} 
                           className="unbrn-select-item-check" 
                         />
                       )}
                     </div>
                   ))
                 ) : (
-                  <div className={cn("unbrn-select-item-empty", `unbrn-select-item-size-${selectSize}`)}>
+                  <div className={cn("unbrn-select-item-empty", `unbrn-select-item-size-${resolvedSize}`)}>
                     No results found
                   </div>
                 )}
@@ -305,16 +306,16 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             </div>
           )}
         </div>
-        {(selectDescription || selectError) && (
+        {(description || error) && (
           <div className="unbrn-select-footer">
-            {selectError ? (
-              <span className={cn("unbrn-select-error", classNames?.selectError)} style={styles?.selectError}>
-                {selectError}
+            {error ? (
+              <span className={cn("unbrn-select-error", classNames?.error)} style={styles?.error}>
+                {error}
               </span>
             ) : (
-              selectDescription && (
-                <p className={cn("unbrn-select-description", classNames?.selectDescription)} style={styles?.selectDescription}>
-                  {selectDescription}
+              description && (
+                <p className={cn("unbrn-select-description", classNames?.description)} style={styles?.description}>
+                  {description}
                 </p>
               )
             )}

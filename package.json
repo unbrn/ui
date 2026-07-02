@@ -1,6 +1,6 @@
 {
   "name": "@unbrn/ui",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "private": false,
   "description": "Minimalist UI Crafted with Precision",
   "author": "Unbrn",
@@ -105,11 +105,6 @@
       "types": "./dist/components/Steps/Steps.d.ts",
       "import": "./dist/components/Steps/Steps.mjs",
       "require": "./dist/components/Steps/Steps.cjs"
-    },
-    "./VoiceAgent": {
-      "types": "./dist/components/VoiceAgent/VoiceAgent.d.ts",
-      "import": "./dist/components/VoiceAgent/VoiceAgent.mjs",
-      "require": "./dist/components/VoiceAgent/VoiceAgent.cjs"
     },
     "./LumenBeam": {
       "types": "./dist/backgrounds/LumenBeam/LumenBeam.d.ts",

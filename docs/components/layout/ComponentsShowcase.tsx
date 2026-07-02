@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../../package/components/Button/Button';
 import { Avatar } from '../../../package/components/Avatar/Avatar';
 import { Badge } from '../../../package/components/Badge/Badge';
-import { VoiceAgent } from '../../../package/components/VoiceAgent/VoiceAgent';
 import { CheckCircle2, ChevronDown } from 'lucide-react';
+import { LiquidChrome } from '../../../package/backgrounds/LiquidChrome/LiquidChrome';
+import { LumenBeam } from '../../../package/backgrounds/LumenBeam/LumenBeam';
+import { SatinFlow } from '../../../package/backgrounds/SatinFlow/SatinFlow';
 
 export const ComponentCard = ({
   title,
@@ -34,7 +36,7 @@ export const ComponentCard = ({
         </div>
         {isNew && (
           <div style={{ position: 'absolute', top: '1rem', right: '1rem', zIndex: 5 }}>
-            <Badge badgeVariant="outlined" badgeSize="sm" badgeChildren="NEW" />
+            <Badge variant="outlined" size={1} children="NEW" />
           </div>
         )}
       </div>
@@ -170,9 +172,9 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       <div style={{ flex: 1, height: '4px', background: 'var(--border-color)', borderRadius: '2px' }}></div>
     </div>
   ),
-  Avatars: <Avatar avatarSrc="https://avatars.githubusercontent.com/u/197804266" avatarShowStatus avatarStatusColor="green" />,
-  Badges: <Badge badgeVariant="duo" badgeIcon={<CheckCircle2 size={12} />} badgeChildren="Verified" />,
-  Buttons: <Button buttonVariant="filled" buttonChildren="Action" />,
+  Avatars: <Avatar src="https://avatars.githubusercontent.com/u/197804266" showStatus statusColor="green" />,
+  Badges: <Badge variant="duo" icon={<CheckCircle2 size={12} />} children="Verified" />,
+  Buttons: <Button variant="filled" children="Action" />,
   Checkbox: (
     <div style={{
       width: '130px',
@@ -454,19 +456,6 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       <div style={{ width: '18px', height: '18px', borderRadius: '50%', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '9px', opacity: 0.5, color: 'var(--text-main)' }}>2</div>
     </div>
   ),
-  "Voice Agent": (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <VoiceAgent
-        voiceAgentStatus="speaking"
-        voiceAgentVariant="grid"
-        voiceAgentAccentColor="var(--accent-color)"
-        voiceAgentGridSize={{ rows: 5, cols: 5 }}
-        voiceAgentShowControls={false}
-        voiceAgentDotSize={6}
-        voiceAgentGridGap={4}
-      />
-    </div>
-  ),
   "Lumen Beam": (
     <div style={{
       position: 'absolute',
@@ -475,8 +464,9 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       width: '100%',
       height: '100%',
       overflow: 'hidden',
-      background: 'radial-gradient(ellipse 80% 60% at 50% 110%, #ffffff 0%, #555555 40%, #000000 100%)',
-    }} />
+    }}>
+      <LumenBeam interactive={false} quality="low" />
+    </div>
   ),
   "Satin Flow": (
     <div style={{
@@ -486,9 +476,9 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       width: '100%',
       height: '100%',
       overflow: 'hidden',
-      background: 'repeating-linear-gradient(135deg, #ffffff 0%, #888888 25%, #000000 50%, #888888 75%, #ffffff 100%)',
-      backgroundSize: '200% 200%',
-    }} />
+    }}>
+      <SatinFlow interactive={false} quality="low" />
+    </div>
   ),
   "Liquid Chrome": (
     <div style={{
@@ -498,7 +488,8 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       width: '100%',
       height: '100%',
       overflow: 'hidden',
-      background: 'conic-gradient(from 180deg at 50% 50%, #ffffff 0deg, #888888 90deg, #111111 180deg, #888888 270deg, #ffffff 360deg)',
-    }} />
+    }}>
+      <LiquidChrome interactive={false} quality="low" />
+    </div>
   )
 };

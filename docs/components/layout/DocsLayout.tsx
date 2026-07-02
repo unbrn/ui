@@ -29,6 +29,7 @@ export const DocsLayout: React.FC = () => {
       path: `/docs/quick-start/${fw.id}`,
       name: `Quick Start - ${fw.name}`
     })),
+    { path: '/docs/changelog', name: 'Changelog' },
     { path: '/docs/components', name: 'Components Overview' },
     ...[...componentsMeta].sort((a, b) => a.name.localeCompare(b.name)).map(c => ({
       path: c.path.replace(/^\/components/, '/docs/components'),
@@ -50,56 +51,57 @@ export const DocsLayout: React.FC = () => {
       <div className="docs-layout-container">
         <DocsSidebar />
 
-        <div className="docs-content-area">
-          {currentIndex !== -1 && (
+        <div className="docs-main-column">
+          <div
+            className="docs-global-nav-bar"
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '2.5rem',
+              gap: '1.5rem'
+            }}
+          >
             <div
-              className="docs-global-nav-bar"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '2.5rem',
-                borderBottom: '1px solid var(--border-color)',
-                paddingBottom: '1.25rem',
-                gap: '1.5rem'
-              }}
+              onClick={() => window.dispatchEvent(new CustomEvent('open-docs-search'))}
+              style={{ flex: 1, cursor: 'pointer' }}
             >
-              <div
-                onClick={() => window.dispatchEvent(new CustomEvent('open-docs-search'))}
-                style={{ width: '220px', cursor: 'pointer' }}
-              >
-                <Input
-                  inputReadOnly
-                  inputVariant="outlined"
-                  inputSize="sm"
-                  inputLeftIcon={<Search size={14} />}
-                  inputKbd="⌘K"
-                  inputPlaceholder="Search..."
-                  inputStyle={{ cursor: 'pointer' }}
-                  inputFullWidth
-                />
-              </div>
-
-              <div style={{ display: 'flex', gap: '0.75rem' }}>
-                <Button
-                  buttonVariant="duo"
-                  buttonSize="sm"
-                  buttonIcon={<ArrowLeft size={14} />}
-                  buttonDisabled={!prevRoute}
-                  buttonOnClick={() => prevRoute && navigate(prevRoute.path)}
-                />
-                <Button
-                  buttonVariant="duo"
-                  buttonSize="sm"
-                  buttonIcon={<ArrowRight size={14} />}
-                  buttonDisabled={!nextRoute}
-                  buttonOnClick={() => nextRoute && navigate(nextRoute.path)}
-                />
-              </div>
+              <Input
+                readOnly
+                variant="filled"
+                size={3}
+                leftIcon={<Search size={14} />}
+                kbd="✱ K"
+                placeholder="Search documentation..."
+                style={{ cursor: 'pointer' }}
+                styles={{ container: { height: "56px" } }}
+                fullWidth
+              />
             </div>
-          )}
 
-          <Outlet />
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <Button
+                variant="filled"
+                size={3}
+                style={{ width: '56px', height: '56px' }}
+                icon={<ArrowLeft size={16} />}
+                disabled={!prevRoute}
+                onClick={() => prevRoute && navigate(prevRoute.path)}
+              />
+              <Button
+                variant="filled"
+                size={3}
+                style={{ width: '56px', height: '56px' }}
+                icon={<ArrowRight size={16} />}
+                disabled={!nextRoute}
+                onClick={() => nextRoute && navigate(nextRoute.path)}
+              />
+            </div>
+          </div>
+
+          <div className="docs-content-area">
+            <Outlet />
+          </div>
         </div>
 
         <OnThisPage />

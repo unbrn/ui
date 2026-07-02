@@ -99,12 +99,12 @@ export default function Example() {
             />
 
             <Button
-              buttonOnClick={() => setIsFullscreen(true)}
-              buttonVariant="filled"
-              buttonSize="sm"
-              buttonIcon={<Maximize2 size={14} />}
-              buttonAccentColor='rgba(0, 0, 0, 0.85)'
-              buttonStyle={{
+              onClick={() => setIsFullscreen(true)}
+              variant="filled"
+              size={1}
+              icon={<Maximize2 size={14} />}
+              accentColor='rgba(0, 0, 0, 0.85)'
+              style={{
                 position: 'absolute',
                 top: '1rem',
                 right: '1rem',
@@ -167,52 +167,52 @@ export default function Example() {
                     Appearance
                   </div>
                   <ColorPicker
-                    colorPickerLabel="TOP COLOR"
-                    colorPickerValue={topColor}
-                    colorPickerOnChange={setTopColor}
-                    colorPickerVariant="duo"
-                    colorPickerShowAlpha={false}
-                    colorPickerShowEyeDropper={false}
+                    label="TOP COLOR"
+                    value={topColor}
+                    onChange={setTopColor}
+                    variant="duo"
+                    showAlpha={false}
+                    showEyeDropper={false}
                   />
                   <ColorPicker
-                    colorPickerLabel="BOTTOM COLOR"
-                    colorPickerValue={bottomColor}
-                    colorPickerOnChange={setBottomColor}
-                    colorPickerVariant="duo"
-                    colorPickerShowAlpha={false}
-                    colorPickerShowEyeDropper={false}
+                    label="BOTTOM COLOR"
+                    value={bottomColor}
+                    onChange={setBottomColor}
+                    variant="duo"
+                    showAlpha={false}
+                    showEyeDropper={false}
                   />
                   <ColorPicker
-                    colorPickerLabel="CANVAS BACKGROUND"
-                    colorPickerValue={backgroundColor}
-                    colorPickerOnChange={setBackgroundColor}
-                    colorPickerVariant="duo"
-                    colorPickerShowAlpha={true}
-                    colorPickerShowEyeDropper={false}
+                    label="CANVAS BACKGROUND"
+                    value={backgroundColor}
+                    onChange={setBackgroundColor}
+                    variant="duo"
+                    showAlpha={true}
+                    showEyeDropper={false}
                   />
                   <Select
-                    selectLabel="MIX BLEND MODE"
-                    selectValue={mixBlendMode}
-                    selectOnChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
-                    selectVariant="outlined"
-                    selectOptions={[
-                      { selectOptionValue: 'screen', selectOptionLabel: 'Screen' },
-                      { selectOptionValue: 'normal', selectOptionLabel: 'Normal' },
-                      { selectOptionValue: 'multiply', selectOptionLabel: 'Multiply' },
-                      { selectOptionValue: 'overlay', selectOptionLabel: 'Overlay' },
-                      { selectOptionValue: 'color-dodge', selectOptionLabel: 'Color Dodge' },
-                      { selectOptionValue: 'difference', selectOptionLabel: 'Difference' },
-                      { selectOptionValue: 'exclusion', selectOptionLabel: 'Exclusion' },
-                      { selectOptionValue: 'lighten', selectOptionLabel: 'Lighten' },
+                    label="MIX BLEND MODE"
+                    value={mixBlendMode}
+                    onChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
+                    variant="outlined"
+                    options={[
+                      { value: 'screen', label: 'Screen' },
+                      { value: 'normal', label: 'Normal' },
+                      { value: 'multiply', label: 'Multiply' },
+                      { value: 'overlay', label: 'Overlay' },
+                      { value: 'color-dodge', label: 'Color Dodge' },
+                      { value: 'difference', label: 'Difference' },
+                      { value: 'exclusion', label: 'Exclusion' },
+                      { value: 'lighten', label: 'Lighten' },
                     ]}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>GLOW AMOUNT</span><span>{glowAmount.toFixed(3)}</span></div>}
-                    sliderMin={0.001}
-                    sliderMax={0.05}
-                    sliderStep={0.001}
-                    sliderValue={glowAmount}
-                    sliderOnChange={setGlowAmount}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>GLOW AMOUNT</span><span>{glowAmount.toFixed(3)}</span></div>}
+                    min={0.001}
+                    max={0.05}
+                    step={0.001}
+                    value={glowAmount}
+                    onChange={setGlowAmount}
                   />
                 </div>
 
@@ -230,36 +230,36 @@ export default function Example() {
                     Geometry
                   </div>
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>BEAM WIDTH</span><span>{beamWidth.toFixed(1)}</span></div>}
-                    sliderMin={0.5}
-                    sliderMax={8.0}
-                    sliderStep={0.1}
-                    sliderValue={beamWidth}
-                    sliderOnChange={setBeamWidth}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>BEAM WIDTH</span><span>{beamWidth.toFixed(1)}</span></div>}
+                    min={0.5}
+                    max={8.0}
+                    step={0.1}
+                    value={beamWidth}
+                    onChange={setBeamWidth}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>BEAM HEIGHT</span><span>{beamHeight.toFixed(2)}</span></div>}
-                    sliderMin={0.1}
-                    sliderMax={2.0}
-                    sliderStep={0.05}
-                    sliderValue={beamHeight}
-                    sliderOnChange={setBeamHeight}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>BEAM HEIGHT</span><span>{beamHeight.toFixed(2)}</span></div>}
+                    min={0.1}
+                    max={2.0}
+                    step={0.05}
+                    value={beamHeight}
+                    onChange={setBeamHeight}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>INITIAL ROTATION</span><span>{beamRotation}°</span></div>}
-                    sliderMin={0}
-                    sliderMax={360}
-                    sliderStep={1}
-                    sliderValue={beamRotation}
-                    sliderOnChange={setBeamRotation}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>INITIAL ROTATION</span><span>{beamRotation}°</span></div>}
+                    min={0}
+                    max={360}
+                    step={1}
+                    value={beamRotation}
+                    onChange={setBeamRotation}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>INTENSITY</span><span>{intensity.toFixed(1)}</span></div>}
-                    sliderMin={0}
-                    sliderMax={2}
-                    sliderStep={0.1}
-                    sliderValue={intensity}
-                    sliderOnChange={setIntensity}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>INTENSITY</span><span>{intensity.toFixed(1)}</span></div>}
+                    min={0}
+                    max={2}
+                    step={0.1}
+                    value={intensity}
+                    onChange={setIntensity}
                   />
                 </div>
 
@@ -277,45 +277,45 @@ export default function Example() {
                     Dynamics & Motion
                   </div>
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>ROTATION SPEED</span><span>{rotationSpeed.toFixed(2)}</span></div>}
-                    sliderMin={0}
-                    sliderMax={1.5}
-                    sliderStep={0.05}
-                    sliderValue={rotationSpeed}
-                    sliderOnChange={setRotationSpeed}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>ROTATION SPEED</span><span>{rotationSpeed.toFixed(2)}</span></div>}
+                    min={0}
+                    max={1.5}
+                    step={0.05}
+                    value={rotationSpeed}
+                    onChange={setRotationSpeed}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>SPIRAL TWIST</span><span>{twist.toFixed(2)}</span></div>}
-                    sliderMin={-1.0}
-                    sliderMax={1.0}
-                    sliderStep={0.05}
-                    sliderValue={twist}
-                    sliderOnChange={setTwist}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>SPIRAL TWIST</span><span>{twist.toFixed(2)}</span></div>}
+                    min={-1.0}
+                    max={1.0}
+                    step={0.05}
+                    value={twist}
+                    onChange={setTwist}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>BEAM PULSATION</span><span>{pulseSpeed.toFixed(2)}</span></div>}
-                    sliderMin={0.0}
-                    sliderMax={2.0}
-                    sliderStep={0.1}
-                    sliderValue={pulseSpeed}
-                    sliderOnChange={setPulseSpeed}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>BEAM PULSATION</span><span>{pulseSpeed.toFixed(2)}</span></div>}
+                    min={0.0}
+                    max={2.0}
+                    step={0.1}
+                    value={pulseSpeed}
+                    onChange={setPulseSpeed}
                   />
                   <Slider
-                    sliderLabel={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FILM NOISE</span><span>{noiseIntensity.toFixed(2)}</span></div>}
-                    sliderMin={0}
-                    sliderMax={1.0}
-                    sliderStep={0.05}
-                    sliderValue={noiseIntensity}
-                    sliderOnChange={setNoiseIntensity}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FILM NOISE</span><span>{noiseIntensity.toFixed(2)}</span></div>}
+                    min={0}
+                    max={1.0}
+                    step={0.05}
+                    value={noiseIntensity}
+                    onChange={setNoiseIntensity}
                   />
                   <Switch
-                    switchId="fullscreen-interactive-checkbox"
-                    switchChecked={interactive}
-                    switchOnChange={setInteractive}
-                    switchLabel="MOUSE INTERACTIVE"
+                    id="fullscreen-interactive-checkbox"
+                    checked={interactive}
+                    onChange={setInteractive}
+                    label="MOUSE INTERACTIVE"
                     styles={{
-                      switchLabel: { color: 'var(--text-muted)', fontSize: '0.7rem' },
-                      switchContainer: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
+                      label: { color: 'var(--text-muted)', fontSize: '0.7rem' },
+                      container: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
                     }}
                   />
                 </div>
@@ -354,62 +354,62 @@ export default function Example() {
               </h4>
 
               <ColorPicker
-                colorPickerLabel="TOP GRADIENT COLOR"
-                colorPickerValue={topColor}
-                colorPickerOnChange={setTopColor}
-                colorPickerVariant="duo"
-                colorPickerShowEyeDropper={false}
-                colorPickerShowAlpha={false}
+                label="TOP GRADIENT COLOR"
+                value={topColor}
+                onChange={setTopColor}
+                variant="duo"
+                showEyeDropper={false}
+                showAlpha={false}
               />
 
               <ColorPicker
-                colorPickerLabel="BOTTOM GRADIENT COLOR"
-                colorPickerValue={bottomColor}
-                colorPickerOnChange={setBottomColor}
-                colorPickerVariant="duo"
-                colorPickerShowEyeDropper={false}
-                colorPickerShowAlpha={false}
+                label="BOTTOM GRADIENT COLOR"
+                value={bottomColor}
+                onChange={setBottomColor}
+                variant="duo"
+                showEyeDropper={false}
+                showAlpha={false}
               />
 
               <Select
-                selectLabel="MIX BLEND MODE"
-                selectValue={mixBlendMode}
-                selectOnChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
-                selectVariant="outlined"
-                selectOptions={[
-                  { selectOptionValue: 'screen', selectOptionLabel: 'Screen' },
-                  { selectOptionValue: 'normal', selectOptionLabel: 'Normal' },
-                  { selectOptionValue: 'multiply', selectOptionLabel: 'Multiply' },
-                  { selectOptionValue: 'overlay', selectOptionLabel: 'Overlay' },
-                  { selectOptionValue: 'color-dodge', selectOptionLabel: 'Color Dodge' },
-                  { selectOptionValue: 'difference', selectOptionLabel: 'Difference' },
-                  { selectOptionValue: 'exclusion', selectOptionLabel: 'Exclusion' },
-                  { selectOptionValue: 'lighten', selectOptionLabel: 'Lighten' },
+                label="MIX BLEND MODE"
+                value={mixBlendMode}
+                onChange={(val) => setMixBlendMode(val as React.CSSProperties['mixBlendMode'])}
+                variant="outlined"
+                options={[
+                  { value: 'screen', label: 'Screen' },
+                  { value: 'normal', label: 'Normal' },
+                  { value: 'multiply', label: 'Multiply' },
+                  { value: 'overlay', label: 'Overlay' },
+                  { value: 'color-dodge', label: 'Color Dodge' },
+                  { value: 'difference', label: 'Difference' },
+                  { value: 'exclusion', label: 'Exclusion' },
+                  { value: 'lighten', label: 'Lighten' },
                 ]}
               />
 
               <ColorPicker
-                colorPickerLabel="CANVAS BACKGROUND"
-                colorPickerValue={backgroundColor}
-                colorPickerOnChange={setBackgroundColor}
-                colorPickerVariant="duo"
-                colorPickerShowAlpha={true}
-                colorPickerShowEyeDropper={false}
+                label="CANVAS BACKGROUND"
+                value={backgroundColor}
+                onChange={setBackgroundColor}
+                variant="duo"
+                showAlpha={true}
+                showEyeDropper={false}
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>GLOW AMOUNT</span>
                     <span>{glowAmount.toFixed(3)}</span>
                   </div>
                 }
-                sliderMin={0.001}
-                sliderMax={0.05}
-                sliderStep={0.001}
-                sliderValue={glowAmount}
-                sliderOnChange={setGlowAmount}
-                sliderShowTooltip
+                min={0.001}
+                max={0.05}
+                step={0.001}
+                value={glowAmount}
+                onChange={setGlowAmount}
+                showTooltip
               />
             </div>
 
@@ -437,63 +437,63 @@ export default function Example() {
               </h4>
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>BEAM WIDTH</span>
                     <span>{beamWidth.toFixed(1)}</span>
                   </div>
                 }
-                sliderMin={0.5}
-                sliderMax={8.0}
-                sliderStep={0.1}
-                sliderValue={beamWidth}
-                sliderOnChange={setBeamWidth}
-                sliderShowTooltip
+                min={0.5}
+                max={8.0}
+                step={0.1}
+                value={beamWidth}
+                onChange={setBeamWidth}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>BEAM HEIGHT</span>
                     <span>{beamHeight.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={0.1}
-                sliderMax={2.0}
-                sliderStep={0.05}
-                sliderValue={beamHeight}
-                sliderOnChange={setBeamHeight}
-                sliderShowTooltip
+                min={0.1}
+                max={2.0}
+                step={0.05}
+                value={beamHeight}
+                onChange={setBeamHeight}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>INITIAL ROTATION</span>
                     <span>{beamRotation}°</span>
                   </div>
                 }
-                sliderMin={0}
-                sliderMax={360}
-                sliderStep={1}
-                sliderValue={beamRotation}
-                sliderOnChange={setBeamRotation}
-                sliderShowTooltip
+                min={0}
+                max={360}
+                step={1}
+                value={beamRotation}
+                onChange={setBeamRotation}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>INTENSITY</span>
                     <span>{intensity.toFixed(1)}</span>
                   </div>
                 }
-                sliderMin={0}
-                sliderMax={2}
-                sliderStep={0.1}
-                sliderValue={intensity}
-                sliderOnChange={setIntensity}
-                sliderShowTooltip
+                min={0}
+                max={2}
+                step={0.1}
+                value={intensity}
+                onChange={setIntensity}
+                showTooltip
               />
             </div>
 
@@ -521,74 +521,74 @@ export default function Example() {
               </h4>
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>ROTATION SPEED</span>
                     <span>{rotationSpeed.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={0}
-                sliderMax={1.5}
-                sliderStep={0.05}
-                sliderValue={rotationSpeed}
-                sliderOnChange={setRotationSpeed}
-                sliderShowTooltip
+                min={0}
+                max={1.5}
+                step={0.05}
+                value={rotationSpeed}
+                onChange={setRotationSpeed}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>SPIRAL TWIST</span>
                     <span>{twist.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={-1.0}
-                sliderMax={1.0}
-                sliderStep={0.05}
-                sliderValue={twist}
-                sliderOnChange={setTwist}
-                sliderShowTooltip
+                min={-1.0}
+                max={1.0}
+                step={0.05}
+                value={twist}
+                onChange={setTwist}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>BEAM PULSATION</span>
                     <span>{pulseSpeed.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={0.0}
-                sliderMax={2.0}
-                sliderStep={0.1}
-                sliderValue={pulseSpeed}
-                sliderOnChange={setPulseSpeed}
-                sliderShowTooltip
+                min={0.0}
+                max={2.0}
+                step={0.1}
+                value={pulseSpeed}
+                onChange={setPulseSpeed}
+                showTooltip
               />
 
               <Slider
-                sliderLabel={
+                label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     <span>FILM NOISE</span>
                     <span>{noiseIntensity.toFixed(2)}</span>
                   </div>
                 }
-                sliderMin={0}
-                sliderMax={1.0}
-                sliderStep={0.05}
-                sliderValue={noiseIntensity}
-                sliderOnChange={setNoiseIntensity}
-                sliderShowTooltip
+                min={0}
+                max={1.0}
+                step={0.05}
+                value={noiseIntensity}
+                onChange={setNoiseIntensity}
+                showTooltip
               />
 
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: 'auto', paddingTop: '0.5rem' }}>
                 <Switch
-                  switchId="interactive-checkbox"
-                  switchChecked={interactive}
-                  switchOnChange={setInteractive}
-                  switchLabel="MOUSE INTERACTIVE"
+                  id="interactive-checkbox"
+                  checked={interactive}
+                  onChange={setInteractive}
+                  label="MOUSE INTERACTIVE"
                   styles={{
-                    switchLabel: { color: 'var(--text-muted)', fontSize: '0.75rem', fontWeight: 600 },
-                    switchContainer: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
+                    label: { color: 'var(--text-muted)', fontSize: '0.75rem', fontWeight: 600 },
+                    container: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
                   }}
                 />
               </div>
@@ -600,8 +600,8 @@ export default function Example() {
       <div className="section-usage">
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
-          codeBlockLanguage="tsx"
-          codeBlockCode={`import { LumenBeam } from '@unbrn/ui/LumenBeam';
+          language="tsx"
+          code={`import { LumenBeam } from '@unbrn/ui/LumenBeam';
 
 export default function Example() {
   return (

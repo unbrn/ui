@@ -10,7 +10,7 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
-  --font-serif: "Gloock", serif;
+  --font-serif: var(--font-sans);
 }
 
 :root[data-accent="red"] {
