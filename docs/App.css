@@ -35,10 +35,26 @@
 .dashboard-container,
 .auth-example-page,
 .lp-container {
-  max-width: 1400px;
+  /* max-width: 1464px = 1400px content + 32px padding each side.
+     Mirrors header wrapper (padding: 24px 32px) + container (max-width: 1400px)
+     so content left edge = capsule left edge at every viewport width. */
+  max-width: 1464px;
   margin: 0 auto;
   width: 100%;
+  padding-left: 32px;
+  padding-right: 32px;
   box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .examples-page,
+  .dashboard-container,
+  .auth-example-page,
+  .lp-container,
+  .home-page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .unbrn-main:has(.docs-layout-wrapper),
