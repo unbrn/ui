@@ -84,6 +84,38 @@ export const LumenBeam: React.FC<LumenBeamProps> = ({
   const timeRef = useRef(0);
   const rafRef = useRef<number | null>(null);
 
+  const rotationSpeedRef = useRef(rotationSpeed);
+  const intensityRef = useRef(intensity);
+  const glowAmountRef = useRef(glowAmount);
+  const beamWidthRef = useRef(beamWidth);
+  const beamHeightRef = useRef(beamHeight);
+  const noiseIntensityRef = useRef(noiseIntensity);
+  const beamRotationRef = useRef(beamRotation);
+  const twistRef = useRef(twist);
+  const pulseSpeedRef = useRef(pulseSpeed);
+
+  useEffect(() => {
+    rotationSpeedRef.current = rotationSpeed;
+    intensityRef.current = intensity;
+    glowAmountRef.current = glowAmount;
+    beamWidthRef.current = beamWidth;
+    beamHeightRef.current = beamHeight;
+    noiseIntensityRef.current = noiseIntensity;
+    beamRotationRef.current = beamRotation;
+    twistRef.current = twist;
+    pulseSpeedRef.current = pulseSpeed;
+  }, [
+    rotationSpeed,
+    intensity,
+    glowAmount,
+    beamWidth,
+    beamHeight,
+    noiseIntensity,
+    beamRotation,
+    twist,
+    pulseSpeed
+  ]);
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -331,7 +363,7 @@ export const LumenBeam: React.FC<LumenBeamProps> = ({
     const render = (now: number) => {
       const delta = (now - lastTime) * 0.001;
       lastTime = now;
-      timeRef.current += delta * rotationSpeed;
+      timeRef.current += delta * rotationSpeedRef.current;
 
       gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -341,25 +373,25 @@ export const LumenBeam: React.FC<LumenBeamProps> = ({
       gl.uniform2f(uMouseLoc, mouseRef.current.x, mouseRef.current.y);
       gl.uniform3fv(uTopColorLoc, parseColorToGL(topColor));
       gl.uniform3fv(uBottomColorLoc, parseColorToGL(bottomColor));
-      gl.uniform1f(uIntensityLoc, intensity);
+      gl.uniform1f(uIntensityLoc, intensityRef.current);
       gl.uniform1i(uInteractiveLoc, interactive ? 1 : 0);
-      gl.uniform1f(uGlowAmountLoc, glowAmount);
-      gl.uniform1f(uBeamWidthLoc, beamWidth);
-      gl.uniform1f(uBeamHeightLoc, beamHeight);
-      gl.uniform1f(uNoiseIntensityLoc, noiseIntensity);
+      gl.uniform1f(uGlowAmountLoc, glowAmountRef.current);
+      gl.uniform1f(uBeamWidthLoc, beamWidthRef.current);
+      gl.uniform1f(uBeamHeightLoc, beamHeightRef.current);
+      gl.uniform1f(uNoiseIntensityLoc, noiseIntensityRef.current);
 
       // Rotation uniforms
       gl.uniform1f(uRotCosLoc, Math.cos(timeRef.current));
       gl.uniform1f(uRotSinLoc, Math.sin(timeRef.current));
 
-      const beamRotRad = (beamRotation * Math.PI) / 180;
+      const beamRotRad = (beamRotationRef.current * Math.PI) / 180;
       gl.uniform1f(uBeamRotCosLoc, Math.cos(beamRotRad));
       gl.uniform1f(uBeamRotSinLoc, Math.sin(beamRotRad));
 
       gl.uniform1f(uWaveSinLoc, waveSin);
       gl.uniform1f(uWaveCosLoc, waveCos);
-      gl.uniform1f(uTwistLoc, twist);
-      gl.uniform1f(uPulseSpeedLoc, pulseSpeed);
+      gl.uniform1f(uTwistLoc, twistRef.current);
+      gl.uniform1f(uPulseSpeedLoc, pulseSpeedRef.current);
 
       // Draw full screen quad
       gl.drawArrays(gl.TRIANGLES, 0, 6);
@@ -399,16 +431,7 @@ export const LumenBeam: React.FC<LumenBeamProps> = ({
     quality,
     topColor,
     bottomColor,
-    intensity,
-    rotationSpeed,
-    interactive,
-    glowAmount,
-    beamWidth,
-    beamHeight,
-    noiseIntensity,
-    beamRotation,
-    twist,
-    pulseSpeed
+    interactive
   ]);
 
   useEffect(() => {
