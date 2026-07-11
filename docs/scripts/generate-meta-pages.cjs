@@ -95,6 +95,21 @@ pages.forEach(p => {
   // Inject meta tags by replacing the default title tag
   let customHtml = baseHtml.replace('<title>Unbrn UI</title>', metaHtml);
 
+  // Inject fallback HTML body content for SEO crawlers inside #root
+  const fallbackBody = `
+  <div id="root">
+    <div style="padding: 24px; font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 40px auto; line-height: 1.6;">
+      <h1 style="font-size: 2rem; margin-bottom: 1rem; color: #111;">${p.title}</h1>
+      <p style="font-size: 1.1rem; color: #444; margin-bottom: 1.5rem;">${p.description}</p>
+      <hr style="border: none; border-top: 1px solid #eaeaea; margin: 20px 0;" />
+      <p style="font-size: 0.9rem; color: #666;">
+        This page is part of the Unbrn UI documentation. 
+        Please enable JavaScript or use a modern web browser to load the full interactive component documentation and examples.
+      </p>
+    </div>
+  </div>`;
+  customHtml = customHtml.replace('<div id="root"></div>', fallbackBody);
+
   if (p.isHome) {
     // Write directly to index.html for homepage
     fs.writeFileSync(baseHtmlPath, customHtml, 'utf-8');
