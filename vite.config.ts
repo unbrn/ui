@@ -52,6 +52,7 @@ export default defineConfig(({ mode }) => {
           'backgrounds/LumenBeam/LumenBeam': resolve(__dirname, 'package/backgrounds/LumenBeam/LumenBeam.tsx'),
           'backgrounds/SatinFlow/SatinFlow': resolve(__dirname, 'package/backgrounds/SatinFlow/SatinFlow.tsx'),
           'backgrounds/LiquidChrome/LiquidChrome': resolve(__dirname, 'package/backgrounds/LiquidChrome/LiquidChrome.tsx'),
+          'backgrounds/Arcade/Arcade': resolve(__dirname, 'package/backgrounds/Arcade/Arcade.tsx'),
            'lib/utils': resolve(__dirname, 'package/lib/utils.ts'),
           'lib/colors': resolve(__dirname, 'package/lib/colors.ts'),
           'lib/theme': resolve(__dirname, 'package/lib/theme.ts'),

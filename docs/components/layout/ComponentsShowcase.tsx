@@ -8,6 +8,7 @@ import { CheckCircle2, ChevronDown } from 'lucide-react';
 import { LiquidChrome } from '../../../package/backgrounds/LiquidChrome/LiquidChrome';
 import { LumenBeam } from '../../../package/backgrounds/LumenBeam/LumenBeam';
 import { SatinFlow } from '../../../package/backgrounds/SatinFlow/SatinFlow';
+import { Arcade } from '../../../package/backgrounds/Arcade/Arcade';
 
 export const ComponentCard = ({
   title,
@@ -490,6 +491,18 @@ export const PREVIEWS: Record<string, React.ReactNode> = {
       overflow: 'hidden',
     }}>
       <LiquidChrome interactive={false} quality="low" />
+    </div>
+  ),
+  "Arcade": (
+    <div style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      overflow: 'hidden',
+    }}>
+      <Arcade interactive={false} quality="low" />
     </div>
   )
 };

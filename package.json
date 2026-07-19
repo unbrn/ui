@@ -136,6 +136,16 @@
       "import": "./dist/backgrounds/LiquidChrome/LiquidChrome.mjs",
       "require": "./dist/backgrounds/LiquidChrome/LiquidChrome.cjs"
     },
+    "./Arcade": {
+      "types": "./dist/backgrounds/Arcade/Arcade.d.ts",
+      "import": "./dist/backgrounds/Arcade/Arcade.mjs",
+      "require": "./dist/backgrounds/Arcade/Arcade.cjs"
+    },
+    "./backgrounds/Arcade": {
+      "types": "./dist/backgrounds/Arcade/Arcade.d.ts",
+      "import": "./dist/backgrounds/Arcade/Arcade.mjs",
+      "require": "./dist/backgrounds/Arcade/Arcade.cjs"
+    },
     "./utils": {
       "types": "./dist/lib/utils.d.ts",
       "import": "./dist/lib/utils.mjs",

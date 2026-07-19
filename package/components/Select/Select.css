@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  cursor: pointer;
   width: 100%;
 }
 
@@ -371,10 +372,11 @@
 
 /* ===== Searchable Autocomplete Select trigger styles ===== */
 .unbrn-select-trigger-searchable {
-  cursor: text;
+  cursor: pointer;
 }
 
 .unbrn-select-trigger-input {
+  cursor: pointer;
   width: 100%;
   height: 100%;
   border: none;
@@ -393,6 +395,7 @@
 }
 
 .unbrn-select-trigger-input:focus {
+  cursor: text;
   mask-image: none;
   -webkit-mask-image: none;
 }

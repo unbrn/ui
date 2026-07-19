@@ -24,6 +24,7 @@ export const SatinFlowPage: React.FC = () => {
   const [twist, setTwist] = useState(0.0);
   const [interactive, setInteractive] = useState(true);
   const [mixBlendMode, setMixBlendMode] = useState<React.CSSProperties['mixBlendMode']>('normal');
+  const [quality, setQuality] = useState<'low' | 'medium' | 'high'>('high');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isPlaygroundSidebarOpen, setIsPlaygroundSidebarOpen] = useState(true);
 
@@ -44,6 +45,7 @@ export default function Example() {
         twist={${twist}}
         interactive={${interactive}}
         mixBlendMode="${mixBlendMode}"
+        quality="${quality}"
       />
       
       {/* Your content goes here */}
@@ -87,6 +89,7 @@ export default function Example() {
               twist={twist}
               interactive={interactive}
               mixBlendMode={mixBlendMode}
+              quality={quality}
             />
 
             <Button
@@ -131,6 +134,7 @@ export default function Example() {
                 twist={twist}
                 interactive={interactive}
                 mixBlendMode={mixBlendMode}
+                quality={quality}
               />
 
               {/* Collapsible Left Sidebar */}
@@ -192,6 +196,17 @@ export default function Example() {
                       { value: 'difference', label: 'Difference' },
                       { value: 'exclusion', label: 'Exclusion' },
                       { value: 'lighten', label: 'Lighten' },
+                    ]}
+                  />
+                  <Select
+                    label="RENDER QUALITY"
+                    value={quality}
+                    onChange={(val) => setQuality(val as 'low' | 'medium' | 'high')}
+                    variant="outlined"
+                    options={[
+                      { value: 'low', label: 'Low' },
+                      { value: 'medium', label: 'Medium' },
+                      { value: 'high', label: 'High' },
                     ]}
                   />
                 </div>
@@ -349,6 +364,18 @@ export default function Example() {
                   { value: 'difference', label: 'Difference' },
                   { value: 'exclusion', label: 'Exclusion' },
                   { value: 'lighten', label: 'Lighten' },
+                ]}
+              />
+
+              <Select
+                label="RENDER QUALITY"
+                value={quality}
+                onChange={(val) => setQuality(val as 'low' | 'medium' | 'high')}
+                variant="outlined"
+                options={[
+                  { value: 'low', label: 'Low' },
+                  { value: 'medium', label: 'Medium' },
+                  { value: 'high', label: 'High' },
                 ]}
               />
 

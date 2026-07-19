@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LiquidChrome } from '../../../package/backgrounds/LiquidChrome/LiquidChrome';
+import { Arcade } from '../../../package/backgrounds/Arcade/Arcade';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
@@ -12,38 +12,36 @@ import { Maximize2 } from 'lucide-react';
 import { Button } from '../../../package/components/Button/Button';
 import { PlaygroundSidebar } from '../../components/layout/PlaygroundSidebar';
 
-export const LiquidChromePage: React.FC = () => {
-  const [primaryColor, setPrimaryColor] = useState('#FFFFFF');
-  const [secondaryColor, setSecondaryColor] = useState('#0A0A0A');
+export const ArcadePage: React.FC = () => {
+  const [primaryColor, setPrimaryColor] = useState('#D81B24');
+  const [secondaryColor, setSecondaryColor] = useState('#080001');
+  const [accentColor, setAccentColor] = useState('#FF333D');
   const [backgroundColor, setBackgroundColor] = useState('#000000');
-  const [speed, setSpeed] = useState(0.5);
-  const [amplitude, setAmplitude] = useState(0.3);
-  const [frequency, setFrequency] = useState(0.2);
-  const [distortion, setDistortion] = useState(1.5);
-  const [flatness, setFlatness] = useState(1.0);
-  const [chromaticShift, setChromaticShift] = useState(0.25);
-  const [noiseIntensity, setNoiseIntensity] = useState(0.12);
+  const [speed, setSpeed] = useState(1.0);
+  const [intensity, setIntensity] = useState(1.0);
+  const [density, setDensity] = useState(2.7);
+  const [glow, setGlow] = useState(1.0);
+  const [noiseIntensity, setNoiseIntensity] = useState(0.5);
   const [interactive, setInteractive] = useState(true);
   const [mixBlendMode, setMixBlendMode] = useState<React.CSSProperties['mixBlendMode']>('normal');
   const [quality, setQuality] = useState<'low' | 'medium' | 'high'>('high');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isPlaygroundSidebarOpen, setIsPlaygroundSidebarOpen] = useState(true);
 
-  const codeString = `import { LiquidChrome } from '@unbrn/ui/LiquidChrome';
+  const codeString = `import { Arcade } from '@unbrn/ui/Arcade';
 
 export default function Example() {
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
-      <LiquidChrome
+      <Arcade
         primaryColor="${primaryColor}"
         secondaryColor="${secondaryColor}"
+        accentColor="${accentColor}"
         backgroundColor="${backgroundColor}"
         speed={${speed}}
-        amplitude={${amplitude}}
-        frequency={${frequency}}
-        distortion={${distortion}}
-        flatness={${flatness}}
-        chromaticShift={${chromaticShift}}
+        intensity={${intensity}}
+        density={${density}}
+        glow={${glow}}
         noiseIntensity={${noiseIntensity}}
         interactive={${interactive}}
         mixBlendMode="${mixBlendMode}"
@@ -60,7 +58,7 @@ export default function Example() {
 
   return (
     <>
-      <ComponentHeader title="Liquid Chrome" />
+      <ComponentHeader title="Arcade" />
 
       <Showcase
         title="Interactive Playground"
@@ -79,16 +77,15 @@ export default function Example() {
             border: '1px solid var(--border-color)',
             background: backgroundColor,
           }}>
-            <LiquidChrome
+            <Arcade
               primaryColor={primaryColor}
               secondaryColor={secondaryColor}
+              accentColor={accentColor}
               backgroundColor={backgroundColor}
               speed={speed}
-              amplitude={amplitude}
-              frequency={frequency}
-              distortion={distortion}
-              flatness={flatness}
-              chromaticShift={chromaticShift}
+              intensity={intensity}
+              density={density}
+              glow={glow}
               noiseIntensity={noiseIntensity}
               interactive={interactive}
               mixBlendMode={mixBlendMode}
@@ -125,16 +122,15 @@ export default function Example() {
               display: 'flex',
               flexDirection: 'row'
             }}>
-              <LiquidChrome
+              <Arcade
                 primaryColor={primaryColor}
                 secondaryColor={secondaryColor}
+                accentColor={accentColor}
                 backgroundColor={backgroundColor}
                 speed={speed}
-                amplitude={amplitude}
-                frequency={frequency}
-                distortion={distortion}
-                flatness={flatness}
-                chromaticShift={chromaticShift}
+                intensity={intensity}
+                density={density}
+                glow={glow}
                 noiseIntensity={noiseIntensity}
                 interactive={interactive}
                 mixBlendMode={mixBlendMode}
@@ -146,7 +142,7 @@ export default function Example() {
                 isOpen={isPlaygroundSidebarOpen}
                 onToggle={() => setIsPlaygroundSidebarOpen(!isPlaygroundSidebarOpen)}
                 onClose={() => setIsPlaygroundSidebarOpen(false)}
-                title="Liquid Chrome"
+                title="Arcade"
                 onExit={() => setIsFullscreen(false)}
               >
                 {/* Appearance Section */}
@@ -163,7 +159,7 @@ export default function Example() {
                     Appearance
                   </div>
                   <ColorPicker
-                    label="PRIMARY CHROME COLOR"
+                    label="PRIMARY COLOR"
                     value={primaryColor}
                     onChange={setPrimaryColor}
                     variant="duo"
@@ -171,9 +167,17 @@ export default function Example() {
                     showEyeDropper={false}
                   />
                   <ColorPicker
-                    label="SECONDARY CHROME COLOR"
+                    label="SECONDARY COLOR"
                     value={secondaryColor}
                     onChange={setSecondaryColor}
+                    variant="duo"
+                    showAlpha={false}
+                    showEyeDropper={false}
+                  />
+                  <ColorPicker
+                    label="ACCENT NEON COLOR"
+                    value={accentColor}
+                    onChange={setAccentColor}
                     variant="duo"
                     showAlpha={false}
                     showEyeDropper={false}
@@ -215,7 +219,7 @@ export default function Example() {
                   />
                 </div>
 
-                {/* Shading & Surface Section */}
+                {/* Geometry & Settings Section */}
                 <div style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -226,86 +230,55 @@ export default function Example() {
                   border: '1px solid var(--border-color)'
                 }}>
                   <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--text-muted)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                    Shading & Surface
+                    Tuning
                   </div>
                   <Slider
-                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>CHROMATIC SHIFT</span><span>{chromaticShift.toFixed(2)}</span></div>}
-                    min={0.0}
-                    max={1.0}
-                    step={0.01}
-                    value={chromaticShift}
-                    onChange={setChromaticShift}
-                  />
-                  <Slider
-                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>NOISE INTENSITY</span><span>{noiseIntensity.toFixed(2)}</span></div>}
-                    min={0.0}
-                    max={1.0}
-                    step={0.01}
-                    value={noiseIntensity}
-                    onChange={setNoiseIntensity}
-                  />
-                  <Slider
-                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FLATNESS</span><span>{flatness.toFixed(1)}</span></div>}
-                    min={0.0}
-                    max={10.0}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>PANEL DENSITY</span><span>{density.toFixed(1)}</span></div>}
+                    min={0.2}
+                    max={4.0}
                     step={0.1}
-                    value={flatness}
-                    onChange={setFlatness}
+                    value={density}
+                    onChange={setDensity}
                   />
                   <Slider
-                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>DISTORTION</span><span>{distortion.toFixed(2)}</span></div>}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>LIGHT INTENSITY</span><span>{intensity.toFixed(1)}</span></div>}
                     min={0.0}
-                    max={2.0}
-                    step={0.05}
-                    value={distortion}
-                    onChange={setDistortion}
+                    max={3.0}
+                    step={0.1}
+                    value={intensity}
+                    onChange={setIntensity}
                   />
-                </div>
-
-                {/* Waves & Motion Section */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1.15rem',
-                  padding: '1.15rem',
-                  background: 'var(--bg-secondary)',
-                  borderRadius: '12px',
-                  border: '1px solid var(--border-color)'
-                }}>
-                  <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--text-muted)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                    Waves & Motion
-                  </div>
                   <Slider
-                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>FLOW SPEED</span><span>{speed.toFixed(2)}</span></div>}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>NEON GLOW</span><span>{glow.toFixed(1)}</span></div>}
                     min={0.0}
-                    max={2.0}
-                    step={0.05}
+                    max={3.0}
+                    step={0.1}
+                    value={glow}
+                    onChange={setGlow}
+                  />
+                  <Slider
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>DRIFT SPEED</span><span>{speed.toFixed(1)}</span></div>}
+                    min={0.0}
+                    max={4.0}
+                    step={0.1}
                     value={speed}
                     onChange={setSpeed}
                   />
                   <Slider
-                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>WAVE AMPLITUDE</span><span>{amplitude.toFixed(2)}</span></div>}
-                    min={0.05}
+                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>NOISE INTENSITY</span><span>{noiseIntensity.toFixed(1)}</span></div>}
+                    min={0.0}
                     max={2.0}
-                    step={0.05}
-                    value={amplitude}
-                    onChange={setAmplitude}
-                  />
-                  <Slider
-                    label={<div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.7rem' }}><span>WAVE FREQUENCY</span><span>{frequency.toFixed(3)}</span></div>}
-                    min={0.02}
-                    max={1.0}
-                    step={0.01}
-                    value={frequency}
-                    onChange={setFrequency}
+                    step={0.1}
+                    value={noiseIntensity}
+                    onChange={setNoiseIntensity}
                   />
                   <Switch
-                    id="fullscreen-interactive-checkbox"
+                    id="interactive-switch-fs"
                     checked={interactive}
                     onChange={setInteractive}
                     label="MOUSE INTERACTIVE"
                     styles={{
-                      label: { color: 'var(--text-muted)', fontSize: '0.7rem' },
+                      label: { color: 'var(--text-muted)', fontSize: '0.75rem', fontWeight: 600 },
                       container: { flexDirection: 'column-reverse', alignItems: 'flex-start', gap: '0.35rem' }
                     }}
                   />
@@ -314,12 +287,12 @@ export default function Example() {
             </div>
           )}
 
+          {/* Normal controls grid on page layout */}
           <div style={{
-            marginTop: '1.5rem',
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: '1.5rem',
-            width: '100%'
+            marginTop: '2rem'
           }}>
             {/* Column 1: Appearance */}
             <div style={{
@@ -345,7 +318,7 @@ export default function Example() {
               </h4>
 
               <ColorPicker
-                label="PRIMARY CHROME COLOR"
+                label="PRIMARY COLOR"
                 value={primaryColor}
                 onChange={setPrimaryColor}
                 variant="duo"
@@ -354,11 +327,29 @@ export default function Example() {
               />
 
               <ColorPicker
-                label="SECONDARY CHROME COLOR"
+                label="SECONDARY COLOR"
                 value={secondaryColor}
                 onChange={setSecondaryColor}
                 variant="duo"
                 showAlpha={false}
+                showEyeDropper={false}
+              />
+
+              <ColorPicker
+                label="ACCENT NEON COLOR"
+                value={accentColor}
+                onChange={setAccentColor}
+                variant="duo"
+                showAlpha={false}
+                showEyeDropper={false}
+              />
+
+              <ColorPicker
+                label="CANVAS BACKGROUND"
+                value={backgroundColor}
+                onChange={setBackgroundColor}
+                variant="duo"
+                showAlpha={true}
                 showEyeDropper={false}
               />
 
@@ -390,18 +381,9 @@ export default function Example() {
                   { value: 'high', label: 'High' },
                 ]}
               />
-
-              <ColorPicker
-                label="CANVAS BACKGROUND"
-                value={backgroundColor}
-                onChange={setBackgroundColor}
-                variant="duo"
-                showAlpha={true}
-                showEyeDropper={false}
-              />
             </div>
 
-            {/* Column 2: Surface & Shading */}
+            {/* Column 2: Tuning */}
             <div style={{
               display: 'flex',
               flexDirection: 'column',
@@ -421,71 +403,56 @@ export default function Example() {
                 margin: '0 0 0.5rem 0',
                 textTransform: 'uppercase'
               }}>
-                Surface & Shading
+                Tuning
               </h4>
 
               <Slider
                 label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
-                    <span>CHROMATIC SHIFT</span>
-                    <span>{chromaticShift.toFixed(2)}</span>
+                    <span>PANEL DENSITY</span>
+                    <span>{density.toFixed(1)}</span>
                   </div>
                 }
-                min={0.0}
-                max={1.0}
-                step={0.01}
-                value={chromaticShift}
-                onChange={setChromaticShift}
-                showTooltip
-              />
-
-              <Slider
-                label={
-                  <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
-                    <span>NOISE INTENSITY</span>
-                    <span>{noiseIntensity.toFixed(2)}</span>
-                  </div>
-                }
-                min={0.0}
-                max={1.0}
-                step={0.01}
-                value={noiseIntensity}
-                onChange={setNoiseIntensity}
-                showTooltip
-              />
-
-              <Slider
-                label={
-                  <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
-                    <span>FLATNESS</span>
-                    <span>{flatness.toFixed(1)}</span>
-                  </div>
-                }
-                min={0.0}
-                max={10.0}
+                min={0.2}
+                max={4.0}
                 step={0.1}
-                value={flatness}
-                onChange={setFlatness}
+                value={density}
+                onChange={setDensity}
                 showTooltip
               />
 
               <Slider
                 label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
-                    <span>DISTORTION</span>
-                    <span>{distortion.toFixed(2)}</span>
+                    <span>LIGHT INTENSITY</span>
+                    <span>{intensity.toFixed(1)}</span>
                   </div>
                 }
                 min={0.0}
-                max={2.0}
-                step={0.05}
-                value={distortion}
-                onChange={setDistortion}
+                max={3.0}
+                step={0.1}
+                value={intensity}
+                onChange={setIntensity}
+                showTooltip
+              />
+
+              <Slider
+                label={
+                  <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
+                    <span>NEON GLOW</span>
+                    <span>{glow.toFixed(1)}</span>
+                  </div>
+                }
+                min={0.0}
+                max={3.0}
+                step={0.1}
+                value={glow}
+                onChange={setGlow}
                 showTooltip
               />
             </div>
 
-            {/* Column 3: Waves & Motion */}
+            {/* Column 3: Motion & Input */}
             <div style={{
               display: 'flex',
               flexDirection: 'column',
@@ -505,19 +472,19 @@ export default function Example() {
                 margin: '0 0 0.5rem 0',
                 textTransform: 'uppercase'
               }}>
-                Waves & Motion
+                Motion & Interactivity
               </h4>
 
               <Slider
                 label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
-                    <span>FLOW SPEED</span>
-                    <span>{speed.toFixed(2)}</span>
+                    <span>DRIFT SPEED</span>
+                    <span>{speed.toFixed(1)}</span>
                   </div>
                 }
                 min={0.0}
-                max={2.0}
-                step={0.05}
+                max={4.0}
+                step={0.1}
                 value={speed}
                 onChange={setSpeed}
                 showTooltip
@@ -526,36 +493,21 @@ export default function Example() {
               <Slider
                 label={
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
-                    <span>WAVE AMPLITUDE</span>
-                    <span>{amplitude.toFixed(2)}</span>
+                    <span>NOISE INTENSITY</span>
+                    <span>{noiseIntensity.toFixed(1)}</span>
                   </div>
                 }
-                min={0.05}
+                min={0.0}
                 max={2.0}
-                step={0.05}
-                value={amplitude}
-                onChange={setAmplitude}
-                showTooltip
-              />
-
-              <Slider
-                label={
-                  <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>
-                    <span>WAVE FREQUENCY</span>
-                    <span>{frequency.toFixed(3)}</span>
-                  </div>
-                }
-                min={0.02}
-                max={1.0}
-                step={0.01}
-                value={frequency}
-                onChange={setFrequency}
+                step={0.1}
+                value={noiseIntensity}
+                onChange={setNoiseIntensity}
                 showTooltip
               />
 
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: 'auto', paddingTop: '0.5rem' }}>
                 <Switch
-                  id="interactive-checkbox"
+                  id="interactive-switch-page"
                   checked={interactive}
                   onChange={setInteractive}
                   label="MOUSE INTERACTIVE"
@@ -574,21 +526,20 @@ export default function Example() {
         <h3 className="section-subtitle">Usage</h3>
         <CodeBlock
           language="tsx"
-          code={`import { LiquidChrome } from '@unbrn/ui/LiquidChrome';
+          code={`import { Arcade } from '@unbrn/ui/Arcade';
 
 export default function Example() {
   return (
     <div style={{ position: 'relative', width: '100%', height: '500px', overflow: 'hidden' }}>
-      <LiquidChrome
-        primaryColor="#FFFFFF"
-        secondaryColor="#0A0A0A"
-        speed={0.5}
-        amplitude={0.3}
-        frequency={0.2}
+      <Arcade
+        primaryColor="#D81B24"
+        secondaryColor="#080001"
+        accentColor="#FF333D"
+        speed={1.0}
         interactive={true}
       />
       <div style={{ position: 'relative', zIndex: 1, padding: '24px' }}>
-        <h2>Welcome to my Page</h2>
+        <h2>Welcome to my Arcade Game</h2>
       </div>
     </div>
   );
@@ -598,19 +549,18 @@ export default function Example() {
 
       <Props
         props={[
-          { name: 'primaryColor', type: 'string', defaultValue: "'#FFFFFF'", description: 'Hex code for the primary wave color (representing peaks).' },
-          { name: 'secondaryColor', type: 'string', defaultValue: "'#0A0A0A'", description: 'Hex code for the secondary background color (representing valleys).' },
-          { name: 'backgroundColor', type: 'string', defaultValue: "'transparent'", description: 'Solid/transparent canvas background color behind the WebGL render.' },
-          { name: 'speed', type: 'number', defaultValue: '0.5', description: 'Flow and oscillation speed multiplier of the waves.' },
-          { name: 'amplitude', type: 'number', defaultValue: '0.3', description: 'Wave depth amplitude scaling factor.' },
-          { name: 'frequency', type: 'number', defaultValue: '0.2', description: 'Spatial wave count frequency scaling factor.' },
-          { name: 'distortion', type: 'number', defaultValue: '1.5', description: 'Perlin noise coordinate warp distortion scale.' },
-          { name: 'flatness', type: 'number', defaultValue: '1.0', description: 'Wave peak/valley flattening profile factor.' },
-          { name: 'chromaticShift', type: 'number', defaultValue: '0.25', description: 'Refractive chromatic aberration channel offset strength (red vs blue).' },
-          { name: 'noiseIntensity', type: 'number', defaultValue: '0.12', description: 'Visual opacity strength of film grain textured static noise overlay.' },
-          { name: 'interactive', type: 'boolean', defaultValue: 'true', description: 'Whether the wave center point distorts in reaction to cursor movement.' },
+          { name: 'primaryColor', type: 'string', defaultValue: "'#D81B24'", description: 'Hex code for the primary column / panel red color.' },
+          { name: 'secondaryColor', type: 'string', defaultValue: "'#080001'", description: 'Hex code for the deep dark shadow color.' },
+          { name: 'accentColor', type: 'string', defaultValue: "'#FF333D'", description: 'Hex code for the vertical glowing beams.' },
+          { name: 'speed', type: 'number', defaultValue: '1.0', description: 'Horizontal panel drift and neon sweep speed multiplier.' },
+          { name: 'intensity', type: 'number', defaultValue: '1.0', description: 'Overall brightness and contrast overlay multiplier.' },
+          { name: 'density', type: 'number', defaultValue: '2.7', description: 'Warp scaling value determining panel column counts.' },
+          { name: 'glow', type: 'number', defaultValue: '1.0', description: 'Individual neon glow / light leak brightness factor.' },
+          { name: 'noiseIntensity', type: 'number', defaultValue: '0.5', description: 'Opacity strength of the film grain / static noise overlay.' },
+          { name: 'interactive', type: 'boolean', defaultValue: 'true', description: 'Allows mouse X/Y coordinates to guide light spotlight.' },
           { name: 'mixBlendMode', type: 'string', defaultValue: "'normal'", description: 'CSS mix-blend-mode applied directly to the WebGL canvas element.' },
-          { name: 'quality', type: "'low' | 'medium' | 'high'", defaultValue: 'auto', description: 'Dynamic quality profile checking hardware capabilities.' },
+          { name: 'backgroundColor', type: 'string', defaultValue: "'transparent'", description: 'Solid/transparent canvas background color behind the WebGL render.' },
+          { name: 'quality', type: "'low' | 'medium' | 'high'", defaultValue: 'auto', description: 'Varying WebGL iterations and scale based on target device hardware.' },
           { name: 'className', type: 'string', description: 'Custom CSS class for the root container element.' },
           { name: 'style', type: 'React.CSSProperties', description: 'Custom inline styling for the root container element.' }
         ]}
