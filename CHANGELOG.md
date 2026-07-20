@@ -2,6 +2,10 @@
 
 All notable changes to @unbrn/ui will be documented in this file.
 
+## [2.2.0] - 2026-07-20
+### Features & Refinements
+- **Added "Arcade" Background**: Introduced the `Arcade` background component, a customizable, retro-themed WebGL shader animation with interactive grid effects, speed, noise, and color tuning.
+
 ## [2.1.0] - 2026-07-02
 ### Features & Refinements
 - **Numeric Sizing System Overhaul**: Converted all size properties across all UI components from string literals (`"sm"`, `"default"`, `"lg"`) to numeric values (`1 | 2 | 3` or `1 | 2 | 3 | 4 | 5` for Avatar) to simplify layouts and standardize theming:
