@@ -37,6 +37,7 @@ const ColorPickerPage = lazy(() => import('./pages/components/ColorPickerPage').
 const LumenBeamPage = lazy(() => import('./pages/backgrounds/LumenBeamPage').then(m => ({ default: m.LumenBeamPage })));
 const SatinFlowPage = lazy(() => import('./pages/backgrounds/SatinFlowPage').then(m => ({ default: m.SatinFlowPage })));
 const LiquidChromePage = lazy(() => import('./pages/backgrounds/LiquidChromePage').then(m => ({ default: m.LiquidChromePage })));
+const ArcadePage = lazy(() => import('./pages/backgrounds/ArcadePage').then(m => ({ default: m.ArcadePage })));
 const ChangelogPage = lazy(() => import('./pages/ChangelogPage').then(m => ({ default: m.ChangelogPage })));
 
 type Theme = 'light' | 'dark';
@@ -307,6 +308,7 @@ function AppContent({ theme, setTheme, toggleTheme }: AppContentProps) {
                 <Route path="backgrounds/lumen-beam" element={<LumenBeamPage />} />
                 <Route path="backgrounds/satin-flow" element={<SatinFlowPage />} />
                 <Route path="backgrounds/liquid-chrome" element={<LiquidChromePage />} />
+                <Route path="backgrounds/arcade" element={<ArcadePage />} />
                 <Route path="changelog" element={<ChangelogPage />} />
               </Route>
 

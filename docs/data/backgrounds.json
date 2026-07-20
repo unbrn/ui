@@ -16,5 +16,11 @@
     "description": "A glossy, reflective liquid chrome surface with dynamic metallic refractions, chromatic shifts, and mouse interactivity.",
     "path": "/backgrounds/liquid-chrome",
     "addedAt": "2026-06-20"
+  },
+  {
+    "name": "Arcade",
+    "description": "A retro-modern vertical column shader featuring neon light leaks, 3D panel folds, and slow drifting pulse animations.",
+    "path": "/backgrounds/arcade",
+    "addedAt": "2026-07-18"
   }
 ]
