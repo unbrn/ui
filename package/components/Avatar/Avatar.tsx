@@ -95,3 +95,65 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
 );
 
 Avatar.displayName = 'Avatar';
+
+export interface AvatarGroupProps {
+  children: React.ReactNode;
+  max?: number;
+  className?: string;
+  style?: React.CSSProperties;
+  size?: 1 | 2 | 3 | 4 | 5;
+}
+
+export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
+  (
+    {
+      children,
+      max,
+      className,
+      style,
+      size = 3
+    },
+    ref
+  ) => {
+    const childrenArray = React.Children.toArray(children).filter(React.isValidElement);
+    const totalCount = childrenArray.length;
+    const limit = max !== undefined ? max : totalCount;
+    const displayedChildren = childrenArray.slice(0, limit);
+    const remainingCount = totalCount - limit;
+
+    return (
+      <div
+        ref={ref}
+        style={style}
+        className={cn('unbrn-avatar-group', className)}
+      >
+        <div className="unbrn-avatar-group-list" style={{ display: 'flex', flexDirection: 'row-reverse' }}>
+          {displayedChildren.reverse().map((child, index) => {
+            const element = child as React.ReactElement<any>;
+            return React.cloneElement(element, {
+              key: index,
+              size,
+              className: cn(
+                element.props.className,
+                'unbrn-avatar-group-item'
+              )
+            });
+          })}
+        </div>
+        {remainingCount > 0 && (
+          <span className="unbrn-avatar-group-remaining" style={{
+            fontSize: size === 1 ? '0.65rem' : size === 2 ? '0.75rem' : size === 4 ? '0.95rem' : size === 5 ? '1.15rem' : '0.85rem',
+            color: 'var(--text-muted, rgba(255, 255, 255, 0.45))',
+            marginLeft: '12px',
+            fontWeight: 500
+          }}>
+            +{remainingCount}
+          </span>
+        )}
+      </div>
+    );
+  }
+);
+
+AvatarGroup.displayName = 'AvatarGroup';
+

@@ -2,6 +2,10 @@
 
 All notable changes to @unbrn/ui will be documented in this file.
 
+## [2.2.1] - 2026-07-21
+### Features & Refinements
+- **Added AvatarGroup Component**: Introduced the `AvatarGroup` component to display overlapping avatar lists with a customizable `max` limit and responsive numeric sizing.
+
 ## [2.2.0] - 2026-07-20
 ### Features & Refinements
 - **Added "Arcade" Background**: Introduced the `Arcade` background component, a customizable, retro-themed WebGL shader animation with interactive grid effects, speed, noise, and color tuning.
