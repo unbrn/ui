@@ -70,3 +70,24 @@
   border-radius: 50%;
   transition: all var(--transition);
 }
+
+.unbrn-avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.unbrn-avatar-group-list {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.unbrn-avatar-group-item {
+  margin-right: -8px;
+  border: 2px solid var(--bg-main, #0a0a0a) !important;
+}
+
+.unbrn-avatar-group-remaining {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  margin-left: 12px;
+}

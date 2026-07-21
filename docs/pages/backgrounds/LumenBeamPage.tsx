@@ -16,12 +16,12 @@ export const LumenBeamPage: React.FC = () => {
   const [topColor, setTopColor] = useState('#FFFFFF');
   const [bottomColor, setBottomColor] = useState('#0A0A0A');
   const [backgroundColor, setBackgroundColor] = useState('#000000');
-  const [intensity, setIntensity] = useState(1.0);
+  const [intensity, setIntensity] = useState(1.5);
   const [rotationSpeed, setRotationSpeed] = useState(0.3);
   const [interactive, setInteractive] = useState(false);
   const [glowAmount, setGlowAmount] = useState(0.002);
-  const [beamWidth, setBeamWidth] = useState(3.0);
-  const [beamHeight, setBeamHeight] = useState(0.25);
+  const [beamWidth, setBeamWidth] = useState(5.0);
+  const [beamHeight, setBeamHeight] = useState(0.10);
   const [noiseIntensity, setNoiseIntensity] = useState(0.5);
   const [beamRotation, setBeamRotation] = useState(245);
   const [mixBlendMode, setMixBlendMode] = useState<React.CSSProperties['mixBlendMode']>('normal');
@@ -653,12 +653,12 @@ export default function Example() {
         props={[
           { name: 'topColor', type: 'string', defaultValue: "'#FFFFFF'", description: 'Hex code for the top color of the beam gradient.' },
           { name: 'bottomColor', type: 'string', defaultValue: "'#0A0A0A'", description: 'Hex code for the bottom color of the beam gradient.' },
-          { name: 'intensity', type: 'number', defaultValue: '1.0', description: 'Overall brightness and scale multiplier of the rendering.' },
+          { name: 'intensity', type: 'number', defaultValue: '1.5', description: 'Overall brightness and scale multiplier of the rendering.' },
           { name: 'rotationSpeed', type: 'number', defaultValue: '0.3', description: 'Speed multiplier for the volumetric raymarching animation.' },
           { name: 'interactive', type: 'boolean', defaultValue: 'false', description: 'Whether the beam rotation follows the mouse pointer.' },
           { name: 'glowAmount', type: 'number', defaultValue: '0.005', description: 'Controls the glow strength and radial spread of the columns.' },
-          { name: 'beamWidth', type: 'number', defaultValue: '3.0', description: 'Width/radius scaling factor for the volumetric light rays.' },
-          { name: 'beamHeight', type: 'number', defaultValue: '0.25', description: 'Scale offset height of the noise wave columns.' },
+          { name: 'beamWidth', type: 'number', defaultValue: '5.0', description: 'Width/radius scaling factor for the volumetric light rays.' },
+          { name: 'beamHeight', type: 'number', defaultValue: '0.10', description: 'Scale offset height of the noise wave columns.' },
           { name: 'noiseIntensity', type: 'number', defaultValue: '0.5', description: 'Intensity of the film grain post-processing effect overlay.' },
           { name: 'beamRotation', type: 'number', defaultValue: '245', description: 'Initial angle offset of the beams (in degrees, 0 to 360).' },
           { name: 'mixBlendMode', type: 'string', defaultValue: "'screen'", description: 'CSS mix-blend-mode applied directly to the WebGL canvas element.' },

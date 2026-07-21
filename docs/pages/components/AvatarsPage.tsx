@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar } from '../../../package/components/Avatar/Avatar';
+import { Avatar, AvatarGroup } from '../../../package/components/Avatar/Avatar';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
@@ -119,6 +119,29 @@ export default function Example() {
             <Avatar accentColor="red" fallback="RR" />
           </div>
         </Showcase>
+        <Showcase
+          title="Avatar Group"
+          description="Group multiple avatars together in an overlapping layout."
+          code={`import { Avatar, AvatarGroup } from '@unbrn/ui/Avatar';
+
+export default function Example() {
+  return (
+    <AvatarGroup max={3} size={3}>
+      <Avatar src="https://avatars.githubusercontent.com/u/197804266" />
+      <Avatar src="https://avatars.githubusercontent.com/u/76094069" />
+      <Avatar src="https://avatars.githubusercontent.com/u/92834724" />
+      <Avatar src="https://avatars.githubusercontent.com/u/142813653" />
+    </AvatarGroup>
+  );
+}`}
+        >
+          <AvatarGroup max={3} size={3}>
+            <Avatar src="https://avatars.githubusercontent.com/u/197804266" />
+            <Avatar src="https://avatars.githubusercontent.com/u/76094069" />
+            <Avatar src="https://avatars.githubusercontent.com/u/92834724" />
+            <Avatar src="https://avatars.githubusercontent.com/u/142813653" />
+          </AvatarGroup>
+        </Showcase>
       </div>
 
       <Props
@@ -146,6 +169,17 @@ export default function Example() {
  ├── fallback
  └── status`}
       />
+      <div className="section-usage" style={{ marginTop: '3rem' }}>
+        <h3 className="section-subtitle">Avatar Group Props</h3>
+        <Props
+          props={[
+            { name: 'max', type: 'number', description: 'Maximum number of avatars to display before adding a plus sign.' },
+            { name: 'size', type: '1 | 2 | 3 | 4 | 5', defaultValue: '3', description: 'The size of the profile pictures in the group.' },
+            { name: 'className', type: 'string', description: 'Custom CSS class for the root container.' },
+            { name: 'style', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
+          ]}
+        />
+      </div>
     </>
   );
 };
