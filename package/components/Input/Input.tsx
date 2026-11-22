@@ -1,6 +1,6 @@
 "use client";
 
-import React, { forwardRef, useId } from 'react';
+import React, { forwardRef, useId, useCallback, useRef } from 'react';
 import { cn } from '../../lib/utils';
 import { getAccentVariables } from '../../lib/colors';
 import './Input.css';
@@ -20,13 +20,17 @@ export interface InputProps {
   style?: React.CSSProperties;
   disabled?: boolean;
   id?: string;
-  value?: string;
-  defaultValue?: string;
+  value?: string | number;
+  defaultValue?: string | number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   type?: string;
   readOnly?: boolean;
   accentColor?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  hideControls?: boolean;
   classNames?: {
     root?: string;
     container?: string;
@@ -37,6 +41,8 @@ export interface InputProps {
     icon?: string;
     progressContainer?: string;
     progressBar?: string;
+    stepper?: string;
+    stepperButton?: string;
   };
   styles?: {
     root?: React.CSSProperties;
@@ -48,6 +54,8 @@ export interface InputProps {
     icon?: React.CSSProperties;
     progressContainer?: React.CSSProperties;
     progressBar?: React.CSSProperties;
+    stepper?: React.CSSProperties;
+    stepperButton?: React.CSSProperties;
   };
 }
 
@@ -77,6 +85,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       styles,
       style,
       accentColor,
+      min,
+      max,
+      step = 1,
+      hideControls = false,
     },
     ref
   ) => {
@@ -84,6 +96,57 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const resolvedId = id || generatedId;
     const resolvedSize = size === 1 ? 'sm' : size === 3 ? 'lg' : 'default';
     const accentStyle = getAccentVariables(accentColor);
+    const internalRef = useRef<HTMLInputElement>(null);
+    const inputRef = (ref as React.RefObject<HTMLInputElement>) || internalRef;
+
+    const isNumber = type === 'number';
+
+    const triggerChange = useCallback(
+      (input: HTMLInputElement, nextVal: string) => {
+        const tracker = (input as unknown as { _valueTracker?: { setValue: (v: string) => void } })
+          ._valueTracker;
+        if (tracker) {
+          tracker.setValue(input.value);
+        }
+        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+          window.HTMLInputElement.prototype,
+          'value'
+        )?.set;
+        if (nativeInputValueSetter) {
+          nativeInputValueSetter.call(input, nextVal);
+        } else {
+          input.value = nextVal;
+        }
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+        if (onChange) {
+          onChange({
+            target: input,
+            currentTarget: input,
+          } as unknown as React.ChangeEvent<HTMLInputElement>);
+        }
+      },
+      [onChange]
+    );
+
+    const handleStep = useCallback(
+      (direction: 'up' | 'down') => {
+        const input = inputRef.current;
+        if (!input || disabled || readOnly) return;
+
+        const currentVal = parseFloat(input.value) || 0;
+        const stepVal = step ?? 1;
+        const newVal = direction === 'up' ? currentVal + stepVal : currentVal - stepVal;
+
+        const clampedVal = Math.round(newVal * 1e10) / 1e10;
+        if (min !== undefined && clampedVal < min) return;
+        if (max !== undefined && clampedVal > max) return;
+
+        triggerChange(input, String(clampedVal));
+        input.focus();
+      },
+      [disabled, readOnly, step, min, max, inputRef, triggerChange]
+    );
 
     return (
       <div
@@ -110,6 +173,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             `unbrn-input-container-${variant}`,
             `unbrn-input-container-${resolvedSize}`,
             (variant === 'outlined' || variant === 'duo') && 'unbrn-glass',
+            isNumber && "unbrn-input-container-number",
             error && "unbrn-input-container-error",
             disabled && "unbrn-input-container-disabled",
             classNames?.container
@@ -123,7 +187,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
 
           <input
-            ref={ref}
+            ref={inputRef}
             id={resolvedId}
             disabled={disabled}
             readOnly={readOnly}
@@ -132,13 +196,51 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             defaultValue={defaultValue}
             onChange={onChange}
             placeholder={placeholder}
+            min={isNumber ? min : undefined}
+            max={isNumber ? max : undefined}
+            step={isNumber ? step : undefined}
             className={cn(
               "unbrn-input",
+              isNumber && "unbrn-input-number",
               className,
               classNames?.element
             )}
             style={styles?.element}
           />
+
+          {isNumber && !hideControls && (
+            <div
+              className={cn("unbrn-input-stepper", classNames?.stepper)}
+              style={styles?.stepper}
+            >
+              <button
+                type="button"
+                tabIndex={-1}
+                aria-label="Increase value"
+                disabled={disabled || readOnly}
+                className={cn("unbrn-input-stepper-btn unbrn-input-stepper-up", classNames?.stepperButton)}
+                style={styles?.stepperButton}
+                onClick={() => handleStep('up')}
+              >
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 6.5L5 3.5L8 6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <button
+                type="button"
+                tabIndex={-1}
+                aria-label="Decrease value"
+                disabled={disabled || readOnly}
+                className={cn("unbrn-input-stepper-btn unbrn-input-stepper-down", classNames?.stepperButton)}
+                style={styles?.stepperButton}
+                onClick={() => handleStep('down')}
+              >
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          )}
 
           {(kbd || rightIcon) && (
             <div className="unbrn-input-right-section">

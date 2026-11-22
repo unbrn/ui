@@ -17,6 +17,7 @@ export interface DropzoneProps {
   icon?: React.ReactNode;
   className?: string;
   disabled?: boolean;
+  showFileList?: boolean;
   accentColor?: string;
   classNames?: {
     root?: string;
@@ -73,6 +74,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({
   icon,
   className,
   disabled = false,
+  showFileList = true,
   accentColor,
   classNames,
   styles,
@@ -106,10 +108,15 @@ export const Dropzone: React.FC<DropzoneProps> = ({
       validFiles.push(file);
     });
 
+    if (!showFileList) {
+      onFilesDrop?.(validFiles);
+      return;
+    }
+
     const updatedFiles = multiple ? [...files, ...validFiles] : validFiles;
     setFiles(updatedFiles);
     onFilesDrop?.(updatedFiles);
-  }, [disabled, maxSize, multiple, files, onFilesDrop, accept]);
+  }, [disabled, maxSize, multiple, files, onFilesDrop, accept, showFileList]);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -120,6 +127,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({
 
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     processFiles(e.target.files);
+    e.target.value = '';
   };
 
   const handleClick = () => {
@@ -143,7 +151,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({
           "unbrn-glass",
           isDragging && "unbrn-dropzone-dragging",
           disabled && "unbrn-dropzone-disabled",
-          files.length > 0 && "unbrn-dropzone-has-files"
+          showFileList && files.length > 0 && "unbrn-dropzone-has-files"
         )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -193,7 +201,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({
         <div className="unbrn-dropzone-glow" />
       </div>
 
-      {files.length > 0 && (
+      {showFileList && files.length > 0 && (
         <div className="unbrn-dropzone-file-list">
           {files.map((file, index) => {
             const extension = file.name.split('.').pop()?.toLowerCase();

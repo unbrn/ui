@@ -16,6 +16,7 @@ export interface ColorPickerProps {
   label?: React.ReactNode;
   variant?: 'filled' | 'outlined' | 'duo';
   size?: 1 | 2 | 3;
+  position?: 'top' | 'bottom';
   align?: 'left' | 'center' | 'right';
   className?: string;
   style?: React.CSSProperties;
@@ -282,6 +283,7 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
       label,
       variant = 'filled',
       size = 2,
+      position: controlledPosition,
       align = 'left',
       id,
       accentColor,
@@ -306,6 +308,7 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
     const [hsv, setHsv] = useState<HSV>(() => hexToHsv(color));
     const [isEyeDropperSupported, setIsEyeDropperSupported] = useState(false);
     const [popoverPosition, setPopoverPosition] = useState<'top' | 'bottom'>('bottom');
+    const [popoverAlign, setPopoverAlign] = useState<'left' | 'center' | 'right'>(align || 'left');
 
     useEffect(() => {
       setIsEyeDropperSupported(typeof window !== 'undefined' && 'EyeDropper' in window);
@@ -414,21 +417,56 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
     }, [isOpen]);
 
     useEffect(() => {
+      if (controlledPosition) {
+        setPopoverPosition(controlledPosition);
+      }
+    }, [controlledPosition]);
+
+    useEffect(() => {
       if (isOpen && triggerRef.current) {
-        const rect = triggerRef.current.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const popoverHeight = 320;
+        if (!controlledPosition) {
+          const rect = triggerRef.current.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          const popoverHeight = 320;
 
-        const spaceBelow = viewportHeight - rect.bottom;
-        const spaceAbove = rect.top;
+          // Check available space within scrolling parent container if any
+          let containerTop = 0;
+          let containerBottom = viewportHeight;
+          let el = triggerRef.current.parentElement;
+          while (el && el !== document.body) {
+            const style = window.getComputedStyle(el);
+            if (/(auto|scroll|hidden)/.test(style.overflowY)) {
+              const cRect = el.getBoundingClientRect();
+              containerTop = Math.max(containerTop, cRect.top);
+              containerBottom = Math.min(containerBottom, cRect.bottom);
+              break;
+            }
+            el = el.parentElement;
+          }
 
-        if (spaceBelow < popoverHeight && spaceAbove > spaceBelow) {
-          setPopoverPosition('top');
-        } else {
-          setPopoverPosition('bottom');
+          const spaceBelow = containerBottom - rect.bottom;
+          const spaceAbove = rect.top - containerTop;
+
+          if (spaceBelow < popoverHeight && spaceAbove > spaceBelow && spaceAbove >= popoverHeight) {
+            setPopoverPosition('top');
+          } else {
+            setPopoverPosition('bottom');
+          }
+        }
+
+        // Auto boundary collision check for alignment if align is not explicitly set
+        if (!align) {
+          const rect = triggerRef.current.getBoundingClientRect();
+          const popoverWidth = 280;
+          const viewportWidth = window.innerWidth;
+          if (rect.left + popoverWidth > viewportWidth - 16 && rect.right - popoverWidth >= 16) {
+            setPopoverAlign('right');
+          } else if (rect.left < 16) {
+            setPopoverAlign('left');
+          }
         }
       }
-    }, [isOpen]);
+    }, [isOpen, align, controlledPosition]);
 
     const updateColor = (newColor: string) => {
       if (disabled) return;
@@ -608,7 +646,7 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
               className={cn(
                 "unbrn-color-picker-popover",
                 `unbrn-color-picker-popover-${popoverPosition}`,
-                `unbrn-color-picker-popover-${align}`,
+                `unbrn-color-picker-popover-${align || popoverAlign}`,
                 "unbrn-glass",
                 classNames?.popover
               )}
@@ -630,8 +668,8 @@ export const ColorPicker = forwardRef<HTMLButtonElement, ColorPickerProps>(
                 <div
                   className="unbrn-color-picker-sv-thumb"
                   style={{
-                    left: `${hsv.s}%`,
-                    top: `${100 - hsv.v}%`,
+                    left: `clamp(8px, ${hsv.s}%, calc(100% - 8px))`,
+                    top: `clamp(8px, ${100 - hsv.v}%, calc(100% - 8px))`,
                     backgroundColor: color,
                   }}
                 />

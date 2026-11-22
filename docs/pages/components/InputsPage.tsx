@@ -3,7 +3,7 @@ import { Input } from '../../../package/components/Input/Input';
 import { Showcase } from '../../components/layout/Showcase';
 import { CodeBlock } from '../../../package/components/CodeBlock/CodeBlock';
 import { Props } from '../../components/layout/Props';
-import { Mail, Lock, User, Search } from 'lucide-react';
+import { Mail, Lock, User, Search, Hash } from 'lucide-react';
 import { ComponentHeader } from '../../components/layout/ComponentHeader';
 
 export const InputsPage: React.FC = () => {
@@ -155,6 +155,65 @@ export default function Example() {
           </div>
         </Showcase>
 
+        <Showcase
+          title="Number Input"
+          description="Use type='number' for numeric inputs with built-in stepper controls. Supports min, max, and step props."
+          code={`import { Input } from '@unbrn/ui/Input';
+import { Hash } from 'lucide-react';
+
+export default function Example() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
+      <Input
+        type="number"
+        label="Quantity"
+        placeholder="0"
+        min={0}
+        max={100}
+      />
+      <Input
+        type="number"
+        label="Price"
+        placeholder="0.00"
+        step={0.01}
+        min={0}
+        leftIcon={<Hash size={16} />}
+      />
+      <Input
+        type="number"
+        label="Hidden Controls"
+        placeholder="Enter a number"
+        hideControls
+      />
+    </div>
+  );
+}`}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', maxWidth: '300px' }}>
+            <Input
+              type="number"
+              label="Quantity"
+              placeholder="0"
+              min={0}
+              max={100}
+            />
+            <Input
+              type="number"
+              label="Price"
+              placeholder="0.00"
+              step={0.01}
+              min={0}
+              leftIcon={<Hash size={16} />}
+            />
+            <Input
+              type="number"
+              label="Hidden Controls"
+              placeholder="Enter a number"
+              hideControls
+            />
+          </div>
+        </Showcase>
+
 
         <Showcase
           title="States"
@@ -232,15 +291,19 @@ export default function Example() {
           { name: 'style', type: 'React.CSSProperties', description: 'Custom inline CSS styles for the root container.' },
           { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Disable clicks and inputs.' },
           { name: 'id', type: 'string', description: 'Custom id attribute.' },
-          { name: 'value', type: 'string', description: 'Controlled value.' },
-          { name: 'defaultValue', type: 'string', description: 'Uncontrolled default value.' },
+          { name: 'value', type: 'string | number', description: 'Controlled value.' },
+          { name: 'defaultValue', type: 'string | number', description: 'Uncontrolled default value.' },
           { name: 'onChange', type: 'function', description: 'Change event handler.' },
           { name: 'placeholder', type: 'string', description: 'Placeholder text.' },
-          { name: 'type', type: 'string', defaultValue: "'text'", description: 'HTML input type attribute.' },
+          { name: 'type', type: 'string', defaultValue: "'text'", description: "HTML input type attribute. Use 'number' for numeric inputs with stepper controls." },
           { name: 'readOnly', type: 'boolean', defaultValue: 'false', description: 'Prevent changing the value of the input.' },
           { name: 'accentColor', type: 'string', description: 'Custom primary accent color for active highlight styling overrides (hex, rgb, etc.).' },
-          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the input (prefixed with input).' },
-          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (prefixed with input).' },
+          { name: 'min', type: 'number', description: "Minimum allowed value. Only applies when type is 'number'." },
+          { name: 'max', type: 'number', description: "Maximum allowed value. Only applies when type is 'number'." },
+          { name: 'step', type: 'number', defaultValue: '1', description: "Step increment for the stepper controls. Only applies when type is 'number'." },
+          { name: 'hideControls', type: 'boolean', defaultValue: 'false', description: "Hide the stepper up/down buttons. Only applies when type is 'number'." },
+          { name: 'classNames', type: 'object', description: 'Custom CSS classes for each part of the input (root, container, element, label, description, error, icon, stepper, stepperButton).' },
+          { name: 'styles', type: 'object', description: 'Custom inline CSS styles for each part (root, container, element, label, description, error, icon, stepper, stepperButton).' },
         ]}
         stylingTargets={[
           { name: 'root', description: 'Styles the outer input wrapper container.' },
@@ -250,16 +313,20 @@ export default function Example() {
           { name: 'description', description: 'Styles the description text element.' },
           { name: 'error', description: 'Styles the error message text element.' },
           { name: 'icon', description: 'Styles the icon wrapper elements (left or right).' },
+          { name: 'stepper', description: 'Styles the number stepper container (holds up/down buttons).' },
+          { name: 'stepperButton', description: 'Styles the individual stepper up/down buttons.' },
         ]}
         stylingStructure={`root
  ├── label
  ├── container
  │    ├── icon
- │    └── element
+ │    ├── element
+ │    └── stepper (number only)
+ │         ├── stepperButton (up)
+ │         └── stepperButton (down)
  ├── description
  └── error`}
       />
     </>
   );
 };
-
