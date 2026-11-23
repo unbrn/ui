@@ -1,6 +1,6 @@
 {
   "name": "@unbrn/ui",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "private": false,
   "description": "Minimalist UI Crafted with Precision",
   "author": "Unbrn",
@@ -105,6 +105,16 @@
       "types": "./dist/components/Steps/Steps.d.ts",
       "import": "./dist/components/Steps/Steps.mjs",
       "require": "./dist/components/Steps/Steps.cjs"
+    },
+    "./Modal": {
+      "types": "./dist/components/Modal/Modal.d.ts",
+      "import": "./dist/components/Modal/Modal.mjs",
+      "require": "./dist/components/Modal/Modal.cjs"
+    },
+    "./Toast": {
+      "types": "./dist/components/Toast/Toast.d.ts",
+      "import": "./dist/components/Toast/Toast.mjs",
+      "require": "./dist/components/Toast/Toast.cjs"
     },
     "./LumenBeam": {
       "types": "./dist/backgrounds/LumenBeam/LumenBeam.d.ts",

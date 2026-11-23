@@ -49,6 +49,8 @@ export default defineConfig(({ mode }) => {
           'components/Tooltip/Tooltip': resolve(__dirname, 'package/components/Tooltip/Tooltip.tsx'),
           'components/Textarea/Textarea': resolve(__dirname, 'package/components/Textarea/Textarea.tsx'),
           'components/Steps/Steps': resolve(__dirname, 'package/components/Steps/Steps.tsx'),
+          'components/Modal/Modal': resolve(__dirname, 'package/components/Modal/Modal.tsx'),
+          'components/Toast/Toast': resolve(__dirname, 'package/components/Toast/Toast.tsx'),
           'backgrounds/LumenBeam/LumenBeam': resolve(__dirname, 'package/backgrounds/LumenBeam/LumenBeam.tsx'),
           'backgrounds/SatinFlow/SatinFlow': resolve(__dirname, 'package/backgrounds/SatinFlow/SatinFlow.tsx'),
           'backgrounds/LiquidChrome/LiquidChrome': resolve(__dirname, 'package/backgrounds/LiquidChrome/LiquidChrome.tsx'),

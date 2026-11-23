@@ -98,17 +98,6 @@
   animation: unbrn-switch-shift-off 0.4s var(--transition-curve);
 }
 
-.unbrn-switch-jar-on .unbrn-switch-thumb::after {
-  content: '';
-  position: absolute;
-  inset: -10px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-color) 0%, var(--accent-color) 15%, transparent 80%);
-  opacity: 0;
-  animation: unbrn-switch-bloom 0.4s var(--transition-curve);
-  pointer-events: none;
-}
-
 @keyframes unbrn-switch-shift-on {
   0% {
     transform: translateX(0);
@@ -134,20 +123,6 @@
 
   100% {
     transform: translateX(0);
-  }
-}
-
-@keyframes unbrn-switch-bloom {
-  0% {
-    transform: scale(0.5);
-    opacity: 0.8;
-    filter: blur(2px);
-  }
-
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
-    filter: blur(6px);
   }
 }
 

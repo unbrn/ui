@@ -84,6 +84,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         id={id}
         type={type}
+        data-accent-color={resolvedAccentColor}
         onClick={onClick}
         disabled={disabled || loading}
         style={{ ...style, ...styles?.root, ...accentStyle }}
@@ -138,6 +139,7 @@ export interface ButtonGroupProps {
   style?: React.CSSProperties;
   tabs?: boolean;
   variant?: 'filled' | 'outlined' | 'duo';
+  accentColor?: string;
 }
 
 export const ButtonGroup: React.FC<ButtonGroupProps> = ({
@@ -145,7 +147,8 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   className,
   style,
   tabs = false,
-  variant = 'filled'
+  variant = 'filled',
+  accentColor
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [indicatorStyle, setIndicatorStyle] = useState<React.CSSProperties>({
@@ -155,6 +158,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     top: 0,
     opacity: 0,
   });
+  const [activeAccentVars, setActiveAccentVars] = useState<React.CSSProperties>({});
 
   const startXRef = useRef(0);
   const startLeftRef = useRef(0);
@@ -181,8 +185,15 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
           top: `${activeEl.offsetTop}px`,
           opacity: 1,
         });
+        const btnAccent = activeEl.getAttribute('data-accent-color') || activeEl.style.getPropertyValue('--accent-color') || accentColor;
+        if (btnAccent && btnAccent.trim()) {
+          setActiveAccentVars(getAccentVariables(btnAccent.trim()));
+        } else {
+          setActiveAccentVars(accentColor ? getAccentVariables(accentColor) : {});
+        }
       } else {
         setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
+        setActiveAccentVars(accentColor ? getAccentVariables(accentColor) : {});
       }
     };
 
@@ -192,7 +203,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     return () => {
       window.removeEventListener('resize', updateIndicator);
     };
-  }, [children, tabs]);
+  }, [children, tabs, accentColor]);
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!tabs) return;
@@ -361,35 +372,39 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     }
   };
 
+  const groupAccentVars = accentColor ? getAccentVariables(accentColor) : {};
   const currentIndicatorStyle: React.CSSProperties = {
     ...indicatorStyle,
     ...(dragLeft !== null ? { left: `${dragLeft}px` } : {}),
+    ...activeAccentVars,
   };
 
   return (
-    <div
-      ref={containerRef}
-      className={cn(
-        'unbrn-btn-group',
-        tabs && 'unbrn-btn-group-tabs',
-        tabs && `unbrn-btn-group-tabs-${variant}`,
-        isDraggingState && 'unbrn-btn-group-dragging',
-        'unbrn-glass',
-        className
-      )}
-      style={style}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
-    >
-      {tabs && (
-        <div
-          className="unbrn-btn-group-indicator"
-          style={currentIndicatorStyle}
-        />
-      )}
-      {children}
-    </div>
+    <ButtonContext.Provider value={{ variant, accentColor }}>
+      <div
+        ref={containerRef}
+        className={cn(
+          'unbrn-btn-group',
+          tabs && 'unbrn-btn-group-tabs',
+          tabs && `unbrn-btn-group-tabs-${variant}`,
+          isDraggingState && 'unbrn-btn-group-dragging',
+          'unbrn-glass',
+          className
+        )}
+        style={{ ...groupAccentVars, ...activeAccentVars, ...style }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+      >
+        {tabs && (
+          <div
+            className="unbrn-btn-group-indicator"
+            style={currentIndicatorStyle}
+          />
+        )}
+        {children}
+      </div>
+    </ButtonContext.Provider>
   );
 };

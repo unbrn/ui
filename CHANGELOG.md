@@ -2,6 +2,16 @@
 
 All notable changes to @unbrn/ui will be documented in this file.
 
+## [2.2.2] - 2026-11-23
+### Features & Refinements
+- **Added Modal Component**: Introduced the `Modal` dialog component with numeric sizing (`1 | 2 | 3`), customizable header/body/footer structure, glass backdrop blur, keyboard ESC navigation, and animated entry.
+- **Added Toast Notification System**: Introduced the `Toast` notification system (`ToastProvider`, `useToast`, `ToastContainer`) supporting multiple types (`info`, `success`, `warning`, `error`), positions, custom duration, and actions.
+- **Input Stepper Controls**: Added stepper controls and numeric validation for `type="number"` inputs with `min`, `max`, `step`, and `hideControls` props.
+- **ButtonGroup Accent Support**: Added `accentColor` support to `ButtonGroup` with animated indicator matching active button accents.
+- **ColorPicker Boundary Collision Detection**: Improved popover positioning to detect container boundaries and viewport edges, automatically flipping or aligning.
+- **Dropzone File List Toggle**: Added `showFileList` prop to `Dropzone` to allow optional suppression of the internal file preview list.
+- **Badge & Switch Polish**: Adjusted `Badge` border-radius scales for cleaner proportions and removed legacy bloom keyframes in `Switch`.
+
 ## [2.2.1] - 2026-07-21
 ### Features & Refinements
 - **Added AvatarGroup Component**: Introduced the `AvatarGroup` component to display overlapping avatar lists with a customizable `max` limit and responsive numeric sizing.

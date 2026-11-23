@@ -43,6 +43,7 @@
   background-color: color-mix(in srgb, var(--accent-color) 5%, transparent);
   border-color: color-mix(in srgb, var(--accent-color) 5%, transparent);
 }
+
 .unbrn-input-container-sm {
   height: var(--height-sm);
   border-radius: var(--radius-sm);
@@ -328,4 +329,156 @@
 [style*="--accent-color"] .unbrn-input-container-duo:focus-within {
   background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
   border-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
+}
+
+
+/* ===== Number Input ===== */
+
+/* Hide native browser spinners */
+.unbrn-input-number::-webkit-outer-spin-button,
+.unbrn-input-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.unbrn-input-number {
+  -moz-appearance: textfield;
+}
+
+/* Stepper controls container */
+.unbrn-input-stepper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  margin-left: auto;
+  border-left: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.unbrn-input-stepper-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s var(--transition-curve);
+  outline: none;
+  pointer-events: auto;
+}
+
+.unbrn-input-stepper-btn:hover {
+  background-color: color-mix(in srgb, var(--text-main) 8%, transparent);
+  color: var(--text-main);
+}
+
+.unbrn-input-stepper-btn:active {
+  background-color: color-mix(in srgb, var(--text-main) 14%, transparent);
+}
+
+.unbrn-input-stepper-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.unbrn-input-stepper-btn:disabled:hover {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.unbrn-input-stepper-up {
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
+}
+
+.unbrn-input-stepper-down {
+  border-radius: 0;
+}
+
+/* Size adjustments for stepper */
+.unbrn-input-container-sm .unbrn-input-stepper {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.unbrn-input-container-sm .unbrn-input-stepper-btn {
+  width: 24px;
+}
+
+.unbrn-input-container-sm .unbrn-input-stepper-btn svg {
+  width: 8px;
+  height: 8px;
+}
+
+.unbrn-input-container-default .unbrn-input-stepper {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.unbrn-input-container-lg .unbrn-input-stepper {
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.unbrn-input-container-lg .unbrn-input-stepper-btn {
+  width: 34px;
+}
+
+.unbrn-input-container-lg .unbrn-input-stepper-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Ensure right padding for number input doesn't clash with stepper */
+.unbrn-input-container-number .unbrn-input {
+  padding-right: 2.75rem;
+}
+
+.unbrn-input-container-sm.unbrn-input-container-number .unbrn-input {
+  padding-right: 2.25rem;
+}
+
+.unbrn-input-container-lg.unbrn-input-container-number .unbrn-input {
+  padding-right: 3.25rem;
+}
+
+/* Stepper overflow clip on container */
+.unbrn-input-container-number {
+  overflow: hidden;
+}
+
+/* Accent color overrides for stepper */
+[style*='--accent-color'] .unbrn-input-container-filled .unbrn-input-stepper,
+[style*="--accent-color"] .unbrn-input-container-filled .unbrn-input-stepper {
+  border-left-color: color-mix(in srgb, var(--accent-text, #fff) 20%, transparent);
+}
+
+[style*='--accent-color'] .unbrn-input-container-filled .unbrn-input-stepper-up,
+[style*="--accent-color"] .unbrn-input-container-filled .unbrn-input-stepper-up {
+  border-bottom-color: color-mix(in srgb, var(--accent-text, #fff) 20%, transparent);
+}
+
+[style*='--accent-color'] .unbrn-input-container-filled .unbrn-input-stepper-btn,
+[style*="--accent-color"] .unbrn-input-container-filled .unbrn-input-stepper-btn {
+  color: color-mix(in srgb, var(--accent-text, #fff) 70%, transparent);
+}
+
+[style*='--accent-color'] .unbrn-input-container-filled .unbrn-input-stepper-btn:hover,
+[style*="--accent-color"] .unbrn-input-container-filled .unbrn-input-stepper-btn:hover {
+  background-color: color-mix(in srgb, var(--accent-text, #fff) 15%, transparent);
+  color: var(--accent-text, #fff);
+}
+
+[style*='--accent-color'] .unbrn-input-container-duo .unbrn-input-stepper-btn,
+[style*="--accent-color"] .unbrn-input-container-duo .unbrn-input-stepper-btn {
+  color: color-mix(in srgb, var(--accent-color) 60%, transparent);
+}
+
+[style*='--accent-color'] .unbrn-input-container-duo .unbrn-input-stepper-btn:hover,
+[style*="--accent-color"] .unbrn-input-container-duo .unbrn-input-stepper-btn:hover {
+  color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
 }

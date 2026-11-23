@@ -14,19 +14,19 @@
 .unbrn-badge-sm {
   padding: 0.2rem 0.5rem;
   font-size: 0.6rem;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-sm);
 }
 
 .unbrn-badge-md {
   padding: 0.35rem 0.8rem;
   font-size: 0.7rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
 }
 
 .unbrn-badge-lg {
   padding: 0.5rem 1.2rem;
   font-size: 0.8rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .unbrn-badge-filled {
